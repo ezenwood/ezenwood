@@ -5,4 +5,5 @@ Servers/
 .settings
 .target
 .springBeans
-/target
+/target/
+.class
