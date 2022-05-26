@@ -7,12 +7,12 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>admin notice all</title>
+<title>qnaDetail</title>
 </head>
 <body>
 	<div>
 		<div>
-			<h1>공지사항</h1>
+			<h1>QNA</h1>
 		</div>
 	</div>
 	<div>

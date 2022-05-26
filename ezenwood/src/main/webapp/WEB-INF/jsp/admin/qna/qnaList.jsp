@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>admin QNA list</title>
+<title>QNAlist</title>
 </head>
 <body>
 	<div>

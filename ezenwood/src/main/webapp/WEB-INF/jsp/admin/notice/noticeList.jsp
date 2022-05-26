@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="EUC-KR">
-<title>admin notice all</title>
+<title>noticeList</title>
 </head>
 <body>
 <div>
