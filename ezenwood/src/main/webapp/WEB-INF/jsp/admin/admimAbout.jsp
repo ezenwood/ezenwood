@@ -1,20 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset="UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="EUC-KR">
+
+
+<meta charset="UTF-8">
 <title>about</title>
 </head>
 <body>
 	<div>
 		어바웃
-		<div style="background-color: gray;">회색창</div>
-		<div">
-			<div"></div>
-			<div">
-				<div">
-					<img src="/c/resources/image/aboutimg.jpg">
+		<div>
+			<div style="background-color: gray;">회색창</div>
+			<div>
+				<div>
+					<img src="/c/resources/image/aboutimg.jpg" alt="">
 				</div>
 				<div>
 					작은언니네가구점은 당신의 삶이 반영된 공간과 시간, 현재를 살아가는 아름다운 이들의 꿈의 공간을 만들고자 하는 마음에서
@@ -28,13 +29,13 @@
 					companion for you to share preferences and pursue a better
 					lifestyle.
 				</div>
-				<div">
-					<input type="button" onclick="" value="수정"> <input
-						type="button" onclick="" value="삭제">
+				<div>
+					<input type="button" onclick="" value="수정">
 				</div>
 			</div>
 		</div>
 	</div>
+
 
 
 </body>
