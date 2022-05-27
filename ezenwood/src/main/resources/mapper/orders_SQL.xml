@@ -1,0 +1,428 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- Client / Admin -->
+
+<mapper namespace="orders">
+
+	<!-- Client -->
+	<!-- 주문 입력 -->
+	<insert id="insertOrder" parameterType="hashmap">
+<![CDATA[
+insert into orders values(
+	SEQ_ORDERS_NUM.NEXTVAL,
+	#{GOODSNUM},
+	#{ORDERAMOUNT},
+	(select member_num from member where member_id = #{MEMBERID}),
+	#{GOODSOPTION},
+	#{RECEIVERNAME},
+	#{RECEIVERPHONE},
+	'주문대기중',
+	sysdate,
+	#{ORDERPRICE},
+	#{DCOST},
+	#{TCOST},
+	#{RECEIVERZIPCODE},
+	#{RECEIVERADD1},
+	#{RECEIVERADD2},
+	#{RECEIVERADD3},
+	#{ORDERTRACK},
+	#{ORDERMEMO},
+	#{ORDERPAY}
+)]]>
+	</insert>
+
+
+
+
+	<!-- 주문 내역 전체 -->
+	<select id="selectAll">
+		<include refid="common.pagingPre"></include>
+<![CDATA[
+select
+    ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
+    ORDERS_NUM,
+    ORDERS_GOODS_NUM,
+    ORDERS_AMOUNT,
+    ORDERS_MEMBER_NUM,
+    ORDERS_GOODS_OPTION,
+    ORDERS_RECEIVER,
+    ORDERS_PHONE,
+    ORDERS_STATUS,
+    ORDERS_DATE,
+    ORDERS_PRICE,
+    ORDERS_DCOST,
+    ORDERS_TCOST,
+    ORDERS_ZIPCODE,
+    ORDERS_RADD1,
+    ORDERS_RADD2,
+    ORDERS_RADD3,
+    ORDERS_TRACK,
+    ORDERS_DMEMO,
+    ORDERS_PAY
+from 
+	orders 
+where 
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBERID})
+	
+]]>
+		<include refid="common.pagingPost"></include>
+	</select>
+
+
+
+
+
+	<!-- 주문 내역 날짜별 -->
+	<select id="selectAllByDay">
+	<include refid="common.pagingPre"></include>
+<![CDATA[
+select
+	ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
+	ORDERS_NUM,
+	ORDERS_GOODS_NUM,
+	ORDERS_AMOUNT,
+	ORDERS_MEMBER_NUM,
+	ORDERS_GOODS_OPTION,
+	ORDERS_RECEIVER,
+	ORDERS_PHONE,
+	ORDERS_STATUS,
+	ORDERS_DATE,
+	ORDERS_PRICE,
+	ORDERS_DCOST,
+	ORDERS_TCOST,
+	ORDERS_RZIPCODE,
+	ORDERS_RADD1,
+	ORDERS_RADD2,
+	ORDERS_RADD3,
+	ORDERS_TRACK,
+	ORDERS_DMEMO,
+	ORDERS_PAY 
+from 
+	orders 
+where 
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBERID}) and 
+	ORDER_DATE BETWEEN #{STARTDATE} and #{ENDDATE}
+
+]]>
+<include refid="common.pagingPost"></include>
+	</select>
+	
+	
+	
+	
+
+	<!-- 주문 내역 상태별 -->
+	<select id="selectAllByStatus">
+	<include refid="common.pagingPre"></include>
+<![CDATA[
+select 
+	ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
+	ORDERS_NUM,
+	ORDERS_GOODS_NUM,
+	ORDERS_AMOUNT,
+	ORDERS_MEMBER_NUM,
+	ORDERS_GOODS_OPTION,
+	ORDERS_RECEIVER,
+	ORDERS_PHONE,
+	ORDERS_STATUS,
+	ORDERS_DATE,
+	ORDERS_PRICE,
+	ORDERS_DCOST,
+	ORDERS_TCOST,
+	ORDERS_RZIPCODE,
+	ORDERS_RADD1,
+	ORDERS_RADD2,
+	ORDERS_RADD3,
+	ORDERS_TRACK,
+	ORDERS_DMEMO,
+	ORDERS_PAY  
+from  
+	orders 
+where
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBERID}) and
+	ORDERS_STATUS = #{ORDERSTATUS}
+	
+]]>
+<include refid="common.pagingPost"></include>
+	</select>
+
+
+
+
+
+	<!-- 주문 디테일 -->
+	<select id="selectOneByOrderNum">
+<![CDATA[
+select * from orders
+	where
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBERID}) and
+	ORDERS_NUM = #{ORDERNUM}
+	
+	
+]]>
+	</select>
+
+
+
+
+
+	<!-- 주문 취소 -->
+	<update id="deleteOrder">
+<![CDATA[
+update 
+	orders 
+set 
+	ORDERS_STATUS = 'CANCLE' 
+where 
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBERID}) and
+	ORDERS_NUM = #{ORDERNUM}
+]]>
+	</update>
+
+
+
+
+
+	<!-- Admin -->
+
+
+
+
+
+	<!-- 주문 내역 전체 -->
+	<select id="selectAllADMIN">
+<![CDATA[
+select 
+	ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
+	ORDERS_NUM,
+	ORDERS_GOODS_NUM,
+	ORDERS_AMOUNT,
+	ORDERS_MEMBER_NUM,
+	ORDERS_GOODS_OPTION,
+	ORDERS_RECEIVER,
+	ORDERS_PHONE,
+	ORDERS_STATUS,
+	ORDERS_DATE,
+	ORDERS_PRICE,
+	ORDERS_DCOST,
+	ORDERS_TCOST,
+	ORDERS_RZIPCODE,
+	ORDERS_RADD1,
+	ORDERS_RADD2,
+	ORDERS_RADD3,
+	ORDERS_TRACK,
+	ORDERS_DMEMO,
+	ORDERS_PAY  
+from orders
+	
+]]>
+	</select>
+
+
+
+
+	<!-- 주문 내역 날짜별 -->
+	<select id="selectAllByDayADMIN">
+<![CDATA[
+select 
+	ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
+	ORDERS_NUM,
+	ORDERS_GOODS_NUM,
+	ORDERS_AMOUNT,
+	ORDERS_MEMBER_NUM,
+	ORDERS_GOODS_OPTION,
+	ORDERS_RECEIVER,
+	ORDERS_PHONE,
+	ORDERS_STATUS,
+	ORDERS_DATE,
+	ORDERS_PRICE,
+	ORDERS_DCOST,
+	ORDERS_TCOST,
+	ORDERS_RZIPCODE,
+	ORDERS_RADD1,
+	ORDERS_RADD2,
+	ORDERS_RADD3,
+	ORDERS_TRACK,
+	ORDERS_DMEMO,
+	ORDERS_PAY 
+from 
+	orders
+where 
+	ORDERS_DATE BETWEEN #{STARTDATE} and #{ENDDATE}
+
+]]>
+	</select>
+
+
+
+
+
+	<!-- 주문 내역 아이디 -->
+	<select id="selectAllByMemberIdADMIN">
+<![CDATA[
+select 
+	ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
+	ORDERS_NUM,
+	ORDERS_GOODS_NUM,
+	ORDERS_AMOUNT,
+	ORDERS_MEMBER_NUM,
+	ORDERS_GOODS_OPTION,
+	ORDERS_RECEIVER,
+	ORDERS_PHONE,
+	ORDERS_STATUS,
+	ORDERS_DATE,
+	ORDERS_PRICE,
+	ORDERS_DCOST,
+	ORDERS_TCOST,
+	ORDERS_RZIPCODE,
+	ORDERS_RADD1,
+	ORDERS_RADD2,
+	ORDERS_RADD3,
+	ORDERS_TRACK,
+	ORDERS_DMEMO,
+	ORDERS_PAY  
+from 
+	orders 
+where 
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBERID}
+
+]]>
+	</select>
+
+
+
+
+
+	<!-- 주문 내역 상태별 -->
+	<select id="selectAllByStatusADMIN">
+<![CDATA[
+select 
+	ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
+	ORDERS_NUM,
+	ORDERS_GOODS_NUM,
+	ORDERS_AMOUNT,
+	ORDERS_MEMBER_NUM,
+	ORDERS_GOODS_OPTION,
+	ORDERS_RECEIVER,
+	ORDERS_PHONE,
+	ORDERS_STATUS,
+	ORDERS_DATE,
+	ORDERS_PRICE,
+	ORDERS_DCOST,
+	ORDERS_TCOST,
+	ORDERS_RZIPCODE,
+	ORDERS_RADD1,
+	ORDERS_RADD2,
+	ORDERS_RADD3,
+	ORDERS_TRACK,
+	ORDERS_DMEMO,
+	ORDERS_PAY  
+from 
+	orders 
+where 
+	ORDERS_STATUS = #{ORDERSTATUS}
+	
+]]>
+	</select>
+
+
+
+
+
+	<!-- 주문 디테일 -->
+	<select id="selectOneByOrderNumADMIN">
+<![CDATA[
+select 
+	
+	ORDERS_NUM,
+	ORDERS_GOODS_NUM,
+	ORDERS_AMOUNT,
+	ORDERS_MEMBER_NUM,
+	ORDERS_GOODS_OPTION,
+	ORDERS_RECEIVER,
+	ORDERS_PHONE,
+	ORDERS_STATUS,
+	ORDERS_DATE,
+	ORDERS_PRICE,
+	ORDERS_DCOST,
+	ORDERS_TCOST,
+	ORDERS_RZIPCODE,
+	ORDERS_RADD1,
+	ORDERS_RADD2,
+	ORDERS_RADD3,
+	ORDERS_TRACK,
+	ORDERS_DMEMO,
+	ORDERS_PAY  
+from  
+	orders 
+where
+	ORDERS_NUM = #{ORDERNUM}
+	
+]]>
+	</select>
+
+
+
+
+	<!-- 주문 상태 변경 -->
+	<update id="updateStatusADMIN">
+<![CDATA[
+update  
+	orders 
+set 
+	ORDERS_STATUS = #{ORDERSTATUS} 
+where 
+	ORDERS_NUM = #{ORDERNUM}
+]]>
+	</update>
+
+
+
+
+	<!-- 주문 내용 변경 -->
+	<update id="updateADMIN">
+<![CDATA[
+update 
+	orders
+set ORDERS_AMOUNT = #{},
+	ORDERS_GOODS_OPTION = #{},
+	ORDERS_RECEIVER = #{},
+	ORDERS_PHONE = #{},
+	ORDERS_STATUS = #{},
+	ORDERS_RZIPCODE = #{},
+	ORDERS_RADD1 = #{},
+	ORDERS_RADD2 = #{},
+	ORDERS_RADD3 = #{},
+	ORDERS_TRACK = #{} 
+where 
+	ORDERS_NUM = #{ORDERNUM}
+]]>
+	</update>
+
+<!-- 
+ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
+ORDERS_NUM,
+ORDERS_GOODS_NUM,
+ORDERS_AMOUNT,
+ORDERS_MEMBER_NUM,
+ORDERS_GOODS_OPTION,
+ORDERS_RECEIVER,
+ORDERS_PHONE,
+ORDERS_STATUS,
+ORDERS_DATE,
+ORDERS_PRICE,
+ORDERS_DCOST,
+ORDERS_TCOST,
+ORDERS_RZIPCODE,
+ORDERS_RADD1,
+ORDERS_RADD2,
+ORDERS_RADD3,
+ORDERS_TRACK,
+ORDERS_DMEMO,
+ORDERS_PAY
+
+ -->
+
+
+</mapper>
