@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="about">
+
+<insert id="insertAbout">
+<![CDATA[
+insert into
+	about
+values(
+	#{about_content}
+	)
+
+]]>
+
+</insert>
+
+<select id="selectAbout">
+<![CDATA[
+select 
+	*
+from
+	about 
+
+]]>
+
+</select>
+
+<update id="updateAbout">
+<![CDATA[
+update 
+	about 
+set 
+	about_content = #{about_content} 
+
+]]>
+
+</update>
+
+
+
+<delete id="deleteAbout">
+<![CDATA[
+delete about
+]]>
+</delete>
+
+
+</mapper>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="image">
+
+
+
+
+<insert id="insertImage">
+<![CDATA[
+insert into image values(
+	SEQ_IMAGE_NUM.nextval,
+	#{TABLENAME},
+	#{IDX},
+	#{ORG},
+	#{STD}
+	)
+]]>
+</insert>
+
+<select id="selectImage">
+<![CDATA[
+select image_org, image_std
+	where image_tablenames_tablename = #{TABLENAME} and
+	image_parent = #{IDX}
+	
+]]>
+</select>
+
+<update id="updateImage">
+<![CDATA[
+update 
+	image 
+set 
+	image_org = #{org},
+	image_std = #{std}
+where
+	image_num = #{image_num}
+	
+
+]]>
+
+</update>
+
+<delete id="deleteImage">
+<![CDATA[
+delete
+	image
+where 
+	image_num = #{image_num}
+
+]]>
+
+
+</delete>
+
+</mapper>

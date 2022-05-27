@@ -8,7 +8,22 @@
 		http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd
 		http://www.springframework.org/schema/context https://www.springframework.org/schema/context/spring-context.xsd">
 
-	<annotation-driven />
+	<!-- 맵으로 파라미터 받는것 설정 -->
+	<annotation-driven >
+	<argument-resolvers>
+	<beans:bean class="com.ezen.common.CustomMapArgumentResolver"></beans:bean>
+	</argument-resolvers>
+	</annotation-driven>
+	
+	<!-- 인터셉터 -->
+	<interceptors>
+	<interceptor>
+	<mapping path="/**"/>
+	<beans:bean id="loggerInterceptor" class="com.ezen.common.LoggerInterceptor"></beans:bean>
+	</interceptor>
+	</interceptors>
+	
+	
 
 	<context:component-scan
 		base-package="com.ezen.ezenwood" use-default-filters="false">

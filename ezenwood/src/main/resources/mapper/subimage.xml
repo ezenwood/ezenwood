@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="subimage">
+
+<insert id="insertSubImage">
+<![CDATA[
+insert into 
+	subimage 
+values(
+	SEQ_SUBIMAGE_NUM.NEXTVAL,
+	#{parent},
+	#{org},
+	#{std}
+	)
+	
+]]>
+</insert>
+
+
+<select id="selectOne">
+<![CDATA[
+select 
+	* 
+from 
+	subimage 
+where 
+	subimage_parent = #{parent}
+]]>
+</select>
+
+
+
+<update id="updateSubImage">
+<![CDATA[
+update 
+	subimage 
+set 
+	subimage_org = #{org},
+	subimage_std = #{std} 
+where 
+	subimage_num = #{subimage_num}
+	
+]]>
+
+
+</update>
+
+
+
+<delete id="deleteSubImage">
+<![CDATA[
+delete 
+	subimage 
+where 
+	subimage_num = #{subimage_num}
+
+]]>
+
+</delete>
+
+
+
+
+
+</mapper>
