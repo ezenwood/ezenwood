@@ -1,0 +1,111 @@
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="mypage.css">
+    <link rel="stylesheet" href="layout.css">
+    <link rel="stylesheet" href="member.css">
+    <link rel="stylesheet" href="reset.css">
+    <link rel="stylesheet" href="reser2.css">
+    <title>mypage_main</title>
+</head>
+<body>
+<div id="container">
+   <div id="contents">
+      <!-- 본문  -->
+      <div class="location_wrap">
+         <div class="location_cont">
+             <em>
+                 <a href="#" class="local_home">Home</a>
+                     &gt;마이페이지
+             </em>
+         </div>
+      </div>
+       <!-- locaion_wrap-->
+       <div class="sub_content">
+          <div class="side_cont">
+              <div class="sub_menu_box">
+                  <h2>마이페이지</h2>
+                  <ul class="sub_menu_mypage">
+                     <li> 
+                         쇼핑정보
+                         <ul class="sub_depth1">
+                             <li><a href="#">- 주문목록/배송조회</a></li>
+                             <li><a href="#">- 취소/반품/교환 내역</a></li>
+                         </ul>
+                     </li>
+                      <li> 
+                         게시판 관리
+                         <ul class="sub_depth1">
+                             <li><a href="#">- 리뷰관리</a></li>
+                             <li><a href="#">- 1:1문의</a></li>
+                             <li><a href="#">- Q&A</a></li>
+                         </ul>
+                     </li>
+                     <li> 
+                         회원정보
+                         <ul class="sub_depth1">
+                             <li><a href="#">- 회원정보 변경/탈퇴</a></li>
+                         </ul>
+                     </li>
+                  </ul>
+              </div>
+              <!--sub_menu_box -->
+              <script type="text/javascript">
+                  //메뉴선택
+                  $('sub_menu_mypage li> a[href*="' + document.location.pathname+'"]').addClass('active');
+              </script>
+          </div> 
+          <!-- side_cont-->
+          
+          <div class="content">
+             <div class="mypage_main">
+                <!--마이페이지 회원 요약정보 -->
+                <div class="mypage_order_info">
+                   <div class="mypage_zone_tit">
+                      <h3> 진행 중인 주문 </h3>  
+                   </div>
+                   <div class="mypage_order_info_cont">
+                      <ol>
+                          <li class><b>입금대기</b>
+                              <strong style="color: black">0</strong>
+                          </li>
+                          <li class><b>결제완료</b>
+                          <strong style="color: black">0</strong>
+                          </li>
+                          <li class><b>상품준비중</b>
+                          <strong style="color: black">0</strong>
+                          </li>
+                          <li class><b>배송 중</b>
+                          <strong style="color: black">0</strong>
+                          </li>
+                          <li class><b>배송 완료</b>
+                          <strong style="color: black">0</strong>
+                          </li>
+                      </ol>
+                       <div class="order_case_list">
+                          <ul>
+                              <li style="color: black">
+                              <b>취소</b>
+                              <strong>0건</strong>
+                              </li>
+                          </ul>   
+                       </div>
+                   </div>
+                   <!--mypage_orer_info_cont --> 
+                </div>
+                 <!-- mypage_order_info -->
+             </div>
+              
+          </div>
+          
+       </div>
+       
+   </div>
+    
+</div>    
+    
+</body>
+</html>
