@@ -4,54 +4,127 @@
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>fqList</title>
-</head>
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>fqLists</title>
+<style>
+* {
+	box-sizing: border-box;
+}
+
+body, th, td, input, select, textarea, button {
+	font-size: 14px;
+	line-height: 1.5;
+	font-family: Lato, "Malgun Gothic", "맑은 고딕", AppleGothic, Dotum, "돋움",
+		sans-serif;
+	color: #333;
+}
+
+.wrapper {
+	width: 1000px;
+	margin: 0 auto;
+}
+
+.wrapper2 {
+	width: 600px;
+	margin: 0 auto;
+}
+
+.wrapper3 {
+	border: 1px solid #ccc;
+}
+
+.wrapper4 {
+	margin: 10px 20px;
+}
+
+.w3 {
+	background-color: #dbdbdb;
+	padding: 5px;
+	padding-left: 15px;
+}
+
+h1 {
+	margin-left: 20px;
+}
+
+table, th, td {
+	border: 1px solid #ccc;
+	padding: 5px 15px;
+	border-collapse: collapse;
+}
+
+th {
+	padding: 9px 10px 10px 10px;
+	background: #f7f7f7;
+	border-top: 1px solid #dbdbdb;
+	border-bottom: 1px solid #dbdbdb;
+	background: #f7f7f7;
+	font-size: 12px;
+	line-height: 1.5;
+	font-family: Lato, "Malgun Gothic", "맑은 고딕", AppleGothic, Dotum, "돋움",
+		sans-serif;
+	text-align: left;
+}
+
+input[type=button] {
+	width: 100px;
+	height: 30px;
+	background-color: #333;
+	color: #fff;
+}
+</style>
 <body>
-	<div style="width:100%; background-color:red;"> <!-- 가장 바깥 틀 -->
-		<div>
+	<div class="wrapper">
+		<!-- 가장 바깥 틀 -->
+		<div class="wrapper2">
 			<h1>자주묻는질문</h1>
 		</div>
-		<div style="width:100%; background-color:orange;"><!-- 안쪽 박스 틀  -->
+		<div class="wrapper3">
+			<!-- 안쪽 박스 틀  -->
 			<div>
-				<div style="background-color: yellow">자주묻는질문 등록, 수정, 삭제 기능하는 페이지입니다. 
-			</div>
+				<div class="w3">자주묻는질문 등록, 수정, 삭제 기능하는 페이지입니다.</div>
 				<div>
-					<div style="background-color: green; margin:50px">
+					<div>
 						<div>
-							<div style="margin-bottom: 5px;">
+							<div style="margin: 0 20px;">
+								<br>
 								<div>
-									<input type="button" value="전체" style="float: left" onclick=""> 
+									<input type="button" value="전체" style="float: left" onclick="">
 								</div>
+								<br>
 							</div>
 
 							<div>
-								<div>
-									<table style="width: 100%">
+								<div class="wrapper4">
+									<table style="width: 80%">
 										<thead>
 											<tr role="row">
 												<th style="width: 10%; text-align: center;">번호</th>
-												<th style="width: 65%; text-align: center;">제목</th>
+												<th style="width: 40%; text-align: center;">제목</th>
 												<th style="width: 15%; text-align: center;">등록일</th>
 												<th style="width: 10%; text-align: center;">중요도</th>
 											</tr>
 										</thead>
 										<tbody>
 											<%-- <c:forEach var="list" items="${noticelist}" varStatus="stat"> --%>
-												<tr class="gradeA even" role="row">
-													<td style="text-align: center; vertical-align: middle;">1</td>
-													<td style="text-align: center; vertical-align: middle;">결제는 어떻게<a
-														href="제목을 통한 경로"></a></td>
-													<td style="text-align: center; vertical-align: middle;">22-05-27</td>
-													<td style="text-align: center; vertical-align: middle;">1</td>
-												</tr>
+											<tr class="gradeA even" role="row">
+												<td style="text-align: center; vertical-align: middle;">1</td>
+												<td style="text-align: center; vertical-align: middle;">결제는
+													어떻게<a href="제목을 통한 경로"></a>
+												</td>
+												<td style="text-align: center; vertical-align: middle;">22-05-27</td>
+												<td style="text-align: center; vertical-align: middle;">1</td>
+											</tr>
 											<%-- </c:forEach> --%>
 											<!--  등록된 상품이 없을때 -->
 											<c:if test="${fn:length(list) le 0}">
 												<tr>
-													<td colspan="9" style="text-align: center;"> 등록된 글이 없습니다.</td>
+													<td colspan="9" style="text-align: center;">등록된 글이
+														없습니다.</td>
 												</tr>
 											</c:if>
 										</tbody>
@@ -59,10 +132,10 @@
 									<br>
 									<div align="center">
 										<input type="button" value="등록" onclick=""></input>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="button" value="수정" onclick=""></input>
-											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-										<input type="button" value="삭제" onclick=""></input>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
+											value="수정" onclick=""></input>
+										&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
+											value="삭제" onclick=""></input>
 									</div>
 								</div>
 							</div>
