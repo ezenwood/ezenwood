@@ -1,16 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="ko">
 
 <head>
-    <link href="css/reset.css" type="text/css" rel="stylesheet">
+    <!-- <link href="css/reset.css" type="text/css" rel="stylesheet">
     <link href="css/layout.css" type="text/css" rel="stylesheet">
     <link href="css/board.css" type="text/css" rel="stylesheet">
     <link href="css/common.css" type="text/css" rel="stylesheet">
     <link href="css/button.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="js/sister_js/gd_board_common.js"></script>
-    
+   
+     -->
 
 </head>
 
