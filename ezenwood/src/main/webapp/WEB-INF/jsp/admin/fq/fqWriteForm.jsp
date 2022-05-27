@@ -7,7 +7,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자주묻는질문등록</title>
+<title>자주묻는질문등록(수정과 같음)</title>
 </head>
 <body>
 	<div>
