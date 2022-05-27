@@ -6,10 +6,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class CommonController {
 	
-	@RequestMapping("/index")
-	public String index() {
-		return "index";
-	}
+//	@RequestMapping("/")
+//	public String index() {
+//		return "index";
+//	}
 	
 	@RequestMapping("/main")
 	public String main() {
