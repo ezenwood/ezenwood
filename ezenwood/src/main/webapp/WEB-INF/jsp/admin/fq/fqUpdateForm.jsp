@@ -7,18 +7,18 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>자주묻는질문등록</title>
+<title>자주묻는질문수정</title>
 </head>
 <body>
 	<div>
-		<div>
-			<h3>자주묻는질문 등록</h3>
+		<div style="width:100%; background-color:red;"> <!-- 가장 큰 틀 -->
+			<h3 style="background-color:skyblue">자주묻는질문 수정ㄴ</h3>
 			<div>
-				<div>
-					<p>자주 묻는 질문 등록 페이지 입니다.</p>
-					<div style="border:1px solid;">
+				<div style="background-color:gray"> <!-- 두번 쟤 틀 -->
+					<p>자주 묻는 질문 수정 페이지 입니다.</p>
+					<div style="border:1px solid; background-color:blue"> <!-- 내부 내용 -->
 						<form><!-- 입력된 값 받아와야함 -->
-						<table align="center">
+						<table style="margin:50px;" align="center">
 							<tr>
 								<td>
 								<input type="text" placeholder="제목을 입력해주세요">

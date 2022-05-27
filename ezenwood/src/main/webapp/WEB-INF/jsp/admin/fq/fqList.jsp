@@ -10,16 +10,16 @@
 <title>fqList</title>
 </head>
 <body>
-	<div>
+	<div style="width:100%; background-color:red;"> <!-- 가장 바깥 틀 -->
 		<div>
 			<h1>자주묻는질문</h1>
 		</div>
-		<div>
+		<div style="width:100%; background-color:orange;"><!-- 안쪽 박스 틀  -->
 			<div>
 				<div style="background-color: yellow">자주묻는질문 등록, 수정, 삭제 기능하는 페이지입니다. 
 			</div>
 				<div>
-					<div style="background-color: green">
+					<div style="background-color: green; margin:50px">
 						<div>
 							<div style="margin-bottom: 5px;">
 								<div>
@@ -39,7 +39,7 @@
 											</tr>
 										</thead>
 										<tbody>
-											<c:forEach var="list" items="${noticelist}" varStatus="stat">
+											<%-- <c:forEach var="list" items="${noticelist}" varStatus="stat"> --%>
 												<tr class="gradeA even" role="row">
 													<td style="text-align: center; vertical-align: middle;">1</td>
 													<td style="text-align: center; vertical-align: middle;">결제는 어떻게<a
@@ -47,7 +47,7 @@
 													<td style="text-align: center; vertical-align: middle;">22-05-27</td>
 													<td style="text-align: center; vertical-align: middle;">1</td>
 												</tr>
-											</c:forEach>
+											<%-- </c:forEach> --%>
 											<!--  등록된 상품이 없을때 -->
 											<c:if test="${fn:length(list) le 0}">
 												<tr>
@@ -56,6 +56,7 @@
 											</c:if>
 										</tbody>
 									</table>
+									<br>
 									<div align="center">
 										<input type="button" value="등록" onclick=""></input>
 											&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
