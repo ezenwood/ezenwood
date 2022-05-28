@@ -10,7 +10,7 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="board.css">
     <link rel="stylesheet" href="common.css">
-    <title>cancel2</title>
+    <title>oto2</title>
 </head>
 <body>
 <div id="container">
@@ -20,7 +20,7 @@
          <div class="location_cont">
              <em>
                  <a href="#" class="local_home">Home</a>
-                     &gt;취소/반품/교환 내역
+                     &gt;마이페이지&gt;게시판 관리&gt;1:1문의
              </em>
          </div>
       </div>
@@ -64,60 +64,44 @@
           <div class="content">
              <div class="mypage_cont">
                  <div class="mypage_lately_info">
-                    
+                    <h2 style="font-size: large">1:1 문의</h2>
                  </div>
              </div>
         
-             <div class="mypage_lately_info_cont">
-               <div class="mypage_zone_tit">
-                       <h2 style="font-size: large">주문취소/반품/교환</h2>
-                    </div>
-                     <!-- mypage_zone_tit-->
-                     <span class="pick_list_num" style="text-align: center">
-                    취소/반품/교환 내역 총
-                    <strong>0</strong>
-                    건
-                </span>
-                 <!-- 주문상품 리스트-->
+             
+                 <!-- oto 리스트-->
                  <div class="mypage_table_type">
                     <table>
                         <colgroup>
-                            <col style="width: 13%">
-                            <!-- 날짜/주문번호 -->
-                            <col>
-                            <!--상품명/옵션 -->
-                            <col style="width: 14%">
-                            <!-- 상품금액/수량-->
-                            <col style="width: 14%">
-                            <!--주문상태 -->
-                            <col style="width: 14%">
+                            <col style="width: 15%">
+                            <col style="width: 15%">
+                            <col style="width: 15%">
+                            <col style="width: 15%">
                             <!--확인/리뷰 -->
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>날짜/주문번호</th>
-                                <th>상품명/옵션</th>
-                                <th>상품금액/수량</th>
-                                <th>주문상태</th>
-                                <th>확인/리뷰</th>
+                                <th>문의날짜</th>
+                                <th>제목</th>
+                                <th>작성자</th>
+                                <th>문의상태</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
-                                <td colspan="6">
-                                    <p class="no_data">조회내역이 없습니다.</p>
-                                </td>
+                               <td>"${oto_date}"</td>                          
+                               <td><a href="#">
+                               "${onetoone_title}"
+                                   </a>
+                               </td>
+                               <td>"${onetoone_writer}"</td>
+                               <td>"${onetoone_re_gb}"</td>    
                             </tr>
                         </tbody>
                     </table>
                  </div>
-                 <!--사유 레이어-->
-                 <div id="lyReason" class="layer_wrap reson_layer dn" data-remote="./mypage/cancel.jsp"> </div>
-                 <div id="lyWrtirePop" class="layer_wrap board_write_layer dn"></div>
-             </div>
-              
-          </div>
-    </div>
+           </div>
+       </div>
     </div>
     </div>
 </body>

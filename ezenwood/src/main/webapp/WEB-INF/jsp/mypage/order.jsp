@@ -10,22 +10,22 @@
     <link rel="stylesheet" href="reset.css">
     <link rel="stylesheet" href="board.css">
     <link rel="stylesheet" href="common.css">
-    <title>cancel2</title>
+    <title>order2</title>
 </head>
 <body>
-<div id="container">
-   <div id="contents">
-      <!-- 본문  -->
-      <div class="location_wrap">
-         <div class="location_cont">
-             <em>
-                 <a href="#" class="local_home">Home</a>
-                     &gt;취소/반품/교환 내역
-             </em>
-         </div>
-      </div>
-       <!-- locaion_wrap-->
-       <div class="sub_content">
+  <div id="container">
+    <div id="contents">
+        <div class="location_wrap">
+    <div class="location_cont">
+       <em>
+           <a href="#" class="local_home">HOME</a>
+            &gt;주문목록/배송조회
+       </em>
+    </div>
+</div>
+<!--location_wrap -->
+
+ <div class="sub_content">
           <div class="side_cont">
               <div class="sub_menu_box">
                   <h2>마이페이지</h2>
@@ -60,21 +60,21 @@
               </script>
           </div> 
           <!-- side_cont-->
-          
           <div class="content">
              <div class="mypage_cont">
                  <div class="mypage_lately_info">
                     
                  </div>
              </div>
-        
+             
+                     
              <div class="mypage_lately_info_cont">
                <div class="mypage_zone_tit">
-                       <h2 style="font-size: large">주문취소/반품/교환</h2>
+                       <h2 style="font-size: large">주문목록/배송조회</h2>
                     </div>
                      <!-- mypage_zone_tit-->
-                     <span class="pick_list_num" style="text-align: center">
-                    취소/반품/교환 내역 총
+                <span class="pick_list_num" style="text-align: center">
+                   주문목록
                     <strong>0</strong>
                     건
                 </span>
@@ -82,7 +82,7 @@
                  <div class="mypage_table_type">
                     <table>
                         <colgroup>
-                            <col style="width: 13%">
+                            <col style="width: 14%">
                             <!-- 날짜/주문번호 -->
                             <col>
                             <!--상품명/옵션 -->
@@ -118,7 +118,9 @@
               
           </div>
     </div>
+
     </div>
-    </div>
+</div>
+
 </body>
 </html>

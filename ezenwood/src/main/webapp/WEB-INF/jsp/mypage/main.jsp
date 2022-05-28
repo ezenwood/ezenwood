@@ -8,7 +8,8 @@
     <link rel="stylesheet" href="layout.css">
     <link rel="stylesheet" href="member.css">
     <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="reser2.css">
+    <link rel="stylesheet" href="board.css">
+    <link rel="stylesheet" href="common.css">
     <title>mypage_main</title>
 </head>
 <body>
