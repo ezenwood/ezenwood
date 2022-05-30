@@ -5,13 +5,13 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-    <link href="../css/reset.css" type="text/css" rel="stylesheet">
-    <link href="../css/common.css" type="text/css" rel="stylesheet">
-    <link href="../css/member.css" type="text/css" rel="stylesheet">
-    <link href="../css/layout.css" type="text/css" rel="stylesheet">
+       <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/member.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
 </head>
 <body>
-    
+    <%@include file ="/include/header.jsp" %>
     <div id="contents">
         <!-- 본문 시작 -->
 
@@ -68,5 +68,6 @@
             </div>
             <!-- //sub_content -->
         </div>
+        <%@include file ="/include/footer.jsp" %>
 </body>
 </html>

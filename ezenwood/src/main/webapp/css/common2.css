@@ -1,0 +1,300 @@
+@charset "UTF-8";
+
+div{
+	display: block;
+}
+
+#wrap {
+	position: relative;
+	min-width: 1450px;
+}
+
+li.dropdown:hover .dropbtn {
+	
+}
+
+li.dropdown {
+	display: inline-block;
+}
+
+.dropdown-content {
+	display: none;
+	position: absolute;
+	min-width: 160px;
+	z-index: 1;
+}
+
+.dropdown-content a {
+	padding: 5px 0px;
+	text-decoration: none;
+	display: block;
+	text-align: left;
+}
+
+.dropdown-content a:hover {
+	background-color: none
+}
+
+.dropdown:hover .dropdown-content {
+	display: block;
+	text-align: left;
+}
+
+/* Header */
+#header_wrap {
+	position: absolute;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 102;
+}
+
+#header {
+	position: relative;
+}
+
+.gnb, .header_top_cont, .header_search_cont, .main_goods_cont,
+	.sub_content, .content_info, .foot_cont, .foot_certify {
+	position: relative;
+	width: 1270px;
+	margin: 0 auto;
+}
+
+#header .header_search {
+	
+}
+
+#header .header_top {
+	position: absolute;
+	width: 100%;
+	top: 0;
+	left: 0;
+	z-index: 2;
+}
+
+#header .header_search_cont {
+	min-height: 90px;
+}
+
+#header .h1_logo {
+	text-align: center;
+	padding: 60px 0 28px 0;
+}
+
+#logo_kor {
+	margin: 0 auto;
+	width: 200px;
+	height: 44px;
+}
+
+#header .gnb {
+	position: absolute;
+	top: 65px;
+	left: 75px;
+	width: 400px;
+}
+
+#header .gnb_meun_box {
+	width: 1040px;
+	width: 735px;
+	border: 1px solid #333;
+}
+
+#header .gnb .depth0 {
+	font-size: 12px;
+	vertical-align: top;
+	border: none;
+	overflow: hidden
+}
+
+#header .gnb .depth0>li {
+	position: relative;
+	display: inline-block;
+	vertical-align: top;
+}
+
+#header .gnb .depth0>li>a {
+	display: inline-block;
+	padding: 0 40px 0 0;
+	font-size: 12px;
+	text-align: left;
+	line-height: 30px;
+	font-weight: 500;
+}
+
+#header .gnb .depth1 {
+	/*position: absolute;*/
+	top: 20px;
+	left: 0;
+	width: 100%;
+	z-index: 100;
+	padding-top: 18px;
+}
+
+#header .gnb .depth1 li {
+	/*position: relative;*/
+	
+}
+
+#header .gnb .depth1 li a {
+	display: block;
+	width: 100%;
+	padding: 5px 0px 5px;
+	font-size: 12px;
+	color: #000;
+	font-weight: 500;
+}
+
+.top_search_mypage {
+	position: absolute;
+	top: 0;
+	right: 0;
+	margin-top: 60px;
+	padding-right: 75px;
+}
+
+.top_member_box {
+	float: left;
+	position: relative;
+	line-height: 1;
+}
+
+.top_member_box>li {
+	float: left;
+	position: relative;
+}
+
+.top_member_box>li:first-child a {
+	padding-left: 0;
+}
+
+.top_member_box>li a {
+	display: inline-block;
+	padding: 0 40px 0 0;
+	font-size: 12px;
+	text-align: left;
+	line-height: 30px;
+	font-weight: 500;
+}
+
+/* Footer */
+#footer {
+	width: 100%;
+	padding: 30px;
+	text-align: center;
+	font-size: 9px;
+	box-sizing: border-box;
+}
+
+#footer_wrap {
+	width: 1280px;
+	display: inline-block
+}
+
+#footer_wrap .foot_cont {
+	overflow: hidden;
+}
+
+#footer_wrap .foot_cont div {
+	float: left;
+	width: 400px;
+	text-align: left;
+}
+
+#footer_wrap .foot_cont div:nth-child(2) {
+	margin: 0 30px;
+}
+
+#footer_wrap .foot_cont div ul {
+	text-align: left;
+	display: inli
+}
+
+#footer_wrap .copyright {
+	margin-top: 50px;
+}
+
+/* contents */
+#container {
+	margin-top: -1px;
+	border-top: 1px solid #cccccc;
+}
+
+#contents {
+	min-height: 400px;
+	padding: 203px 0 80px 0;
+}
+
+#location_wrap {
+	position: relative;
+	width: 100%;
+	border-bottom: 1px solid #ededed;
+	background: #f9f9f9;
+}
+
+.location_wrap .location_cont {
+	width: 1200px;
+	margin: 0 auto;
+}
+
+/* left */
+.sub_content {
+	padding: 45px 0 0 0;
+}
+
+.sub_content .side_cont {
+	float: left;
+	width: 200px;
+}
+
+.side_cont .sub_menu_box {
+	min-height: 250px;
+	padding: 0 0 50px 0;
+}
+
+.side_cont .sub_menu_box h2 {
+	padding: 0 0 14px 10px;
+	border-bottom: 1px solid #ececec;
+}
+
+h2 {
+	display: block;
+	font-weight: bold;
+}
+
+.side_cont .sub_menu_box .sub_menu_mypage {
+	margin: 7px 0 0 0;
+}
+
+.side_cont .sub_menu_box .sub_menu_mypage>li:first-child {
+	margin: 30px 0 0 0;
+}
+
+.side_cont .sub_menu_box .sub_menu_mypage>li {
+	padding: 8px 0 15px 0;
+	font-size: 14px;
+	font-weight: bold;
+}
+
+.side_cont .sub_menu_box .sub_menu_mypage .sub_depth1 {
+	margin: 5px 0 25px 0;
+}
+
+.side_cont .sub_menu_box .sub_menu_mypage .sub_depth1 li {
+	padding: 1px 0 0 0;
+	font-weight: normal;
+}
+
+.sub_menu_box .sub_depth1 li {
+	position: relative;
+}
+
+.side_cont .sub_menu_box .sub_menu_mypage .sub_depth1 a {
+	font-size: 12px;
+	text-indent: 10px;
+}
+
+.side_cont .sub_menu_box .sub_menu_mypage a {
+	display: block;
+	padding: 7px 0 6px 0;
+}
