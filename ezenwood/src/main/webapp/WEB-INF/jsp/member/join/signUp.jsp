@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 
 <script type="text/javascript">
 	function test(){
@@ -30,10 +31,7 @@
 			checkbox.checked = selectAll.checked;
 		})
 	}
-	<!-- 아이디 중복확인 체크 -->
-	function idCheck(){
-		window.open("/com/views/idCheckForm.jsp", "idwin", "width=400, height=350")
-	}
+	
 </script>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 <meta charset="UTF-8">
@@ -325,32 +323,32 @@ label {
 		<hr>
 		<br> <br>
 		<form name="information" method="post">
-			<label for="id">아이디</label>&emsp;<input type="text" name="id" id="id"><input
+			<label for="id">아이디</label>&emsp;<input type="text" name="MEMBER_ID" id="id" value="${test }"><input
 				type="button" value="아이디 중복확인" onclick="idCheck()"><br>
 			<hr>
 			<label for="password">비밀번호</label>&emsp;<input type="password"
-				name="pw" id="password1"><br>
+				name="MEMBER_PW" id="password1"><br>
 			<hr>
 			<label for="passwordCheck">비밀번호 확인</label>&emsp;<input
 				type="password" name="pw2" id="password2">&nbsp;<input
 				type="button" onclick="test()" value="비밀번호 확인"><br>
 			<hr>
-			<label for="name">이름</label>&emsp;<input type="text" name="name"><br>
+			<label for="name">이름</label>&emsp;<input type="text" name="MEMBER_NAME"><br>
 			<hr>
 			<label for="phone">전화번호</label>&emsp;<select name="phone1">
 				<option>010</option>
 				<option>016</option>
 				<option>019</option>
-			</select> <input type="text" placeholder="-없이 입력하세요" name="phone2"><br>
+			</select> <input type="text" placeholder="-없이 입력하세요" name="MEMBER_PHONE"><br>
 			<hr>
-			<label for="email">이메일</label>&emsp;<input type="text" name="email"><br>
+			<label for="email">이메일</label>&emsp;<input type="text" name="MEMBER_EMAIL"><br>
 			<hr>
 			<!-- placeholder 화면에만 보이는 안내문구 -->
 			<!-- form으로 값을 보낼때 readonly의 입력된 값 전송 -->
-			<label for="address">주소</label>&emsp;<input type="text" id="sample6_postcode" placeholder="우편번호" readonly>&nbsp;&nbsp;
+			<label for="address">주소</label>&emsp;<input type="text" id="sample6_postcode" name="MEMBER_ZIP" placeholder="우편번호" readonly>&nbsp;&nbsp;
 			<input type="button" onclick="sample6_execDaumPostcode()" value="우편번호 찾기" readonly><br>
-			&emsp;&emsp;&emsp;<input type="text" id="sample6_address" placeholder="주소" readonly>&emsp;<input type="text" id="sample6_detailAddress" placeholder="상세주소"><br> 
-			&emsp;&emsp;&emsp;<input type="text" id="sample6_extraAddress" placeholder="참고항목" >
+			&emsp;&emsp;&emsp;<input type="text" id="sample6_address" name="MEMBER_ADD1" placeholder="주소" readonly>&emsp;<input type="text" name="MEMBER_ADD2" id="sample6_detailAddress" placeholder="상세주소"><br> 
+			&emsp;&emsp;&emsp;<input type="text" id="sample6_extraAddress" placeholder="참고항목" name="MEMBER_ADD3">
 
 			<script
 				src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
@@ -402,6 +400,19 @@ label {
             }
         }).open();
     }
+    
+    <!-- 아이디 중복확인 체크 -->
+	function idCheck(){
+		var id = document.getElementById("id").value;
+		
+		$.get("idcheck?id="+id, function(data, status){
+			if(data==0){
+				alert("중복된 아이디입니다");
+			}else{{
+				alert("사용가능한 아이디입니다");
+			}}
+		});
+	}
 </script>
 			<hr>
 			<input type="reset" value="취소">&emsp;<input type="submit"

@@ -5,10 +5,12 @@
 <head>
     <meta charset="UTF-8">
     <title>Document</title>
-       <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+
+    <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/member.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+
 </head>
 <body>
     <%@include file ="/include/header.jsp" %>
@@ -33,7 +35,7 @@
 		<!-- //member_tit -->
 		<div class="member_cont">
 
-			<form id="formLogin" method="post" action="https://www.littlesistersfurniture.com/member/login_ps.php" novalidate="novalidate">
+			<form id="formLogin" method="post" action="" novalidate="novalidate">
 				<input type="hidden" id="mode" name="mode" value="login">
 				<div class="member_login_box">
 					<h3>회원 로그인</h3>
@@ -50,7 +52,7 @@
 				</div>
 				<div class="btn_login_box">
 					<ul>
-						<li><button id="btnJoinMember" class="btn_member_join">회원가입</button></li>
+						<li><button id="btnJoinMember" class="btn_member_join" onclick="location.href='../join/signUp'">회원가입</button></li>
 						<li><button id="btnFindId" class="btn_member_white">아이디 찾기</button></li>
 						<li><button id="btnFindPwd" class="btn_member_white">비밀번호 찾기</button></li>
 					</ul>
