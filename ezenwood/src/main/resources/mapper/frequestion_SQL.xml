@@ -23,7 +23,7 @@ question_deL_gb='N';
 
 
 
-<!-- 관리자 list -->
+<!-- 관리자 list 
 <select id="frequestionList" parameterType="hashmap" resultType="hashmap">
 <include refid="common.pagingPre"/> 
 <![CDATA[
@@ -40,7 +40,7 @@ question_deL_gb='N';
 ]]>
 <include refid="common.pagingPost"/> 
 </select>
-
+-->
 <!-- 관리자 detail -->
 <select id="frequestionDetail" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
@@ -56,6 +56,7 @@ where
 question_deL_gb='N' and question_num=#{question_num}
 ]]>
 </select>
+
 
 <!-- 관리자 insert -->
 <insert id="frequestionInsert" parameterType="hashmap" >
@@ -87,7 +88,7 @@ question_num =#{question_num}
 </update>
 
 <!-- 관리자 delete -->
-<update id="frequestionupdate" parameterType="hashmap">
+<update id="frequestiondelete" parameterType="hashmap">
 <![CDATA[
 update question
 set question_del_gb='Y'
