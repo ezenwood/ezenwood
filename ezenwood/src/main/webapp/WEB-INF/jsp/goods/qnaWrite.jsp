@@ -25,6 +25,9 @@
                         <div class="board_zone_cont">
 
                             <form id="frmWrite" action="#" method="post" enctype="multipart/form-data" class="frmWrite" novalidate="novalidate">
+                            <input type="hidden" name="QNA_PARENT" value="${QNA_PARENT }">
+                            <input type="hidden" name="bdId" value="goodsqa">
+                            <input type="hidden" name="bdId" value="goodsqa">
                                 <input type="hidden" name="bdId" value="goodsqa">
                                 <input type="hidden" name="sno" value>
                                 <input type="hidden" name="mode" value="write">
@@ -39,11 +42,11 @@
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">작성자</th>
-                                                    <td>작성자 이름</td>
+                                                    <td>${writer }</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">상품 이름</th>
-                                                    <td>상품 이름 불러옴</td>
+                                                    <td>${GOODS_TITLE }</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">휴대폰</th>
@@ -54,17 +57,17 @@
                                                 <tr>
                                                     <th scope="row">제목</th>
                                                     <td>
-                                                        <input type="text" name="subject" value>
+                                                        <input type="text" name="QNA_TITLE" value>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">본문</th>
                                                     <td class="write_editor">
                                                         <div class="form_element">
-                                                            <input type="checkbox" id="secret1" name="isSecret" value="y" checked="">
+                                                            <input type="checkbox" id="secret1" name="QNA_SECREAT" value="Y" checked>
                                                             <label class="check_s on" for="secret1">비밀글</label>
                                                         </div>
-                                                        <textarea id="editor" name="contents" title="내용" cols="80" rows="20"></textarea>
+                                                        <textarea id="editor" name="QNA_CONTENT" title="내용" cols="80" rows="20"></textarea>
                                                         <!--<iframe frameborder="0" scrolling="no" style="width: 100%; height: 375px;" src="js/sister_js/SmartEditor2Skin.html"></iframe>-->
                                                     </td>
                                                 </tr>
@@ -130,12 +133,12 @@
                     <script type="text/javascript" src="js/sister_js/gd_board_write.js" charset="utf-8"></script>
                     <script type="text/template" class="template">
                         <div class="file_upload_sec">
-		<label for="attach<%=idx%>">
+		<label for="attach<%//=idx%>">
 			<input type="text" class="file_text" title="파일 첨부하기" readonly="readonly">
 		</label>
 		<div class="btn_upload_box">
 			<button type="button" class="btn_upload" title="찾아보기"><em>찾아보기</em></button>
-			<input type="file" id="attach<%=idx%>" name="upfiles[]" class="file" title="찾아보기"/>
+			<input type="file" id="attach<%//=idx%>" name="upfiles[]" class="file" title="찾아보기"/>
 			<span class="btn_gray_list"><button type="button" class="btn_gray_big" onclick="gd_remove_upload(this)"><span>- 삭제</span></button></span>
 		</div>
 	</div>

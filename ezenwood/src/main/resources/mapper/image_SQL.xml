@@ -10,10 +10,10 @@
 <![CDATA[
 insert into image values(
 	SEQ_IMAGE_NUM.nextval,
-	#{TABLENAME},
-	#{IDX},
-	#{ORG},
-	#{STD}
+	#{IMAGE_TABLENAMES_TABLENAME},
+	#{IMAGE_PARENT},
+	#{IMAGE_ORG},
+	#{IMAGE_STD}
 	)
 ]]>
 </insert>
