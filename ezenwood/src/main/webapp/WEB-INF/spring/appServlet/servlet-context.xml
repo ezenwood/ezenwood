@@ -32,7 +32,8 @@
 			expression="org.springframework.stereotype.Controller" />
 	</context:component-scan>
 
-	<resources mapping="/resources/**" location="/resources/" />
+	<resources mapping="/resource/**" location="/resource/" />
+	<resources mapping="/css/**" location="/css/" />
 
 	<beans:bean
 		class="org.springframework.web.servlet.view.InternalResourceViewResolver">

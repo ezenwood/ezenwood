@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-    <% response.sendRedirect("/a/main"); %>
+    <% response.sendRedirect("/ezenwood/main"); %>
 <!DOCTYPE html>
 <html>
 <head>
