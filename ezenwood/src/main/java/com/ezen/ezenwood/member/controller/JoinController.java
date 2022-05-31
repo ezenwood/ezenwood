@@ -23,19 +23,25 @@ public class JoinController {
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.GET )
 	public String joinForm(Model model) {
-		model.addAttribute("test", "test");
+		model.addAttribute("signup", "");
 		
 		return "member/join/signUp";
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST )
-	public String join(MemberDTO memberDto) {
+	public String join(MemberDTO memberDto, Model model) {
 		System.out.println(memberDto.getMEMBER_ADD1());
-		int a =joinService.join(memberDto);
+		int checkNum =joinService.join(memberDto);
+		
+		//checkNum == 1 success
+		if(checkNum==1) {
+			return "redirect:/member/success";
+		}else {
+			model.addAttribute("signup", "fail");
+			return "member/join/signUp";
+		}
 		
 		
-		
-		return "member/join/signUp";
 	}
 	
 	@RequestMapping("/idcheck")
@@ -47,6 +53,11 @@ public class JoinController {
 		int checkNum = joinService.idCheck(id);
 		System.out.println(checkNum);
 		response.getWriter().print(checkNum);
+	}
+	
+	@RequestMapping("/success")
+	public String success() {
+		return "/member/join/success";
 	}
 
 
