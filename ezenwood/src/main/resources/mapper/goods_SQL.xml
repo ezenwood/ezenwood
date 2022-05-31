@@ -1,0 +1,141 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="goods">
+
+<!-- 전체 메인 -->
+<select id="selectAll" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+select 
+ROW_NUMBER() OVER (ORDER BY IDX DESC) RNUM,
+goods_title,
+goods_price
+from goods
+]]>
+</select>
+
+
+<!-- 상세페이지 -->
+<select id="goodsDetailPage" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+select
+goods_num,
+goods_option,
+goods_title,
+goods_store_amount,
+GOODS_SELL_AMOUNT,
+GOODS_CONTENT1,
+GOODS_CONTENT2,
+GOODS_PRICE,GOODS_DATE,
+GOODS_DCOST
+from goods
+where goods_num = #{goods_num}
+]]>
+</select>
+
+
+
+<!-- 최신순 -->
+<select id="newGoods" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+select
+ROW_NUMBER() OVER (ORDER BY IDX DESC) RNUM,
+ goods_title, goods_price, goods_date
+from goods
+order by goods_num desc
+]]>
+</select>
+<!-- 높은 가격순 -->
+<select id="HighPrice" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+select
+ROW_NUMBER() OVER (ORDER BY GOODS_NUM DESC) RNUM,
+ goods_title, goods_price, goods_date
+from goods
+order by goods_price desc
+]]> 
+</select>
+
+<!-- 낮은 가격순 -->
+<select id="lowPrice" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+select
+ROW_NUMBER() OVER (ORDER BY IDX DESC) RNUM,
+ goods_title, goods_price, goods_date
+from goods
+order by goods_price
+]]>
+</select>
+
+<!-- 판매량 내림차순 -->
+<select id="goodsSaleDesc" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+select
+ROW_NUMBER() OVER (ORDER BY IDX DESC) RNUM,
+ goods_title, goods_price, goods_date, goods_sell_amount
+from goods
+order by goods_sell_amount desc
+]]>
+</select> 
+
+
+<!-- 상품등록 -->
+<insert id="insertGoods" parameterType="hashmap">
+<![CDATA[
+insert into goods
+(goods_num,
+goods_option,
+goods_title,
+GOODS_STORE_AMOUNT,
+GOODS_CONTENT1,
+GOODS_CONTENT2,
+goods_price,
+goods_date,
+goods_category,
+GOODS_DCOST
+)
+values (
+    #{goods_num},
+    #{goods_option},
+    #{goods_title},
+    #{GOODS_STORE_AMOUNT},
+    #{GOODS_CONTENT1},
+    #{GOODS_CONTENT2},
+    #{GOODS_PRICE},
+    #{goods_date},
+    #{goods_category},
+    #{GOODS_DCOST}
+)
+]]>
+</insert>
+
+<!-- 상품 수정 -->
+<update id="updateGoods" parameterType="hashmap">
+<![CDATA[
+update GOODS
+set 
+goods_option = #{GOODS_OPTION],
+goods_title= #{GOODS_TITLE},
+GOODS_STORE_AMOUNT = #{GOODS_STORE_AMOUNT},
+GOODS_CONTENT1 = #{GOODS_CONTENT1},
+GOODS_CONTENT2 = #{GOODS_CONTENT2},
+goods_price = #{GOODS_PRICE},
+goods_date = #{GOODS_DATE},
+goods_category = #{GOODS_CATEGORY},
+GOODS_DCOST = #{GOODS_DCOST}
+WHERE GOODS_NUM = #{GOODS_NUM}
+]]>
+</update>
+
+
+
+<!-- 상품 삭제 -->
+<delete id="deleteGoods" parameterType="hashmap">
+<![CDATA[
+delete
+from goods
+where goods_num = #{goods_num}
+]]>
+</delete>
+
+</mapper>

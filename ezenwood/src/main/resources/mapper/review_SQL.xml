@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="review">
+
+
+<!-- 전체 review 보기 -->
+<select id="selectAllReview" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+
+SELECT REVIEW_NUM, REVIEW_TITLE, REVIEW_WRITER,REVIEW_DATE
+FROM REVIEW
+WHERE REVIEW_DEL_GB = 'N';
+
+]]>
+</select>
+
+<!-- 고객 review 작성 -->
+<insert id="insertClientReview" parameterType="hashmap">
+<![CDATA[
+
+insert into review 
+values
+(REVIEW_NUM = SEQ_REVIEW_NUM.nextval,
+review_title = #{REVIEW_TITLE},
+REVIEW_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID}),
+REVIEW_CONTENT = #{REVIEW_CONTENT},
+REVIEW_DATE = sysdate,
+REVIEW_DEL_GB = #{REVIEW_DEL_GB},
+REVIEW_PARENT = #{REVIEW_PARENT}
+)
+]]>
+</insert>
+
+<!-- 고객 review 수정 -->
+<update id="updateClient" parameterType="hashmap">
+<![CDATA[
+UPDATE REVIEW
+SET
+REVIEW_TITLE = #{review_title}
+REVIEW_CONTENT = #{REVIEW_CONTENT}
+WHERE REVIEW_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
+]]>
+</update>
+
+<!--고객/ 관리자 review 삭제  -->
+<update id="deleteReview" parameterType="hashmap">
+<![CDATA[
+UPDATE REVIEW
+SET
+REVIEW_DEL_GB = 'Y'
+WHERE REVIEW_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
+
+]]>
+</update>
+
+</mapper>

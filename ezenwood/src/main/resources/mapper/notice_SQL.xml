@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="notice">
+
+<!-- 고객 공지사항 list -->
+<select id="noticeList" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"/>
+<![CDATA[
+SELECT ROW_NUMBER() OVER (order by notice_step desc)RNUM,
+	notice_step,
+	notice_num,
+	notice_title,
+	notice_date,
+	notice_content
+FROM notice
+WHERE notice_deL_gb='N'
+]]>
+<include refid="common.pagingPost"/> 
+</select>
+
+<!--관리자 공지사항 list -->
+<select id="noticeList" parameterType="hashmap" resultType="hashmap">
+<include refid="common.paginfPre"/>
+<![CDATA[
+SELECT ROW_NUMBER() OVER (order by notice_step desc)RNUM,
+	notice_num, 
+	notice_title, 
+	notice_step,
+	notice_date
+FROM notice
+WHERE notice_deL_gb='N'
+]]>
+<include refid="common.pagingPost"/> 
+</select>
+
+<!--관리자 detail -->
+<select id="noticeDetail" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT ROW_NUMBER() OVER (order by notice_step desc)RNUM,
+	notice_num, 
+	notice_title, 
+	notice_step, 
+	notice_content,
+	notice_date
+FROM  notice
+WHERE notice_del_gb='N' and notice_num=#{notice_num}
+]]>
+</select>
+
+<!--관리자 공지사항 등록 --> 
+<insert id="noticeDetail" parameterType="hashmap">
+<![CDATA[
+insert into notice
+values(
+seq_notice_num.nextval,
+#{notice_title},
+#{notice_step},
+#{notice_content},
+sysdate,
+#{notice_del_gb}
+)
+]]>
+</insert>
+
+<!--관리자 공지사항 수정 -->
+<update id="noticeupdate" parameterType="hashmap">
+<![CDATA[
+update notice
+set 
+notice_title = #{notice_title},
+notice_step = #{notice_step},
+notice_content = #{notice_content},
+where notice_num = #{notice_num}
+]]>
+</update>
+
+
+
+<!--관리자 공지사항 삭제 -->
+<update id="noticedelete" parameterType="hashmap">
+<![CDATA[
+UPDATE notice
+SET notice_del_gb='Y'
+WHERE notice_num = #{notice_num}
+]]>
+</update>
+
+
+</mapper>
