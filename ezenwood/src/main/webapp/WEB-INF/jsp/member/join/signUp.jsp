@@ -413,6 +413,13 @@ label {
 			}}
 		});
 	}
+	$("document").ready(function(){
+		var test = "${signup}";
+		if(test =="fail"){
+			alert("sign up fail");
+		}
+		
+	});
 </script>
 			<hr>
 			<input type="reset" value="취소">&emsp;<input type="submit"

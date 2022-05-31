@@ -34,7 +34,7 @@
 	MEMBER_EMAIL_CHECK, 
 	MEMBER_DEL_GB) VALUES(#{MEMBER_ID},
 	#{MEMBER_NAME},
-	MEMBER_NUM_SEQ.NEXTVAL, 
+	seq_member_num.NEXTVAL, 
 	#{MEMBER_EMAIL}, 
 	#{MEMBER_ZIP},
  	#{MEMBER_ADD1}, 
@@ -233,5 +233,11 @@ SELECT  COUNT(*)
 		WHERE MEMBER_ID = #{MEMBER_ID}
 ]]>
 	</update>
+	<!-- id 중복확인 -->
+		<select id="idCheck" parameterType="hashmap" resultType="string">
+	<![CDATA[
+		select MEMBER_ID from members where MEMBER_ID = #{MEMBER_ID}
+]]>
+	</select>
 
 </mapper>

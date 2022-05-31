@@ -23,6 +23,11 @@ public class JoinServiceImpl implements JoinService {
 	public int join(MemberDTO memberDTO) {
 		Map<String, Object> insertMap =dtoToMap.toMap(memberDTO);
 		
+		int checkNum = joinDao.idCheck(insertMap);
+		if(checkNum==0) {
+			return 0;
+		}
+		
 		return joinDao.InsertMember(insertMap);
 	}
 
