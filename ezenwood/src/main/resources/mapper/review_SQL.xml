@@ -15,6 +15,19 @@ WHERE REVIEW_DEL_GB = 'N';
 ]]>
 </select>
 
+<!-- Client review 보기 -->
+<select id="selectClientReview" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+
+SELECT REVIEW_NUM, REVIEW_TITLE, REVIEW_WRITER,REVIEW_DATE
+FROM REVIEW
+WHERE REVIEW_DEL_GB = 'N'
+AND
+REVIEW_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID};
+
+]]>
+</select>
+
 <!-- 고객 review 작성 -->
 <insert id="insertClientReview" parameterType="hashmap">
 <![CDATA[
