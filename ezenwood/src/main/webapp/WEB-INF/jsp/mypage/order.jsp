@@ -1,25 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="mypage.css">
-    <link rel="stylesheet" href="layout.css">
-    <link rel="stylesheet" href="member.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="board.css">
-    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="/ezenwood/css/mypage.css">
+    <link rel="stylesheet" href="/ezenwood/css/layout.css">
+    <link rel="stylesheet" href="/ezenwood/css/member.css">
+    <link rel="stylesheet" href="/ezenwood/css/reset.css">
+    <link rel="stylesheet" href="/ezenwood/css/board.css">
+    <link rel="stylesheet" href="/ezenwood/css/common.css">
     <title>order2</title>
 </head>
 <body>
+<%@include file ="/include/header.jsp" %>
   <div id="container">
     <div id="contents">
         <div class="location_wrap">
     <div class="location_cont">
        <em>
            <a href="#" class="local_home">HOME</a>
-            &gt;ÁÖ¹®¸ñ·Ï/¹è¼ÛÁ¶È¸
+            &gt;ì£¼ë¬¸ëª©ë¡/ë°°ì†¡ì¡°íšŒ
        </em>
     </div>
 </div>
@@ -28,34 +29,34 @@
  <div class="sub_content">
           <div class="side_cont">
               <div class="sub_menu_box">
-                  <h2>¸¶ÀÌÆäÀÌÁö</h2>
+                  <h2>ë§ˆì´íŽ˜ì´ì§€</h2>
                   <ul class="sub_menu_mypage">
                      <li> 
-                         ¼îÇÎÁ¤º¸
+                         ì‡¼í•‘ì •ë³´
                          <ul class="sub_depth1">
-                             <li><a href="#">- ÁÖ¹®¸ñ·Ï/¹è¼ÛÁ¶È¸</a></li>
-                             <li><a href="#">- Ãë¼Ò/¹ÝÇ°/±³È¯ ³»¿ª</a></li>
+                             <li><a href="#">- ì£¼ë¬¸ëª©ë¡/ë°°ì†¡ì¡°íšŒ</a></li>
+                             <li><a href="#">- ì·¨ì†Œ/ë°˜í’ˆ/êµí™˜ ë‚´ì—­</a></li>
                          </ul>
                      </li>
                       <li> 
-                         °Ô½ÃÆÇ °ü¸®
+                         ê²Œì‹œíŒ ê´€ë¦¬
                          <ul class="sub_depth1">
-                             <li><a href="#">- ¸®ºä°ü¸®</a></li>
-                             <li><a href="#">- 1:1¹®ÀÇ</a></li>
+                             <li><a href="#">- ë¦¬ë·°ê´€ë¦¬</a></li>
+                             <li><a href="#">- 1:1ë¬¸ì˜</a></li>
                              <li><a href="#">- Q&A</a></li>
                          </ul>
                      </li>
                      <li> 
-                         È¸¿øÁ¤º¸
+                         íšŒì›ì •ë³´
                          <ul class="sub_depth1">
-                             <li><a href="#">- È¸¿øÁ¤º¸ º¯°æ/Å»Åð</a></li>
+                             <li><a href="#">- íšŒì›ì •ë³´ ë³€ê²½/íƒˆí‡´</a></li>
                          </ul>
                      </li>
                   </ul>
               </div>
               <!--sub_menu_box -->
               <script type="text/javascript">
-                  //¸Þ´º¼±ÅÃ
+                  //ë©”ë‰´ì„ íƒ
                   $('sub_menu_mypage li> a[href*="' + document.location.pathname+'"]').addClass('active');
               </script>
           </div> 
@@ -70,48 +71,48 @@
                      
              <div class="mypage_lately_info_cont">
                <div class="mypage_zone_tit">
-                       <h2 style="font-size: large">ÁÖ¹®¸ñ·Ï/¹è¼ÛÁ¶È¸</h2>
+                       <h2 style="font-size: large">ì£¼ë¬¸ëª©ë¡/ë°°ì†¡ì¡°íšŒ</h2>
                     </div>
                      <!-- mypage_zone_tit-->
                 <span class="pick_list_num" style="text-align: center">
-                   ÁÖ¹®¸ñ·Ï
+                   ì£¼ë¬¸ëª©ë¡
                     <strong>0</strong>
-                    °Ç
+                    ê±´
                 </span>
-                 <!-- ÁÖ¹®»óÇ° ¸®½ºÆ®-->
+                 <!-- ì£¼ë¬¸ìƒí’ˆ ë¦¬ìŠ¤íŠ¸-->
                  <div class="mypage_table_type">
                     <table>
                         <colgroup>
                             <col style="width: 14%">
-                            <!-- ³¯Â¥/ÁÖ¹®¹øÈ£ -->
+                            <!-- ë‚ ì§œ/ì£¼ë¬¸ë²ˆí˜¸ -->
                             <col>
-                            <!--»óÇ°¸í/¿É¼Ç -->
+                            <!--ìƒí’ˆëª…/ì˜µì…˜ -->
                             <col style="width: 14%">
-                            <!-- »óÇ°±Ý¾×/¼ö·®-->
+                            <!-- ìƒí’ˆê¸ˆì•¡/ìˆ˜ëŸ‰-->
                             <col style="width: 14%">
-                            <!--ÁÖ¹®»óÅÂ -->
+                            <!--ì£¼ë¬¸ìƒíƒœ -->
                             <col style="width: 14%">
-                            <!--È®ÀÎ/¸®ºä -->
+                            <!--í™•ì¸/ë¦¬ë·° -->
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>³¯Â¥/ÁÖ¹®¹øÈ£</th>
-                                <th>»óÇ°¸í/¿É¼Ç</th>
-                                <th>»óÇ°±Ý¾×/¼ö·®</th>
-                                <th>ÁÖ¹®»óÅÂ</th>
-                                <th>È®ÀÎ/¸®ºä</th>
+                                <th>ë‚ ì§œ/ì£¼ë¬¸ë²ˆí˜¸</th>
+                                <th>ìƒí’ˆëª…/ì˜µì…˜</th>
+                                <th>ìƒí’ˆê¸ˆì•¡/ìˆ˜ëŸ‰</th>
+                                <th>ì£¼ë¬¸ìƒíƒœ</th>
+                                <th>í™•ì¸/ë¦¬ë·°</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr>
                                 <td colspan="6">
-                                    <p class="no_data">Á¶È¸³»¿ªÀÌ ¾ø½À´Ï´Ù.</p>
+                                    <p class="no_data">ì¡°íšŒë‚´ì—­ì´ ì—†ìŠµë‹ˆë‹¤.</p>
                                 </td>
                             </tr>
                         </tbody>
                     </table>
                  </div>
-                 <!--»çÀ¯ ·¹ÀÌ¾î-->
+                 <!--ì‚¬ìœ  ë ˆì´ì–´-->
                  <div id="lyReason" class="layer_wrap reson_layer dn" data-remote="./mypage/cancel.jsp"> </div>
                  <div id="lyWrtirePop" class="layer_wrap board_write_layer dn"></div>
              </div>
@@ -121,6 +122,6 @@
 
     </div>
 </div>
-
+<%@include file ="/include/footer.jsp" %>
 </body>
 </html>

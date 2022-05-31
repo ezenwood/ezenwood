@@ -1,26 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="mypage.css">
-    <link rel="stylesheet" href="layout.css">
-    <link rel="stylesheet" href="member.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="board.css">
-    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="/ezenwood/css/mypage.css">
+    <link rel="stylesheet" href="/ezenwood/css/layout.css">
+    <link rel="stylesheet" href="/ezenwood/css/member.css">
+    <link rel="stylesheet" href="/ezenwood/css/reset.css">
+    <link rel="stylesheet" href="/ezenwood/css/board.css">
+    <link rel="stylesheet" href="/ezenwood/css/common.css">
     <title>oto2</title>
 </head>
 <body>
+<%@include file ="/include/header.jsp" %>
 <div id="container">
    <div id="contents">
-      <!-- º»¹®  -->
+      <!-- ë³¸ë¬¸  -->
       <div class="location_wrap">
          <div class="location_cont">
              <em>
                  <a href="#" class="local_home">Home</a>
-                     &gt;¸¶ÀÌÆäÀÌÁö&gt;°Ô½ÃÆÇ °ü¸®&gt;1:1¹®ÀÇ
+                     &gt;ë§ˆì´íŽ˜ì´ì§€&gt;ê²Œì‹œíŒ ê´€ë¦¬&gt;1:1ë¬¸ì˜
              </em>
          </div>
       </div>
@@ -28,34 +29,34 @@
        <div class="sub_content">
           <div class="side_cont">
               <div class="sub_menu_box">
-                  <h2>¸¶ÀÌÆäÀÌÁö</h2>
+                  <h2>ë§ˆì´íŽ˜ì´ì§€</h2>
                   <ul class="sub_menu_mypage">
                      <li> 
-                         ¼îÇÎÁ¤º¸
+                         ì‡¼í•‘ì •ë³´
                          <ul class="sub_depth1">
-                             <li><a href="#">- ÁÖ¹®¸ñ·Ï/¹è¼ÛÁ¶È¸</a></li>
-                             <li><a href="#">- Ãë¼Ò/¹ÝÇ°/±³È¯ ³»¿ª</a></li>
+                             <li><a href="#">- ì£¼ë¬¸ëª©ë¡/ë°°ì†¡ì¡°íšŒ</a></li>
+                             <li><a href="#">- ì·¨ì†Œ/ë°˜í’ˆ/êµí™˜ ë‚´ì—­</a></li>
                          </ul>
                      </li>
                       <li> 
-                         °Ô½ÃÆÇ °ü¸®
+                         ê²Œì‹œíŒ ê´€ë¦¬
                          <ul class="sub_depth1">
-                             <li><a href="#">- ¸®ºä°ü¸®</a></li>
-                             <li><a href="#">- 1:1¹®ÀÇ</a></li>
+                             <li><a href="#">- ë¦¬ë·°ê´€ë¦¬</a></li>
+                             <li><a href="#">- 1:1ë¬¸ì˜</a></li>
                              <li><a href="#">- Q&A</a></li>
                          </ul>
                      </li>
                      <li> 
-                         È¸¿øÁ¤º¸
+                         íšŒì›ì •ë³´
                          <ul class="sub_depth1">
-                             <li><a href="#">- È¸¿øÁ¤º¸ º¯°æ/Å»Åð</a></li>
+                             <li><a href="#">- íšŒì›ì •ë³´ ë³€ê²½/íƒˆí‡´</a></li>
                          </ul>
                      </li>
                   </ul>
               </div>
               <!--sub_menu_box -->
               <script type="text/javascript">
-                  //¸Þ´º¼±ÅÃ
+                  //ë©”ë‰´ì„ íƒ
                   $('sub_menu_mypage li> a[href*="' + document.location.pathname+'"]').addClass('active');
               </script>
           </div> 
@@ -64,12 +65,12 @@
           <div class="content">
              <div class="mypage_cont">
                  <div class="mypage_lately_info">
-                    <h2 style="font-size: large">1:1 ¹®ÀÇ</h2>
+                    <h2 style="font-size: large">1:1 ë¬¸ì˜</h2>
                  </div>
              </div>
         
              
-                 <!-- oto ¸®½ºÆ®-->
+                 <!-- oto ë¦¬ìŠ¤íŠ¸-->
                  <div class="mypage_table_type">
                     <table>
                         <colgroup>
@@ -77,14 +78,14 @@
                             <col style="width: 15%">
                             <col style="width: 15%">
                             <col style="width: 15%">
-                            <!--È®ÀÎ/¸®ºä -->
+                            <!--í™•ì¸/ë¦¬ë·° -->
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>¹®ÀÇ³¯Â¥</th>
-                                <th>Á¦¸ñ</th>
-                                <th>ÀÛ¼ºÀÚ</th>
-                                <th>¹®ÀÇ»óÅÂ</th>
+                                <th>ë¬¸ì˜ë‚ ì§œ</th>
+                                <th>ì œëª©</th>
+                                <th>ìž‘ì„±ìž</th>
+                                <th>ë¬¸ì˜ìƒíƒœ</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -104,5 +105,6 @@
        </div>
     </div>
     </div>
+    <%@include file ="/include/footer.jsp" %>
 </body>
 </html>

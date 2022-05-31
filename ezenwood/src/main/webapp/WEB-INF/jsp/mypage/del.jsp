@@ -1,25 +1,26 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="mypage.css">
-    <link rel="stylesheet" href="layout.css">
-    <link rel="stylesheet" href="member.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="board.css">
-    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="/ezenwood/css/mypage.css">
+    <link rel="stylesheet" href="/ezenwood/css/layout.css">
+    <link rel="stylesheet" href="/ezenwood/css/member.css">
+    <link rel="stylesheet" href="/ezenwood/css/reset.css">
+    <link rel="stylesheet" href="/ezenwood/css/board.css">
+    <link rel="stylesheet" href="/ezenwood/css/common.css">
     <title>Document</title>
 </head>
 <body>
+<%@include file ="/include/header.jsp" %>
     <div id="container">
         <div id="contents">
-        <!-- º»¹® ½ÃÀÛ -->
+        <!-- ë³¸ë¬¸ ì‹œìž‘ -->
 
             <div class="location_wrap">
                 <div class="location_cont">
-                    <em><a href="#" class="local_home">HOME</a> &gt; ¸¶ÀÌÆäÀÌÁö &gt; È¸¿øÅ»Åð</em>
+                    <em><a href="#" class="local_home">HOME</a> &gt; ë§ˆì´íŽ˜ì´ì§€ &gt; íšŒì›íƒˆí‡´</em>
                 </div>
             </div>
             <!-- //location_wrap -->
@@ -28,34 +29,34 @@
 
                 <div class="side_cont">
 <div class="sub_menu_box">
-    <h2>¸¶ÀÌÆäÀÌÁö</h2>
+    <h2>ë§ˆì´íŽ˜ì´ì§€</h2>
     <ul class="sub_menu_mypage">
                      <li> 
-                         ¼îÇÎÁ¤º¸
+                         ì‡¼í•‘ì •ë³´
                          <ul class="sub_depth1">
-                             <li><a href="#">- ÁÖ¹®¸ñ·Ï/¹è¼ÛÁ¶È¸</a></li>
-                             <li><a href="#">- Ãë¼Ò/¹ÝÇ°/±³È¯ ³»¿ª</a></li>
+                             <li><a href="#">- ì£¼ë¬¸ëª©ë¡/ë°°ì†¡ì¡°íšŒ</a></li>
+                             <li><a href="#">- ì·¨ì†Œ/ë°˜í’ˆ/êµí™˜ ë‚´ì—­</a></li>
                          </ul>
                      </li>
                       <li> 
-                         °Ô½ÃÆÇ °ü¸®
+                         ê²Œì‹œíŒ ê´€ë¦¬
                          <ul class="sub_depth1">
-                             <li><a href="#">- ¸®ºä°ü¸®</a></li>
-                             <li><a href="#">- 1:1¹®ÀÇ</a></li>
+                             <li><a href="#">- ë¦¬ë·°ê´€ë¦¬</a></li>
+                             <li><a href="#">- 1:1ë¬¸ì˜</a></li>
                              <li><a href="#">- Q&A</a></li>
                          </ul>
                      </li>
                      <li> 
-                         È¸¿øÁ¤º¸
+                         íšŒì›ì •ë³´
                          <ul class="sub_depth1">
-                             <li><a href="#">- È¸¿øÁ¤º¸ º¯°æ/Å»Åð</a></li>
+                             <li><a href="#">- íšŒì›ì •ë³´ ë³€ê²½/íƒˆí‡´</a></li>
                          </ul>
                      </li>
                   </ul>
 </div>
 <!-- //sub_menu_box -->
 <script type="text/javascript">
-    // ¸Þ´º ¼±ÅÃ
+    // ë©”ë‰´ ì„ íƒ
     $('.sub_menu_mypage li > a[href*="' + document.location.pathname + '"]').addClass('active');
 </script>
                 </div>
@@ -69,22 +70,22 @@
             <div class="hack_out">
 
                 <div class="mypage_zone_tit">
-                    <h2>È¸¿øÅ»Åð</h2>
+                    <h2>íšŒì›íƒˆí‡´</h2>
                 </div>
 
                 <div class="mypage_unregister">
                   
 
                     <div class="unregister_info">
-                        ¿À°¡´Ð¶óÀÌÇÁ ÀÛÀº¾ð´Ï³×°¡±¸Á¡ Å»Åð¾È³»<br>
+                        ì´ì  ìš°ë“œ íƒˆí‡´ì•ˆë‚´<br>
 <br>
-È¸¿ø´Ô²²¼­ È¸¿ø Å»Åð¸¦ ¿øÇÏ½Å´Ù´Ï ÀúÈñ ¼îÇÎ¸ôÀÇ ¼­ºñ½º°¡ ¸¹ÀÌ ºÎÁ·ÇÏ°í ¹ÌÈíÇß³ª º¾´Ï´Ù.<br>
-ºÒÆíÇÏ¼Ì´ø Á¡ÀÌ³ª ºÒ¸¸»çÇ×À» ¾Ë·ÁÁÖ½Ã¸é Àû±Ø ¹Ý¿µÇØ¼­ °í°´´ÔÀÇ ºÒÆíÇÔÀ» ÇØ°áÇØ µå¸®µµ·Ï ³ë·ÂÇÏ°Ú½À´Ï´Ù.<br>
+íšŒì›ë‹˜ê»˜ì„œ íšŒì› íƒˆí‡´ë¥¼ ì›í•˜ì‹ ë‹¤ë‹ˆ ì €í¬ ì‡¼í•‘ëª°ì˜ ì„œë¹„ìŠ¤ê°€ ë§Žì´ ë¶€ì¡±í•˜ê³  ë¯¸í¡í–ˆë‚˜ ë´…ë‹ˆë‹¤.<br>
+ë¶ˆíŽ¸í•˜ì…¨ë˜ ì ì´ë‚˜ ë¶ˆë§Œì‚¬í•­ì„ ì•Œë ¤ì£¼ì‹œë©´ ì ê·¹ ë°˜ì˜í•´ì„œ ê³ ê°ë‹˜ì˜ ë¶ˆíŽ¸í•¨ì„ í•´ê²°í•´ ë“œë¦¬ë„ë¡ ë…¸ë ¥í•˜ê² ìŠµë‹ˆë‹¤.<br>
 <br>
-¡á ¾Æ¿ï·¯ È¸¿ø Å»Åð½ÃÀÇ ¾Æ·¡ »çÇ×À» ¼÷ÁöÇÏ½Ã±â ¹Ù¶ø´Ï´Ù.<br>
-1. È¸¿ø Å»Åð ½Ã È¸¿ø´ÔÀÇ Á¤º¸´Â »óÇ° ¹ÝÇ° ¹× A/S¸¦ À§ÇØ ÀüÀÚ»ó°Å·¡ µî¿¡¼­ÀÇ ¼ÒºñÀÚ º¸È£¿¡ °üÇÑ ¹ý·ü¿¡ ÀÇ°ÅÇÑ <br>
-   °í°´Á¤º¸ º¸È£Á¤Ã¥¿¡µû¶ó °ü¸® µË´Ï´Ù.<br>
-2. Å»Åð ½Ã È¸¿ø´Ô²²¼­ º¸À¯ÇÏ¼Ì´ø ¸¶ÀÏ¸®Áö´Â »èÁ¦ µË´Ï´Ù
+â–  ì•„ìš¸ëŸ¬ íšŒì› íƒˆí‡´ì‹œì˜ ì•„ëž˜ ì‚¬í•­ì„ ìˆ™ì§€í•˜ì‹œê¸° ë°”ëžë‹ˆë‹¤.<br>
+1. íšŒì› íƒˆí‡´ ì‹œ íšŒì›ë‹˜ì˜ ì •ë³´ëŠ” ìƒí’ˆ ë°˜í’ˆ ë° A/Së¥¼ ìœ„í•´ ì „ìžìƒê±°ëž˜ ë“±ì—ì„œì˜ ì†Œë¹„ìž ë³´í˜¸ì— ê´€í•œ ë²•ë¥ ì— ì˜ê±°í•œ <br>
+   ê³ ê°ì •ë³´ ë³´í˜¸ì •ì±…ì—ë”°ë¼ ê´€ë¦¬ ë©ë‹ˆë‹¤.<br>
+2. íƒˆí‡´ ì‹œ íšŒì›ë‹˜ê»˜ì„œ ë³´ìœ í•˜ì…¨ë˜ ì£¼ë¬¸ë“¤ì€ ì‚­ì œ ë©ë‹ˆë‹¤
                     </div>
                     <!-- //unregister_info -->
 
@@ -105,7 +106,7 @@
                       border: 1px solid #cccccc;
                       background: #ffffff;
                       text-align: center;">
-                   <em>ÀÌÀüÀ¸·Î</em>
+                   <em>ì´ì „ìœ¼ë¡œ</em>
                </button>
                <button type="submit" class="btn_claim_ok" 
                style="min-width: 100px;
@@ -118,7 +119,7 @@
                       background: #323437;
                       text-align: center;
                       vertical-align: top;">
-                   <em>Å»Åð</em>
+                   <em>íƒˆí‡´</em>
                </button>
             </div>
             </div>
@@ -132,7 +133,8 @@
             </div>
             <!-- //sub_content -->
         </div>
-        <!-- //º»¹® ³¡ contents -->
+        <!-- //ë³¸ë¬¸ ë contents -->
     </div>
+    <%@include file ="/include/footer.jsp" %>
 </body>
 </html>

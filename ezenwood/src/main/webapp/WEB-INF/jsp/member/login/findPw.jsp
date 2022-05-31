@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,11 +14,11 @@
 <%@include file ="/include/header.jsp" %>
     <div id="container">
         <div id="contents">
-        <!-- ���� ���� -->
+        <!-- 본문 시작 -->
 
             <div class="location_wrap">
                 <div class="location_cont">
-                    <em><a href="#" class="local_home">HOME</a> &gt; ��й�ȣ ã��</em>
+                    <em><a href="#" class="local_home">HOME</a> &gt; 비밀번호 찾기</em>
                 </div>
             </div>
             <!-- //location_wrap -->
@@ -30,20 +30,20 @@
 	<form name="formFind" id="formFind" action="../member/user_certification.php" method="post" novalidate="novalidate">
 		<div class="member_wrap">
 			<div class="member_tit">
-				<h2>��й�ȣ ã��</h2>
+				<h2>비밀번호 찾기</h2>
 			</div>
 			<div class="member_cont">
 				<div class="find_password_box">
-					<h3>���̵� �Է�</h3>
-					<p>��й�ȣ�� ã���� �ϴ� ���̵� �Է��� �ּ���.</p>
+					<h3>아이디 입력</h3>
+					<p>비밀번호를 찾고자 하는 아이디를 입력해 주세요.</p>
 					<div class="login_input">
 						<div class="member_warning">
-							<input type="text" id="memberId" name="memberId" placeholder="���̵�">
-							<p class="info_again">���̵� �𸣽ó���? <a href="#" class="js_btn_find_id">���̵� ã��</a></p>
+							<input type="text" id="memberId" name="memberId" placeholder="아이디">
+							<p class="info_again">아이디를 모르시나요? <a href="#" class="js_btn_find_id">아이디 찾기</a></p>
 							<p class="dn" id="errorMessage"></p>
 						</div>
 						<div class="btn_center_box">
-							<button type="submit" class="btn_member_next">����</button>
+							<button type="submit" class="btn_member_next">다음</button>
 						</div>
 					</div>
 				</div>
@@ -58,7 +58,7 @@
             </div>
             <!-- //sub_content -->
         </div>
-        <!-- //���� �� contents -->
+        <!-- //본문 끝 contents -->
     </div>
     <%@include file ="/include/footer.jsp" %>
 </body>
