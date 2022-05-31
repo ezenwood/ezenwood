@@ -1,0 +1,98 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="frequestion">
+
+<select id="frequestionList" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"/> 
+<![CDATA[
+SELECT 
+ROW_NUMBER() OVER (order by question_step desc) RNUM,
+question_step,
+question_num,
+question_title,
+question_date,
+question_content
+FROM
+question
+where
+question_deL_gb='N';
+]]>
+<include refid="common.pagingPost"/> 
+</select>
+
+
+
+<!-- 관리자 list -->
+<select id="frequestionList" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"/> 
+<![CDATA[
+SELECT 
+ROW_NUMBER() OVER (order by question_step desc) RNUM,
+question_step,
+question_num,
+question_title,
+question_date
+FROM 
+question
+where 
+question_deL_gb='N';
+]]>
+<include refid="common.pagingPost"/> 
+</select>
+
+<!-- 관리자 detail -->
+<select id="frequestionDetail" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT 
+ROW_NUMBER() OVER (order by question_step desc) RNUM,
+question_step,
+question_num,
+question_title,
+question_date
+FROM 
+question
+where 
+question_deL_gb='N' and question_num=#{question_num}
+]]>
+</select>
+
+<!-- 관리자 insert -->
+<insert id="frequestionInsert" parameterType="hashmap" >
+<![CDATA[
+insert into 
+question 
+values
+(seq_question_num.nextval,
+	#{question_title},
+	#{question_step},
+	#{question_content},
+	sysdate,
+	'Y')
+	]]>
+</insert>
+
+<!-- 관리자 update -->
+<update id="frequestionupdate" parameterType="hashmap">
+<![CDATA[
+update 
+question
+set 
+question_content= #{question_content},
+question_step=#{question_step},
+question_title=#{question_title}
+where 
+question_num =#{question_num}
+]]>
+</update>
+
+<!-- 관리자 delete -->
+<update id="frequestionupdate" parameterType="hashmap">
+<![CDATA[
+update question
+set question_del_gb='Y'
+where question_num =#{question_num}
+]]>
+</update>
+
+</mapper>

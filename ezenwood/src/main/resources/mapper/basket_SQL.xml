@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="basket">
+
+<!-- 상품 IDX -->
+<select id="selectAll" parameterType="hashmap" resultType="hashmap">
+	<![CDATA[
+		SELECT
+			* 
+		FROM
+			BASKET 
+		WHERE
+			BASKET_MEMBER_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID =#{MEMBERID})
+			
+	]]>
+</select>
+
+<!-- 상품 인서트-->
+<insert id="insertAll" parameterType="hashmap">
+<![CDATA[
+	INSERT INTO BASKET(
+    		BASKET_NUM,
+ 		BASKET_MEMBER_NUM,
+ 		BASKET_GOODS_OPTION,
+   		BASKET_GOODS_NUM,
+    		BASKET_GOODS_AMOUNT
+    )
+    	VALUES(
+    		SEQ_BAScKET_NUM.NEXTVAL,
+    		(SELECT MEMBER_NUM FROM MEMBERS WHERE MEMBER_ID = #{MEMBER_ID}),
+    			#{BASKET_GOODS_OPTION},
+    			#{BASKET_GOODS_NUM},
+    			#{BASKET_GOODS_AMOUNT})
+     ]]>
+</insert>
+
+<!-- 장바구니 삭제 기능
+	- 장바구니 DB에서 장바구니 번호와 상품 아이디를 사용하여 삭제
+	(장바구니 삭제기능) -->
+	<delete id="deleteBasket" parameterType="hashmap">
+	<![CDATA[
+		DELETE
+			FROM BASKET
+		WHERE
+			BASKET_NUM = #{BASKET_NUM}
+	]]>
+	</delete>
+	
+</mapper>

@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="qna">
+
+<!-- 관리자 전체 QNA목록 불런오기 -->
+<select id="selectAdminAllQna" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT QNA_TITLE, QNA_WRITER, QNA_TYPE, QNA_DATE
+FROM QNA
+WHERE QNA_DEL_GB = 'N' ;
+]]>
+</select>
+
+
+<!-- 관리자 QNA목록 불런오기 -->
+<select id="selectAdminQna" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+select 
+QNA_NUM,
+QNA_TITLE,
+QNA_WRITER,
+QNA_TYPE,
+QNA_SECREAT,
+QNA_DATE
+from qna
+where qna__type = 'A'
+AND QNA_DEL_GB = 'N';
+]]>
+</select>
+
+
+<!-- 고객 QNA목록 불러오기 -->
+<select id="selectClientQna" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT
+QNA_NUM,
+QNA_TITLE,
+QNA_WRITER,
+QNA_TYPE,
+QNA_SECREAT,
+QNA_DATE
+from qna
+where QNA_WRITER = (
+SELECT MEMBER_NUM 
+FROM MEMBER
+WHERE MEMBER_ID=#{MEMBER_ID})
+AND QNA_DEL_GB = 'N';
+]]>
+</select>
+
+<!-- 관리자 QNA상세페이지 -->
+<select id="selectAdminDetail" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT *
+FROM QNA
+WHERE QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
+AND QNA_DEL_GB = 'N';
+]]>
+</select>
+
+
+<!-- 고객 QNA상세페이지 -->
+<select id="selectClientDetail" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT *
+FROM QNA
+WHERE QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
+AND QNA_DEL_GB = 'N'
+]]>
+</select>
+
+<!-- 고객QAN작성 -->
+<insert id="clientQna" parameterType="hashmap" >
+<![CDATA[
+    INSERT INTO QNA(
+    QNA_NUM,
+    QNA_TITLE,
+    QNA_WRITER,
+    QNA_RE_GB,
+    QNA_CONTENT,
+    QNA_PARENT,
+    QNA_TYPE,
+    QNA_SECREATE,
+    QNA_DATE,
+    QNA_DEL_GB)
+    VALUES(
+    SEQ_QNA_NUM.NEXTVAL,
+    #{QNA_TITLE},
+    (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}),    
+    #{QNA_WRITER},
+    'N',
+    #{QNA_CONTENT},
+    #{QNA_PARENT},
+    'Q',
+    #{QNA_SECREAT},
+    sysdate,
+    'N')
+
+]]>
+</insert>
+
+
+<!-- 비밀글업데이트 -->
+<update id="updateSecret" parameterType="hashmap">
+<![CDATA[
+
+update qna
+set 
+qna_secreat = 'n'
+
+]]>
+</update>
+
+
+<!-- 고객 QNA수정 -->
+<update id="updateClientQna" parameterType="hashmap">
+<![CDATA[
+	UPDATE QNA
+    SET
+    QNA_TITLE = #{QNA_TITLE},
+    QNA_CONTENT = #{QNA_CONTENT},
+    QNA_SECREAT = #{QNA_SECREAT}
+    WHERE
+    QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID})
+]]>
+</update>
+
+
+<!-- 고객 QNA삭제 -->
+<update id="deleteClientQna" parameterType="hashmap">
+<![CDATA[
+  UPDATE QNA
+  SET
+  QNA_DEL_GB = 'Y'
+  WHERE QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID})
+
+]]>
+</update>
+
+
+<!-- 관리자 QNA입력 -->
+<insert id="insertAdminQna" parameterType="hashmap">
+<![CDATA[
+INSERT INTO QNA(
+    QNA_NUM,
+    QNA_TITLE,
+    QNA_WRITER,
+    QNA_RE_GB,
+    QNA_CONTENT,
+    QNA_PARENT,
+    QNA_TYPE,
+    QNA_SECREATE,
+    QNA_DATE,
+    QNA_DEL_GB)
+    VALUES(
+    SEQ_QNA_NUM.NEXTVAL,
+    #{QNA_TITLE},
+    (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}),
+    #{QNA_WRITER},
+    #{QNA_RE_GB},// 'Y'
+    #{QNA_CONTENT},
+    #{QNA_PARENT},
+    'A',
+    #{QNA_SECREAT},
+    sysdate,
+    'N')
+]]>
+</insert>
+
+
+<!-- 관리자QNA수정 -->
+<update id="updateAdminQna" parameterType="hashmap">
+<![CDATA[
+
+UPDATE QNA
+SET
+	QNA_TITLE = #{QNA_TITLE},
+	QNA_CONTENT = #{QNA_CONTENT}
+WHERE 
+	QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBERS WHERE MEMBER_ID = #{MEMBER_ID})
+
+]]>
+</update>
+
+
+<!-- 관리자 QNA삭제 -->
+<update id="deleteAdminQna" parameterType="hashmap">
+<![CDATA[
+
+UPDATE QNA
+SET
+#{QNA_DEL_GB} = 'Y'
+WHERE #{QNA_WRITER} = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
+
+]]>
+</update>
+
+
+</mapper>
