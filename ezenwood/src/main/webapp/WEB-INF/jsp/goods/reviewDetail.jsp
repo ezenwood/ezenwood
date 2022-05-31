@@ -1,19 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
-    <meta charset="UTF-8">
-    <link href="css/reset.css" type="text/css" rel="stylesheet">
-    <link href="css/layout.css" type="text/css" rel="stylesheet">
-    <link href="css/common.css" type="text/css" rel="stylesheet">
-    <link href="css/board.css" type="text/css" rel="stylesheet">
-    <!--<link href="css/button.css" type="text/css" rel="stylesheet">-->
+<meta charset="UTF-8">
+<title>Insert title here</title>
+    <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
     
-  
 </head>
 <body>
-    
+    <%@include file ="/include/header.jsp" %>
     <div id="container">
         <div id="contents">
             <div class="sub_content">
@@ -26,34 +26,34 @@
                         <div class="board_zone_cont">
                             <div class="board_zone_view">
                                <div class="board_view_tit">
-                                   <h3>¡¶∏Ò</h3>
+                                   <h3>Ï†úÎ™©</h3>
                                </div>
                                <div class="board_view_info">
                                    <span class="view_info_ipdp">
-                                       <strong>¿€º∫¿⁄ ¿Ã∏ß </strong>
+                                       <strong>ÏûëÏÑ±Ïûê Ïù¥Î¶Ñ </strong>
                                    </span>
                                    <span class="view_info_day">
-                                      <em>≥Ø¬•</em>
+                                      <em>ÎÇ†Ïßú</em>
                                    </span>
                                </div>
                                 <!--//board_view_info-->
                                 <div class="board_view_attach">
-                                    <strong>√∑∫Œ∆ƒ¿œ</strong>
+                                    <strong>Ï≤®Î∂ÄÌååÏùº</strong>
                                     <span class="attach_list">
-                                        <a href="#">∆ƒ¿œ ¿Ã∏ß</a>
+                                        <a href="#">ÌååÏùº Ïù¥Î¶Ñ</a>
                                     </span>
                                 </div>
                                 <div class="board_view_content">
                                     <div class="view_goods_select">
                                         <div class="view_goods_select_item">
                                             <span class="view_select_item_img">
-                                                <a href="ªÛ«∞ ¡÷º“" target="_blank">
-                                                    <img src="¿ÃπÃ¡ˆ ¡÷º“">
+                                                <a href="ÏÉÅÌíà Ï£ºÏÜå" target="_blank">
+                                                    <img src="Ïù¥ÎØ∏ÏßÄ Ï£ºÏÜå">
                                                 </a>
                                             </span>
                                             <span class="view_select_item_info">
-                                                <em>ªÛ«∞ ¿Ã∏ß</em>
-                                                <strong>∆«∏≈ ±›æ◊</strong>
+                                                <em>ÏÉÅÌíà Ïù¥Î¶Ñ</em>
+                                                <strong>ÌåêÎß§ Í∏àÏï°</strong>
                                             </span>
                                         </div>
                                         <!--//view_goods_select_item-->
@@ -62,7 +62,7 @@
                                     <div class="seem_cont">
                                         <div style="margin: 10px 0 10px 0">
                                             <img style="max-width: 700px">
-                                            <p>≥ªøÎ</p>
+                                            <p>ÎÇ¥Ïö©</p>
                                         </div>
                                     </div>
                                     <!--//seem_cont-->
@@ -79,7 +79,7 @@
                             <!--//board_zone_view-->
                             <div class="btn_right_box">
                                 <button type="button" class="btn_board_list" onclick="gd_btn_list('goodsreview')">
-                                    <strong>∏Ò∑œ</strong>
+                                    <strong>Î™©Î°ù</strong>
                                 </button>
                             </div>
                         </div>
@@ -90,6 +90,6 @@
         </div>
         
     </div>
-    
+    <%@include file ="/include/footer.jsp" %>
 </body>
 </html>
