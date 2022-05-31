@@ -1,35 +1,40 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=utf-8"
+    pageEncoding="utf-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-    <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
-     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
-    
+    <!-- <link href="css/reset.css" type="text/css" rel="stylesheet">
+    <link href="css/layout.css" type="text/css" rel="stylesheet">
+    <link href="css/board.css" type="text/css" rel="stylesheet">
+    <link href="css/common.css" type="text/css" rel="stylesheet">
+    <link href="css/button.css" type="text/css" rel="stylesheet">
+   
+     -->
+
 </head>
+
 <body>
-<%@include file ="/include/header.jsp" %>
+
     <div id="container">
         <div id="contents">
             <div class="sub_content">
                 <div class="content">
                     <div class="board_zone_sec">
                         <div class="board_zone_tit">
-                            <h2>QNA</h2>
+                            <h2>REVIEW</h2>
                         </div>
 
                         <div class="board_zone_cont">
-                            <div class="board_zone_list">
-                                <div class="board_list_qa" align="center">
+                            <div class="board_zone_list" align="center">
+                                
                                     <table class="board_list_table" style="width: 100%">
                                         <colgroup>
-                                            <col style="width: 20%" />
-                                            <!--문의 날짜-->
+                                            <col style="width: 6%" />
+                                            <!--번호-->
                                             <col>
                                             <!--제목-->
                                             <col style="width: 15%" />
@@ -42,7 +47,7 @@
                                                 <th>문의날짜</th>
                                                 <th>제목</th>
                                                 <th>작성자</th>
-                                                <th>문의상태</th>
+                                                <th>번호</th>
                                             </tr>
                                         </thead>
                                         <tbody>
@@ -50,13 +55,13 @@
                                                 <c:when test="${fn:length(list) > 0}">
                                                     <c:forEach items="${list }" var="row">
                                                         <tr>
-                                                            <td>${row.QNA_DATE }</td>
+                                                            <td>${row.REVIEW_DATE }</td>
                                                             <td class="title">
-                                                                <a href="#this" name="title">${row.QNA_TITLE }</a>
+                                                                <a href="#this" name="title">${row.REVIEW_TITLE }</a>
                                                                 <input type="hidden" id="IDX" value="${row.IDX }">
                                                             </td>
-                                                            <td>${row.QNA_WRITER }</td>
-                                                            <td>${row.QNA_RE_GB }</td>
+                                                            <td>${row.REVIEW_WRITER }</td>
+                                                            <td>${row.REVIEW_NUM }</td>
                                                         </tr>
                                                     </c:forEach>
                                                 </c:when>
@@ -89,20 +94,19 @@
                             </div>
 
                             <div class="btn_right_box">
-                                <button type="button" class="btn_write" onclick=""location.href='qnaWrite.html'"">
-                                    문의하기
+                                <button type="button" class="btn_write" onclick="gd_btn_write('goodsreview)">
+                                    작성하기
                                 </button>
                             </div>
                         </div>
 
                     </div>
-                    <script type="text/javascript" src="js/sister_js/gd_board_list.js" charset="utf-8"></script>
+                  
                 </div>
                 
             </div>
         </div>
-    </div>
-    <%@include file ="/include/footer.jsp" %>
+    
 </body>
 
 </html>

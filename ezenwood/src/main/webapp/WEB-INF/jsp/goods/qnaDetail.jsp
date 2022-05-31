@@ -1,19 +1,21 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=EUC-KR"
+    pageEncoding="EUC-KR"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-    <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/qnaDetail.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
+    <meta charset="UTF-8">
+    <link href="css/reset.css" type="text/css" rel="stylesheet">
+    <link href="css/layout.css" type="text/css" rel="stylesheet">
+    <link href="css/common.css" type="text/css" rel="stylesheet">
+    <link href="css/board.css" type="text/css" rel="stylesheet">
+    <!--<link href="css/button.css" type="text/css" rel="stylesheet">
+    <link href="css/qnaDetail.css" type="text/css" rel="stylesheet">-->
+
+
 </head>
+
 <body>
-<%@include file ="/include/header.jsp" %>
+
     <div id="container">
         <div id="contents">
             <div class="sub_content">
@@ -26,7 +28,7 @@
                         <div class="board_zone_cont">
                             <div class="board_zone_view">
                                 <div class="board_view_tit">
-                                    <h3>Ï†úÎ™©</h3>
+                                    <h3>¡¶∏Ò</h3>
                                 </div>
 
 
@@ -35,9 +37,9 @@
                                     <img src="#" alt=""></a></p>
                                     <div class="information">
                                         
-                                        <h3><a href="#">ÏÉÅÌíà Ïù¥Î¶Ñ</a></h3>
-                                        <p class="price">Ï†úÌíà Í∞ÄÍ≤©<span id="sPrdTaxText"></span></p>
-                                        <p class="button"><a href="#" class="btnEm" title="ÏÉàÏ∞ΩÏúºÎ°ú Ïù¥Îèô">ÏÉÅÌíà ÏÉÅÏÑ∏Î≥¥Í∏∞</a></p>
+                                        <h3><a href="#">ªÛ«∞ ¿Ã∏ß</a></h3>
+                                        <p class="price">¡¶«∞ ∞°∞›<span id="sPrdTaxText"></span></p>
+                                        <p class="button"><a href="#" class="btnEm" title="ªı√¢¿∏∑Œ ¿Ãµø">ªÛ«∞ ªÛºº∫∏±‚</a></p>
                                     </div>
                                 </div>
 
@@ -45,7 +47,7 @@
                                     <input id="no" name="no" value="#" type="hidden">
                                     <input id="bulletin_no" name="bulletin_no" value="#" type="hidden">
                                     <input id="board_no" name="board_no" value="#" type="hidden">
-                                    <input id="member_id" name="member_id" value="ÏïÑÏù¥Îîî" type="hidden">
+                                    <input id="member_id" name="member_id" value="æ∆¿Ãµ" type="hidden">
                                     <input id="list_url" name="list_url" value="#" type="hidden">
                                     <input id="bdf_modify_url" name="bdf_modify_url" value="#" type="hidden">
                                     <input id="bdf_del_url" name="bdf_del_url" value="#" type="hidden">
@@ -54,39 +56,39 @@
                                         
                                         <div class="ec-base-table typeWrite ">
                                             <table border="0" summary="">
-                                                <caption>ÏÉÅÌíà Í≤åÏãúÌåê ÏÉÅÏÑ∏</caption>
+                                                <caption>ªÛ«∞ ∞‘Ω√∆« ªÛºº</caption>
                                                 <colgroup>
                                                     <col style="width:230px;">
                                                     <col style="width:auto;">
                                                 </colgroup>
                                                 <tbody>
                                                     <tr>
-                                                        <th scope="row">Ï†úÎ™©</th>
-                                                        <td>ÏÉÅÌíàÎ¨∏Ïùò</td>
+                                                        <th scope="row">¡¶∏Ò</th>
+                                                        <td>ªÛ«∞πÆ¿«</td>
                                                     </tr>
                                                     <tr>
-                                                        <th scope="row">ÏûëÏÑ±Ïûê</th>
-                                                        <td> ÏûëÏÑ±Ïûê Ïù¥Î¶Ñ </td>
+                                                        <th scope="row">¿€º∫¿⁄</th>
+                                                        <td> ¿€º∫¿⁄ ¿Ã∏ß </td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2">
                                                             <ul class="etcArea">
                                                                 <li class="">
-                                                                    <strong>ÏûëÏÑ±Ïùº</strong> <span class="txtNum">ÏûëÏÑ±Ïùº</span>
+                                                                    <strong>¿€º∫¿œ</strong> <span class="txtNum">¿€º∫¿œ</span>
                                                                 </li>
                                                             </ul>
                                                             <div class="detail">
-                                                                <div class="fr-view fr-view-article">Î¨∏Ïùò ÎÇ¥Ïö©</div>
+                                                                <div class="fr-view fr-view-article">πÆ¿« ≥ªøÎ</div>
                                                             </div>
                                                         </td>
                                                     </tr>
                                                     <tr class="attach displaynone">
-                                                        <th scope="row">Ï≤®Î∂ÄÌååÏùº</th>
+                                                        <th scope="row">√∑∫Œ∆ƒ¿œ</th>
                                                         <td></td>
                                                     </tr>
                                                     <tr class=" displaynone">
-                                                        <th scope="row">ÎπÑÎ∞ÄÎ≤àÌò∏</th>
-                                                        <td><input id="password" name="password" fw-filter="" fw-label="ÎπÑÎ∞ÄÎ≤àÌò∏" fw-msg="" onkeydown="if (event.keyCode == 13 || event.which == 13) { return false; }" value="" type="password"> <span class="ec-base-help txtInfo">ÏÇ≠Ï†úÌïòÎ†§Î©¥ ÎπÑÎ∞ÄÎ≤àÌò∏Î•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî.</span>
+                                                        <th scope="row">∫Òπ–π¯»£</th>
+                                                        <td><input id="password" name="password" fw-filter="" fw-label="∫Òπ–π¯»£" fw-msg="" onkeydown="if (event.keyCode == 13 || event.which == 13) { return false; }" value="" type="password"> <span class="ec-base-help txtInfo">ªË¡¶«œ∑¡∏È ∫Òπ–π¯»£∏¶ ¿‘∑¬«œººø‰.</span>
                                                         </td>
                                                     </tr>
                                                 </tbody>
@@ -95,11 +97,11 @@
                                         <div class="ec-base-button ">
                                             <span class="gLeft">
                                                 
-                                                <a href="#" class="btnNormalFix sizeS">Î™©Î°ù</a>
+                                                <a href="#" class="btnNormalFix sizeS">∏Ò∑œ</a>
                                             </span>
                                             <span class="gRight">
-                                                <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','#');" class="btnNormalFix sizeS ">ÏÇ≠Ï†ú</a>
-                                                <a href="#" class="btnEmFix sizeS ">ÏàòÏ†ï</a>
+                                                <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','#');" class="btnNormalFix sizeS ">ªË¡¶</a>
+                                                <a href="#" class="btnEmFix sizeS ">ºˆ¡§</a>
                                                
                                             </span>
                                         </div>
@@ -109,20 +111,20 @@
                                 <div class="xans-element- xans-board xans-board-commentpackage-4 xans-board-commentpackage xans-board-4 ">
                                     <div class="xans-element- xans-board xans-board-commentlist-4 xans-board-commentlist xans-board-4">
                                         
-                                        <ul class="boardComment" style="list-style: none">
+                                        <ul class="boardComment">
                                             <li class="first  xans-record-">
                                                 <div class="commentTop">
-                                                    <strong class="name"> Ïù¥Ï†† Ïö∞Îìú</strong>
-                                                    <span class="date">ÎãµÎ≥Ä ÎÇ†Ïßú</span>
+                                                    <strong class="name"> ¿Ã¡® øÏµÂ</strong>
+                                                    <span class="date">¥‰∫Ø ≥Ø¬•</span>
                                                 </div>
                                                 <!--<span class="button">
-                                                    <a href="javascript:;" class="btnNormal displaynone" onclick="BOARD_COMMENT.comment_update('163363','144433',this);">ÏàòÏ†ï</a>
-                                                    <a href="javascript:;" class="btnNormal displaynone" onclick="BOARD_COMMENT.comment_delete('/board/product/comment_del.html?board_no=6&amp;no=163363&amp;comment_no=144433&amp;page=&amp;return_url=/board/product/read.html');"><i class="icoDelete"></i> ÏÇ≠Ï†ú</a>
-                                                    <a href="javascript:;" onclick="" class="btnNormal displaynone">ÎåìÍ∏Ä <img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_reply.gif" alt=""></a>
+                                                    <a href="javascript:;" class="btnNormal displaynone" onclick="BOARD_COMMENT.comment_update('163363','144433',this);">ºˆ¡§</a>
+                                                    <a href="javascript:;" class="btnNormal displaynone" onclick="BOARD_COMMENT.comment_delete('/board/product/comment_del.html?board_no=6&amp;no=163363&amp;comment_no=144433&amp;page=&amp;return_url=/board/product/read.html');"><i class="icoDelete"></i> ªË¡¶</a>
+                                                    <a href="javascript:;" onclick="" class="btnNormal displaynone">¥Ò±€ <img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_reply.gif" alt=""></a>
                                                 </span>-->
                                                 <div class="comment">
                                                     
-                                                    <span id="comment_contents144433">ÎãµÎ≥Ä ÎÇ¥Ïö©</span>
+                                                    <span id="comment_contents144433">¥‰∫Ø ≥ªøÎ</span>
                                                 </div>
                                             </li>
                                         </ul>
@@ -136,12 +138,12 @@
                                         <input id="member_id" name="member_id" value="" type="hidden">
                                         <div class="xans-element- xans-board xans-board-commentform-4 xans-board-commentform xans-board-4 ">
                                             <fieldset>
-                                                <legend>ÎåìÍ∏Ä ÏàòÏ†ï</legend>
-                                                <p>ÎπÑÎ∞ÄÎ≤àÌò∏ : <input id="comment_password" name="comment_password" fw-filter="isFill" fw-label="ÎåìÍ∏ÄÎπÑÎ∞ÄÎ≤àÌò∏" fw-msg="" value="" type="password"> <span class="secret displaynone"><label>ÎπÑÎ∞ÄÎåìÍ∏Ä</label></span></p>
+                                                <legend>¥Ò±€ ºˆ¡§</legend>
+                                                <p>∫Òπ–π¯»£ : <input id="comment_password" name="comment_password" fw-filter="isFill" fw-label="¥Ò±€∫Òπ–π¯»£" fw-msg="" value="" type="password"> <span class="secret displaynone"><label>∫Òπ–¥Ò±€</label></span></p>
                                                 <div class="view">
-                                                    <textarea id="comment_modify" name="comment_modify" fw-filter="isFill" fw-label="ÎåìÍ∏ÄÎÇ¥Ïö©" fw-msg=""></textarea> <span class="submit">
-                                                        <a href="#none" class="btnEm sizeL" onclick="BOARD_COMMENT.comment_update_ok('commentForm');">ÏàòÏ†ï</a>
-                                                        <a href="#none" class="btnNormal sizeL" onclick="BOARD_COMMENT.comment_cancel_ok('commentForm');">Ï∑®ÏÜå</a>
+                                                    <textarea id="comment_modify" name="comment_modify" fw-filter="isFill" fw-label="¥Ò±€≥ªøÎ" fw-msg=""></textarea> <span class="submit">
+                                                        <a href="#none" class="btnEm sizeL" onclick="BOARD_COMMENT.comment_update_ok('commentForm');">ºˆ¡§</a>
+                                                        <a href="#none" class="btnNormal sizeL" onclick="BOARD_COMMENT.comment_cancel_ok('commentForm');">√Îº“</a>
                                                     </span>
                                                 </div>
                                                 <p class="displaynone"> / byte</p>
@@ -153,8 +155,8 @@
                                         <input id="comment_no" name="comment_no" value="" type="hidden">
                                         <input id="pass_check" name="pass_check" value="F" type="hidden">
                                         <div class="xans-element- xans-board xans-board-commentformsecret-1002 xans-board-commentformsecret xans-board-1002 ">
-                                            <p>ÎπÑÎ∞ÄÎ≤àÌò∏ : <input id="secure_password" name="secure_password" fw-filter="isFill" fw-label="ÎåìÍ∏ÄÎπÑÎ∞ÄÎ≤àÌò∏" fw-msg="" value="" type="password"> <a href="#none" class="btnNormal" onclick="BOARD_COMMENT.show_secret_comment('commentSecretForm');">ÌôïÏù∏</a>
-                                                <a href="#none" class="btnNormal" onclick="BOARD_COMMENT.hide_secret_comment_form('commentSecretForm');">Ï∑®ÏÜå</a>
+                                            <p>∫Òπ–π¯»£ : <input id="secure_password" name="secure_password" fw-filter="isFill" fw-label="¥Ò±€∫Òπ–π¯»£" fw-msg="" value="" type="password"> <a href="#none" class="btnNormal" onclick="BOARD_COMMENT.show_secret_comment('commentSecretForm');">»Æ¿Œ</a>
+                                                <a href="#none" class="btnNormal" onclick="BOARD_COMMENT.hide_secret_comment_form('commentSecretForm');">√Îº“</a>
                                             </p>
                                         </div>
                                     </form>
@@ -173,6 +175,5 @@
         </div>
 
     </div>
-<%@include file ="/include/footer.jsp" %>
-</body>
-</html>
+
+</body></html>

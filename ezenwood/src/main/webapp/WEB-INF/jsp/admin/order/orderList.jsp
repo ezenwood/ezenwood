@@ -98,7 +98,6 @@
 									<c:if test="${fn:length(orderList) le 0}">
 										<tr><td colspan="9" style="text-align:center;"> </td></tr>
 									</c:if> 
-									
 								</tbody>
 							</table>
 						</div>

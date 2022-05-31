@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
+
 <head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-<link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
+    <link href="css/reset.css" type="text/css" rel="stylesheet">
+    <link href="css/layout.css" type="text/css" rel="stylesheet">
+    <link href="css/board.css" type="text/css" rel="stylesheet">
+    <link href="css/common.css" type="text/css" rel="stylesheet">
+    <link href="css/button.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="js/sister_js/gd_board_common.js"></script>
     
+
 </head>
+
 <body>
-<%@include file ="/include/header.jsp" %>
+
     <div id="container">
         <div id="contents">
             <div class="sub_content">
@@ -101,6 +103,7 @@
                 
             </div>
         </div>
-    <%@include file ="/include/footer.jsp" %>
+    
 </body>
+
 </html>
