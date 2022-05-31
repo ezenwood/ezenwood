@@ -20,7 +20,7 @@ WHERE notice_deL_gb='N'
 </select>
 
 <!--관리자 공지사항 list -->
-<select id="noticeList" parameterType="hashmap" resultType="hashmap">
+<select id="noticeListAdmin" parameterType="hashmap" resultType="hashmap">
 <include refid="common.paginfPre"/>
 <![CDATA[
 SELECT ROW_NUMBER() OVER (order by notice_step desc)RNUM,
@@ -49,7 +49,7 @@ WHERE notice_del_gb='N' and notice_num=#{notice_num}
 </select>
 
 <!--관리자 공지사항 등록 --> 
-<insert id="noticeDetail" parameterType="hashmap">
+<insert id="insertNotice" parameterType="hashmap">
 <![CDATA[
 insert into notice
 values(
