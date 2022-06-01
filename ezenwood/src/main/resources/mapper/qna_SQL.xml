@@ -71,7 +71,10 @@ AND QNA_DEL_GB = 'N'
 </select>
 
 <!-- 고객QAN작성 -->
-<insert id="clientQna" parameterType="hashmap" >
+<insert id="clientQna" parameterType="hashmap" useGeneratedKeys="true" keyProperty="QNA_NUM" >
+<selectKey keyProperty="QNA_NUM" resultType="string" order="BEFORE">
+	select SEQ_QNA_NUM.NEXTVAL from dual
+</selectKey>
 <![CDATA[
     INSERT INTO QNA(
     QNA_NUM,
@@ -85,9 +88,8 @@ AND QNA_DEL_GB = 'N'
     QNA_DATE,
     QNA_DEL_GB)
     VALUES(
-    SEQ_QNA_NUM.NEXTVAL,
-    #{QNA_TITLE},
-    (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}),    
+    #{QNA_NUM},
+    #{QNA_TITLE},       
     #{QNA_WRITER},
     'N',
     #{QNA_CONTENT},
