@@ -3,6 +3,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+
     <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/member.css" type="text/css" rel="stylesheet">
@@ -49,6 +50,7 @@
     </style>
 
 <body>
+
    <%@include file ="/include/header.jsp" %>
     <div id="container">
         <div id="contents">
@@ -486,7 +488,6 @@
 
                                     <hr>
                                     <input type="button" value="취소">&nbsp;&nbsp;<input type="button" value="회원가입">
--->
                                 </form>
 
                           
@@ -494,11 +495,13 @@
            
                         </div> 
     
+
                 </div>
                 
             </div>
         </div>
     </div>
     <%@include file ="/include/footer.jsp" %>
+
 </body>
 </head></html>

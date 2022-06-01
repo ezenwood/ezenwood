@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
     <title>PwFind</title>
@@ -39,11 +39,13 @@
 					<div class="login_input">
 						<div class="member_warning">
 							<input type="text" id="memberId" name="memberId" placeholder="아이디">
-							<p class="info_again">아이디를 모르시나요? <a href="#" class="js_btn_find_id">아이디 찾기</a></p>
+
+							<p class="info_again">아이디를 모르시나요? <a href="/ezenwood/member/idfind" class="js_btn_find_id">아이디 찾기</a></p>
 							<p class="dn" id="errorMessage"></p>
 						</div>
 						<div class="btn_center_box">
-							<button type="submit" class="btn_member_next">다음</button>
+							<button type="button" class="btn_member_next" onclick="location.href='/ezenwood/member/pwresult'">다음</button>
+
 						</div>
 					</div>
 				</div>

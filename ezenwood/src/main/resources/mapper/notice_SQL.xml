@@ -21,7 +21,7 @@ WHERE notice_deL_gb='N'
 
 <!--관리자 공지사항 list -->
 <select id="noticeListAdmin" parameterType="hashmap" resultType="hashmap">
-<include refid="common.paginfPre"/>
+<include refid="common.pagingPre"/>
 <![CDATA[
 SELECT ROW_NUMBER() OVER (order by notice_step desc)RNUM,
 	notice_num, 

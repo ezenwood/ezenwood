@@ -6,8 +6,8 @@
 <head>
     <meta charset="UTF-8">
     <title>test_footer</title>
-      <link href="reset2.css" type="text/css" rel="stylesheet">
-    <link href="common2.css" type="text/css" rel="stylesheet">
+      <link href="/ezenwood/reset2.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/common2.css" type="text/css" rel="stylesheet">
     <script>
         function banking() {
             if ($("bankinginfo:first").is(":hidden")) {
