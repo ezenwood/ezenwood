@@ -1,26 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="mypage.css">
-    <link rel="stylesheet" href="layout.css">
-    <link rel="stylesheet" href="member.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="board.css">
-    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="/ezenwood/css/mypage.css">
+    <link rel="stylesheet" href="/ezenwood/css/layout.css">
+    <link rel="stylesheet" href="/ezenwood/css/member.css">
+    <link rel="stylesheet" href="/ezenwood/css/reset.css">
+    <link rel="stylesheet" href="/ezenwood/css/board.css">
+    <link rel="stylesheet" href="/ezenwood/css/common.css">
     <title>mypage_main</title>
 </head>
 <body>
+<%@include file ="/include/header.jsp" %>
 <div id="container">
    <div id="contents">
-      <!-- ∫ªπÆ  -->
+      <!-- Î≥∏Î¨∏  -->
       <div class="location_wrap">
          <div class="location_cont">
              <em>
                  <a href="#" class="local_home">Home</a>
-                     &gt;∏∂¿Ã∆‰¿Ã¡ˆ
+                     &gt;ÎßàÏù¥ÌéòÏù¥ÏßÄ
              </em>
          </div>
       </div>
@@ -28,34 +29,34 @@
        <div class="sub_content">
           <div class="side_cont">
               <div class="sub_menu_box">
-                  <h2>∏∂¿Ã∆‰¿Ã¡ˆ</h2>
+                  <h2>ÎßàÏù¥ÌéòÏù¥ÏßÄ</h2>
                   <ul class="sub_menu_mypage">
                      <li> 
-                         ºÓ«Œ¡§∫∏
+                         ÏáºÌïëÏ†ïÎ≥¥
                          <ul class="sub_depth1">
-                             <li><a href="#">- ¡÷πÆ∏Ò∑œ/πËº€¡∂»∏</a></li>
-                             <li><a href="#">- √Îº“/π›«∞/±≥»Ø ≥ªø™</a></li>
+                             <li><a href="#">- Ï£ºÎ¨∏Î™©Î°ù/Î∞∞ÏÜ°Ï°∞Ìöå</a></li>
+                             <li><a href="#">- Ï∑®ÏÜå/Î∞òÌíà/ÍµêÌôò ÎÇ¥Ïó≠</a></li>
                          </ul>
                      </li>
                       <li> 
-                         ∞‘Ω√∆« ∞¸∏Æ
+                         Í≤åÏãúÌåê Í¥ÄÎ¶¨
                          <ul class="sub_depth1">
-                             <li><a href="#">- ∏Æ∫‰∞¸∏Æ</a></li>
-                             <li><a href="#">- 1:1πÆ¿«</a></li>
+                             <li><a href="#">- Î¶¨Î∑∞Í¥ÄÎ¶¨</a></li>
+                             <li><a href="#">- 1:1Î¨∏Ïùò</a></li>
                              <li><a href="#">- Q&A</a></li>
                          </ul>
                      </li>
                      <li> 
-                         »∏ø¯¡§∫∏
+                         ÌöåÏõêÏ†ïÎ≥¥
                          <ul class="sub_depth1">
-                             <li><a href="#">- »∏ø¯¡§∫∏ ∫Ø∞Ê/≈ª≈</a></li>
+                             <li><a href="#">- ÌöåÏõêÏ†ïÎ≥¥ Î≥ÄÍ≤Ω/ÌÉàÌá¥</a></li>
                          </ul>
                      </li>
                   </ul>
               </div>
               <!--sub_menu_box -->
               <script type="text/javascript">
-                  //∏ﬁ¥∫º±≈√
+                  //Î©îÎâ¥ÏÑ†ÌÉù
                   $('sub_menu_mypage li> a[href*="' + document.location.pathname+'"]').addClass('active');
               </script>
           </div> 
@@ -63,34 +64,34 @@
           
           <div class="content">
              <div class="mypage_main">
-                <!--∏∂¿Ã∆‰¿Ã¡ˆ »∏ø¯ ø‰æ‡¡§∫∏ -->
+                <!--ÎßàÏù¥ÌéòÏù¥ÏßÄ ÌöåÏõê ÏöîÏïΩÏ†ïÎ≥¥ -->
                 <div class="mypage_order_info">
                    <div class="mypage_zone_tit">
-                      <h3> ¡¯«‡ ¡ﬂ¿Œ ¡÷πÆ </h3>  
+                      <h3> ÏßÑÌñâ Ï§ëÏù∏ Ï£ºÎ¨∏ </h3>  
                    </div>
                    <div class="mypage_order_info_cont">
                       <ol>
-                          <li class><b>¿‘±›¥Î±‚</b>
+                          <li class><b>ÏûÖÍ∏àÎåÄÍ∏∞</b>
                               <strong style="color: black">0</strong>
                           </li>
-                          <li class><b>∞·¡¶øœ∑·</b>
+                          <li class><b>Í≤∞Ï†úÏôÑÎ£å</b>
                           <strong style="color: black">0</strong>
                           </li>
-                          <li class><b>ªÛ«∞¡ÿ∫Ò¡ﬂ</b>
+                          <li class><b>ÏÉÅÌíàÏ§ÄÎπÑÏ§ë</b>
                           <strong style="color: black">0</strong>
                           </li>
-                          <li class><b>πËº€ ¡ﬂ</b>
+                          <li class><b>Î∞∞ÏÜ° Ï§ë</b>
                           <strong style="color: black">0</strong>
                           </li>
-                          <li class><b>πËº€ øœ∑·</b>
+                          <li class><b>Î∞∞ÏÜ° ÏôÑÎ£å</b>
                           <strong style="color: black">0</strong>
                           </li>
                       </ol>
                        <div class="order_case_list">
                           <ul>
                               <li style="color: black">
-                              <b>√Îº“</b>
-                              <strong>0∞«</strong>
+                              <b>Ï∑®ÏÜå</b>
+                              <strong>0Í±¥</strong>
                               </li>
                           </ul>   
                        </div>
@@ -107,6 +108,6 @@
    </div>
     
 </div>    
-    
+    <%@include file ="/include/footer.jsp" %>
 </body>
 </html>

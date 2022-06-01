@@ -42,15 +42,19 @@
 								<input type="text" id="userName" name="userName" placeholder="이름">
 								<input type="text" id="userEmail" name="userEmail" placeholder="가입메일주소">
 							</div>
+
 							<button type="button" class="btn_member_id" onclick="location.href='/ezenwood/member/idresult'">아이디 찾기</button>
+
 						</div>
 						<p class="dn js_caution_msg1">일치하는 회원정보가 없습니다. 다시 입력해 주세요.</p>
 					</div>
 					<!-- //find_id_sec -->
 					<div class="btn_member_sec">
 						<ul>
+
 							<li><button type="button" class="btn_member_white js_btn_find_password" onclick="location.href='/ezenwood/member/pwfind'">비밀번호 찾기</button></li>
 							<li><button type="button" class="btn_comfirm js_btn_login" onclick="location.href='/ezenwood/member/signin'">로그인하기</button></li>
+
 						</ul>
 					</div>
 					<!-- //btn_member_sec -->
@@ -64,9 +68,11 @@
 </div>
 <!-- //content_box -->
 
-<%-- <script type="text/template" id="templateFindIdResult">
+
+<script type="text/template" id="templateFindIdResult">
 	<div class="find_complete_box"><p><%= %> 회원님의 아이디는 <br><strong><%= %></strong> 입니다</p></div>
-</script> --%>
+</script>
+
             </div>
             <!-- //sub_content -->
         </div>

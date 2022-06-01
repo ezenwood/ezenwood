@@ -1,26 +1,27 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="mypage.css">
-    <link rel="stylesheet" href="layout.css">
-    <link rel="stylesheet" href="member.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="board.css">
-    <link rel="stylesheet" href="common.css">
+    <link rel="stylesheet" href="/ezenwood/css/mypage.css">
+    <link rel="stylesheet" href="/ezenwood/css/layout.css">
+    <link rel="stylesheet" href="/ezenwood/css/member.css">
+    <link rel="stylesheet" href="/ezenwood/css/reset.css">
+    <link rel="stylesheet" href="/ezenwood/css/board.css">
+    <link rel="stylesheet" href="/ezenwood/css/common.css">
     <title>review2</title>
-</head>
+</head>s
 <body>
+<%@include file ="/include/header.jsp" %>
 <div id="container">
    <div id="contents">
-      <!-- ∫ªπÆ  -->
+      <!-- Î≥∏Î¨∏  -->
       <div class="location_wrap">
          <div class="location_cont">
              <em>
                  <a href="#" class="local_home">Home</a>
-                     &gt;∏∂¿Ã∆‰¿Ã¡ˆ&gt;∞‘Ω√∆« ∞¸∏Æ&gt;1:1πÆ¿«
+                     &gt;ÎßàÏù¥ÌéòÏù¥ÏßÄ&gt;Í≤åÏãúÌåê Í¥ÄÎ¶¨&gt;1:1Î¨∏Ïùò
              </em>
          </div>
       </div>
@@ -28,34 +29,34 @@
        <div class="sub_content">
           <div class="side_cont">
               <div class="sub_menu_box">
-                  <h2>∏∂¿Ã∆‰¿Ã¡ˆ</h2>
+                  <h2>ÎßàÏù¥ÌéòÏù¥ÏßÄ</h2>
                   <ul class="sub_menu_mypage">
                      <li> 
-                         ºÓ«Œ¡§∫∏
+                         ÏáºÌïëÏ†ïÎ≥¥
                          <ul class="sub_depth1">
-                             <li><a href="#">- ¡÷πÆ∏Ò∑œ/πËº€¡∂»∏</a></li>
-                             <li><a href="#">- √Îº“/π›«∞/±≥»Ø ≥ªø™</a></li>
+                             <li><a href="#">- Ï£ºÎ¨∏Î™©Î°ù/Î∞∞ÏÜ°Ï°∞Ìöå</a></li>
+                             <li><a href="#">- Ï∑®ÏÜå/Î∞òÌíà/ÍµêÌôò ÎÇ¥Ïó≠</a></li>
                          </ul>
                      </li>
                       <li> 
-                         ∞‘Ω√∆« ∞¸∏Æ
+                         Í≤åÏãúÌåê Í¥ÄÎ¶¨
                          <ul class="sub_depth1">
-                             <li><a href="#">- ∏Æ∫‰∞¸∏Æ</a></li>
-                             <li><a href="#">- 1:1πÆ¿«</a></li>
+                             <li><a href="#">- Î¶¨Î∑∞Í¥ÄÎ¶¨</a></li>
+                             <li><a href="#">- 1:1Î¨∏Ïùò</a></li>
                              <li><a href="#">- Q&A</a></li>
                          </ul>
                      </li>
                      <li> 
-                         »∏ø¯¡§∫∏
+                         ÌöåÏõêÏ†ïÎ≥¥
                          <ul class="sub_depth1">
-                             <li><a href="#">- »∏ø¯¡§∫∏ ∫Ø∞Ê/≈ª≈</a></li>
+                             <li><a href="#">- ÌöåÏõêÏ†ïÎ≥¥ Î≥ÄÍ≤Ω/ÌÉàÌá¥</a></li>
                          </ul>
                      </li>
                   </ul>
               </div>
               <!--sub_menu_box -->
               <script type="text/javascript">
-                  //∏ﬁ¥∫º±≈√
+                  //Î©îÎâ¥ÏÑ†ÌÉù
                   $('sub_menu_mypage li> a[href*="' + document.location.pathname+'"]').addClass('active');
               </script>
           </div> 
@@ -64,12 +65,12 @@
           <div class="content">
              <div class="mypage_cont">
                  <div class="mypage_lately_info">
-                    <h2 style="font-size: large">ªÛ«∞»ƒ±‚</h2>
+                    <h2 style="font-size: large">ÏÉÅÌíàÌõÑÍ∏∞</h2>
                  </div>
              </div>
         
              
-                 <!-- review ∏ÆΩ∫∆Æ-->
+                 <!-- review Î¶¨Ïä§Ìä∏-->
                  <div class="mypage_table_type">
                     <table>
                         <colgroup>
@@ -80,29 +81,29 @@
                             <col style="width: 7%">
                             <col style="width: 15%">
                             <col style="width: 6%">
-                            <!--»Æ¿Œ/∏Æ∫‰ -->
+                            <!--ÌôïÏù∏/Î¶¨Î∑∞ -->
                         </colgroup>
                         <thead>
                             <tr>
-                                <th>π¯»£</th>
-                                <th>¿ÃπÃ¡ˆ</th>
-                                <th>¡¶∏Ò</th>
-                                <th>≥Ø¬•</th>
-                                <th>¿€º∫¿⁄</th>
-                                <th>¡∂»∏</th>
+                                <th>Î≤àÌò∏</th>
+                                <th>Ïù¥ÎØ∏ÏßÄ</th>
+                                <th>Ï†úÎ™©</th>
+                                <th>ÎÇ†Ïßú</th>
+                                <th>ÏûëÏÑ±Ïûê</th>
+                                <th>Ï°∞Ìöå</th>
                             </tr>
                         </thead>
                         <tbody>
                             <tr data-sno="${review_num}" data-auth="y" style="height: 10px">
                                <td>"${review_num}"</td>
-                               <td><!-- ¿ÃπÃ¡ˆ-->
+                               <td><!-- Ïù¥ÎØ∏ÏßÄ-->
                                    <div class="board_img">
                                        <a href="jsvascript:gd_btn_view('goodsreview','${review_num}','y')">
                                            <img src="/mypage/board/upload/review/${image_std}" width="105" height="70" class="js_image_load">
                                        </a>
                                    </div>
                                </td>
-                               <td class="board_tit"><!-- ¡¶∏Ò-->
+                               <td class="board_tit"><!-- Ï†úÎ™©-->
                                    <a href="jsvascript:gd_btn_view('goodsreview','${review_num}','y'">
                                       <strong>${review_title}</strong>
                                    </a>
@@ -118,5 +119,6 @@
        </div>
     </div>
     </div>
+    <%@include file ="/include/footer.jsp" %>
 </body>
 </html>

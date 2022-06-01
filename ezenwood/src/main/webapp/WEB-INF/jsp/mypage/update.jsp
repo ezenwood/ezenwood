@@ -1,49 +1,49 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-   <link rel="stylesheet" href="mypage.css">
-    <link rel="stylesheet" href="layout.css">
-    <link rel="stylesheet" href="member.css">
-    <link rel="stylesheet" href="reset.css">
-    <link rel="stylesheet" href="board.css">
-    <link rel="stylesheet" href="common.css">
+   <link rel="stylesheet" href="/ezenwood/css/mypage.css">
+    <link rel="stylesheet" href="/ezenwood/css/layout.css">
+    <link rel="stylesheet" href="/ezenwood/css/member.css">
+    <link rel="stylesheet" href="/ezenwood/css/reset.css">
+    <link rel="stylesheet" href="/ezenwood/css/button.css">
+    <link rel="stylesheet" href="/ezenwood/css/common.css">
     <title>update2</title>
-    <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
+   <script src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-    //º» ¿¹Á¦¿¡¼­´Â µµ·Î¸í ÁÖ¼Ò Ç¥±â ¹æ½Ä¿¡ ´ëÇÑ ¹ı·É¿¡ µû¶ó, ³»·Á¿À´Â µ¥ÀÌÅÍ¸¦ Á¶ÇÕÇÏ¿© ¿Ã¹Ù¸¥ ÁÖ¼Ò¸¦ ±¸¼ºÇÏ´Â ¹æ¹ıÀ» ¼³¸íÇÕ´Ï´Ù.
+    //ë³¸ ì˜ˆì œì—ì„œëŠ” ë„ë¡œëª… ì£¼ì†Œ í‘œê¸° ë°©ì‹ì— ëŒ€í•œ ë²•ë ¹ì— ë”°ë¼, ë‚´ë ¤ì˜¤ëŠ” ë°ì´í„°ë¥¼ ì¡°í•©í•˜ì—¬ ì˜¬ë°”ë¥¸ ì£¼ì†Œë¥¼ êµ¬ì„±í•˜ëŠ” ë°©ë²•ì„ ì„¤ëª…í•©ë‹ˆë‹¤.
     function sample4_execDaumPostcode() {
         new daum.Postcode({
             oncomplete: function(data) {
-                // ÆË¾÷¿¡¼­ °Ë»ö°á°ú Ç×¸ñÀ» Å¬¸¯ÇßÀ»¶§ ½ÇÇàÇÒ ÄÚµå¸¦ ÀÛ¼ºÇÏ´Â ºÎºĞ.
+                // íŒì—…ì—ì„œ ê²€ìƒ‰ê²°ê³¼ í•­ëª©ì„ í´ë¦­í–ˆì„ë•Œ ì‹¤í–‰í•  ì½”ë“œë¥¼ ì‘ì„±í•˜ëŠ” ë¶€ë¶„.
 
-                // µµ·Î¸í ÁÖ¼ÒÀÇ ³ëÃâ ±ÔÄ¢¿¡ µû¶ó ÁÖ¼Ò¸¦ Ç¥½ÃÇÑ´Ù.
-                // ³»·Á¿À´Â º¯¼ö°¡ °ªÀÌ ¾ø´Â °æ¿ì¿£ °ø¹é('')°ªÀ» °¡Áö¹Ç·Î, ÀÌ¸¦ Âü°íÇÏ¿© ºĞ±â ÇÑ´Ù.
-                var roadAddr = data.roadAddress; // µµ·Î¸í ÁÖ¼Ò º¯¼ö
-                var extraRoadAddr = ''; // Âü°í Ç×¸ñ º¯¼ö
+                // ë„ë¡œëª… ì£¼ì†Œì˜ ë…¸ì¶œ ê·œì¹™ì— ë”°ë¼ ì£¼ì†Œë¥¼ í‘œì‹œí•œë‹¤.
+                // ë‚´ë ¤ì˜¤ëŠ” ë³€ìˆ˜ê°€ ê°’ì´ ì—†ëŠ” ê²½ìš°ì—” ê³µë°±('')ê°’ì„ ê°€ì§€ë¯€ë¡œ, ì´ë¥¼ ì°¸ê³ í•˜ì—¬ ë¶„ê¸° í•œë‹¤.
+                var roadAddr = data.roadAddress; // ë„ë¡œëª… ì£¼ì†Œ ë³€ìˆ˜
+                var extraRoadAddr = ''; // ì°¸ê³  í•­ëª© ë³€ìˆ˜
 
-                // ¹ıÁ¤µ¿¸íÀÌ ÀÖÀ» °æ¿ì Ãß°¡ÇÑ´Ù. (¹ıÁ¤¸®´Â Á¦¿Ü)
-                // ¹ıÁ¤µ¿ÀÇ °æ¿ì ¸¶Áö¸· ¹®ÀÚ°¡ "µ¿/·Î/°¡"·Î ³¡³­´Ù.
-                if(data.bname !== '' && /[µ¿|·Î|°¡]$/g.test(data.bname)){
+                // ë²•ì •ë™ëª…ì´ ìˆì„ ê²½ìš° ì¶”ê°€í•œë‹¤. (ë²•ì •ë¦¬ëŠ” ì œì™¸)
+                // ë²•ì •ë™ì˜ ê²½ìš° ë§ˆì§€ë§‰ ë¬¸ìê°€ "ë™/ë¡œ/ê°€"ë¡œ ëë‚œë‹¤.
+                if(data.bname !== '' && /[ë™|ë¡œ|ê°€]$/g.test(data.bname)){
                     extraRoadAddr += data.bname;
                 }
-                // °Ç¹°¸íÀÌ ÀÖ°í, °øµ¿ÁÖÅÃÀÏ °æ¿ì Ãß°¡ÇÑ´Ù.
+                // ê±´ë¬¼ëª…ì´ ìˆê³ , ê³µë™ì£¼íƒì¼ ê²½ìš° ì¶”ê°€í•œë‹¤.
                 if(data.buildingName !== '' && data.apartment === 'Y'){
                    extraRoadAddr += (extraRoadAddr !== '' ? ', ' + data.buildingName : data.buildingName);
                 }
-                // Ç¥½ÃÇÒ Âü°íÇ×¸ñÀÌ ÀÖÀ» °æ¿ì, °ıÈ£±îÁö Ãß°¡ÇÑ ÃÖÁ¾ ¹®ÀÚ¿­À» ¸¸µç´Ù.
+                // í‘œì‹œí•  ì°¸ê³ í•­ëª©ì´ ìˆì„ ê²½ìš°, ê´„í˜¸ê¹Œì§€ ì¶”ê°€í•œ ìµœì¢… ë¬¸ìì—´ì„ ë§Œë“ ë‹¤.
                 if(extraRoadAddr !== ''){
                     extraRoadAddr = ' (' + extraRoadAddr + ')';
                 }
 
-                // ¿ìÆí¹øÈ£¿Í ÁÖ¼Ò Á¤º¸¸¦ ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
+                // ìš°í¸ë²ˆí˜¸ì™€ ì£¼ì†Œ ì •ë³´ë¥¼ í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
                 document.getElementById('sample4_postcode').value = data.zonecode;
                 document.getElementById("sample4_roadAddress").value = roadAddr;
                 document.getElementById("sample4_jibunAddress").value = data.jibunAddress;
                 
-                // Âü°íÇ×¸ñ ¹®ÀÚ¿­ÀÌ ÀÖÀ» °æ¿ì ÇØ´ç ÇÊµå¿¡ ³Ö´Â´Ù.
+                // ì°¸ê³ í•­ëª© ë¬¸ìì—´ì´ ìˆì„ ê²½ìš° í•´ë‹¹ í•„ë“œì— ë„£ëŠ”ë‹¤.
                 if(roadAddr !== ''){
                     document.getElementById("sample4_extraAddress").value = extraRoadAddr;
                 } else {
@@ -51,15 +51,15 @@
                 }
 
                /*  var guideTextBox = document.getElementById("guide");
-                // »ç¿ëÀÚ°¡ '¼±ÅÃ ¾ÈÇÔ'À» Å¬¸¯ÇÑ °æ¿ì, ¿¹»ó ÁÖ¼Ò¶ó´Â Ç¥½Ã¸¦ ÇØÁØ´Ù.
+                // ì‚¬ìš©ìê°€ 'ì„ íƒ ì•ˆí•¨'ì„ í´ë¦­í•œ ê²½ìš°, ì˜ˆìƒ ì£¼ì†Œë¼ëŠ” í‘œì‹œë¥¼ í•´ì¤€ë‹¤.
                 if(data.autoRoadAddress) {
                     var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(¿¹»ó µµ·Î¸í ÁÖ¼Ò : ' + expRoadAddr + ')';
+                    guideTextBox.innerHTML = '(ì˜ˆìƒ ë„ë¡œëª… ì£¼ì†Œ : ' + expRoadAddr + ')';
                     guideTextBox.style.display = 'block';
 
                 } else if(data.autoJibunAddress) {
                     var expJibunAddr = data.autoJibunAddress;
-                    guideTextBox.innerHTML = '(¿¹»ó Áö¹ø ÁÖ¼Ò : ' + expJibunAddr + ')';
+                    guideTextBox.innerHTML = '(ì˜ˆìƒ ì§€ë²ˆ ì£¼ì†Œ : ' + expJibunAddr + ')';
                     guideTextBox.style.display = 'block';
                 } else {
                     guideTextBox.innerHTML = '';
@@ -72,13 +72,14 @@
     
 </head>
 <body>
+<%@include file ="/include/header.jsp" %>
    <div id="container">
         <div id="contents">
-        <!-- º»¹® ½ÃÀÛ -->
+        <!-- ë³¸ë¬¸ ì‹œì‘ -->
 
             <div class="location_wrap">
                 <div class="location_cont">
-                    <em><a href="#" class="local_home">HOME</a> &gt; ¸¶ÀÌÆäÀÌÁö &gt; ³»Á¤º¸¼öÁ¤</em>
+                    <em><a href="#" class="local_home">HOME</a> &gt; ë§ˆì´í˜ì´ì§€ &gt; ë‚´ì •ë³´ìˆ˜ì •</em>
                 </div>
             </div>
             <!-- //location_wrap -->
@@ -88,31 +89,31 @@
                 <div class="side_cont">
                 
 <div class="sub_menu_box">
-    <h2>¸¶ÀÌÆäÀÌÁö</h2>
+    <h2>ë§ˆì´í˜ì´ì§€</h2>
     <ul class="sub_menu_mypage">
-					<li>ÁÖ¹®³»¿ª
+					<li>ì£¼ë¬¸ë‚´ì—­
             <ul class="sub_depth1">
-                <li><a href="./mypage/order.jsp">- ÁÖ¹®¸ñ·Ï/¹è¼ÛÁ¶È¸</a></li>
-                <li><a href="./mypage/cancel.jsp">- Ãë¼Ò ³»¿ª</a></li>         
+                <li><a href="./mypage/order.jsp">- ì£¼ë¬¸ëª©ë¡/ë°°ì†¡ì¡°íšŒ</a></li>
+                <li><a href="./mypage/cancel.jsp">- ì·¨ì†Œ ë‚´ì—­</a></li>         
             </ul>
         </li> 	
-        <li>°Ô½Ã±Û °ü¸®
+        <li>ê²Œì‹œê¸€ ê´€ë¦¬
             <ul class="sub_depth1">
-                <li><a href="./mypage/review.jsp">¸®ºä °ü¸®</a></li>
-                <li><a href="./mypage/oto.jsp">- 1:1 ¹®ÀÇ</a></li>
+                <li><a href="./mypage/review.jsp">ë¦¬ë·° ê´€ë¦¬</a></li>
+                <li><a href="./mypage/oto.jsp">- 1:1 ë¬¸ì˜</a></li>
                 <li><a href="./mypage/qna.jsp">- Q&A</a></li>
             </ul>
         </li>
-        <li>È¸¿øÁ¤º¸
+        <li>íšŒì›ì •ë³´
             <ul class="sub_depth1">
-                <li><a href="./mypage/update.jsp">- È¸¿øÁ¤º¸ º¯°æ/Å»Åğ</a></li>
+                <li><a href="./mypage/update.jsp">- íšŒì›ì •ë³´ ë³€ê²½/íƒˆí‡´</a></li>
             </ul>
         </li>
 				</ul>
 </div>
 <!-- //sub_menu_box -->
 <script type="text/javascript">
-    // ¸Ş´º ¼±ÅÃ
+    // ë©”ë‰´ ì„ íƒ
     $('.sub_menu_mypage li > a[href*="' + document.location.pathname + '"]').addClass('active');
 </script>
                 </div>
@@ -124,7 +125,7 @@
 
         <div class="my_page">
             <div class="mypage_zone_tit">
-               <h2  style="font-size: large">È¸¿øÁ¤º¸ º¯°æ</h2>
+               <h2  style="font-size: large">íšŒì›ì •ë³´ ë³€ê²½</h2>
             </div>
 
             <div class="join_base_wrap">
@@ -139,13 +140,13 @@
       
       <div class="location_wrap1">
                 <div class="location_cont1">
-                    <em><a href="#" class="local_home1" style="font-weight: bold">Á¤º¸ÀÔ·Â</a>&gt;°¡ÀÔ¿Ï·á</em>
+                    <em><a href="#" class="local_home1" style="font-weight: bold">ì •ë³´ì…ë ¥</a>&gt;ê°€ì…ì™„ë£Œ</em>
                 </div>
             </div>
             <!-- //location_wrap -->
-     <!-- È¸¿ø°¡ÀÔ/Á¤º¸ ±âº»Á¤º¸ -->
+     <!-- íšŒì›ê°€ì…/ì •ë³´ ê¸°ë³¸ì •ë³´ -->
     <div class="base_info_box">
-    <h3>±âº»Á¤º¸</h3>
+    <h3>ê¸°ë³¸ì •ë³´</h3>
 
     <div class="base_info_sec">
         <table border="0" cellpadding="0" cellspacing="0">
@@ -155,7 +156,7 @@
             </colgroup>
             <tbody>
             <tr>
-                <th><span class="important">*¾ÆÀÌµğ</span></th>
+                <th><span class="important">*ì•„ì´ë””</span></th>
                 <td>
                     <input type="hidden" name="memId" value="${member_id}">
                     ${member_id}
@@ -164,104 +165,82 @@
             </tr>
             <div id="memberNewPw" class="member_pw_change" style="display: none"> 
             <tr>
-                <th><span class="important">*ÇöÀç ºñ¹Ğ¹øÈ£</span></th>
+                <th><span class="important">*í˜„ì¬ ë¹„ë°€ë²ˆí˜¸</span></th>
                 <td>
                      <div class="member_warning">
-                        <input type="password" name="memCurrentPw" maxlength="30" placeholder="ÇöÀç ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä."> 
+                        <input type="password" name="memCurrentPw" maxlength="30" placeholder="í˜„ì¬ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”."> 
                      </div>   
                 </td>
             </tr>
               <tr>
-                <th><span class="important">*»õ ºñ¹Ğ¹øÈ£</span></th>
+                <th><span class="important">*ìƒˆ ë¹„ë°€ë²ˆí˜¸</span></th>
                 <td>
                         <div class="member_warning">
-                            <input type="password" name="newPw" maxlength="30"
-                             placeholder="»õ·Î¿î ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.">
+                            <input type="password" name="newPw" maxlength="300"
+                             placeholder="ìƒˆë¡œìš´ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.">
                         </div>
                 </td>
             </tr>  
                <tr>
-                <th><span class="important">*»õ ºñ¹Ğ¹øÈ£ È®ÀÎ</span></th>
+                <th><span class="important">*ìƒˆ ë¹„ë°€ë²ˆí˜¸ í™•ì¸</span></th>
                 <td>
                        <div class="member_warning">
-                            <input type="password" name="newPwCheck" maxlength="30" placeholder="»õ·Î¿î ºñ¹Ğ¹øÈ£¸¦ ÀÔ·ÂÇÏ¼¼¿ä.">
+                            <input type="password" name="newPwCheck" maxlength="30" placeholder="ìƒˆë¡œìš´ ë¹„ë°€ë²ˆí˜¸ë¥¼ ì…ë ¥í•˜ì„¸ìš”.">
                        </div>
                 </td>
             </tr>  
             </div>        
                 
             <tr>
-                <th><span class="important">*ÀÌ¸§</span></th>
+                <th><span class="important">*ì´ë¦„</span></th>
                 <td>
                        <div class="member_warning">
-                            <input type="text" name="memNm" value="${member_name}" maxlength="30" placeholder="ÀÌ¸§À» ÀÔ·ÂÇÏ¼¼¿ä.">
+                            <input type="text" name="memNm" value="${member_name}" maxlength="30" placeholder="ì´ë¦„ì„ ì…ë ¥í•˜ì„¸ìš”.">
                        </div>
                 </td>
             </tr>
             <tr>
-                <th><span>*ÀÌ¸ŞÀÏ</span></th>
+                <th><span>*ì´ë©”ì¼</span></th>
                 <td class="member_email">
                        <div class="member_warning">
-                            <input type="text" name="email" id="email" value="" placeholder="ÀÌ¸ŞÀÏÀ» ÀÔ·ÂÇÏ¼¼¿ä.">
+                            <input type="text" name="email" id="email" value="" placeholder="ì´ë©”ì¼ì„ ì…ë ¥í•˜ì„¸ìš”.">
                        </div>
                 </td>
             </tr>
             <tr>
-                <th><span>*ÀüÈ­¹øÈ£</span></th>
+                <th><span>*ì „í™”ë²ˆí˜¸</span></th>
                 <td>
                     <div class="member_warning">
-                        <input type="text" id="phone" name="phone" maxlength="12" placeholder="- ¾øÀÌ ÀÔ·ÂÇÏ¼¼¿ä." data-pattern="gdNum" value="">
+                        <input type="text" id="phone" name="phone" maxlength="12" placeholder="- ì—†ì´ ì…ë ¥í•˜ì„¸ìš”." data-pattern="gdNum" value="">
                     </div>
                 </td>
             </tr>
             <tr>
-                <th><span>*ÁÖ¼Ò</span></th>
-                <td class="member_address">
-                    <div class="address_postcode">
-                        <input type="text" id="sample4_postcode"
-                           placeholder="¿ìÆí¹øÈ£"> <input type="button"
-                           onclick="sample4_execDaumPostcode()" value="¿ìÆí¹øÈ£ Ã£±â">
-                        <input type="hidden" name="zipcode" value="">
-                        </div>
-                        
-                       <div class="add">
-                          <input type="text" id="sample4_roadAddress" placeholder="µµ·Î¸í ÁÖ¼Ò">
-                            <input type="text" id="sample4_jibunAddress" placeholder="Áö¹ø ÁÖ¼Ò">  
-                             <span id="guide" style="color: #999; display: none"></span>
-                       </div>
-                    <div class="add">
-                            <input type="text" id="sample4_detailAddress" placeholder="»ó¼¼ ÁÖ¼Ò">
-                            <input type="text" id="sample4_extraAddress" placeholder="Âü°íÇ×¸ñ">
-                        </div>
-                </td>
-            </tr>
+                        <th>ì£¼ì†Œ</th>
+                        <td><input type="text" id="sample4_postcode"
+                           placeholder="ìš°í¸ë²ˆí˜¸"> <input type="button"
+                           onclick="sample4_execDaumPostcode()" value="ìš°í¸ë²ˆí˜¸ ì°¾ê¸°"><br>
+                           <input type="text" id="sample4_roadAddress" placeholder="ë„ë¡œëª…ì£¼ì†Œ">
+                           <input type="text" id="sample4_jibunAddress" placeholder="ì§€ë²ˆì£¼ì†Œ">
+                           <span id="guide" style="color: #999; display: none"></span><br> <input
+                           type="text" id="sample4_detailAddress" placeholder="ìƒì„¸ì£¼ì†Œ">
+                           <input type="text" id="sample4_extraAddress" placeholder="ì°¸ê³ í•­ëª©">
+                        </td>
+                     </tr>
             </tbody>
         </table>
     </div>
     <!-- //base_info_sec -->
 </div>
-<!-- //base_info_box --><!-- È¸¿ø°¡ÀÔ/Á¤º¸ ±âº»Á¤º¸ -->
+<!-- //base_info_box --><!-- íšŒì›ê°€ì…/ì •ë³´ ê¸°ë³¸ì •ë³´ -->
                       
                         
                         <iframe id="ifrmHpauthdel" name="ifrmHpauth" style="width:500px;height:500px;display:none;"></iframe>
-                        <div class="btn_center_box_del">
-                            <button type="button" class="btn_member_del" style="display: inline-block; 
-                                   min-width: 80px;
-                                   height: 30px;
-                                   margin: -20px 0 0 0;
-                                   padding: 0px 10px 0 10px;
-                                   line-height: 30px;
-                                   color: #3e3d3c;
-                                   font-size: 12px;
-                                   font-weight: bold;
-                                   border: 1px solid #cccccc;
-                                   background: #ffffff;
-                                   text-align: center;">Å»Åğ</button>
-                        </div>
+                        
                         <iframe id="ifrmHpauth" name="ifrmHpauth" style="width:500px;height:500px;display:none;"></iframe>
                         <div class="btn_center_box">
-                            <button type="button" class="btn_member_cancel">Ãë¼Ò</button>
-                            <button type="button" class="btn_comfirm js_btn_join" value="Á¤º¸¼öÁ¤">Á¤º¸¼öÁ¤</button>
+                            <button type="button" class="btn_comfirm js_btn_join" value="ì •ë³´ìˆ˜ì •">ì •ë³´ìˆ˜ì •</button>
+                            <button type="button" class="btn_member_cancel">íƒˆí‡´</button>
                         </div>
                         <!-- //btn_center_box -->
                     </form>
@@ -282,7 +261,8 @@
             </div>
             <!-- //sub_content -->
         </div>
-        <!-- //º»¹® ³¡ contents -->
+        <!-- //ë³¸ë¬¸ ë contents -->
     </div>
+    <%@include file ="/include/footer.jsp" %>
 </body>
 </html>
