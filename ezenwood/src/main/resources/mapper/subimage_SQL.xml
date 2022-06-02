@@ -18,10 +18,11 @@ values(
 </insert>
 
 
-<select id="selectOne">
+<select id="selectOne" resultType="string" parameterType="int">
 <![CDATA[
 select 
-	* 
+	 SUBIMAGE_STD
+	 
 from 
 	subimage 
 where 

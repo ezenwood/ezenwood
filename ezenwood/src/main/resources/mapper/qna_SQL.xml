@@ -8,9 +8,29 @@
 <![CDATA[
 SELECT QNA_TITLE, QNA_WRITER, QNA_TYPE, QNA_DATE
 FROM QNA
-WHERE QNA_DEL_GB = 'N' ;
+WHERE QNA_DEL_GB = 'N'
 ]]>
 </select>
+
+
+<select id="selectQNAForDetail" parameterType="hashmap" resultType="hashmap">
+
+<![CDATA[
+select 
+QNA_NUM,
+QNA_TITLE,
+QNA_WRITER,
+QNA_TYPE,
+QNA_SECREATE,
+QNA_DATE
+from qna
+where qna_type = 'A'
+AND QNA_DEL_GB = 'N' and QNA_PARENT=#{QNA_PARENT}   
+
+
+]]>
+</select>
+
 
 
 <!-- 관리자 QNA목록 불런오기 -->
@@ -21,10 +41,10 @@ QNA_NUM,
 QNA_TITLE,
 QNA_WRITER,
 QNA_TYPE,
-QNA_SECREAT,
+QNA_SECREATE,
 QNA_DATE
 from qna
-where qna__type = 'A'
+where qna_type = 'A'
 AND QNA_DEL_GB = 'N';
 ]]>
 </select>
