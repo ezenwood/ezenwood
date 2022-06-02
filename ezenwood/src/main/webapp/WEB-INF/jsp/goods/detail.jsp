@@ -36,7 +36,7 @@
                             <!-- 상세정보 내역 -->
                             <div class="infoArea">
                                 <div class="product_title titleicon ">
-                                    May Table <span class="delivery displaynone"></span>
+                                    ${GOODS_MAP.GOODS_TITLE } <span class="delivery displaynone"></span>
                                 </div>
 
                                 <div class="custom_pro displaynone  dj_count0"><span class="dj-mov-fade-in-out2">0%</span></div>
@@ -49,26 +49,21 @@
                                         <div border="0" summary="">
                                             <ul>
                                                 <li style="display:none" class=" product_name_css xans-record-">
-                                                    <span class="title"><span style="font-size:16px;color:#555555;">상품명</span></span>
-                                                    <span class="con"><span style="font-size:16px;color:#555555;">May Table</span></span>
+                                                    <span class="title"><span style="font-size:16px;color:#555555;">${GOODS_MAP.GOODS_TITLE }</span></span>
+                                                    <span class="con"><span style="font-size:16px;color:#555555;">${GOODS_MAP.GOODS_TITLE }</span></span>
                                                 </li>
                                                 <li class=" simple_desc_css xans-record-">
                                                     <span class="title"><span style="font-size:12px;color:#555555;">상품간략설명</span></span>
-                                                    <span class="con"><span style="font-size:12px;color:#555555;">오롤데 감성 듬뿍담긴 편지지<br>
-                                                            편지지 6장, 3장의 봉투, 4종의 스티커 1장, 6종의 우표 스티커 1장으로 구성되었습니다.<br>
-                                                            <br>
-                                                            material : <br>
-                                                            size : <br>
-                                                            <br>
+                                                    <span class="con"><span style="font-size:12px;color:#555555;">${GOODS_MAP.GOODS_CONTENT1 }
                                                         </span></span>
                                                 </li>
                                                 <li class=" product_price_css xans-record-">
                                                     <span class="title"><span style="font-size:12px;color:#000000;font-weight:bold;">판매가</span></span>
-                                                    <span class="con"><span style="font-size:12px;color:#000000;font-weight:bold;"><strong id="span_product_price_text">3,200,000 won</strong><input id="product_price" name="product_price" value="" type="hidden"></span></span>
+                                                    <span class="con"><span style="font-size:12px;color:#000000;font-weight:bold;"><strong id="span_product_price_text">${GOODS_MAP.GOODS_PRICE }</strong><input id="product_price" name="product_price" value="" type="hidden"></span></span>
                                                 </li>
                                                 <li class=" quantity_css xans-record-">
                                                     <span class="title"><span style="font-size:12px;color:#555555;">수량</span></span>
-                                                    <span class="con"><span style="font-size:12px;color:#555555;"><span id="NewProductQuantityDummy"><span class="quantity"><input id="quantity" name="quantity_name" style="width: 30px;height: 18px;border: 1px solid #BCBCBC;" value="" type="text"><img src="css/img/btn_basketUp.gif" class="QuantityUp" alt="수량증가"><img src="css/img/btn_basketDown.gif" class="QuantityDown" alt="수량감소"></span></span></span></span>
+                                                    <span class="con"><span style="font-size:12px;color:#555555;"><span id="NewProductQuantityDummy"><span class="quantity"><input id="quantity" name="quantity_name" style="width: 30px;height: 18px;border: 1px solid #BCBCBC;" value="" type="text"><img src="/ezenwood/css/img/btn_basketUp.gif" class="QuantityUp" alt="수량증가"><img src="/ezenwood/css/img/btn_basketDown.gif" class="QuantityDown" alt="수량감소"></span></span></span></span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -125,7 +120,7 @@
                                         </thead>
                                         <tbody class="displaynone">
                                             <tr>
-                                                <td>May Table</td>
+                                                <td>${GOODS_MAP.GOODS_TITLE }</td>
                                                 <td>
                                                     <span class="quantity">
                                                         <input id="quantity" name="quantity_name" style="" value="0" type="text"> <a href="#none"><img src="css/img/btn_basketUp.gif" alt="수량증가" class="QuantityUp up"></a>
@@ -133,7 +128,7 @@
                                                     </span>
                                                 </td>
                                                 <td class="right">
-                                                    <span class="quantity_price">3,200,000</span>
+                                                    <span class="quantity_price">${GOODS_MAP.GOODS_PRICE }</span>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -143,10 +138,7 @@
                                                 <td>
                                                     <input type="hidden" class="option_box_id" id="option_box1_id" value="#" name="#" data-item-add-option data-item-reserved="N" data-option-id="#" data-option-index="1">
                                                     <p class="product">
-                                                        May Table
-                                                        <br>
-                                                        -
-                                                        <span>oak</span>
+                                                        ${GOODS_MAP.GOODS_TITLE }
                                                     </p>
                                                 </td>
                                                 <td>
@@ -159,7 +151,7 @@
                                                 <td class="right">
                                                     <span id="option_box1_price">
                                                         <input type="hidden" class="option_box_price" value="3200" product-no="503" item_code="P00000TJ000B">
-                                                        <span class="ec-front-product-item-price" code="P00000TJ000B" product-no="503">3,200,000 won</span>
+                                                        <span class="ec-front-product-item-price" code="P00000TJ000B" product-no="503">${GOODS_MAP.GOODS_PRICE } won</span>
 
                                                     </span>
                                                 </td>
@@ -262,20 +254,7 @@
                                         <div style="width:100%;height:100%;position:relative;font-family:&quot;malgun gothic&quot;,sans-serif;font-size:14px;color:#000000;font-style:normal;font-weight:400;text-align:center;line-height:1.5;letter-spacing:0;word-spacing:0;background-color:rgba(255,255,255,0);text-decoration-skip-ink:none;">
                                             <div style="text-align: left;">
                                                 <span style="font-size: 13px; background-color: rgba(0, 0, 0, 0);">
-                                                    <br><br>
-                                                    모두의 생일이 행복한 추억이 될 수 있길 바라며 제작했어요.
-                                                    생일 축하 메시지가 적힌 평범한 카드처럼 보이지만,
-                                                    카드를 펼쳐보면 생일 축하 노래의 악보가 인쇄되어 있답니다.<br>
-                                                    악보 중간에는 생일을 맞이한 친구의 이름을 적을 수 있는 칸도 마련되어 있어요.
-                                                    이 세트 하나로도 충분하게 카드 1장, 봉투 1장, 스티커 1세트(3매)으로 구성했어요.
-                                                    <br>
-                                                    연말이 되면 늘 설레는 마음으로 카드를 준비하곤 해요.
-                                                    한 해 동안 고마웠던 사람들에게 혹은 연락이 뜸했지만 그리운 사람들에게
-                                                    어떤 한 해를 보냈는지 안부를 묻고 마음을 전해보는건 어떨까요?<br>
-                                                    이 세트 하나로도 충분하게 카드 1장, 봉투 1장, 스티커 1세트(3매)으로 구성했어요.
-                                                    <br>
-                                                    텍스처가 고급스러운 수입지에 실제로 보면 훨씬 고급스러운 핫스탬핑 방법으로
-                                                    레터링이 표현되어 있습니다.&nbsp;&nbsp;
+                                                   ${GOODS_MAP.GOODS_CONTENT2 }
 
                                                 </span>
                                             </div>
@@ -396,7 +375,7 @@
                                                 <h3>Q &amp; A</h3>
                                             </span>
                                             <span class="gRight">
-                                                <a href="#" class="dj-btn-2">WRITE</a>
+                                                <a href="/ezenwood/goods/qna/write?GOODS_NUM=${GOODS_MAP.GOODS_NUM }" class="dj-btn-2">WRITE</a>
                                                 <a href="#" class="dj-btn-2">LIST</a>
                                             </span>
                                         </div>

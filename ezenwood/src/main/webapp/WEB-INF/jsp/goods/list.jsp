@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -34,31 +35,33 @@
 								<!--상품 리스트-->
 								<div class="item_gallery_type">
 									<ul>
-
-										<li>
-											<div class="item_cont">
-												<div class="item_photo_box">
-													<a href="#"> <img src="이미지 주소" width="400" height="600"
-														alt="상품 이름" title="상품 이름" class="middle">
-													</a>
-												</div>
-
-												<div class="item_info_cont">
-													<div class="item_tit_box">
-														<a href="#"> <strong class="item_name"> 상품 이름
-														</strong>
+										<c:forEach items="${goodsList }" var="goodsMap"
+											varStatus="stat">
+											<li style="width: 33.3333333%">
+												<div class="item_cont">
+													<div class="item_photo_box">
+														<a href="/ezenwood/goods?idx=${goodsMap.GOODS_NUM }"> <img src="/ezenwood/resource/image/pet1.jpg" width="400"
+															height="600" alt="상품 이름" title="상품 이름" class="middle">
 														</a>
 													</div>
 
-													<div class="item_money_box">
-														<strong class="item_price"> <span>가격</span>
-														</strong>
-													</div>
+													<div class="item_info_cont">
+														<div class="item_tit_box">
+															<a href="#"> <strong class="item_name"> ${goodsMap.GOODS_TITLE } </strong>
+															</a>
+														</div>
 
-													<div class="item_icon_box"></div>
+														<div class="item_money_box">
+															<strong class="item_price"> <span>${goodsMap.GOODS_PRICE }</span>
+															</strong>
+														</div>
+
+														<div class="item_icon_box"></div>
+													</div>
 												</div>
-											</div>
-										</li>
+											</li>
+										</c:forEach>
+
 
 
 									</ul>

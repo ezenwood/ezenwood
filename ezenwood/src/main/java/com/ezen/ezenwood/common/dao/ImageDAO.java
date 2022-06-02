@@ -14,5 +14,11 @@ public class ImageDAO extends AbstractDAO {
 		return (int) insert("image.insertImage", insertMap);
 		
 	}
+	
+	
+	public String selectImage(Map<String, Object> insertMap) {
+		
+		return (String) selectOne("image.selectImage", insertMap);
+	}
 
 }

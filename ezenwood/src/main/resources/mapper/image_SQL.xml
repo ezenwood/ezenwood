@@ -18,11 +18,16 @@ insert into image values(
 ]]>
 </insert>
 
-<select id="selectImage">
+<select id="selectImage" resultType="string" parameterType="hashmap">
 <![CDATA[
-select image_org, image_std
-	where image_tablenames_tablename = #{TABLENAME} and
-	image_parent = #{IDX}
+select 
+	
+	IMAGE_STD 
+from 
+	image 
+where 
+	IMAGE_TABLENAMES_TABLENAME = #{IMAGE_TABLENAMES_TABLENAME} and
+	IMAGE_PARENT = #{IMAGE_PARENT}
 	
 ]]>
 </select>
