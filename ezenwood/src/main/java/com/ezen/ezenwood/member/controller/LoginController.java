@@ -41,25 +41,23 @@ public class LoginController {
 	@RequestMapping(value = "/member/signin", method = RequestMethod.POST)
 	public ModelAndView login(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
-		ModelAndView mav = new ModelAndView();
-
+		ModelAndView mav = new ModelAndView("main");
+		HttpSession session = request.getSession();
 		Map<String, Object> result = loginService.login(commandMap.getMap());
-		
+
 		if (result == null || result.get("MEMBER_DEL_GB").equals("Y")) {
 			// 아이디가 있는지 or 삭제된 아이디인지 확인
-
 
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인실패 Try Again'); location.href='" + request.getContextPath()
-					+ "/member/signin';</script>");
+					+ "/main';</script>");
 			out.flush();
 
 		} else {
-			if (result.get("MEMBER_PW").equals(commandMap.get("MEMBER_PW"))) { // ��й�ȣ�� ���ٸ�
-				mav.addObject("MEMBER_ID","MEMBER_ID");
-				mav.setViewName("/main");
+			if (result.get("MEMBER_PW").equals(commandMap.get("MEMBER_PW"))) { // 비밀번호가 같다면
+				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
 
 			} else {// 비밀번호가 일치하지 않을 때
 				response.setCharacterEncoding("UTF-8");
@@ -72,11 +70,14 @@ public class LoginController {
 			}
 		}
 
+		session.setAttribute("session", mav);
+
 		response.setCharacterEncoding("UTF-8");
 		response.setContentType("text/html; charset=utf-8");
 
 		PrintWriter out = response.getWriter();
 		out.println("<script>alert('로그인 성공!'); location.href='" + request.getContextPath() + "/main';</script>");
+
 		out.flush();
 		return mav;
 	}
