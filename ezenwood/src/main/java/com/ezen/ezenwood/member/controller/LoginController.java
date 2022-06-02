@@ -30,7 +30,7 @@ public class LoginController {
 	@RequestMapping(value = "/member/signin")
 	public String loginForm(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-		String getId = (String) session.getValue("MEMBER_ID");
+		String getId = (String) session.getAttribute("MEMBER_ID");
 		if (getId == null) {
 			return "/member/login/signin";
 		}
@@ -45,34 +45,26 @@ public class LoginController {
 		HttpSession session = request.getSession();
 		Map<String, Object> result = loginService.login(commandMap.getMap());
 
-		if (result == null || result.get("DEL_GB").equals("Y")) {
-			// ¾ÆÀÌµğ°¡ ÀÖ´ÂÁö or »èÁ¦µÈ ¾ÆÀÌµğÀÎÁö È®ÀÎ
+		if (result == null || result.get("MEMBER_DEL_GB").equals("Y")) {
+			// ì•„ì´ë””ê°€ ìˆëŠ”ì§€ or ì‚­ì œëœ ì•„ì´ë””ì¸ì§€ í™•ì¸
 
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
-			out.println("<script>alert('·Î±×ÀÎ½ÇÆĞ Try Again'); location.href='" + request.getContextPath()
+			out.println("<script>alert('ë¡œê·¸ì¸ì‹¤íŒ¨ Try Again'); location.href='" + request.getContextPath()
 					+ "/main';</script>");
 			out.flush();
 
 		} else {
-			if (result.get("MEMBER_PW").equals(commandMap.get("MEMBER_PW"))) { // ºñ¹Ğ¹øÈ£°¡ °°´Ù¸é
+			if (result.get("MEMBER_PW").equals(commandMap.get("MEMBER_PW"))) { // ë¹„ë°€ë²ˆí˜¸ê°€ ê°™ë‹¤ë©´
 				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
-				session.setAttribute("MEMBER_NAME", result.get("MEMBER_NAME"));
-				session.setAttribute("MEMBER_EMAIL", result.get("MEMBER_EMAIL"));
-				session.setAttribute("MEMBER_PHONE", result.get("MEMBER_PHONE"));
-				session.setAttribute("MEMBER_ZIP", result.get("MEMBER_ZIP"));
-				session.setAttribute("MEMBER_ADD1", result.get("MEMBER_ADD1"));
-				session.setAttribute("MEMBER_ADD2", result.get("MEMBER_ADD2"));
-				session.setAttribute("MEMBER_ADD3", result.get("MEMBER_ADD3"));
-				session.setAttribute("MEMBER_JOINDATE", result.get("MEMBER_JOINDATE"));
 
-			} else {// ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö ¾ÊÀ» ¶§
+			} else {// ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ ì•Šì„ ë•Œ
 				response.setCharacterEncoding("UTF-8");
 				response.setContentType("text/html; charset=utf-8");
 				PrintWriter out = response.getWriter();
-				out.println("<script>alert('ºñ¹Ğ¹øÈ£°¡ ÀÏÄ¡ÇÏÁö¾Ê½À´Ï´Ù. Cheking your Password'); location.href='"
-						+ request.getContextPath() + "/signin';</script>");
+				out.println("<script>alert('ë¹„ë°€ë²ˆí˜¸ê°€ ì¼ì¹˜í•˜ì§€ì•ŠìŠµë‹ˆë‹¤. Cheking your Password'); location.href='"
+						+ request.getContextPath() + "/member/signin';</script>");
 				out.flush();
 
 			}
@@ -84,7 +76,7 @@ public class LoginController {
 		response.setContentType("text/html; charset=utf-8");
 
 		PrintWriter out = response.getWriter();
-		out.println("<script>alert('·Î±×ÀÎ ¼º°ø!'); location.href='" + request.getContextPath() + "/main';</script>");
+		out.println("<script>alert('ë¡œê·¸ì¸ ì„±ê³µ!'); location.href='" + request.getContextPath() + "/main';</script>");
 
 		out.flush();
 		return mav;
@@ -102,7 +94,7 @@ public class LoginController {
 		response.setContentType("text/html; charset=utf-8");
 		PrintWriter out = response.getWriter();
 		out.println(
-				"<script>alert('·Î±×¾Æ¿ô ¿Ï·á! Logout'); location.href='" + request.getContextPath() + "/main';</script>");
+				"<script>alert('ë¡œê·¸ì•„ì›ƒ ì™„ë£Œ! Logout'); location.href='" + request.getContextPath() + "/main';</script>");
 
 		out.flush();
 	}

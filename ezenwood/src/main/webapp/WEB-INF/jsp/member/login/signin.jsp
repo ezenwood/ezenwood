@@ -1,8 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
+
 <meta charset="UTF-8">
 <title>Document</title>
 
@@ -34,26 +36,21 @@
 					</div>
 					<!-- //member_tit -->
 					<div class="member_cont">
-
-						<form id="formLogin" method="post" action=""
+					<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+						<form id="formLogin" method="post" action="${contextPath}/member/signin"
 							novalidate="novalidate">
 							<input type="hidden" id="mode" name="mode" value="login">
 							<div class="member_login_box">
 								<h3>회원 로그인</h3>
 								<div class="login_input_sec">
 									<div>
-										<input type="text" id="loginId" name="loginId" value=""
-											placeholder="아이디" required="true" aria-required="true">
-										<input type="password" id="loginPwd" name="loginPwd" value=""
-											placeholder="비밀번호" required="true" aria-required="true">
+										<input type="text" name="MEMBER_ID" id="member_id" placeholder="아이디" >
+										<input type="password" name="MEMBER_PW" id="member_pw" placeholder="비밀번호" >
 									</div>
-									<button type="submit">로그인</button>
-								</div>
-								<div class="id_chk">
-									<p class="dn js_caution_msg1">아이디, 비밀번호가 일치하지 않습니다. 다시 입력해
-										주세요.</p>
+									<button type="submit" >로그인</button>
 								</div>
 							</div>
+							</form>
 							<div class="btn_login_box">
 								<ul>
 									<li><button type="button" id="btnJoinMember"
@@ -65,7 +62,6 @@
 								</ul>
 							</div>
 							<!-- //btn_login_box -->
-						</form>
 					</div>
 					<!-- //member_cont -->
 				</div>
