@@ -1,42 +1,39 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
 	pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>onetoone</title>
+    <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 	<div id="container">
-		<div id="contents">
-			<!-- 본문 시작 -->
+        <div id="contents">
+            <div class="sub_content">
+                <div class="content">
+                    <div class="board_zone_sec">
+                        <div class="board_zone_tit">
+                            <h2>1:1 문의</h2>
+                        </div>
 
-			<!-- //location_wrap -->
-			<div>
-				<div>
-					<em><a href="#" class="local_home">board</a> &gt; 1대1문의</em>
-				</div>
-			</div>
-			<div class="sub_content">
-
-				<!-- //side_cont -->
-				<div>
-					<div>
-						<div>
-							<h2>1대1문의</h2>
-						</div>
-						<div>
-
-							<div align="center">
-								<table style="width: 100%">
-									<colgroup>
-										<col style="width: 6%">
-										<col style="width: 37%">
-										<col style="width: 12%">
-										<col style="width: 12%">
-									</colgroup>
+                        <div class="board_zone_cont">
+                            <div class="board_zone_list">
+                                <div class="board_list_qa" align="center">
+                                    <table class="board_list_table" style="width: 100%">
+                                        <colgroup>
+                                            <col style="width: 20%" />
+                                            <!--문의 날짜-->
+                                            <col>
+                                            <!--제목-->
+                                            <col style="width: 15%" />
+                                            <!--작성자-->
+                                            <col style="width: 15%" />
+                                            <!--문의 상태-->
+                                        </colgroup>
 									<thead>
 										<tr>
 											<th>문의날짜</th>
@@ -63,7 +60,7 @@
 							<!-- //board_zone_cont -->
 						</div>
 						<!-- //board_zone_sec -->
-						<div>페이징 자리</div>
+						<div class="pagination">페이징 자리</div>
 
 					</div>
 					<!-- //sub_content -->
@@ -72,5 +69,7 @@
 			</div>
 		</div>
 	</div>
+    </div>
+    
 </body>
 </html>

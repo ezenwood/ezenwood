@@ -142,8 +142,9 @@ th > .important{margin: 0 0 0 -10px; padding:0 0 0 10px; background:url('../../i
 .price_sum_cont .tobe_mileage{display:block; width:100%;}
 
 /* 장바구니 버튼 영역 */
-.btn_order_box{overflow:hidden; padding:30px 0 0 0; text-align:right;}
+.btn_order_box{overflow:hidden; padding:30px 0 0 0; text-align:center;}
 .btn_order_box .btn_left_box{float:left;}
+.btn_order_box .btn_center_box{float:center;}
 .btn_order_box .btn_right_box{float:right;}
 .btn_order_box  + .chk_none{display:inline-block; float:right;}
 

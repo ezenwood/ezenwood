@@ -1,12 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html>
+<html lang="ko">
 <head>
-<meta charset="UTF-8">
-<title>장바구니</title>
+    <meta charset="UTF-8">
+    <title> 이젠우드</title>
+     <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
+     <link href="/ezenwood/css/order.css" type="text/css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script>
+  <script>
         $(document).ready(function(){
 
             $("#allcheck").on("change",function(){
@@ -69,187 +74,183 @@
                 document.getElementsByClassName("priceP")[0].innerHTML= sum_td_pricePT;
                 document.getElementsByClassName("priceD")[0].innerHTML= sum_td_priceDT;
                 document.getElementsByClassName("priceT")[0].innerHTML= sum_td_priceDT + sum_td_pricePT;
-            });
-
             
-
-           
-        
-
-
-
-        });
-
-    </script>
-    <style>
-        *{
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        .content-wrapper{
-            width: 1000px;
-            margin: 0 auto;
-        }
-        th{
-            background-color: #ccc;
-
-        }
-        table, td, th{
-            border-bottom: 1px solid #ccc;
-            border-collapse: collapse;
-            text-align: center;
-        }
-        th {
-    padding: 9px 10px 10px 10px;
-    border-top: 1px solid #999999;
-    border-bottom: 1px solid #dbdbdb;
-    background: #f7f7f7;
-    font-size: 12px;
-    line-height: 1.5;
-    font-family: Lato,"Malgun Gothic","맑은 고딕",AppleGothic,Dotum,"돋움",sans-serif;
-    color: #333;
-    display: table-cell;
-    vertical-align: inherit;
-    font-weight: bold;
-    text-align: -internal-center;
-}
-body, th, td, input, select, textarea, button {
-    font-size: 12px;
-    line-height: 1.5;
-    font-family: Lato,"Malgun Gothic","맑은 고딕",AppleGothic,Dotum,"돋움",sans-serif;
-    color: #333;
-}
-.fin{
-           margin: 10px 0px;
-           
-           height: 90px;
-           border: 1px solid #ccc;
-           padding: 10px;
-           padding-left: 500px;
-           font-size: 24px;
-       }
-.fin div{
-    display: inline-block;
-    color: #333;
-    line-height: 1.5;
-    text-align: right;
-    font-family: Lato,"Malgun Gothic","맑은 고딕",AppleGothic,Dotum,"돋움",sans-serif;
-}
-       .btn_order_box{overflow:hidden; padding:30px 0 0 0; text-align:right;}
-.btn_order_box .btn_left_box{float:left;}
-.btn_order_box .btn_right_box{float:right;}
-
-.btn_order_choice_buy {
-    min-width: 190px;
-    height: 55px;
-    padding: 0 20px 0 20px;
-    color: #3e3d3c;
-    font-weight: bold;
-    font-size: 14px;
-    border: 1px solid #cccccc;
-    background: #fff;
-    cursor: pointer;
-}
-.btn_order_whole_buy {
-    min-width: 190px;
-    height: 55px;
-    padding: 0 20px 0 20px;
-    color: #ffffff;
-    font-size: 14px;
-    border: 1px solid #323437;
-    background: #323437;
-    cursor: pointer;
-    font-weight: bold;
-}
-.btn_order_choice_del {
-    display: inline-block;
-    min-width: 120px;
-    height: 30px;
-    padding: 0 15px 0 15px;
-    color: #626262;
-    border: 1px solid #a3a3a3;
-    text-align: center;
-    line-height: 28px;
-}
-    </style>
-</head>
-
-<body>
- <div class="content-wrapper">
-        <h1>장바구니</h1>
-        
-        <div class="order_table_type">
-            <form>
-            <table>
-                <colgroup>
-                    <col style="width:3%">  <!-- 체크박스 -->
-                    <col>					<!-- 상품이미지 -->
-                    <col style="width: 10%;">
-                    <col style="width:5%">  <!-- 수량 -->
-                    <col style="width:10%"> <!-- 상품금액 -->
-                    
-                    <col style="width:10%"> <!-- 배송비 -->
-                    <col style="width:10%"> <!-- 합계금액 -->
-                </colgroup>
-                <thead>
-                    <tr>
-                        <th><input type="checkbox" id="allcheck"></th>
-                    <th colspan="2">상품/옵션정보</th>
-                    <th>수량</th>
-                    
-                    <th>상품금액</th>
-                    <th>배송비</th>
-                    <th>합계금액</th>
-                </tr>
-                </thead>
-                <tbody>
-                    <tr><td><input type="checkbox"></td>
-                        <td style="height: 600px;">이미지@@</td>
-                        
-                        <td><div class="상품/옵션정보">
-                            <div class="상품정보"><em>상품이름</em></div><div class="옵션정보"><span class="text_type_cont">Size : 2000</span></div>
-                        </div></td>
-                        <td class="td_order_amount">수량@@</td>
-                        <td class="td_priceP">15000</td>
-                        <td class="td_priceD">10000</td>
-                        <td class="td_priceT">25000</td></tr>
-                </tbody>
-            </table>
-        </form>
-        
-        </div>
-        <div class="fin">
-            <div class="price">
-                <p>총 <span id="productnumber">0</span>개 상품 금액</p>
-                <p class="priceP"></p>
-            </div>
-            <div class="plus">
-                +
-            </div>
-            <div class="deprice">
-                <p>배송비</p>
-                <p class="priceD"></p>
-            </div>
-            <div class="equal">
-                =
-            </div>
-            <div class="totalprice">
-                <p>합계</p>
-                <p class="priceT"></p>
-            </div>
-        </div>
-        <div class="btn_order_box">
-            <span class="btn_left_box">
-                <button type="button" class="btn_order_choice_del" onclick="gd_cart_process('cartDelete');">선택 상품 삭제</button>
                 
-            </span>
-            <span class="btn_right_box">
-                <button type="button" class="btn_order_choice_buy" onclick="gd_cart_process('orderSelect');">선택 상품 주문</button>
-                <button type="button" class="btn_order_whole_buy" onclick="gd_order_all();">전체 상품 주문</button>
-            </span>
+                });
+         
+        });
+ 
+    </script>
+</head>
+<body>
+   
+<%@include file ="/include/header.jsp" %>
+
+    <div id="container">
+        <div id="contents">
+        <!-- 본문 시작 -->
+
+            <div class="location_wrap">
+                <div class="location_cont">
+                    <em><a href="#" class="local_home">HOME</a> &gt; 장바구니</em>
+                </div>
+            </div>
+            <!-- //location_wrap -->
+
+            <div class="sub_content">
+
+                <!-- //side_cont -->
+
+<div class="content_box">
+    <div class="order_wrap">
+        <div class="order_tit">
+            <h2>장바구니</h2>
+            <ol>
+                <li class="page_on"><span>01</span> 장바구니 <span><img src="/data/skin/front/mime/img/member/icon_join_step_on.png" alt=""></span></li>
+                <li><span>02</span> 주문서작성/결제<span><img src="/data/skin/front/mime/img/member/icon_join_step_off.png" alt=""></span></li>
+                <li><span>03</span> 주문완료</li>
+            </ol>
         </div>
+        <!-- //order_tit -->
+
+        <div class="cart_cont">
+
+            <form id="frmCart" name="frmCart" method="post" target="ifrmProcess">
+                <input type="hidden" name="mode" value="">
+                <input type="hidden" name="cart[cartSno]" value="">
+                <input type="hidden" name="cart[goodsNo]" value="">
+                <input type="hidden" name="cart[goodsCnt]" value="">
+                <input type="hidden" name="cart[addGoodsNo]" value="">
+                <input type="hidden" name="cart[addGoodsCnt]" value="">
+                <input type="hidden" name="useBundleGoods" value="1">
+                <!-- 장바구니 상품리스트 시작 -->
+
+                <div class="cart_cont_list">
+                    <div class="order_cart_tit">
+                    </div>
+                    <!-- //order_cart_tit -->
+
+                    <div class="order_table_type">
+                        <table>
+                            <colgroup>
+                                <col style="width:3%">  <!-- 체크박스 -->
+                                <col style="width:25%">	<!-- 상품명/옵션 -->
+                                <col style="width:5%">  <!-- 수량 -->
+                                <col style="width:10%"> <!-- 상품금액 -->
+                                <col style="width:10%"> <!-- 합계금액 -->
+                                <col style="width:10%"> <!-- 배송비 -->
+                            </colgroup>
+                            <thead>
+                            <tr>
+                                <th>
+                                   <input type="checkbox" id="allcheck" class="gd_select_all_goods" >
+                                    <label for="allCheck1" class="check_s on"></label>
+                                    </th>
+                                <th>상품/옵션 정보</th>
+                                <th>수량</th>
+                                <th>상품금액</th>  
+                                <th>합계금액</th>
+                                <th>배송비</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+
+                            <tr>
+                                <td class="td_chk">
+                                    
+                                        <input type="checkbox" id="cartSno1_17181" name="cartSno[]" value="17181">
+                                        <label for="cartSno1_17181" class="check_s on"></label>
+                                   
+                                </td>
+                                <td class="td_left">
+                                    <div class="pick_add_cont">
+                                        <span class="pick_add_img">
+                                            <a href="../goods/goods_view.php?goodsNo=551"><img src="/ezenwood/resource/image/pet1.jpg" width="400" height="300" alt="pet1" title="pet1" class="middle"></a>
+                                        </span>
+                                    </div>
+                                    <!-- //pick_add_cont -->
+
+                                    <!-- //pick_add_list -->
+
+                                </td>
+                                <td class="td_order_amount">
+                                    <div class="order_goods_num">
+                                        <strong>1개</strong>
+                    
+                                    </div>
+                                </td>
+                                <td class="td_priceP"><strong>29000</strong></td>
+                               
+                                <td class="td_priceD"><strong>1000</strong></td>
+                          
+                                <td class="td_priceT"><strong>30000</strong></td>
+                            </tr>
+
+                            </tbody>
+
+
+                        </table>
+                    </div>
+
+                </div>
+                <!-- //cart_cont_list -->
+                <!-- 장바구니 상품리스트 끝 -->
+
+
+            </form>
+
+            <div class="btn_left_box">
+                <a href="http://localhost:9001/ezenwood/main" class="shop_go_link"><em>&lt; 쇼핑 계속하기</em></a>
+            </div>
+
+            <div class="price_sum">
+                <div class="price_sum_cont">
+                    <div class="price_sum_list">
+                        <dl>
+                            <dt>총 <strong id="productnumber">0</strong> 개의 상품금액 </dt>
+                            <dd><p class="priceP"></p></dd>
+                        </dl>
+                          <span>+</span>
+                        <dl>
+                            <dt>배송비</dt>
+                            <dd><p class="priceD"></p></dd>
+                        </dl>
+                        <span>=</span>
+                        <dl class="price_total">
+                            <dt>합계</dt>
+                            <dd> <p class="priceT"></p>
+                            </dd>
+                        </dl>
+                    </div>
+                    <em id="deliveryChargeText" class="tobe_mileage"></em>
+                </div>
+                <!-- //price_sum_cont -->
+            </div>
+            <!-- //price_sum -->
+
+            <div class="btn_order_box" style="text-align:center ">
+               
+                <span class="btn_center_box">
+                   
+                    <button type="button" class="btn_order_whole_buy" onclick="gd_order_all();">상품 주문</button>
+                </span>
+            </div>
+            <!-- //btn_order_box -->
+            <!-- //sub_content -->
+        </div>
+        <!-- //본문 끝 contents -->
     </div>
+        
+
+   </div>
+            </div>
+            <!-- //pay_box -->
+        </div>
+        <!-- //cart_cont -->
+    </div>
+    <!-- //order_wrap -->
+</div>
+<%@include file ="/include/footer.jsp" %>
 
 </body>
 </html>

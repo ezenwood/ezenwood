@@ -1,56 +1,51 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>notice</title>
+ <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
+
+<title>Notice</title>
 </head>
 <body>
-	<div id="container">
-		<div id="contents">
-			<!-- ∫ªπÆ Ω√¿€ -->
+<div id="container">
+        <div id="contents">
+            <div class="sub_content">
+                <div class="content">
+                    <div class="board_zone_sec">
+                        <div class="board_zone_tit">
+                            <h2>Notice</h2>
+                        </div>
 
-			<!-- //location_wrap -->
-			<div>
-				<div>
-					<em><a href="#" class="local_home">board</a> &gt; notice</em>
-				</div>
-			</div>
-			<div class="sub_content">
-
-				<!-- //side_cont -->
-				<div>
-					<div>
-						<div>
-							<h2>∞¯¡ˆªÁ«◊</h2>
-						</div>
-						<div>
-							<div align="center">
-								<table style="width: 100%">
-									<colgroup>
+                        <div class="board_zone_cont">
+                            <div class="board_zone_list" align="center">
+                                
+                                    <table class="board_list_table" style="width: 100%">
+                                        <colgroup>
 										<col style="width: 6%">
 										<col style="width: 37%">
 										<col style="width: 12%">
 									</colgroup>
 									<thead>
 										<tr>
-											<th>π¯»£</th>
-											<th>¡¶∏Ò</th>
-											<th>≥Ø¬•</th>
+											<th>Î≤àÌò∏</th>
+											<th>Ï†úÎ™©</th>
+											<th>ÎÇ†Ïßú</th>
 										</tr>
 									</thead>
 									<tbody>
 									<c:forEach var="list" items="noticeboardlist">
 										<tr>
-											<td align="center">π¯»£µ•¿Ã≈Õ</td>
-											<td align="center"><a href="¡¶∏Ò µ•¿Ã≈Õ ≥—æÓø¿¥¬ ƒ⁄µÂ"> <strong>¡¶∏Ò
-														µ•¿Ã≈Õƒ⁄µÂ</strong>
+											<td align="center">Î≤àÌò∏Îç∞Ïù¥ÌÑ∞</td>
+											<td align="center"><a href="Ï†úÎ™© Îç∞Ïù¥ÌÑ∞ ÎÑòÏñ¥Ïò§Îäî ÏΩîÎìú"> <strong>Ï†úÎ™©
+														Îç∞Ïù¥ÌÑ∞ÏΩîÎìú</strong>
 											</a></td>
-											<td align="center">≥Ø¬• µ•¿Ã≈Õƒ⁄µÂ</td>
+											<td align="center">ÎÇ†Ïßú Îç∞Ïù¥ÌÑ∞ÏΩîÎìú</td>
 										</tr>
 									</c:forEach>
 									</tbody>
@@ -64,7 +59,7 @@
 					</div>
 					<!-- //sub_content -->
 				</div>
-				<!-- //∫ªπÆ ≥° contents -->
+				<!-- //Î≥∏Î¨∏ ÎÅù contents -->
 			</div>
 		</div>
 	</div>
