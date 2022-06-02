@@ -6,7 +6,7 @@
 	<!-- 고객 -->
 
 	<!-- 로그인 -->
-	<select id="selectId" parameterType="hashmap">
+	<select id="selectId" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 	SELECT MEMBER_ID,
 	MEMBER_PW, 
@@ -19,7 +19,7 @@
 	<!-- 회원 가입 -->
 	<insert id="insertMember" parameterType="hashmap">
 <![CDATA[
- INSERT INTO MEMBERS(
+ INSERT INTO MEMBER(
  	MEMBER_ID,
 	MEMBER_NAME,
 	MEMBER_NUM, 
@@ -236,7 +236,7 @@ SELECT  COUNT(*)
 	<!-- id 중복확인 -->
 		<select id="idCheck" parameterType="hashmap" resultType="string">
 	<![CDATA[
-		select MEMBER_ID from members where MEMBER_ID = #{MEMBER_ID}
+		select MEMBER_ID from member where MEMBER_ID = #{MEMBER_ID}
 ]]>
 	</select>
 

@@ -19,7 +19,7 @@
         <div class="location_wrap">
     <div class="location_cont">
        <em>
-           <a href="#" class="local_home">HOME</a>
+           <a href="/ezenwood/mypage/main" class="local_home">HOME</a>
             &gt;주문목록/배송조회
        </em>
     </div>
@@ -28,33 +28,8 @@
 
  <div class="sub_content">
           <div class="side_cont">
-              <div class="sub_menu_box">
-                  <h2>마이페이지</h2>
-                  <ul class="sub_menu_mypage">
-                     <li> 
-                         쇼핑정보
-                         <ul class="sub_depth1">
-                             <li><a href="#">- 주문목록/배송조회</a></li>
-                             <li><a href="#">- 취소/반품/교환 내역</a></li>
-                         </ul>
-                     </li>
-                      <li> 
-                         게시판 관리
-                         <ul class="sub_depth1">
-                             <li><a href="#">- 리뷰관리</a></li>
-                             <li><a href="#">- 1:1문의</a></li>
-                             <li><a href="#">- Q&A</a></li>
-                         </ul>
-                     </li>
-                     <li> 
-                         회원정보
-                         <ul class="sub_depth1">
-                             <li><a href="#">- 회원정보 변경/탈퇴</a></li>
-                         </ul>
-                     </li>
-                  </ul>
-              </div>
-              <!--sub_menu_box -->
+					<%@include file="/include/left.jsp"%>
+					<!--sub_menu_box -->
               <script type="text/javascript">
                   //메뉴선택
                   $('sub_menu_mypage li> a[href*="' + document.location.pathname+'"]').addClass('active');
