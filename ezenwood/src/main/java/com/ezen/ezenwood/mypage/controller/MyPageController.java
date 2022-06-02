@@ -1,11 +1,16 @@
 package com.ezen.ezenwood.mypage.controller;
 
+import java.util.Map;
+
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.ezenwood.mypage.service.MyPageService;
 
@@ -20,17 +25,31 @@ public class MyPageController {
 	
 	//마이페이지 메인 
 	@RequestMapping("/main")
-	public String myPage() {
+	public String myPage(HttpServletRequest request) throws Exception {
+		HttpSession session = request.getSession();
+		String getId = (String) session.getAttribute("MEMBER_ID");
+		if (getId == null) {
+			return "main";
+		}
 		return "mypage/main";
 	}
 	
-	//회원 수정 페이지 
+	//회원 수정 비밀번호 입력
+	
+	//회원 수정 폼
+	@RequestMapping(value="/update", method=RequestMethod.GET)
+	public String mypageModifyForm(HttpServletRequest request)throws Exception {
+		HttpSession session = request.getSession();
+		session.getAttribute("MEMBER_ID");
+	      return "mypage/update";
+	}
+	//회원 수정
 	@RequestMapping(value="/update", method=RequestMethod.POST)
 	public String myPageModify() {
 		return "mypage/update";
 	}
 	
-	//회원 탈퇴
+	//회원 탈퇴 폼
 	@RequestMapping("/del")
 	public void myPageDel() {
 		
@@ -38,8 +57,8 @@ public class MyPageController {
 	
 	//주문조회
 	@RequestMapping("/order")
-	public void orderChk() {
-		
+	public String orderChk() {
+		return "mypage/order";
 	}
 	
 	/*//배송조회
