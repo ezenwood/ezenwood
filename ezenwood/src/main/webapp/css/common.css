@@ -101,7 +101,7 @@ span.form_element{display:inline-block;}
 .form_element label.single:hover{background-color:transparent;}
 .form_element label span{color:#979797;}
 .form_element label img{vertical-align:middle;}
-.form_element input{position:absolute;top:3px;left:1px;width:0;z-index:-1;visibility:hidden;}
+.form_element input{position:absolute;top:3px;left:1px;width:1px;z-index:-1;visibility:hidden;}
 /** 체크박스용 비활성화 **/
 .form_element label.check_dis_s { background-image: url('../../img/common/input/check_dis_s.png'); }
 

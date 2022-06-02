@@ -1,58 +1,171 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
-<!DOCTYPE html>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <html>
+
 <head>
-<meta charset="EUC-KR">
-<title>1¥Î1πÆ¿«_¿⁄ºº»˜</title>
+    <meta charset="UTF-8">
+    <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/qnaDetail.css" type="text/css" rel="stylesheet">
+    <title>1:1Î¨∏Ïùò_ÏûêÏÑ∏Ìûà</title>
 </head>
+
 <body>
-	<div>
-		<div>
-			<em><a href="#" class="board∑Œ∞°¿⁄">board</a> &gt; 1¥Î1πÆ¿«</em>
-		</div>
-		<div>
-			<div>
-				<h2>1¥Î1πÆ¿«</h2>
-			</div>
-			<div>
-				<c:forEach var="list" items="noticeboarddetail">
-					<table style="width: 100%">
-						<colgroup>
-							<col style="width: 50%">
-		          <col style="width: 30%">
-              <col style="width: 20%">
-						</colgroup>
-						<tr>
-							<th align="center">¡¶∏Òƒ⁄µÂ</th>
-              <th align="center">∞¸∏Æ¿⁄</th>
-							<th align="center">≥Ø¬•ƒ⁄µÂ</th>
-						</tr>
-					</table>
-				</c:forEach>
-				<c:forEach var="image" items="image">
-          <input type="hidden" id="±€π¯»£" name="¿Ã ≈¬±◊ ≥◊¿”" value="∞™≥—∞‹¡‹">
-					<div align="center">
-						<img>¿ÃπÃ¡ˆ ƒ⁄µÂ</img>
-					</div>
-				</c:forEach>
-				<c:forEach var="list" items="otoclientcontent">
-					<p align="center">πËº€πÆ¿««’¥œ¥Ÿ ct±€</p>
-				</c:forEach>
-			</div>
-			<hr>
-    <c:forEach var="list" items="otoclientcontent">
-    <div align="center">
-      <p>∞¸∏Æ¿⁄ ¥‰∫Ø πﬁæ∆ø¿±‚</p>
+
+    <div id="container">
+        <div id="contents">
+            <div class="sub_content">
+                <div class="content">
+                    <div class="board_zone_sec">
+                        <div class="board_zone_tit">
+                            <h2>1:1 Î¨∏Ïùò</h2>
+                        </div>
+
+                        <div class="board_zone_cont">
+                            <div class="board_zone_view">
+                                <div class="board_view_tit">
+                                    <h3>Ï†úÎ™©</h3>
+                                </div>
+
+                                <form id="BoardDelForm" name="" action="#" method="post" target="_self" enctype="multipart/form-data">
+                                    <input id="no" name="no" value="#" type="hidden">
+                                    <input id="bulletin_no" name="bulletin_no" value="#" type="hidden">
+                                    <input id="board_no" name="board_no" value="#" type="hidden">
+                                    <input id="member_id" name="member_id" value="ÏïÑÏù¥Îîî" type="hidden">
+                                    <input id="list_url" name="list_url" value="#" type="hidden">
+                                    <input id="bdf_modify_url" name="bdf_modify_url" value="#" type="hidden">
+                                    <input id="bdf_del_url" name="bdf_del_url" value="#" type="hidden">
+                                    <input id="bdf_action_type" name="bdf_action_type" value="" type="hidden">
+                                    <div class="xans-element- xans-board xans-board-read-4 xans-board-read xans-board-4">
+
+                                        <div class="ec-base-table typeWrite ">
+                                            <table border="0" summary="">
+                                                <caption>ÏÉÅÌíà Í≤åÏãúÌåê ÏÉÅÏÑ∏</caption>
+                                                <colgroup>
+                                                    <col style="width:230px;">
+                                                    <col style="width:auto;">
+                                                </colgroup>
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">Ï†úÎ™©</th>
+                                                        <td>ÏÉÅÌíàÎ¨∏Ïùò</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">ÏûëÏÑ±Ïûê</th>
+                                                        <td> ÏûëÏÑ±Ïûê Ïù¥Î¶Ñ </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td colspan="2">
+                                                            <ul class="etcArea">
+                                                                <li class="">
+                                                                    <strong>ÏûëÏÑ±Ïùº</strong> <span class="txtNum">ÏûëÏÑ±Ïùº</span>
+                                                                </li>
+                                                            </ul>
+                                                            <div class="detail">
+                                                                <div class="fr-view fr-view-article">
+                                                                    <c:forEach var="list" items="otoclientcontent">
+                                                                        Î¨∏Ïùò ÎÇ¥Ïö©
+                                                                    </c:forEach>
+
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                    <tr class="attach displaynone">
+                                                        <th scope="row">Ï≤®Î∂ÄÌååÏùº</th>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr class=" displaynone">
+                                                        <th scope="row">ÎπÑÎ∞ÄÎ≤àÌò∏</th>
+                                                        <td><input id="password" name="password" fw-filter="" fw-label="ÎπÑÎ∞ÄÎ≤àÌò∏" fw-msg="" onkeydown="if (event.keyCode == 13 || event.which == 13) { return false; }" value="" type="password"> <span class="ec-base-help txtInfo">ÏÇ≠Ï†úÌïòÎ†§Î©¥ ÎπÑÎ∞ÄÎ≤àÌò∏Î•º ÏûÖÎ†•ÌïòÏÑ∏Ïöî.</span>
+                                                        </td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+                                        <div class="ec-base-button ">
+                                            <span class="gLeft">
+
+                                                <a href="#" class="btnNormalFix sizeS">Î™©Î°ù</a>
+                                            </span>
+                                            <span class="gRight">
+                                                <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','#');" class="btnNormalFix sizeS ">ÏÇ≠Ï†ú</a>
+                                                <a href="#" class="btnEmFix sizeS ">ÏàòÏ†ï</a>
+
+                                            </span>
+                                        </div>
+                                    </div>
+                                </form>
+
+                                <div class="xans-element- xans-board xans-board-commentpackage-4 xans-board-commentpackage xans-board-4 ">
+                                    <div class="xans-element- xans-board xans-board-commentlist-4 xans-board-commentlist xans-board-4">
+
+                                        <ul class="boardComment" style="list-style: none">
+                                            <li class="first  xans-record-">
+                                                <div class="commentTop">
+                                                    <strong class="name"> Ïù¥Ï†† Ïö∞Îìú</strong>
+                                                    <span class="date">ÎãµÎ≥Ä ÎÇ†Ïßú</span>
+                                                </div>
+                                                <!--<span class="button">
+                                                    <a href="javascript:;" class="btnNormal displaynone" onclick="BOARD_COMMENT.comment_update('163363','144433',this);">ÏàòÏ†ï</a>
+                                                    <a href="javascript:;" class="btnNormal displaynone" onclick="BOARD_COMMENT.comment_delete('/board/product/comment_del.html?board_no=6&amp;no=163363&amp;comment_no=144433&amp;page=&amp;return_url=/board/product/read.html');"><i class="icoDelete"></i> ÏÇ≠Ï†ú</a>
+                                                    <a href="javascript:;" onclick="" class="btnNormal displaynone">ÎåìÍ∏Ä <img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_reply.gif" alt=""></a>
+                                                </span>-->
+                                                <div class="comment">
+
+                                                    <span id="comment_contents144433">ÎãµÎ≥Ä ÎÇ¥Ïö©</span>
+                                                </div>
+                                            </li>
+                                        </ul>
+
+                                    </div>
+
+                                    <form id="commentForm" name="" action="#" method="post" target="_self" enctype="multipart/form-data" style="display: none;">
+                                        <input id="board_no" name="board_no" value="#" type="hidden">
+                                        <input id="no" name="no" value="#" type="hidden">
+                                        <input id="#" name="comment_no" value="" type="hidden">
+                                        <input id="member_id" name="member_id" value="" type="hidden">
+                                        <div class="xans-element- xans-board xans-board-commentform-4 xans-board-commentform xans-board-4 ">
+                                            <fieldset>
+                                                <legend>ÎåìÍ∏Ä ÏàòÏ†ï</legend>
+                                                <p>ÎπÑÎ∞ÄÎ≤àÌò∏ : <input id="comment_password" name="comment_password" fw-filter="isFill" fw-label="ÎåìÍ∏ÄÎπÑÎ∞ÄÎ≤àÌò∏" fw-msg="" value="" type="password"> <span class="secret displaynone"><label>ÎπÑÎ∞ÄÎåìÍ∏Ä</label></span></p>
+                                                <div class="view">
+                                                    <textarea id="comment_modify" name="comment_modify" fw-filter="isFill" fw-label="ÎåìÍ∏ÄÎÇ¥Ïö©" fw-msg=""></textarea> <span class="submit">
+                                                        <a href="#none" class="btnEm sizeL" onclick="BOARD_COMMENT.comment_update_ok('commentForm');">ÏàòÏ†ï</a>
+                                                        <a href="#none" class="btnNormal sizeL" onclick="BOARD_COMMENT.comment_cancel_ok('commentForm');">Ï∑®ÏÜå</a>
+                                                    </span>
+                                                </div>
+                                                <p class="displaynone"> / byte</p>
+                                            </fieldset>
+                                        </div>
+                                    </form>
+                                    <form id="commentSecretForm" name="" action="#" method="post" target="_self" enctype="multipart/form-data" style="display: none;">
+                                        <input id="board_no" name="board_no" value="#" type="hidden">
+                                        <input id="comment_no" name="comment_no" value="" type="hidden">
+                                        <input id="pass_check" name="pass_check" value="F" type="hidden">
+                                        <div class="xans-element- xans-board xans-board-commentformsecret-1002 xans-board-commentformsecret xans-board-1002 ">
+                                            <p>ÎπÑÎ∞ÄÎ≤àÌò∏ : <input id="secure_password" name="secure_password" fw-filter="isFill" fw-label="ÎåìÍ∏ÄÎπÑÎ∞ÄÎ≤àÌò∏" fw-msg="" value="" type="password"> <a href="#none" class="btnNormal" onclick="BOARD_COMMENT.show_secret_comment('commentSecretForm');">ÌôïÏù∏</a>
+                                                <a href="#none" class="btnNormal" onclick="BOARD_COMMENT.hide_secret_comment_form('commentSecretForm');">Ï∑®ÏÜå</a>
+                                            </p>
+                                        </div>
+                                    </form>
+
+                                </div>
+
+
+                            </div>
+                        </div>
+                        <!--//board_zone_cont-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
     </div>
-    </c:forEach>
-			<div align="center">
-				<button type="submit" href="∏Ò∑œ¿∏∑Œ ∞°¥¬ url">∏Ò∑œ</button>
-			</div>
-		</div>
-	</div>
+
 </body>
+
 </html>

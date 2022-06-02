@@ -1,50 +1,119 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
+
 <head>
-<meta charset="EUC-KR">
-<title>∞¯¡ˆªÁ«◊_¿⁄ºº»˜</title>
+    <meta charset="UTF-8">
+ <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
+    <title>Í≥µÏßÄÏÇ¨Ìï≠_ÏûêÏÑ∏Ìûà</title>
 </head>
+
 <body>
-	<div>
-		<div>
-			<em><a href="#" class="board∑Œ∞°¿⁄">board</a> &gt; notice</em>
-		</div>
-		<div>
-			<div>
-				<h2>Notice</h2>
-			</div>
-			<div>
-				<c:forEach var="list" items="noticeboarddetail">
+    <div id="container">
+        <div id="contents">
+            <div class="sub_content">
+                <div class="content">
+                    <div class="board_zone_sec">
+                        <div class="board_zone_tit">
+                            <h2>NOTICE</h2>
+                        </div>
+
+                        <div class="board_zone_cont">
+                            <div class="board_zone_view">
+                                <div class="board_view_tit">
+                                    <h3>Ï†úÎ™©</h3>
+                                </div>
+                                <div class="board_view_info">
+                                    <span class="view_info_ipdp">
+                                        <strong>ÏûëÏÑ±Ïûê Ïù¥Î¶Ñ </strong>
+                                    </span>
+                                    <span class="view_info_day">
+                                        <em>ÎÇ†Ïßú</em>
+                                    </span>
+                                </div>
+                                <!--//board_view_info-->
+                                <div class="board_view_attach">
+                                    <strong>Ï≤®Î∂ÄÌååÏùº</strong>
+                                    <span class="attach_list">
+                                        <a href="#">ÌååÏùº Ïù¥Î¶Ñ</a>
+                                    </span>
+                                </div>
+                                <div class="board_view_content">
+                                    <div class="seem_cont">
+                                        <div style="margin: 10px 0 10px 0">
+                                            <img style="max-width: 700px">
+                                            <p>ÎÇ¥Ïö©</p>
+                                            <c:forEach var="list" items="noticeboardlist">
+                                                <p align="center">Í≥µÏßÄÏÇ¨Ìï≠content</p>
+                                            </c:forEach>
+                                            <c:forEach var="image" items="image">
+                                                <div style="align-content: center">
+                                                    <img>Ïù¥ÎØ∏ÏßÄ ÏΩîÎìú</img>
+                                                </div>
+                                            </c:forEach>
+                                        </div>
+                                    </div>
+                                    <!--//seem_cont-->
+                                </div>
+                                <!--//board_view_content-->
+                                <div class="board_view_comment">
+                                    <div class="view_comment js_comment_area">
+                                        <div class="view_comment_top">
+
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <!--//board_zone_view-->
+                            <div class="btn_right_box">
+                                <button type="button" class="btn_board_list" onclick="gd_btn_list('goodsreview')">
+                                    <strong>Î™©Î°ù</strong>
+                                </button>
+                            </div>
+                        </div>
+                        <!--//board_zone_cont-->
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+</body>
+
+<!--<c:forEach var="list" items="noticeboarddetail">
 					<table style="width: 100%">
 						<colgroup>
 							<col style="width: 50%">
 							<col style="width: 50%">
 						</colgroup>
 						<tr>
-							<th align="center">¡¶∏Òƒ⁄µÂ</th>
-							<th align="center">≥Ø¬•ƒ⁄µÂ</th>
+							<th align="center">Ï†úÎ™©ÏΩîÎìú</th>
+							<th align="center">ÎÇ†ÏßúÏΩîÎìú</th>
 						</tr>
 					</table>
 				</c:forEach>
 				<c:forEach var="image" items="image">
 					<div align="center">
-						<img>¿ÃπÃ¡ˆ ƒ⁄µÂ</img>
+						<img>Ïù¥ÎØ∏ÏßÄ ÏΩîÎìú</img>
 					</div>
 				</c:forEach>
 				<c:forEach var="list" items="noticeboardlist">
-					<p align="center">∞¯¡ˆªÁ«◊content</p>
+					<p align="center">Í≥µÏßÄÏÇ¨Ìï≠content</p>
 				</c:forEach>
 			</div>
 			<hr>
 			<div align="center">
-				<button type="submit" href="∏Ò∑œ¿∏∑Œ ∞°¥¬ url">∏Ò∑œ</button>
+				<button type="submit" href="Î™©Î°ùÏúºÎ°ú Í∞ÄÎäî url">Î™©Î°ù</button>
 			</div>
 		</div>
 	</div>
-</body>
-</html>
+         </div>
+    </div>
+    
+</body>--></html>
