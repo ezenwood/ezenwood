@@ -79,11 +79,11 @@
 	<div id="container">
 		<div id="contents">
 			<!-- 본문 시작 -->
-
+			<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 			<div class="location_wrap">
 				<div class="location_cont">
-					<em><a href="/ezenwood/mypage/main" class="local_home">HOME</a> &gt; 마이페이지 &gt;
-						내정보수정</em>
+					<em><a href="/ezenwood/mypage/main" class="local_home">HOME</a>
+						&gt; 마이페이지 &gt; 내정보수정</em>
 				</div>
 			</div>
 			<!-- //location_wrap -->
@@ -94,13 +94,6 @@
 
 					<%@include file="/include/left.jsp"%>
 					<!-- //sub_menu_box -->
-					<script type="text/javascript">
-						// 메뉴 선택
-						$(
-								'.sub_menu_mypage li > a[href*="'
-										+ document.location.pathname + '"]')
-								.addClass('active');
-					</script>
 				</div>
 				<!-- //side_cont -->
 
@@ -109,18 +102,18 @@
 
 						<div class="my_page">
 							<div class="mypage_zone_tit">
-								<h2 style="font-size: large">회원정보 변경</h2>
+								<h2 style="font-size: large">회원정보 변경
+									${sessionScope.MEMBER_ID}</h2>
 							</div>
 
 							<div class="join_base_wrap">
 
 								<div class="member_cont">
-								<c:set var="contextPath"
-							value="${pageContext.request.contextPath}" />
+
 									<form id="formJoin" name="formJoin"
-										action="${contextPath}/mypage/update"
-										method="post" novalidate="novalidate">
-										<input type="hidden" name="memNo" value="${member_num}">
+										action="${contextPath}/mypage/update" method="post"
+										novalidate="novalidate">
+										<input type="hidden" name="MEMBER_NUM" value="${MEMBER_NUM}">
 										<input type="hidden" name="memberFl" value="personal">
 										<input type="hidden" name="dupeinfo" value=""> <input
 											type="hidden" name="rncheck" value="none"> <input
@@ -146,47 +139,33 @@
 													<tbody>
 														<tr>
 															<th><span class="important">*아이디</span></th>
-															<td><input type="text" name="MEMBER_ID"
-																value="${MEMBER_ID}" disabled="disabled"> ${MEMEBR_ID}</td>
+															<td><input type="text"
+																value="${sessionScope.MEMBER_ID}" disabled="disabled">
+																${MEMEBR_ID} <input type="hidden" name="MEMBER_ID"
+																value="${sessionScope.MEMBER_ID}"></td>
 
 														</tr>
-														<div id="memberNewPw" class="member_pw_change"
-															style="display: none">
-															<tr>
-																<th><span class="important">*현재 비밀번호</span></th>
-																<td>
-																	<div class="member_warning">
-																		<input type="password" name="memCurrentPw"
-																			maxlength="30" placeholder="현재 비밀번호를 입력하세요.">
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th><span class="important">*새 비밀번호</span></th>
-																<td>
-																	<div class="member_warning">
-																		<input type="password" name="newPw" maxlength="300"
-																			placeholder="새로운 비밀번호를 입력하세요.">
-																	</div>
-																</td>
-															</tr>
-															<tr>
-																<th><span class="important">*새 비밀번호 확인</span></th>
-																<td>
-																	<div class="member_warning">
-																		<input type="password" name="newPwCheck"
-																			maxlength="30" placeholder="새로운 비밀번호를 입력하세요.">
-																	</div>
-																</td>
-															</tr>
-														</div>
+														<tr>
+															<th><span class="important">*현재 비밀번호</span></th>
+															<td>
+																<div class="member_warning">
+																	<input type="text" name="MEMBER_PW"
+																		value="${MEMBER_PW}" maxlength="30"
+																		placeholder="현재 비밀번호를 입력하세요.">
+
+																</div>
+															</td>
+														</tr>
+
+
 
 														<tr>
 															<th><span class="important">*이름</span></th>
 															<td>
 																<div class="member_warning">
-																	<input type="text" name="memNm" value="${member_name}"
-																		maxlength="30" placeholder="이름을 입력하세요.">
+																	<input type="text" name="MEMBER_NAME"
+																		value="${MEMBER_NAME}" maxlength="30"
+																		placeholder="이름을 입력하세요.">
 																</div>
 															</td>
 														</tr>
@@ -194,8 +173,8 @@
 															<th><span>*이메일</span></th>
 															<td class="member_email">
 																<div class="member_warning">
-																	<input type="text" name="email" id="email" value=""
-																		placeholder="이메일을 입력하세요.">
+																	<input type="text" name="MEMBER_EMAIL" id="email"
+																		value="${MEMBER_EMAIL}" placeholder="이메일을 입력하세요.">
 																</div>
 															</td>
 														</tr>
@@ -203,29 +182,29 @@
 															<th><span>*전화번호</span></th>
 															<td>
 																<div class="member_warning">
-																	<input type="text" id="phone" name="phone"
+																	<input type="text" id="phone" name="MEMBER_PHONE"
 																		maxlength="12" placeholder="- 없이 입력하세요."
-																		data-pattern="gdNum" value="">
+																		data-pattern="gdNum" value="${MEMBER_PHONE}">
 																</div>
 															</td>
 														</tr>
 														<tr>
 															<th>주소</th>
 															<td><input type="text" id="sample4_postcode"
-																placeholder="우편번호"> 
-																<input type="button"
+																placeholder="우편번호" name="MEMBER_ZIP"
+																value="${MEMBER_ZIP}"> <input type="button"
 																onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 																<input type="text" id="sample4_roadAddress"
-																placeholder="도로명주소"> 
-																<input type="text"
-																id="sample4_jibunAddress" placeholder="지번주소">
-																 <span
-																id="guide" style="color: #999; display: none"></span>
-																<br>
-																<input type="text" id="sample4_detailAddress"
-																placeholder="상세주소"> 
-																<input type="text"
-																id="sample4_extraAddress" placeholder="참고항목"></td>
+																placeholder="도로명주소" name="MEMBER_ADD1"
+																name="MEMBER_ADD1" value="${MEMBER_ADD1}"> <input
+																type="text" id="sample4_jibunAddress" placeholder="지번주소"
+																name="" value="${MEMBER_ADD1}"> <span id="guide"
+																style="color: #999; display: none"></span> <br> <input
+																type="text" id="sample4_detailAddress"
+																placeholder="상세주소" name="MEMBER_ADD2"
+																value="${MEMBER_ADD2}"> <input type="text"
+																id="sample4_extraAddress" placeholder="참고항목"
+																name="MEMBER_ADD3" value="${MEMBER_ADD3}"></td>
 														</tr>
 													</tbody>
 												</table>
@@ -235,19 +214,20 @@
 										<!-- //base_info_box -->
 										<!-- 회원가입/정보 기본정보 -->
 
-
-										<iframe id="ifrmHpauthdel" name="ifrmHpauth"
-											style="width: 500px; height: 500px; display: none;"></iframe>
-
-										<iframe id="ifrmHpauth" name="ifrmHpauth"
-											style="width: 500px; height: 500px; display: none;"></iframe>
 										<div class="btn_center_box">
-											<button type="button" class="btn_comfirm js_btn_join"
-												value="정보수정">정보수정</button>
-											<button type="button" class="btn_member_cancel">탈퇴</button>
+
+											<input type="submit" class="btn_comfirm js_btn_join"
+												value="정보수정" onclick="${contextPath}/mypage/update" />
 										</div>
-										<!-- //btn_center_box -->
 									</form>
+									<form action="${contextPath}/mypage/del">
+									<div class="btn_center_box">
+										<button type="button" class="btn_member_cancel"
+											onclick="location.href='${contextPath}/mypage/del'" >탈퇴</button>
+									</div>
+									</form>`
+									<!-- //btn_center_box -->
+									
 								</div>
 								<!-- //member_cont -->
 							</div>

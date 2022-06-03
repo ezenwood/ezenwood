@@ -36,7 +36,7 @@
 			</li>
 			<li>회원정보
 				<ul class="sub_depth1">
-					<li><a href="/ezenwood/mypage/update">- 회원정보 변경/탈퇴</a></li>
+					<li><a href="/ezenwood/mypage/pwch">- 회원정보 변경/탈퇴</a></li>
 				</ul>
 			</li>
 		</ul>
