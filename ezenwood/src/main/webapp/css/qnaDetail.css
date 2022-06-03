@@ -1,0 +1,299 @@
+.xans-board-product.ec-base-box.typeProduct {
+    margin: 0 0 20px;
+}
+
+.ec-base-box.typeProduct {
+    display: table;
+    table-layout: fixed;
+    padding: 35px 0;
+    width: 100%;
+}
+.ec-base-box {
+    padding: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    border: 3px solid #f0f0f0;
+}
+.ec-base-box.typeProduct .thumbnail {
+    width: 185px;
+}
+.ec-base-box.typeProduct .thumbnail {
+    padding: 0 20px 0 35px;
+}
+.ec-base-box.typeProduct .thumbnail, .ec-base-box.typeProduct .information {
+    display: table-cell;
+    vertical-align: middle;
+}
+.ec-base-box.typeProduct .thumbnail img {
+    width: 130px;
+    height: 130px;
+    border: 1px solid #eee;
+}
+.ec-base-box.typeProduct .information {
+    padding-right: 35px;
+}
+.ec-base-box.typeProduct .thumbnail, .ec-base-box.typeProduct .information {
+    display: table-cell;
+    vertical-align: middle;
+}
+.xans-board-product .information .icon_img {
+    margin: 0 3px 5px 0;
+}
+.xans-board-product .information > img {
+    margin: 0 3px 5px 0;
+}
+.xans-board-product .information h3 {
+    margin: 0 0 5px;
+}
+.xans-board-product .information h3 a {
+    font-size: 14px;
+    color: #333;
+    font-weight: 400;
+}
+.xans-board-product .information .price {
+    font-size: 13px;
+    font-weight: 400;
+    color: #333;
+}
+.xans-board-product .information .button {
+    margin: 14px 0 0 0;
+}
+.ec-base-table table {
+    position: relative;
+    margin: 10px 0 0;
+    border-bottom: 1px solid #eee;
+    color: #fff;
+    line-height: 1.5;
+}
+.ec-base-table table {
+    position: relative;
+    margin: 10px 0 0;
+    border-bottom: 1px solid #eee;
+    color: #fff;
+    line-height: 1.5;
+}
+.ec-base-table table:before {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: block;
+    content: "";
+    width: 100%;
+    height: 1px;
+    background: #eee;
+}
+.ec-base-table th:first-child {
+    border-left: 0;
+}
+.ec-base-table tbody th {
+    padding: 18px 0;
+    border: 1px solid #eee;
+    border-bottom-width: 0;
+    border-right-width: 0;
+    color: #999;
+    text-align: center;
+    font-weight: normal;
+    background-color: #fafafa;
+    vertical-align: middle;
+}
+.ec-base-table th {
+    word-break: break-all;
+    word-wrap: break-word;
+    font-size: 13px;
+}
+.ec-base-table.typeWrite td {
+    padding: 18px 15px;
+}
+.ec-base-table td {
+    padding: 18px 15px;
+    border-top: 1px solid #eee;
+    color: #333;
+    vertical-align: middle;
+    word-break: keep-all;
+    word-wrap: break-word;
+    font-size: 12px;
+}
+.xans-board-read .ec-base-table .etcArea {
+    padding: 0 0 18px;
+}
+.xans-board-read .ec-base-table .etcArea li {
+    display: inline-block;
+    margin: 0;
+    padding: 0 6px;
+    vertical-align: top;
+    line-height: 28px;
+    height: 28px;
+    color: #666;
+}
+.xans-board-read .ec-base-table .etcArea li strong {
+    font-size: 13px;
+    margin: 0 5px 0 0;
+}
+.xans-board-read .ec-base-table .etcArea li > * {
+    vertical-align: 0;
+}
+.xans-board-read .ec-base-table .etcArea li > * {
+    vertical-align: 0;
+}
+.txtNum {
+    font-size: 11px;
+    color: #888;
+    word-break: keep-all;
+    letter-spacing: 0;
+}
+.xans-board-read .ec-base-table .detail {
+    padding: 50px 10px;
+    border-top: 1px solid #eaeaea;
+    word-break: break-all;
+    line-height: normal;
+}
+.fr-view {
+    word-wrap: break-word;
+}
+input[type=text], input[type=password], select, textarea {
+    border: 1px solid #e8e8e8;
+    border-radius: 5px;
+}
+input[type=text], input[type=password] {
+    font-size: 13px;
+    height: 32px;
+    line-height: 30px;
+    padding: 0 6px;
+    color: #333;
+}
+span.ec-base-help, p.ec-base-help, ul.ec-base-help li {
+    margin: 10px 0;
+    padding: 1px 0 1px 20px;
+    line-height: 1.4;
+}
+.xans-board-read .ec-base-button {
+    margin: 10px 0 40px;
+}
+.ec-base-button {
+    padding: 4px 0;
+    text-align: center;
+}
+.ec-base-button .gLeft {
+    float: left;
+    text-align: left;
+}
+[class^='btn'].sizeS {
+    padding: 8px 10px;
+}
+[class^='btnNormal'], a[class^='btnNormal'] {
+    display: inline-block;
+    padding: 6px 8px;
+    border: 1px solid #d1d1d1;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #333;
+    background-color: #fff;
+    border-radius: 3px;
+}
+.ec-base-button .gRight {
+    float: right;
+    text-align: right;
+}
+[class^='btn'][class*='Fix'].sizeS {
+    width: 126px;
+}
+[class^='btn'][class*='Fix'] {
+    width: 102px;
+    word-break: keep-all;
+    word-wrap: break-word;
+}
+[class^='btnEm'], a[class^='btnEm'] {
+    display: inline-block;
+    padding: 6px 8px;
+    border: 1px solid transparent;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #fff;
+    background-color: #888;
+    border-radius: 3px;
+}
+
+
+
+
+
+
+
+
+.xans-board-commentlist {
+    border: 1px solid #d7d7d7;
+    border-top: 0;
+}
+
+.xans-board-commentlist .boardComment li:first-child {
+    margin: 0;
+}
+
+.xans-board-commentlist .boardComment li {
+    position: relative;
+    margin: 15px 0 0 0;
+    border-top: 1px solid #d7d7d7;
+    color: #333;
+    line-height: 140%;
+}
+
+.xans-board-commentlist .boardComment li div.commentTop {
+    overflow: hidden;
+    padding: 20px 35px;
+    border-bottom: 1px solid #e8e8e8;
+}
+.xans-board-commentlist .boardComment li .name {
+    float: left;
+}
+.xans-board-commentlist .boardComment li .date {
+    margin: 1px 10px 0 15px;
+    font-size: 11px;
+    color: #999;
+}
+.xans-board-commentlist .boardComment li .button {
+    position: absolute;
+    top: 15px;
+    right: 35px;
+}
+
+[class^='btnNormal'], a[class^='btnNormal'] {
+    display: inline-block;
+    padding: 6px 8px;
+    border: 1px solid #d1d1d1;
+    font-size: 12px;
+    line-height: 16px;
+    font-weight: normal;
+    text-decoration: none;
+    vertical-align: middle;
+    word-spacing: -0.5px;
+    letter-spacing: 0;
+    text-align: center;
+    white-space: nowrap;
+    color: #333;
+    background-color: #fff;
+    border-radius: 3px;
+}
+[class^='btn'] img {
+    margin: -2px 1px 0;
+    vertical-align: middle;
+}
+.xans-board-commentlist .boardComment li .comment {
+    clear: both;
+    padding: 35px 35px;
+    word-break: break-all;
+}
+
