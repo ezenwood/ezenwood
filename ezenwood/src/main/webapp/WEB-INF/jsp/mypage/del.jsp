@@ -1,7 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/ezenwood/css/mypage.css">
@@ -17,46 +18,35 @@
 	<div id="container">
 		<div id="contents">
 			<!-- 본문 시작 -->
-
+			<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 			<div class="location_wrap">
 				<div class="location_cont">
-					<em><a href="/ezenwood/mypage/main" class="local_home">HOME</a> &gt; 마이페이지 &gt;
-						회원탈퇴</em>
+					<em><a href="/ezenwood/mypage/main" class="local_home">HOME</a>
+						&gt; 마이페이지 &gt; 회원탈퇴</em>
 				</div>
 			</div>
 			<!-- //location_wrap -->
 
 			<div class="sub_content">
-
 				<div class="side_cont">
 					<%@include file="/include/left.jsp"%>
 					<!-- //sub_menu_box -->
-					<script type="text/javascript">
-						// 메뉴 선택
-						$(
-								'.sub_menu_mypage li > a[href*="'
-										+ document.location.pathname + '"]')
-								.addClass('active');
-					</script>
 				</div>
 				<!-- //side_cont -->
 
 				<div class="content">
 					<div class="mypage_cont">
-						<form id="formHackOut" name="formHackOut"
-							action="../mypage/my_page_ps.php" method="post"
+						<form name="" action="${contextPath}/mypage/del" method="post"
 							novalidate="novalidate">
 							<input type="hidden" name="mode" value="hackOut"> <input
 								type="hidden" name="snsType" value="">
 							<div class="hack_out">
 
 								<div class="mypage_zone_tit">
-									<h2>회원탈퇴</h2>
+									<h2>회원탈퇴 -${sessionScope.MEMBER_ID}</h2>
 								</div>
 
 								<div class="mypage_unregister">
-
-
 									<div class="unregister_info">
 										이젠우드 탈퇴안내<br> <br> 회원님께서 회원 탈퇴를 원하신다니 저희 쇼핑몰의 서비스가
 										많이 부족하고 미흡했나 봅니다.<br> 불편하셨던 점이나 불만사항을 알려주시면 적극 반영해서 고객님의
@@ -66,21 +56,15 @@
 										2. 탈퇴 시 회원님께서 보유하셨던 주문들은 삭제 됩니다
 									</div>
 									<!-- //unregister_info -->
-
-
-
 								</div>
 								<!-- //hack_out -->
 
 								<div class="btn_center_box">
-									<button type="submit" class="btn_claim_cancel btn_prev"
-										style="display: inline-block; min-width: 80px; height: 42px; padding: 0 10px 0 10px; line-height: 40px; color: #3e3d3c; font-size: 14px; border: 1px solid #cccccc; background: #ffffff; text-align: center;">
+									<button type="submit" class="btn_claim_cancel btn_prev">
 										<em>이전으로</em>
 									</button>
-									<button type="submit" class="btn_claim_ok"
-										style="min-width: 100px; height: 44px; padding: 0 10px 0 10px; color: #ffffff; font-size: 14px; font-weight: bold; border: 1px solid #323437; background: #323437; text-align: center; vertical-align: top;">
-										<em>탈퇴</em>
-									</button>
+									<input type="hidden" name="MEMBER_ID" value="${sessionScope.MEMBER_ID}">
+									<input type="submit" value="탈퇴" class="btn_claim_ok" onclick="${contextPath}/mypage/del" />
 								</div>
 							</div>
 						</form>

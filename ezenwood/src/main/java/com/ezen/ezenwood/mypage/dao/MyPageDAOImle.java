@@ -17,12 +17,12 @@ public class MyPageDAOImle extends AbstractDAO implements MyPageDAO{
 
 	@Override
 	public int memberUpdate(Map<String, Object> map) {
-		return (int) update("Member.updateMember", map);
+		return (int) update("member.updateMember", map);
 	}
 
 	@Override
 	public int memberDelete(Map<String, Object> map) {
-		return (int) update("Member.deleteMember", map);
+		return (int) update("member.deleteMember", map);
 	}
 
 	@Override

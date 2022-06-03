@@ -72,7 +72,7 @@ SELECT  COUNT(*)
 
 
 	<!-- 내 정보 보기 -->
-	<select id="selectOneByMemberNum">
+	<select id="selectOneByMemberNum" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 		SELECT *
 		FROM MEMBER
@@ -82,7 +82,7 @@ SELECT  COUNT(*)
 
 
 	<!-- 내 정보 수정 -->
-	<update id="updateMember">
+	<update id="updateMember" parameterType="hashmap">
 <![CDATA[
 
 		UPDATE MEMBER
@@ -91,7 +91,7 @@ SELECT  COUNT(*)
         	MEMBER_NAME = #{MEMBER_NAME},
         	MEMBER_PHONE = #{MEMBER_PHONE},
         	MEMBER_EMAIL = #{MEMBER_EMAIL},
-        	MEMBER_ZIPCODE = #{MEMBER_ZIPCODE},
+        	MEMBER_ZIP = #{MEMBER_ZIP},
         	MEMBER_ADD1 = #{MEMBER_ADD1},
         	MEMBER_ADD2 = #{MEMBER_ADD2},
         	MEMBER_ADD3 = #{MEMBER_ADD3}
@@ -101,10 +101,10 @@ SELECT  COUNT(*)
 
 
 	<!-- 회원 탈퇴 -->
-	<update id="deleteMember">
+	<update id="deleteMember" parameterType="hashmap">
 <![CDATA[
 		UPDATE MEMBER
-		SET MEMBER_DEL_GB = Y
+		SET MEMBER_DEL_GB = 'Y'
 		WHERE MEMBER_ID = #{MEMBER_ID}
 ]]>
 	</update>
