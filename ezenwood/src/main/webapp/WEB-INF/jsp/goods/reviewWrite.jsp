@@ -28,6 +28,7 @@
                                 <input type="hidden" name="bdId" value="goodsqa">
                                 <input type="hidden" name="sno" value>
                                 <input type="hidden" name="mode" value="write">
+                                <input type="hidden" name="REVIEW_PARENT" value="${REVIEW_PARENT }">
                                 <input type="hidden" name="returnUrl" value="bdId=goodsqa">
                                 <div class="board_zone_write">
                                     <div class="board_write_box">
@@ -39,24 +40,24 @@
                                             <tbody>
                                                 <tr>
                                                     <th scope="row">작성자</th>
-                                                    <td>작성자 이름</td>
+                                                    <td>${MEMBER_ID }</td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">상품 이름</th>
-                                                    <td>상품 이름 불러옴</td>
+                                                    <td>${GOODS_TITLE }</td>
                                                 </tr>
                                                 
                                                 <tr>
                                                     <th scope="row">제목</th>
                                                     <td>
-                                                        <input type="text" name="subject" value>
+                                                        <input type="text" name="REVIEW_TITLE" value>
                                                     </td>
                                                 </tr>
                                                 <tr>
                                                     <th scope="row">본문</th>
                                                     <td class="write_editor">
                                                         
-                                                        <textarea id="editor" name="contents" title="내용" cols="80" rows="20"></textarea>
+                                                        <textarea id="editor" name="REVIEW_CONTENT" title="내용" cols="80" rows="20"></textarea>
                                                         <!--<iframe frameborder="0" scrolling="no" style="width: 100%; height: 375px;" src="js/sister_js/SmartEditor2Skin.html"></iframe>-->
                                                     </td>
                                                 </tr>
@@ -122,12 +123,12 @@
                     <script type="text/javascript" src="js/sister_js/gd_board_write.js" charset="utf-8"></script>
                     <script type="text/template" class="template">
                         <div class="file_upload_sec">
-		<label for="attach<%=idx%>">
+		<label for="attach">
 			<input type="text" class="file_text" title="파일 첨부하기" readonly="readonly">
 		</label>
 		<div class="btn_upload_box">
 			<button type="button" class="btn_upload" title="찾아보기"><em>찾아보기</em></button>
-			<input type="file" id="attach<%=idx%>" name="upfiles[]" class="file" title="찾아보기"/>
+			<input type="file" id="attach" name="upfiles[]" class="file" title="찾아보기"/>
 			<span class="btn_gray_list"><button type="button" class="btn_gray_big" onclick="gd_remove_upload(this)"><span>- 삭제</span></button></span>
 		</div>
 	</div>

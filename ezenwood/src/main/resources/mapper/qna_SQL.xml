@@ -13,6 +13,45 @@ WHERE QNA_DEL_GB = 'N'
 </select>
 
 
+
+<select id="selectQNAList" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"></include>
+<![CDATA[
+SELECT 
+ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
+QNA_TITLE, 
+QNA_WRITER, 
+QNA_RE_GB, 
+QNA_DATE, 
+QNA_NUM  
+	FROM 
+QNA
+	WHERE  
+QNA_DEL_GB = 'N' and QNA_TYPE= 'Q'
+]]>
+<include refid="common.pagingPost"></include>
+</select>
+
+
+
+
+<select id="AnswerForQNADetail" resultType="hashmap" parameterType="hashmap">
+<![CDATA[
+select 
+QNA_NUM,
+QNA_TITLE,
+QNA_WRITER,
+QNA_TYPE,
+QNA_CONTENT,
+QNA_DATE,
+QNA_PARENT
+from qna
+where qna_type = 'A'
+AND QNA_DEL_GB = 'N' and QNA_PARENT=#{QNA_NUM} 
+]]>
+</select>
+
+
 <select id="selectQNAForDetail" parameterType="hashmap" resultType="hashmap">
 
 <![CDATA[
@@ -22,13 +61,34 @@ QNA_TITLE,
 QNA_WRITER,
 QNA_TYPE,
 QNA_SECREATE,
-QNA_DATE
+QNA_DATE,
+QNA_PARENT
 from qna
-where qna_type = 'A'
+where qna_type = 'Q'
 AND QNA_DEL_GB = 'N' and QNA_PARENT=#{QNA_PARENT}   
 
 
 ]]>
+</select>
+
+
+<select id="selectQNADetailForClient" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+select 
+QNA_NUM,
+QNA_TITLE,
+QNA_WRITER,
+QNA_TYPE,
+QNA_SECREATE,
+QNA_DATE,
+QNA_CONTENT,
+QNA_PARENT
+from qna
+ where QNA_DEL_GB = 'N' and QNA_NUM=#{QNA_NUM}   
+
+
+]]>
+
 </select>
 
 

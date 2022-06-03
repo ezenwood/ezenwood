@@ -51,16 +51,16 @@
                                         </thead>
                                         <tbody>
                                             <c:choose>
-                                                <c:when test="${fn:length(list) > 0}">
-                                                    <c:forEach items="${list }" var="row">
+                                                <c:when test="${fn:length(QNAListMap) > 0}">
+                                                    <c:forEach items="${QNAListMap}" var="row">
                                                         <tr>
-                                                            <td>${row.QNA_DATE }</td>
+                                                            <td><fmt:formatDate value="${row.QNA_DATE }" type="both" dateStyle="medium" timeStyle="medium" /></td>
                                                             <td class="title">
-                                                                <a href="#this" name="title">${row.QNA_TITLE }</a>
-                                                                <input type="hidden" id="IDX" value="${row.IDX }">
+                                                                <a href="/ezenwood/qna/${row.QNA_NUM }" name="title">${row.QNA_TITLE }</a>
+                                                                
                                                             </td>
                                                             <td>${row.QNA_WRITER }</td>
-                                                            <td>${row.QNA_RE_GB }</td>
+                                                            <td><c:choose> <c:when test="${row.QNA_RE_GB =='Y'}">답변 완료</c:when><c:otherwise>답변 대기</c:otherwise> </c:choose>  </td>
                                                         </tr>
                                                     </c:forEach>
                                                 </c:when>
