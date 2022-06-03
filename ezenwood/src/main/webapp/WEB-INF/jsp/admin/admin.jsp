@@ -1,24 +1,79 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Admin</title>
-    <link href="../css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
+    <link rel="stylesheet" href="/ezenwood/css/mypage.css">
+    <link rel="stylesheet" href="/ezenwood/css/admin_layout.css">
+    <link rel="stylesheet" href="/ezenwood/css/member.css">
+    <link rel="stylesheet" href="/ezenwood/css/reset.css">
+    <link rel="stylesheet" href="/ezenwood/css/board.css">
+    <link rel="stylesheet" href="/ezenwood/css/common.css">
+    
+    <title>order2</title>
 </head>
 <body>
-    <div id="wrapper">
-        <div id="page-wrapper" style="min-height: 703px;">
+  <div id="container">
+  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="background-color:#337AB7;">
+ <div class="navbar-header" style="background-color:#337AB7">
+             
+                <a class="navbar-brand" style="color:#fff;" href="/pet/admin/admin.dog"><strong>EZENWOOD ê´€ë¦¬ìžíŽ˜ì´ì§€Â€</strong></a>
+            </div>
+            </nav>
+    <div id="contents">
+       
+<!--location_wrap -->
+
+ <div class="sub_content">
+          <div class="side_cont">
+          
+					<%@include file="/include/admin.jsp"%>
+					<!--sub_menu_box -->
+          </div> 
+          <!-- side_cont-->
+          <div class="content" style="padding-left: 25px;">
+             <div class="mypage_cont">
+                 <div class="mypage_lately_info">
+                    
+                 </div>
+             </div>
+             </div>
+             
+                     
+             <script type="text/javascript">
+function delchk(){
+    return confirm("ì‚­ì œí•˜ì‹œê² ìŠµë‹ˆê¹Œ?");
+}
+</script>
+<style type="text/css">
+.paging{text-align:center;height:32px;margin-top:5px;margin-bottom:15px;}
+.paging a,
+.paging strong{display:inline-block;width:36px;height:32px;line-height:28px;font-size:14px;border:1px solid #e0e0e0;margin-left:5px;
+-webkit-border-radius:3px;
+   -moz-border-radius:3px;
+		border-radius:3px;
+-webkit-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+	-moz-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+		  box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
+}
+.paging a:first-child{margin-left:0;}
+.paging strong{color:#fff;background:#337AB7;border:1px solid #337AB7;}
+.paging .page_arw{font-size:11px;line-height:30px;}
+</style>
+
+
+<div id="wrapper">
+        <div id="page-wrapper" style="min-height: 500px;">
        		
-            <!-- ¸ÞÀÎcontainer-->
+            <!-- ë©”ì¸container-->
            	 
 <div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">°ü¸®ÀÚÆäÀÌÁö¿¡ ¿À½Å°É È¯¿µÇÕ´Ï´Ù</h1>
+	<h1 class="page-header">ê´€ë¦¬ìžíŽ˜ì´ì§€ì— ì˜¤ì‹ ê±¸ í™˜ì˜í•©ë‹ˆë‹¤</h1>
 </div>
 <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> °ü¸®ÀÚ °øÁö»çÇ×
+                            <i class="fa fa-clock-o fa-fw"></i> ê´€ë¦¬ìž ê³µì§€ì‚¬í•­
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -28,11 +83,11 @@
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">°ü¸®ÀÚ È¨À¸·Î ÀÌµ¿</h4>
+                                            <h4 class="timeline-title">ê´€ë¦¬ìž í™ˆìœ¼ë¡œ ì´ë™</h4>
                                            
                                         </div>
                                         <div class="timeline-body">
-                                            <p>°ü¸®ÀÚ È¨À¸·Î °¡´Â ¹Ù·Î°¡±â</p>
+                                            <p>ê´€ë¦¬ìž í™ˆìœ¼ë¡œ ê°€ëŠ” ë°”ë¡œê°€ê¸°</p>
                                         </div>
                                     </div>
                                 </li>
@@ -41,10 +96,10 @@
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">¼îÇÎ¸ô È¨À¸·Î ÀÌµ¿</h4>
+                                            <h4 class="timeline-title">ì‡¼í•‘ëª° í™ˆìœ¼ë¡œ ì´ë™</h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>¼îÇÎ¸ô È¨À¸·Î °¡´Â ¹Ù·Î°¡±â</p>                                           
+                                            <p>ì‡¼í•‘ëª° í™ˆìœ¼ë¡œ ê°€ëŠ” ë°”ë¡œê°€ê¸°</p>                                           
                                         </div>
                                     </div>
                                 </li>
@@ -53,22 +108,22 @@
                                     </div>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">»óÇ°°ü¸®</h4>
+                                            <h4 class="timeline-title">ìƒí’ˆê´€ë¦¬</h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>»óÇ°¸ñ·Ï ÀÌµ¿ - »óÇ°¸®½ºÆ®¸¦ º¼ ¼öÀÖ½À´Ï´Ù</p>
-                                            <p>»óÇ°µî·Ï ÀÌµ¿ - ¹Ù·Î»óÇ°µî·Ï ÇÒ ¼öÀÖ½À´Ï´Ù</p>
+                                            <p>ìƒí’ˆëª©ë¡ ì´ë™ - ìƒí’ˆë¦¬ìŠ¤íŠ¸ë¥¼ ë³¼ ìˆ˜ìžˆìŠµë‹ˆë‹¤</p>
+                                            <p>ìƒí’ˆë“±ë¡ ì´ë™ - ë°”ë¡œìƒí’ˆë“±ë¡ í•  ìˆ˜ìžˆìŠµë‹ˆë‹¤</p>
                                         </div>
                                     </div>
                                 </li>
                                 <li class="timeline-inverted">
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">È¸¿ø°ü¸®</h4>
+                                            <h4 class="timeline-title">íšŒì›ê´€ë¦¬</h4>
                                         </div>
                                         <div class="timeline-body">
-                                             <p>È¸¿ø¸ñ·Ï ÀÌµ¿ - È¸¿ø¸ñ·ÏÀ» º¼¼ö ÀÖ½À´Ï´Ù</p>
-                                             <p>Å»ÅðÈ¸¿ø¸ñ·Ï ÀÌµ¿ - Å»ÅðÈ¸¿ø¸ñ·ÏÀ» º¼¼ö ÀÖ½À´Ï´Ù</p>
+                                             <p>íšŒì›ëª©ë¡ ì´ë™ - íšŒì›ëª©ë¡ì„ ë³¼ìˆ˜ ìžˆìŠµë‹ˆë‹¤</p>
+                                             <p>íƒˆí‡´íšŒì›ëª©ë¡ ì´ë™ - íƒˆí‡´íšŒì›ëª©ë¡ì„ ë³¼ìˆ˜ ìžˆìŠµë‹ˆë‹¤</p>
                                         </div>
                                     </div>
                                 </li>
@@ -76,25 +131,25 @@
                                 <li>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">ÁÖ¹®°ü¸®</h4>
+                                            <h4 class="timeline-title">ì£¼ë¬¸ê´€ë¦¬</h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>ÁÖ¹®¸ñ·Ï - ÁÖ¹®¸ñ·Ï È®ÀÎ¹× °ü¸®</p>
+                                            <p>ì£¼ë¬¸ëª©ë¡ - ì£¼ë¬¸ëª©ë¡ í™•ì¸ë° ê´€ë¦¬</p>
                                         </div>
                                     </div>
                                 </li>
                                 <li>
                                     <div class="timeline-panel">
                                         <div class="timeline-heading">
-                                            <h4 class="timeline-title">°Ô½ÃÆÇ °ü¸®</h4>
+                                            <h4 class="timeline-title">ê²Œì‹œíŒ ê´€ë¦¬</h4>
                                         </div>
                                         <div class="timeline-body">
-                                            <p>°øÁö»çÇ× - °Ô½ÃÆÇ µî·Ï,¼öÁ¤,»èÁ¦ µî °ü¸®</p>
-                                            <p>Q&amp;A - °Ô½ÃÆÇ ¼öÁ¤,»èÁ¦ µî °ü¸®</p>
-                                            <p>¸®ºä - °Ô½ÃÆÇ »èÁ¦ °ü¸®</p>
-                                            <p>1:1¹®ÀÇ - °Ô½ÃÆÇ ´äº¯,¼öÁ¤,»èÁ¦ µî °ü¸®</p>
-                                            <p>ÀÚÁÖ¹¯´ÂÁú¹® - °Ô½ÃÆÇ µî·Ï,¼öÁ¤,»èÁ¦ µî °ü¸®</p>
-                                            <p>¾î¹Ù¿ô - °Ô½ÃÆÇ µî·Ï,¼öÁ¤,»èÁ¦ µî °ü¸®</p>
+                                            <p>ê³µì§€ì‚¬í•­ - ê²Œì‹œíŒ ë“±ë¡,ìˆ˜ì •,ì‚­ì œ ë“± ê´€ë¦¬</p>
+                                            <p>Q&amp;A - ê²Œì‹œíŒ ìˆ˜ì •,ì‚­ì œ ë“± ê´€ë¦¬</p>
+                                            <p>ë¦¬ë·° - ê²Œì‹œíŒ ì‚­ì œ ê´€ë¦¬</p>
+                                            <p>1:1ë¬¸ì˜ - ê²Œì‹œíŒ ë‹µë³€,ìˆ˜ì •,ì‚­ì œ ë“± ê´€ë¦¬</p>
+                                            <p>ìžì£¼ë¬»ëŠ”ì§ˆë¬¸ - ê²Œì‹œíŒ ë“±ë¡,ìˆ˜ì •,ì‚­ì œ ë“± ê´€ë¦¬</p>
+                                            <p>ì–´ë°”ì›ƒ - ê²Œì‹œíŒ ë“±ë¡,ìˆ˜ì •,ì‚­ì œ ë“± ê´€ë¦¬</p>
                                         </div>
                                     </div>
                                 </li>
@@ -108,5 +163,7 @@
             <!-- // container -->
         </div>
     </div>
-</body>
-</html>
+    </div>
+    </div>
+    </div>
+</body></html>

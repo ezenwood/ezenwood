@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <title>AdminGoodsList</title>
-    <link href="../css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
 </head>
 <body>
         <div id="wrapper">
