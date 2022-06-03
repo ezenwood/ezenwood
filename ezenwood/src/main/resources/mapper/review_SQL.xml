@@ -14,6 +14,41 @@ WHERE REVIEW_DEL_GB = 'N';
 
 ]]>
 </select>
+ 
+<select id="selectReviewList" resultType="hashmap" parameterType="hashmap">
+<![CDATA[
+SELECT 
+	REVIEW_NUM,
+	REVIEW_TITLE,
+	REVIEW_WRITER,
+	REVIEW_DATE 
+from
+	review 
+where REVIEW_DEL_GB = 'N' and REVIEW_PARENT=#{GOODS_NUM}
+
+
+]]>
+</select>
+
+<select id="selectReviewDetail" resultType="hashmap" parameterType="hashmap">
+<![CDATA[
+SELECT 
+	REVIEW_NUM,
+	REVIEW_TITLE,
+	REVIEW_WRITER,
+	REVIEW_DATE ,
+	REVIEW_CONTENT,
+	REVIEW_PARENT
+from
+	review 
+where REVIEW_DEL_GB = 'N' and REVIEW_NUM=#{REVIEW_NUM}
+
+
+]]>
+</select>
+
+
+
 
 <!-- Client review 보기 -->
 <select id="selectClientReview" parameterType="hashmap" resultType="hashmap">
@@ -44,6 +79,30 @@ REVIEW_PARENT = #{REVIEW_PARENT}
 )
 ]]>
 </insert>
+
+
+
+<insert id="insertReview" parameterType="hashmap" useGeneratedKeys="true" keyProperty="REVIEW_NUM">
+<selectKey keyProperty="REVIEW_NUM" resultType="string" order="BEFORE">
+select SEQ_REVIEW_NUM.nextval from dual
+</selectKey>
+<![CDATA[
+insert into 
+	review  
+values(
+	#{REVIEW_NUM},
+	#{REVIEW_TITLE},
+	(SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID}),
+	#{REVIEW_CONTENT},
+	sysdate,
+	'N',
+	#{REVIEW_PARENT})
+	
+
+]]>
+</insert>
+
+
 
 <!-- 고객 review 수정 -->
 <update id="updateClient" parameterType="hashmap">

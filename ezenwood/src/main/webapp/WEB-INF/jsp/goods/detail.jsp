@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -345,14 +347,23 @@
                                 <div class="board">
                                     <div class="ec-base-button typeBorder">
                                         <span>
-                                            <h3>Q &amp; A</h3>
+                                            <h3>REVIEW</h3>
                                         </span>
                                         <span class="gRight">
-                                            <a href="#" class="dj-btn-2">WRITE</a>
+                                            <a href="/ezenwood/goods/review/write?GOODS_NUM=${GOODS_MAP.GOODS_NUM }" class="dj-btn-2">WRITE</a>
                                             <a href="#" class="dj-btn-2">LIST</a>
                                         </span>
                                     </div>
-                                    <p class="nodata">게시물이 없습니다</p>
+                                    <table>
+                                        <c:forEach items="${reviewListMap }" var="reviewMap" varStatus="status" >
+                                        <tr>
+                                        <td style="width: 70%"><a href="goods/review/${reviewMap.REVIEW_NUM }">${reviewMap.REVIEW_TITLE }</a> </td>
+                                        <td style="width: 10%">${reviewMap.REVIEW_WRITER }</td>
+                                        <td style="width: 20%"><fmt:formatDate value="${reviewMap.REVIEW_DATE }" dateStyle="medium" /></td>
+                                        
+                                        </tr>
+                                        </c:forEach>
+                                        </table>
 
                                 </div>
                                 <!-- //상품사용후기 -->
@@ -379,7 +390,16 @@
                                                 <a href="#" class="dj-btn-2">LIST</a>
                                             </span>
                                         </div>
-                                        <p class="nodata">게시물이 없습니다</p>
+                                        <table>
+                                        <c:forEach items="${QNAListMap }" var="QNAMap" varStatus="status" >
+                                        <tr>
+                                        <td style="width: 70%"><a href="goods/qna/${QNAMap.QNA_NUM }">${QNAMap.QNA_TITLE }</a> </td>
+                                        <td style="width: 10%">${QNAMap.QNA_WRITER }</td>
+                                        <td style="width: 20%"><fmt:formatDate value="${QNAMap.QNA_DATE }" dateStyle="medium" /></td>
+                                        
+                                        </tr>
+                                        </c:forEach>
+                                        </table>
 
                                     </div>
                                 </div>

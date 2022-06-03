@@ -17,5 +17,18 @@ public interface GoodsService {
 	
 	public List<Map<String, Object>> getQNAListForDetail(Map<String, Object> map);
 	
+	public Map<String, Object> getQNADetail(Map<String, Object> insertMap);
+	
+	public List<Map<String,Object>> QNAList(Map<String, Object> insertMap);
+	
+	
+	public int insertReview(Map<String, Object> insertMap, HttpServletRequest request);
+	
+	public List<Map<String, Object>> getReviewListForDetail(Map<String, Object> map);
+	
+	public Map<String, Object> getReviewDetail(Map<String,Object> map);
+	
+	
+	
 
 }

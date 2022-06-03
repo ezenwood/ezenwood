@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+     <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -26,17 +28,17 @@
                         <div class="board_zone_cont">
                             <div class="board_zone_view">
                                 <div class="board_view_tit">
-                                    <h3>제목</h3>
+                                    <h3>${QNAMap.QNA_TITLE }</h3>
                                 </div>
 
 
                                 <div class="xans-element- xans-board xans-board-product-4 xans-board-product xans-board-4 ec-base-box typeProduct ">
                                     <p class="thumbnail"><a href="#">
-                                    <img src="#" alt=""></a></p>
+                                    <img src="/ezenwood/resource/image/${QNAMap.GOODS_SUBIMAGE }" alt=""></a></p>
                                     <div class="information">
                                         
-                                        <h3><a href="#">상품 이름</a></h3>
-                                        <p class="price">제품 가격<span id="sPrdTaxText"></span></p>
+                                        <h3><a href="#">${QNAMap.GoodsMap.GOODS_TITLE }</a></h3>
+                                        <p class="price">${QNAMap.GoodsMap.GOODS_PRICE }<span id="sPrdTaxText"></span></p>
                                         <p class="button"><a href="#" class="btnEm" title="새창으로 이동">상품 상세보기</a></p>
                                     </div>
                                 </div>
@@ -62,21 +64,26 @@
                                                 <tbody>
                                                     <tr>
                                                         <th scope="row">제목</th>
-                                                        <td>상품문의</td>
+                                                        <td>${QNAMap.QNA_TITLE }</td>
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">작성자</th>
-                                                        <td> 작성자 이름 </td>
+                                                        <td> ${QNAMap.QNA_WRITER } </td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2">
                                                             <ul class="etcArea">
                                                                 <li class="">
-                                                                    <strong>작성일</strong> <span class="txtNum">작성일</span>
+                                                                    <strong>작성일</strong> <span class="txtNum"><fmt:formatDate value="${QNAMap.QNA_DATE }" type="both" dateStyle="medium" timeStyle="medium" /> </span>
                                                                 </li>
                                                             </ul>
                                                             <div class="detail">
-                                                                <div class="fr-view fr-view-article">문의 내용</div>
+                                                                <div class="fr-view fr-view-article">
+                                                                <c:if test="${QNAMap.QNA_IMAGE != null }">
+                                                                <img alt="-" src="/ezenwood/resource/image/${QNAMap.QNA_IMAGE }">
+                                                                </c:if>
+                                                                
+                                                                <br>${QNAMap.QNA_CONTENT }</div>
                                                             </div>
                                                         </td>
                                                     </tr>
@@ -113,7 +120,7 @@
                                             <li class="first  xans-record-">
                                                 <div class="commentTop">
                                                     <strong class="name"> 이젠 우드</strong>
-                                                    <span class="date">답변 날짜</span>
+                                                    <span class="date">${QNAMap.Answer.QNA_DATE }</span>
                                                 </div>
                                                 <!--<span class="button">
                                                     <a href="javascript:;" class="btnNormal displaynone" onclick="BOARD_COMMENT.comment_update('163363','144433',this);">수정</a>
@@ -122,7 +129,7 @@
                                                 </span>-->
                                                 <div class="comment">
                                                     
-                                                    <span id="comment_contents144433">답변 내용</span>
+                                                    <span id="comment_contents144433">${QNAMap.Answer.QNA_CONTENT }</span>
                                                 </div>
                                             </li>
                                         </ul>
