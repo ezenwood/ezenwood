@@ -3,18 +3,39 @@
 
 <mapper namespace="goods">
   
+  
+  
+  
 <!-- 전체 메인 -->
 <select id="selectAll" parameterType="hashmap" resultType="hashmap">
 <include refid="common.pagingPre"></include>
-<![CDATA[
-select 
-ROW_NUMBER() OVER (ORDER BY GOODS_NUM DESC) RNUM,
+
+
+select
+
+<choose>
+<when test='searchType=="new"'>
+ROW_NUMBER() OVER (ORDER BY GOODS_NUM DESC) RNUM
+</when>
+<when test='searchType=="best"'>
+ROW_NUMBER() OVER (ORDER BY GOODS_SELL_AMOUNT
+ DESC) RNUM
+</when>
+<when test='searchType=="high"'>
+ROW_NUMBER() OVER (ORDER BY GOODS_PRICE DESC) RNUM
+</when>
+<when test='searchType=="low"'>
+ROW_NUMBER() OVER (ORDER BY GOODS_PRICE asc) RNUM
+</when>
+</choose> 
+,
 GOODS_NUM,
 GOODS_TITLE,
 GOODS_PRICE
 from goods
-where GOODS_CATEGORY=#{GOODS_CATEGORY}
-]]>
+where GOODS_CATEGORY=#{GOODS_CATEGORY} 
+
+
 <include refid="common.pagingPost"></include>
 </select>
 

@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,26 @@
 <link href="/ezenwood/css/goods.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/list.css" type="text/css" rel="stylesheet">
 
+<script type="text/javascript">
+
+var ddd = document.location.href;
+
+var idx = ddd.lastIndexOf("/");
+
+var sss = ddd.substring(0,idx+1);
+
+
+
+function fn_search(pageNo){
+	
+	
+	
+	
+	location.href = sss+pageNo;
+}
+
+</script>
+
 </head>
 <body>
 	<%@include file="/include/header.jsp"%>
@@ -22,10 +43,10 @@
 				<div class="content">
 					<div class="menu_top_list">
 						<ul>
-							<li><a href="#">최신순</a></li>
-							<li><a href="#">인기순</a></li>
-							<li><a href="#">가격 높은 순</a></li>
-							<li><a href="#">가격 낮은 순</a></li>
+							<li><a href="../new/1">최신순</a></li>
+							<li><a href="../best/1">인기순</a></li>
+							<li><a href="../high/1">가격 높은 순</a></li>
+							<li><a href="../low/1">가격 낮은 순</a></li>
 						</ul>
 					</div>
 
@@ -75,10 +96,15 @@
 
 						<div class="pagination">
 							<div class="pagination">
-								<ul>
-									<li class="on"><span>1</span></li>
-									<li><a href="#">2</a></li>
-								</ul>
+							<!-- dsadsa -->
+							
+							
+							<!-- dsadsa -->
+							<div class="insu" style="margin: 0 auto; text-align: center;">
+								<c:if test="${not empty paginationInfo}">
+		<ui:pagination paginationInfo = "${paginationInfo}" type="text" jsFunction="fn_search"/>
+	</c:if>
+	</div>
 							</div>
 						</div>
 					</div>

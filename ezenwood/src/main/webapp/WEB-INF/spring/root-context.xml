@@ -1,51 +1,68 @@
-<?xml version="1.0" encoding="UTF-8"?> 
+<?xml version="1.0" encoding="UTF-8"?>
 <beans xmlns="http://www.springframework.org/schema/beans"
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xmlns:context="http://www.springframework.org/schema/context"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans https://www.springframework.org/schema/beans/spring-beans.xsd http://www.springframework.org/schema/context 
         http://www.springframework.org/schema/context/spring-context.xsd">
-	
-   <bean id="dataSourceSpied"
-      class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
-      <property name="driverClassName"
-         value="oracle.jdbc.driver.OracleDriver" />
-      <property name="url"
-         value="jdbc:oracle:thin:@localhost:1521:XE" />
-      <property name="username" value="ezenwood" />
-      <property name="password" value="ezenwood" />
-   </bean> 
-		
-		<bean id="sqlSession"
-      class="org.mybatis.spring.SqlSessionFactoryBean">
-      <property name="dataSource" ref="dataSource" />
-      <property name="mapperLocations"
-         value="classpath:/mapper/*_SQL.xml" />
-   </bean>
 
-   <bean id="sqlSessionTemplate"
-      class="org.mybatis.spring.SqlSessionTemplate">
-      <constructor-arg index="0" ref="sqlSession" />
-   </bean>
+	<bean id="dataSourceSpied"
+		class="org.apache.commons.dbcp.BasicDataSource" destroy-method="close">
+		<property name="driverClassName"
+			value="oracle.jdbc.driver.OracleDriver" />
+		<property name="url"
+			value="jdbc:oracle:thin:@localhost:1521:XE" />
+		<property name="username" value="ezenwood" />
+		<property name="password" value="ezenwood" />
+	</bean>
 
-   <bean id="dataSource"
-      class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
-      <constructor-arg ref="dataSourceSpied" />
-      <property name="logFormatter">
-         <bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
-            <property name="loggingType" value="MULTI_LINE" />
-            <property name="sqlPrefix" value="SQL : " />
-         </bean>
-      </property>
-   </bean>
-		
-		   <bean id="multipartResolver"
-      class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
-      <property name="maxUploadSize" value="10000000" />
-   </bean>
-   
-   <context:component-scan base-package="com.ezen.ezenwood">
-    <!-- Component-scan대상에서 @Controller annotation Class는 제외한다. -->
-    <context:exclude-filter type="annotation" expression="org.springframework.stereotype.Controller"/> 
-</context:component-scan>
+	<bean id="sqlSession"
+		class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="dataSource" />
+		<property name="mapperLocations"
+			value="classpath:/mapper/*_SQL.xml" />
+	</bean>
+
+	<bean id="sqlSessionTemplate"
+		class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg index="0" ref="sqlSession" />
+	</bean>
+
+	<bean id="dataSource"
+		class="net.sf.log4jdbc.Log4jdbcProxyDataSource">
+		<constructor-arg ref="dataSourceSpied" />
+		<property name="logFormatter">
+			<bean class="net.sf.log4jdbc.tools.Log4JdbcCustomFormatter">
+				<property name="loggingType" value="MULTI_LINE" />
+				<property name="sqlPrefix" value="SQL : " />
+			</bean>
+		</property>
+	</bean>
+
+	<bean id="multipartResolver"
+		class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
+		<property name="maxUploadSize" value="10000000" />
+	</bean>
+
+	<context:component-scan
+		base-package="com.ezen.ezenwood">
+		<!-- Component-scan대상에서 @Controller annotation Class는 제외한다. -->
+		<context:exclude-filter type="annotation"
+			expression="org.springframework.stereotype.Controller" />
+	</context:component-scan>
+
+<!-- egov -->
+	<bean id="textRenderer"
+		class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationRenderer" />
+	<bean id="paginationManager"
+		class="egovframework.rte.ptl.mvc.tags.ui.pagination.DefaultPaginationManager">
+		<property name="rendererType">
+			<map>
+				<entry key="text" value-ref="textRenderer" />
+			</map>
+		</property>
+	</bean> 
+
+
+
 
 </beans>

@@ -65,7 +65,7 @@
                                                 </li>
                                                 <li class=" quantity_css xans-record-">
                                                     <span class="title"><span style="font-size:12px;color:#555555;">수량</span></span>
-                                                    <span class="con"><span style="font-size:12px;color:#555555;"><span id="NewProductQuantityDummy"><span class="quantity"><input id="quantity" name="quantity_name" style="width: 30px;height: 18px;border: 1px solid #BCBCBC;" value="" type="text"><img src="/ezenwood/css/img/btn_basketUp.gif" class="QuantityUp" alt="수량증가"><img src="/ezenwood/css/img/btn_basketDown.gif" class="QuantityDown" alt="수량감소"></span></span></span></span>
+                                                    <span class="con"><span style="font-size:12px;color:#555555;"><span id="NewProductQuantityDummy"><span class="quantity"><input id="quantity" name="quantity_name" style="width: 30px;height: 18px;border: 1px solid #BCBCBC;" value="" type="text"><img src="/ezenwood/resource/image/btn_basketUp.gif" class="QuantityUp" alt="수량증가"><img src="/ezenwood/resource/image/btn_basketDown.gif" class="QuantityDown" alt="수량감소"></span></span></span></span>
                                                 </li>
                                             </ul>
                                         </div>
@@ -125,8 +125,8 @@
                                                 <td>${GOODS_MAP.GOODS_TITLE }</td>
                                                 <td>
                                                     <span class="quantity">
-                                                        <input id="quantity" name="quantity_name" style="" value="0" type="text"> <a href="#none"><img src="css/img/btn_basketUp.gif" alt="수량증가" class="QuantityUp up"></a>
-                                                        <a href="#none"><img src="css/img/btn_basketDown.gif" alt="수량감소" class="QuantityDown down"></a>
+                                                        <input id="quantity" name="quantity_name" style="" value="0" type="text"> <a href="#none"><img src="/ezenwood/resource/image/btn_basketUp.gif" alt="수량증가" class="QuantityUp up"></a>
+                                                        <a href="#none"><img src="/ezenwood/resource/image/btn_basketDown.gif" alt="수량감소" class="QuantityDown down"></a>
                                                     </span>
                                                 </td>
                                                 <td class="right">
@@ -144,11 +144,11 @@
                                                     </p>
                                                 </td>
                                                 <td>
-                                                    <span class="quantity" style="width:65px;"><input type="text" id="option_box1_quantity" name="quantity_opt[]" class="quantity_opt eProductQuantityClass" value="1" product-no="503"><a href="#none" class="up eProductQuantityUpClass" data-target="option_box1_up"><img src="css/img/btn_basketUp.gif" id="option_box1_up" class="option_box_up" alt="수량증가"></a>
+                                                    <span class="quantity" style="width:65px;"><input type="text" id="option_box1_quantity" name="quantity_opt[]" class="quantity_opt eProductQuantityClass" value="1" product-no="503"><a href="#none" class="up eProductQuantityUpClass" data-target="option_box1_up"><img src="/ezenwood/resource/image/btn_basketUp.gif" id="option_box1_up" class="option_box_up" alt="수량증가"></a>
                                                         <a href="#none" class="down eProductQuantityDownClass" data-target="option_box1_down">
-                                                            <img src="css/img/btn_basketDown.gif" id="option_box1_down" class="option_box_down" alt="수량감소"></a>
+                                                            <img src="/ezenwood/resource/image/btn_basketDown.gif" id="option_box1_down" class="option_box_down" alt="수량감소"></a>
                                                     </span>
-                                                    <a href="#none" class="delete"><img src="css/img/btn_scroll_list_del.png" alt="삭제" id="option_box1_del" class="option_box_del"></a>
+                                                    <a href="#none" class="delete"><img src="/ezenwood/resource/image/btn_scroll_list_del.png" alt="삭제" id="option_box1_del" class="option_box_del"></a>
                                                 </td>
                                                 <td class="right">
                                                     <span id="option_box1_price">
@@ -351,7 +351,7 @@
                                         </span>
                                         <span class="gRight">
                                             <a href="/ezenwood/goods/review/write?GOODS_NUM=${GOODS_MAP.GOODS_NUM }" class="dj-btn-2">WRITE</a>
-                                            <a href="#" class="dj-btn-2">LIST</a>
+                                            <a href="/ezenwood/goods/review?GOODS_NUM=${GOODS_MAP.GOODS_NUM }&p=1" class="dj-btn-2">LIST</a>
                                         </span>
                                     </div>
                                     <table>
@@ -387,7 +387,7 @@
                                             </span>
                                             <span class="gRight">
                                                 <a href="/ezenwood/goods/qna/write?GOODS_NUM=${GOODS_MAP.GOODS_NUM }" class="dj-btn-2">WRITE</a>
-                                                <a href="#" class="dj-btn-2">LIST</a>
+                                                <a href="/ezenwood/goods/qna?GOODS_NUM=${GOODS_MAP.GOODS_NUM }&p=1" class="dj-btn-2">LIST</a>
                                             </span>
                                         </div>
                                         <table>

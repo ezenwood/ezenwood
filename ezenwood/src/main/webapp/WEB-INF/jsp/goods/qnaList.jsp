@@ -3,6 +3,7 @@
 <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
 
 <!DOCTYPE html>
 <html>
@@ -15,6 +16,25 @@
     <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
     
+    <script type="text/javascript">
+    var ddd = document.location.href;
+    var idx = ddd.lastIndexOf("&");
+    
+    var sss = ddd.substring(0,idx+1);
+    
+    function fn_search(pageNo){
+    	location.href = sss+"p="+pageNo;
+    }
+    
+    
+    function insu(goodsNum){
+    	
+    	location.href = "qna/write?GOODS_NUM="+goodsNum;
+    }
+    
+    
+    
+    </script>
 </head>
 <body>
 <%@include file ="/include/header.jsp" %>
@@ -56,7 +76,7 @@
                                                         <tr>
                                                             <td><fmt:formatDate value="${row.QNA_DATE }" type="both" dateStyle="medium" timeStyle="medium" /></td>
                                                             <td class="title">
-                                                                <a href="/ezenwood/qna/${row.QNA_NUM }" name="title">${row.QNA_TITLE }</a>
+                                                                <a href="/ezenwood/goods/qna/${row.QNA_NUM }" name="title">${row.QNA_TITLE }</a>
                                                                 
                                                             </td>
                                                             <td>${row.QNA_WRITER }</td>
@@ -73,27 +93,15 @@
                                         </tbody>
                                     </table>
                                 </div>
-                                <div class="pagination">
-                                    <ul>
-                                        <li class="on"><span>1</span></li>
-                                        <li class="btn_page btn_page_next">
-                                            <a aria-label="Next" href="#">
-                                                <img src="css/img/icon_arrow_page_r.png" class="img-page-arrow">
-                                                다음
-                                            </a>
-                                        </li>
-                                        <li class="btn_page btn_page_last">
-                                            <a aria-label="Last" href="#">
-                                                <img src="css/img/icon_arrow_page_rr.png" class="img-page-arrow">
-                                                맨뒤
-                                            </a>
-                                        </li>
-                                    </ul>
+                                <div class="pagination" style="text-align: center;">
+                                   <c:if test="${not empty paginationInfo}">
+		<ui:pagination paginationInfo = "${paginationInfo}" type="text" jsFunction="fn_search"/>
+	</c:if>
                                 </div>
                             </div>
 
                             <div class="btn_right_box">
-                                <button type="button" class="btn_write" onclick=""location.href='qnaWrite.html'"">
+                                <button type="button" class="btn_write" onclick="insu(${GOODS_NUM})">
                                     문의하기
                                 </button>
                             </div>
