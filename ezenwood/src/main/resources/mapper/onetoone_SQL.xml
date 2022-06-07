@@ -169,43 +169,5 @@ WHERE ONETOONE_MEMBER_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{M
 ]]>
 </update>
 
-
-
-<!--0607 추가함 OTO 리스트 보기  -->
-<select id="selectOTOList" parameterType="hashmap" resultType="hashmap">
-<include refid="common.pagingPre"></include>
-<![CDATA[
-SELECT 
-ROW_NUMBER() OVER (ORDER BY ONETOONE_NUM DESC) RNUM,
-ONETOONE_TITLE, 
-ONETOONE_MEMBER_NUM, 
-ONETOONE_RE_GB, 
-ONETOONE_DATE, 
-ONETOONE_NUM  
-	FROM 
-ONETOONE
-	WHERE  
-ONETOONE_DEL_GB = 'N' and ONETOONE_TYPE= 'Q'
-]]>
-<include refid="common.pagingPost"></include>
-</select>
-
-<!--0607 추가함 OTO 답변  -->
-<select id="AnswerForOTODetail" resultType="hashmap" parameterType="hashmap">
-<![CDATA[
-select 
-ONETOONE_NUM,
-ONETOONE_TITLE,
-ONETOONE_MEMBER_NUM,
-ONETOONE_TYPE,
-ONETOONE_CONTENT,
-ONETOONE_DATE,
-ONETOONE_PARENT
-from ONETOONE
-where ONETOONE_TYPE = 'A'
-AND ONETOONE_DEL_GB = 'N' and ONETOONE_PARENT=#{ONETOONE_NUM} 
-]]>
-</select>
-
-
+	
 </mapper>
