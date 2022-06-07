@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -32,11 +33,12 @@
 			<h2>아이디찾기</h2>
 		</div>
 		<!-- //member_tit -->
+		<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 		<div class="member_cont">
-			<form id="formFindId" method="post" action="../member/member_ps.php" novalidate="novalidate">
+			<form id="formFindId" method="POST" action="${contextPath}/member/idresult" novalidate="novalidate">
 				<div class="find_id_box">
 					<div class="find_id_sec">
-	<div class="find_complete_box"><p>관리자님의 아이디는 <br><strong>admin</strong> 입니다.</p></div>
+	<div class="find_complete_box"><p>고객님의 아이디는 <br><strong>${MEMBER_ID}</strong> 입니다.</p></div>
 </div>
 					<!-- //find_id_sec -->
 					<div class="btn_member_sec">
@@ -56,9 +58,6 @@
 </div>
 <!-- //content_box -->
 
-<script type="text/template" id="templateFindIdResult">
-	<div class="find_complete_box"><p><%= %> 회원님의 아이디는 <br><strong><%= %></strong> 입니다</p></div>
-</script>
             </div>
             <!-- //sub_content -->
         </div>

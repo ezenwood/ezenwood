@@ -100,24 +100,43 @@ public class LoginController {
 	}
 
 	// findIdForm
-	@RequestMapping(value = "/member/idfind")
+	@RequestMapping(value = "/member/idfind", method = RequestMethod.GET)
+	public ModelAndView findIdForm(CommandMap commandMap) throws Exception {
+		ModelAndView mv = new ModelAndView("member/login/findId");
+		return mv;
+	}
+	
+	// findIdForm기능
+	@RequestMapping(value = "/member/idfind", method = RequestMethod.POST)
 	public ModelAndView findId(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("member/login/findId");
 		return mv;
 	}
 
+
 	// findIdResult
 	@RequestMapping(value = "/member/idresult", method = RequestMethod.POST)
 	public ModelAndView findIdResult(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/member/login/resultId");
-		List<Map<String, Object>> list = loginService.findId(commandMap.getMap());
-		mv.addObject("list", list);
-		return mv;
+		ModelAndView mv = new ModelAndView();
+		Map<String, Object> list = loginService.findId(commandMap.getMap());
+		list = commandMap.getMap();
+		
+		if(list == null) {
+			mv.setViewName("/member/findId");
+			mv.addObject("message", "아이디 없음");
+			return mv;
+		}
+		else {
+			mv.setViewName("member/resultId");
+			mv.addObject("MEMBER_NAME",list);
+			mv.addObject("MEMBER_EMAIL",list);
+			return mv;
+		}
 
 	}
 
 	// findPwForm
-	@RequestMapping(value = "/member/pwfind")
+	@RequestMapping(value = "/member/pwfind", method = RequestMethod.GET)
 	public ModelAndView findPw(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("/member/login/findPw");
 		return mv;

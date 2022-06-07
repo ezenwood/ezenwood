@@ -11,19 +11,19 @@ import com.ezen.common.AbstractDAO;
 @Repository("loginDAO")
 public class LoginDAOImpl extends AbstractDAO implements LoginDAO {
 	
-	//·Î±×ÀÎ
+	//ï¿½Î±ï¿½ï¿½ï¿½
 	@Override
 	public Map<String, Object> login(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("member.selectId", map);
 	}
 	
-	//¾ÆÀÌµð Ã£±â
+	//ï¿½ï¿½ï¿½Ìµï¿½ Ã£ï¿½ï¿½
 	@Override
-	public List<Map<String, Object>> findId(Map<String, Object> map) throws Exception {
-		return (List<Map<String, Object>>) selectList("member.selectIdByEmail", map);
+	public Map<String, Object> findId(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectList("member.selectIdByEmail", map);
 	}
 
-	//ºñ¹Ð¹øÈ£ Ã£±â
+	//ï¿½ï¿½Ð¹ï¿½È£ Ã£ï¿½ï¿½
 	@Override
 	public List<Map<String, Object>> findPw(Map<String, Object> map) throws Exception {
 		return (List<Map<String, Object>>) selectList("member.selectPw", map);
