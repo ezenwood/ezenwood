@@ -20,13 +20,13 @@ public class LoginDAOImpl extends AbstractDAO implements LoginDAO {
 	//���̵� ã��
 	@Override
 	public Map<String, Object> findId(Map<String, Object> map) throws Exception {
-		return (Map<String, Object>) selectList("member.selectIdByEmail", map);
+		return (Map<String, Object>) selectOne("member.selectIdByEmail", map);
 	}
 
 	//��й�ȣ ã��
 	@Override
-	public List<Map<String, Object>> findPw(Map<String, Object> map) throws Exception {
-		return (List<Map<String, Object>>) selectList("member.selectPw", map);
+	public Map<String, Object> findPw(Map<String, Object> map) throws Exception {
+		return (Map<String, Object>) selectOne("member.selectPw", map);
 	}
 	
 	

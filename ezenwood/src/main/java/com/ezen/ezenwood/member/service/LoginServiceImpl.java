@@ -31,7 +31,7 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public List<Map<String, Object>> findPw(Map<String, Object> map) throws Exception {
+	public Map<String, Object> findPw(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return loginDAO.findPw(map);
 	}

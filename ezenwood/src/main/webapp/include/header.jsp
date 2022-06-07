@@ -77,12 +77,12 @@
 						</div>
 
 						<!--우측 메뉴-->
-						<c:set var="MEMBER_ID" value="${MEMBER_ID}" scope="session" />
+						
 						<c:choose>
-							<c:when test="${MEMBER_ID != NULL}">
+							<c:when test="${sessionScope.MEMBER_ID != NULL}">
 								<div class="top_search_mypage">
 									<ul class="top_member_box">
-										<li><a href="/ezenwood/member/signin">LOGOUT</a>
+										<li><a href="/ezenwood/member/signout">LOGOUT</a>
 										<li>
 										<li><a href="/ezenwood/mypage/main">MY PAGE</a></li>
 										<li><a href="#">CART</a></li>

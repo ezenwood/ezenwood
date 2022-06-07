@@ -35,36 +35,30 @@
 						<!-- //member_tit -->
 						<div class="member_cont">
 						<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-							<form id="formFindId" method="POST" action="${contextPath}/member/idresult"
+							<form id="formFindId" method="POST" action="${contextPath}/member/idfind"
 								novalidate="novalidate">
 								<div class="find_id_box">
 									<div class="find_id_sec">
 										<h3>회원 아이디찾기</h3>
 										<div class="login_input">
 											<div>
-												<input type="text" id="MEMBER_NAME" name="MEMBER_NAME"
-													placeholder="이름"> <input type="text" id="MEMBER_EMAIL"
+												<input type="text" id="member_name" name="MEMBER_NAME"
+													placeholder="이름"> <input type="text" id="member_email"
 													name="MEMBER_EMAIL" placeholder="가입메일주소">
 											</div>
-
-											<button type="button" class="btn_member_id"
-												onclick="location.href='/ezenwood/member/idresult'">아이디
-												찾기</button>
-
+											<input type="submit" value="아이디 찾기" onclick="${contextPath}/member/idfind">
 										</div>
-										<p class="dn js_caution_msg1">일치하는 회원정보가 없습니다. 다시 입력해 주세요.</p>
 									</div>
 									<!-- //find_id_sec -->
 									<div class="btn_member_sec">
 										<ul>
 
-											<li><button type="button"
-													class="btn_member_white js_btn_find_password"
-													onclick="location.href='/ezenwood/member/pwfind'">비밀번호
-													찾기</button></li>
-											<li><button type="button"
-													class="btn_comfirm js_btn_login"
-													onclick="location.href='/ezenwood/member/signin'">로그인하기</button></li>
+											<li><input type="button" value="비밀번호 찾기"
+												class="btn_member_white js_btn_find_password"
+												onclick="location.href='${contextPath}/member/pwfind'">
+											</li>
+											<li><button type="button" id="btnJoinMember"
+											class="btn_member_join" onclick="location.href='/ezenwood/member/signin'">로그인하기</button></li>
 
 										</ul>
 									</div>

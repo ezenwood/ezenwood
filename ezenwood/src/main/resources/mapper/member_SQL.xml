@@ -8,7 +8,8 @@
 	<!-- 로그인 -->
 	<select id="selectId" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-	SELECT MEMBER_ID,
+	SELECT MEMBER_NUM, 
+	MEMBER_ID,
 	MEMBER_PW, 
 	MEMBER_DEL_GB 
 	FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID} AND MEMBER_DEL_GB = 'N'
@@ -50,9 +51,9 @@
 	<!-- 아이디 찾기 이메일과 이름 받음 -->
 	<select id="selectIdByEmail" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-SELECT MEMBER_ID, MEMBER_NAME
+SELECT MEMBER_ID
 	FROM MEMBER
-	WHERE MEMBER_NAME = #{MEMBER_NAME} 
+	WHERE MEMBER_NAME = #{MEMBER_NAME}
 	AND MEMBER_EMAIL = #{MEMBER_EMAIL} 
 	AND MEMBER_DEL_GB = 'N'
 ]]>
@@ -61,9 +62,9 @@ SELECT MEMBER_ID, MEMBER_NAME
 
 
 	<!-- 비밀번호 찾기 -->
-	<select id="selectPw">
+	<select id="selectPw" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-SELECT  COUNT(*)
+SELECT	MEMBER_PW
 		FROM    MEMBER
 		WHERE   MEMBER_ID = #{MEMBER_ID}
 		AND     MEMBER_EMAIL = #{MEMBER_EMAIL}
