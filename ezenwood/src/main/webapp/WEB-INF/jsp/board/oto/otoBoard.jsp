@@ -1,75 +1,106 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <html>
 <head>
 <meta charset="UTF-8">
-<title>onetoone</title>
-    <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
+<title>Ïù¥Ï†† Ïö∞Îìú</title>
+<link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+	<%@include file="/include/header.jsp"%>
 	<div id="container">
-        <div id="contents">
-            <div class="sub_content">
-                <div class="content">
-                    <div class="board_zone_sec">
-                        <div class="board_zone_tit">
-                            <h2>1:1 πÆ¿«</h2>
-                        </div>
-
-                        <div class="board_zone_cont">
-                            <div class="board_zone_list">
-                                <div class="board_list_qa" align="center">
-                                    <table class="board_list_table" style="width: 100%">
-                                        <colgroup>
-                                            <col style="width: 20%" />
-                                            <!--πÆ¿« ≥Ø¬•-->
-                                            <col>
-                                            <!--¡¶∏Ò-->
-                                            <col style="width: 15%" />
-                                            <!--¿€º∫¿⁄-->
-                                            <col style="width: 15%" />
-                                            <!--πÆ¿« ªÛ≈¬-->
-                                        </colgroup>
-									<thead>
-										<tr>
-											<th>πÆ¿«≥Ø¬•</th>
-											<th>¡¶∏Ò</th>
-											<th>¿€º∫¿⁄</th>
-											<th>πÆ¿« ªÛ≈¬</th>
-										</tr>
-									</thead>
-									<tbody>
-										<c:forEach var="list" items="otoboardlist">
-											<tr>
-												<td align="center">≥Ø¬• µ•¿Ã≈Õ</td>
-												<td align="center"><a href="¡¶∏Ò µ•¿Ã≈Õ ≥—æÓø¿¥¬ ƒ⁄µÂ"> <strong>¡¶∏Ò
-															µ•¿Ã≈Õƒ⁄µÂ</strong>
-												</a></td>
-												<td align="center">∞¸∏Æ¿⁄</td>
-												<td align="center">ªÛ≈¬ ≥—æÓø¿¥¬ ƒ⁄µÂ</td>
-											</tr>
-										</c:forEach>
-									</tbody>
-								</table>
-								<!-- //board_zone_list -->
-							</div>
-							<!-- //board_zone_cont -->
+		<div id="contents">
+			<div class="sub_content">
+				<div class="content">
+					<div class="board_zone_sec">
+						<div class="board_zone_tit">
+							<h2>1:1 Î¨∏Ïùò</h2>
 						</div>
-						<!-- //board_zone_sec -->
-						<div class="pagination">∆‰¿Ã¬° ¿⁄∏Æ</div>
 
+						<div class="board_zone_cont">
+							<div class="board_zone_list">
+								<div class="board_list_qa" align="center">
+									<table class="board_list_table" style="width: 100%">
+										<colgroup>
+											<col style="width: 20%" />
+											<!--Î¨∏Ïùò ÎÇ†Ïßú-->
+											<col>
+											<!--Ï†úÎ™©-->
+											<col style="width: 15%" />
+											<!--ÏûëÏÑ±Ïûê-->
+											<col style="width: 15%" />
+											<!--Î¨∏Ïùò ÏÉÅÌÉú-->
+										</colgroup>
+										<thead>
+											<tr>
+												<th>Î¨∏ÏùòÎÇ†Ïßú</th>
+												<th>Ï†úÎ™©</th>
+												<th>ÏûëÏÑ±Ïûê</th>
+												<th>Î¨∏Ïùò ÏÉÅÌÉú</th>
+											</tr>
+										</thead>
+										<tbody>
+											<c:choose>
+												<c:when test="${fn:length(OTOListMap) > 0 }">
+													<c:forEach var="list" items="${OTOListMap}">
+														<tr>
+															<td><fmt:formatDate value="${row.ONETOONE_DATE}"
+																	type="both" dateStyle="medium" timeStyle="medium" /></td>
+															<td class="title"><a
+																href="/ezenwood/board/oto/otoBoard/${row.ONETOONE_NUM}">
+																	<strong>${row.ONETOONE_TITLE}</strong>
+															</a></td>
+															<td align="center">${row.ONETOONE_MEMBER_NUM }</td>
+															<td align="center"><c:choose>
+																	<c:when test="${row.ONETOONE_RE_GB == 'Y'}">ÎãµÎ≥Ä ÏôÑÎ£å</c:when>
+																	<c:otherwise>ÎãµÎ≥Ä ÎåÄÍ∏∞</c:otherwise>
+																</c:choose></td>
+														</tr>
+													</c:forEach>
+												</c:when>
+												<c:otherwise>
+													<tr>
+														<td colspan="15">Ï°∞ÌöåÎêú Í≤∞Í≥ºÍ∞Ä ÏóÜÏäµÎãàÎã§.</td>
+													</tr>
+												</c:otherwise>
+											</c:choose>
+										</tbody>
+									</table>
+									<!-- //board_zone_list -->
+								</div>
+								<!-- //board_zone_cont -->
+							</div>
+							<!-- //board_zone_sec -->
+							<div class="pagination">
+								<ul>
+									<li class="on"><span>1</span></li>
+									<li class="btn_page btn_page_next"><a aria-label="Next"
+										href="#"> <img src="css/img/icon_arrow_page_r.png"
+											class="img-page-arrow"> Îã§Ïùå
+									</a></li>
+									<li class="btn_page btn_page_last"><a aria-label="Last"
+										href="#"> <img src="css/img/icon_arrow_page_rr.png"
+											class="img-page-arrow"> Îß®Îí§
+									</a></li>
+								</ul>
+							</div>
+
+
+						</div>
+						<!-- //sub_content -->
 					</div>
-					<!-- //sub_content -->
+					<!-- //Î≥∏Î¨∏ ÎÅù contents -->
 				</div>
-				<!-- //∫ªπÆ ≥° contents -->
 			</div>
 		</div>
 	</div>
-    </div>
-    
+	<%@include file="/include/footer.jsp"%>
 </body>
 </html>
