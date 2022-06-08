@@ -27,7 +27,7 @@ QNA_NUM
 	FROM 
 QNA
 	WHERE  
-QNA_DEL_GB = 'N' and QNA_TYPE= 'Q'
+QNA_DEL_GB = 'N' and QNA_TYPE= 'Q' and QNA_PARENT = #{QNA_PARENT}
 ]]>
 <include refid="common.pagingPost"></include>
 </select>
@@ -53,9 +53,10 @@ AND QNA_DEL_GB = 'N' and QNA_PARENT=#{QNA_NUM}
 
 
 <select id="selectQNAForDetail" parameterType="hashmap" resultType="hashmap">
-
+<include refid="common.pagingPre"></include>
 <![CDATA[
 select 
+ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
 QNA_NUM,
 QNA_TITLE,
 QNA_WRITER,
@@ -65,10 +66,11 @@ QNA_DATE,
 QNA_PARENT
 from qna
 where qna_type = 'Q'
-AND QNA_DEL_GB = 'N' and QNA_PARENT=#{QNA_PARENT}   
+AND QNA_DEL_GB = 'N' and QNA_PARENT=#{QNA_PARENT} 
 
 
 ]]>
+<include refid="common.pagingPost"></include>
 </select>
 
 

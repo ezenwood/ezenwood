@@ -16,18 +16,22 @@ WHERE REVIEW_DEL_GB = 'N';
 </select>
  
 <select id="selectReviewList" resultType="hashmap" parameterType="hashmap">
+<include refid="common.pagingPre"></include>
 <![CDATA[
+
 SELECT 
+	ROW_NUMBER() OVER (ORDER BY REVIEW_NUM DESC) RNUM,
 	REVIEW_NUM,
 	REVIEW_TITLE,
 	REVIEW_WRITER,
-	REVIEW_DATE 
-from
+	REVIEW_DATE   
+from 
 	review 
 where REVIEW_DEL_GB = 'N' and REVIEW_PARENT=#{GOODS_NUM}
 
 
 ]]>
+<include refid="common.pagingPost"></include>
 </select>
 
 <select id="selectReviewDetail" resultType="hashmap" parameterType="hashmap">
