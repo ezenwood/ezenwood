@@ -13,7 +13,7 @@ insert into orders values(
 	SEQ_ORDERS_NUM.NEXTVAL,
 	#{GOODSNUM},
 	#{ORDERAMOUNT},
-	(select member_num from member where member_id = #{MEMBERID}),
+	(select member_num from member where member_id = #{MEMBER_ID}),
 	#{GOODSOPTION},
 	#{RECEIVERNAME},
 	#{RECEIVERPHONE},
@@ -36,7 +36,7 @@ insert into orders values(
 
 
 	<!-- 주문 내역 전체 -->
-	<select id="selectAll">
+	<select id="selectAll" parameterType="hashmap" resultType="hashmap">
 		<include refid="common.pagingPre"></include>
 <![CDATA[
 select
@@ -63,18 +63,19 @@ select
 from 
 	orders 
 where 
-	ORDERS_MEMBER_NUM = (select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBERID})
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBER_ID})
 	
 ]]>
 		<include refid="common.pagingPost"></include>
 	</select>
 
-
-
-
-
+<select id="selectorders" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+SELECT COUNT(*) FROM orders
+]]>
+</select>
 	<!-- 주문 내역 날짜별 -->
-	<select id="selectAllByDay">
+	<select id="selectAllByDay" parameterType="hashmap" resultType="hashmap">
 	<include refid="common.pagingPre"></include>
 <![CDATA[
 select
@@ -101,8 +102,8 @@ select
 from 
 	orders 
 where 
-	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBERID}) and 
-	ORDER_DATE BETWEEN #{STARTDATE} and #{ENDDATE}
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBER_ID}) and 
+	ORDER_DATE BETWEEN #{START_DATE} and #{END_DATE}
 
 ]]>
 <include refid="common.pagingPost"></include>
@@ -113,7 +114,7 @@ where
 	
 
 	<!-- 주문 내역 상태별 -->
-	<select id="selectAllByStatus">
+	<select id="selectAllByStatus" parameterType="hashmap" resultType="hashmap">
 	<include refid="common.pagingPre"></include>
 <![CDATA[
 select 
@@ -140,8 +141,8 @@ select
 from  
 	orders 
 where
-	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBERID}) and
-	ORDERS_STATUS = #{ORDERSTATUS}
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBER_ID}) and
+	ORDERS_STATUS = #{ORDER_STATUS}
 	
 ]]>
 <include refid="common.pagingPost"></include>
@@ -152,12 +153,12 @@ where
 
 
 	<!-- 주문 디테일 -->
-	<select id="selectOneByOrderNum">
+	<select id="selectOneByOrderNum" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 select * from orders
 	where
-	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBERID}) and
-	ORDERS_NUM = #{ORDERNUM}
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBER_ID}) and
+	ORDERS_NUM = #{ORDER_NUM}
 	
 	
 ]]>
@@ -175,8 +176,8 @@ update
 set 
 	ORDERS_STATUS = 'CANCLE' 
 where 
-	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBERID}) and
-	ORDERS_NUM = #{ORDERNUM}
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBER_ID}) and
+	ORDERS_NUM = #{ORDER_NUM}
 ]]>
 	</update>
 
@@ -191,7 +192,7 @@ where
 
 
 	<!-- 주문 내역 전체 -->
-	<select id="selectAllADMIN">
+	<select id="selectAllADMIN" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 select 
 	ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
@@ -223,7 +224,7 @@ from orders
 
 
 	<!-- 주문 내역 날짜별 -->
-	<select id="selectAllByDayADMIN">
+	<select id="selectAllByDayADMIN" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 select 
 	ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
@@ -249,7 +250,7 @@ select
 from 
 	orders
 where 
-	ORDERS_DATE BETWEEN #{STARTDATE} and #{ENDDATE}
+	ORDERS_DATE BETWEEN #{START_DATE} and #{END_DATE}
 
 ]]>
 	</select>
@@ -259,7 +260,7 @@ where
 
 
 	<!-- 주문 내역 아이디 -->
-	<select id="selectAllByMemberIdADMIN">
+	<select id="selectAllByMemberIdADMIN" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 select 
 	ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
@@ -285,7 +286,7 @@ select
 from 
 	orders 
 where 
-	ORDERS_MEMBER_NUM = (select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBERID}
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBER_ID}
 
 ]]>
 	</select>
@@ -295,7 +296,7 @@ where
 
 
 	<!-- 주문 내역 상태별 -->
-	<select id="selectAllByStatusADMIN">
+	<select id="selectAllByStatusADMIN" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 select 
 	ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
@@ -321,7 +322,7 @@ select
 from 
 	orders 
 where 
-	ORDERS_STATUS = #{ORDERSTATUS}
+	ORDERS_STATUS = #{ORDER_STATUS}
 	
 ]]>
 	</select>
@@ -331,7 +332,7 @@ where
 
 
 	<!-- 주문 디테일 -->
-	<select id="selectOneByOrderNumADMIN">
+	<select id="selectOneByOrderNumADMIN" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 select 
 	
@@ -357,7 +358,7 @@ select
 from  
 	orders 
 where
-	ORDERS_NUM = #{ORDERNUM}
+	ORDERS_NUM = #{ORDER_NUM}
 	
 ]]>
 	</select>
@@ -371,9 +372,9 @@ where
 update  
 	orders 
 set 
-	ORDERS_STATUS = #{ORDERSTATUS} 
+	ORDERS_STATUS = #{ORDER_STATUS} 
 where 
-	ORDERS_NUM = #{ORDERNUM}
+	ORDERS_NUM = #{ORDER_NUM}
 ]]>
 	</update>
 
@@ -396,7 +397,7 @@ set ORDERS_AMOUNT = #{},
 	ORDERS_RADD3 = #{},
 	ORDERS_TRACK = #{} 
 where 
-	ORDERS_NUM = #{ORDERNUM}
+	ORDERS_NUM = #{ORDER_NUM}
 ]]>
 	</update>
 

@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html lang="en">
+<html lang="ko">
 <head>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/ezenwood/css/mypage.css">
@@ -102,8 +102,7 @@
 
 						<div class="my_page">
 							<div class="mypage_zone_tit">
-								<h2 style="font-size: large">회원정보 변경
-									${sessionScope.MEMBER_ID}</h2>
+								<h2 style="font-size: large">회원정보 변경</h2>
 							</div>
 
 							<div class="join_base_wrap">

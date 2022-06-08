@@ -1,6 +1,9 @@
 package com.ezen.ezenwood.mypage.controller;
 
 import java.io.PrintWriter;
+
+import java.math.BigDecimal;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -10,8 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.log4j.Logger;
-import org.apache.maven.model.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -133,17 +136,56 @@ public class MyPageController {
 		return mav;
 	}
 
-	// 주문조회 & 배송조회 폼
-	@RequestMapping(value = "/order", method = RequestMethod.GET)
-	public String orderChkForm() {
-		return "mypage/order";
-	}
 
-	// 주문조회 & 배송조회
-	@RequestMapping(value = "/order", method = RequestMethod.POST)
-	public String orderChk() {
-		return "mypage/order";
+
+
+	// 주문조회 & 배송조회 리스트
+	@RequestMapping(value = "/order/{pageNum}", method = RequestMethod.GET)
+	public ModelAndView orderChkListForm(@PathVariable int pageNum, CommandMap commandMap,HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		String MEMBER_ID = (String)session.getAttribute("MEMBER_ID");
+		
+		
+		Map<String, Object> insertMap =  new HashMap<String,Object>();
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+		
+		//현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		//한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		//페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
+		
+		insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+		
+		
+		Map<String, Object> count = mypageService.ordercount(insertMap);
+		mav.addObject("count",count);
+		
+		List<Map<String,Object>> orderList = mypageService.orderList(insertMap);
+		System.out.println(orderList);
+		mav.addObject("orderList", orderList);
+		
+		int totalCount = 0;
+		
+		if(orderList.isEmpty()) {
+		
+		}else {
+			totalCount = orderList.size();
+			mav.addObject("paginationInfo", (PaginationInfo)orderList.get(0).get("paginationInfo"));
+		}
+		
+		
+		
+		mav.setViewName("/mypage/order");
+		return mav;
 	}
+	
 
 	// 취소내역 폼
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
