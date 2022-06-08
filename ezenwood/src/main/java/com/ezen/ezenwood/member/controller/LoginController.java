@@ -114,9 +114,18 @@ public class LoginController {
 		
 		//
 		Map<String, Object> map = loginService.findId(commandMap.getMap());
-
-		if (commandMap.get("MEMBER_NAME") == null || commandMap.get("MEMBER_EMAIL") == null) {
-			mav.setViewName("member/login/findPw");//jsp 적기
+		System.out.println("aaaaa : " +commandMap.get("MEMBER_NAME"));
+		//System.out.println("bbbb : " +map.get("MEMBER_NAME"));
+		System.out.println(commandMap.get("MEMBER_EMAIL"));
+		//System.out.println(map.get("MEMBER_EMAIL"));
+		if (commandMap.get("MEMBER_NAME") == "" || commandMap.get("MEMBER_EMAIL") == "") {
+			
+			if(map != null) {
+				if(!(commandMap.get("MEMBER_NAME").equals(map.get("MEMBER_NAME"))) 
+						|| !(commandMap.get("MEMBER_EMAIL").equals(map.get("MEMBER_EMAIL")))) {
+					mav.setViewName("member/login/findId");//jsp 적기
+				}
+			}
 		} else {
 			mav.addObject("MEMBER_ID", map.get("MEMBER_ID"));
 			mav.setViewName("member/login/resultId");
@@ -137,7 +146,7 @@ public class LoginController {
 
 		Map<String, Object> map = loginService.findPw(commandMap.getMap());
 
-		if (commandMap.get("MEMBER_ID") == null) {
+		if (commandMap.get("MEMBER_ID") != "MEMBER_ID") {
 			mav.setViewName("member/login/findPw");
 		} else {
 			mav.addObject("MEMBER_PW", map.get("MEMBER_PW"));

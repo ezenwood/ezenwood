@@ -58,18 +58,22 @@ OR onetoone_TITLE LIKE '%'\\#{onetoone_TITLE}\\'%'
 
 <!-- 고객OTO본인꺼만 확인 -->
 <select id="selectClientMine" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"></include>
 <![CDATA[
 
 select 
+ROW_NUMBER() OVER (ORDER BY ONETOONE_NUM DESC) RNUM,
 ONETOONE_NUM,
 ONETOONE_TITLE,
 ONETOONE_MEMBER_NUM,
 ONETOONE_CONTENT,
-ONETOONE_DATE
+ONETOONE_DATE,
+ONETOONE_RE_GB
 from ONETOONE
-where ONETOONE_MEMBER_NUM =#{ONETOONE_MEMBER_NUM};\
+where ONETOONE_MEMBER_NUM =(select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBER_ID})
 
 ]]>
+<include refid="common.pagingPost"></include>
 </select>
 
 <!-- 고객 상세페이지 -->
