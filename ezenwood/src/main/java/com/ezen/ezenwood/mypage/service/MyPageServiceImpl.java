@@ -35,7 +35,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public List<Map<String, Object>> orderList(Map<String, Object> map) throws Exception {
+	public List<Map<String,Object>> orderList(Map<String, Object> map) throws Exception {
 		return mypageDAO.orderList(map);
 	}
 
@@ -62,6 +62,11 @@ public class MyPageServiceImpl implements MyPageService{
 	@Override
 	public List<Map<String, Object>> memberOTOList(Map<String, Object> map) throws Exception {
 		return mypageDAO.memberOTOList(map);
+	}
+
+	@Override
+	public Map<String, Object> ordercount(Map<String, Object> map) {
+		return mypageDAO.ordercount(map);
 	}
 
 }

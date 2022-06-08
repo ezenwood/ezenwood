@@ -54,6 +54,11 @@ public class MyPageDAOImle extends AbstractDAO implements MyPageDAO{
 	public List<Map<String, Object>> memberOTOList(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("onetoone.selectClientMine", map);
 	}
+
+	@Override
+	public Map<String, Object> ordercount(Map<String, Object> map) {
+		return (Map<String, Object>) selectOne("orders.selectorders");
+	}
 	
 	
 

@@ -19,6 +19,9 @@ public interface MyPageService {
 	//orderList
 	public List<Map<String,Object>> orderList(Map<String,Object> map) throws Exception;
 	
+	//orderlistcount
+	public Map<String, Object> ordercount(Map<String, Object> map);
+	
 	//배송조회
 	public Map<String, Object> deliveryTracking(Map<String,Object> map) throws Exception;
 	
