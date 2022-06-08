@@ -27,7 +27,9 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int insertOTO(Map<String, Object> insertMap, HttpServletRequest request) {
 
-		return boardDAO.insertOTO(insertMap);
+		int checkNum = boardDAO.insertOTO(insertMap);
+		
+		return checkNum;
 	}
 
 	@Override
@@ -49,7 +51,13 @@ public class BoardServiceImpl implements BoardService {
 		return resultMap;
 	}
 	
+	
 	//FQ
+	@Override
+	public List<Map<String, Object>> FQList(Map<String, Object> insertMap) {
+		// TODO Auto-generated method stub
+		return boardDAO.FQList(insertMap);
+	}
 	
 	//NOTICE
 
