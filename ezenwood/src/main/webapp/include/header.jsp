@@ -2,36 +2,34 @@
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
+
 <!DOCTYPE html>
 <html lang="ko">
-
+<style>
+#logo_kor {
+	margin: 0 auto;
+	width: 200px;
+	height: 44px;
+}
+</style>
 <head>
-    <meta charset="UTF-8">
-    <title>test_header</title>
-   
-    <link href="/ezenwood/css/reset2.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/common2.css" type="text/css" rel="stylesheet">
-   
-    <script>
-        function home_url() {
-            location.href = '/';
-        }
+<meta charset="UTF-8">
+<title>test_header</title>
 
-    </script>
+<link href="/ezenwood/css/reset2.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/common2.css" type="text/css" rel="stylesheet">
 
-    <script>
-        $(window).scroll(function() {
-            if ($(window).scrollTop() >= 143) {
-                $('#header_wrap').addClass('headerFix');
-            } else {
-                $('#header_wrap').removeClass('headerFix');
-            }
-        });
+<script>
+	function home_url() {
+		location.href = '/ezenwood/main';
+	}
+</script>
 
-    </script>
+
 </head>
 
 <body>
+
     <div id="wrap">
         <div id="header_wrap">
             <div id="header">
@@ -128,7 +126,7 @@
                                 <a href="/ezenwood/member/signout">LOGOUT</a>
                             </li>
                             <li>
-                                <a href="#">MY PAGE</a>
+                                <a href="/ezenwood/mypage/main">MY PAGE</a>
                             </li>
                            <li>
                                 <a href="#">CART</a>
@@ -152,7 +150,7 @@
 
         </div>
     </div>
+
 </body>
 
 </html>
-	

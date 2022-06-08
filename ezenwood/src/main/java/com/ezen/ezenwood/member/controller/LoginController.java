@@ -30,8 +30,8 @@ public class LoginController {
 	@RequestMapping(value = "/member/signin")
 	public String loginForm(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-		String getId = (String) session.getAttribute("MEMBER_ID");
-		if (getId == null) {
+		String getnum = (String) session.getAttribute("MEMBER_NUM");
+		if (getnum == null) {
 			return "/member/login/signin";
 		}
 		return "main";
@@ -100,35 +100,50 @@ public class LoginController {
 	}
 
 	// findIdForm
-	@RequestMapping(value = "/member/idfind")
-	public ModelAndView findId(CommandMap commandMap) throws Exception {
+	@RequestMapping(value = "/member/idfind", method = RequestMethod.GET)
+	public ModelAndView findIdForm(CommandMap commandMap) throws Exception {
 		ModelAndView mv = new ModelAndView("member/login/findId");
 		return mv;
 	}
 
-	// findIdResult
-	@RequestMapping(value = "/member/idresult", method = RequestMethod.POST)
-	public ModelAndView findIdResult(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/member/login/resultId");
-		List<Map<String, Object>> list = loginService.findId(commandMap.getMap());
-		mv.addObject("list", list);
-		return mv;
+	// findIdForm기능
+	@RequestMapping(value = "/member/idfind", method = RequestMethod.POST)
+	public ModelAndView findId(CommandMap commandMap) throws Exception {
 
+		ModelAndView mav = new ModelAndView();
+		
+		//
+		Map<String, Object> map = loginService.findId(commandMap.getMap());
+
+		if (commandMap.get("MEMBER_NAME") == null || commandMap.get("MEMBER_EMAIL") == null) {
+			mav.setViewName("member/login/findPw");//jsp 적기
+		} else {
+			mav.addObject("MEMBER_ID", map.get("MEMBER_ID"));
+			mav.setViewName("member/login/resultId");
+		}
+		return mav;
 	}
 
 	// findPwForm
-	@RequestMapping(value = "/member/pwfind")
-	public ModelAndView findPw(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/member/login/findPw");
-		return mv;
+	@RequestMapping(value = "/member/pwfind", method = RequestMethod.GET)
+	public ModelAndView findPwForm(CommandMap commandMap) throws Exception {
+		ModelAndView mav = new ModelAndView("/member/login/findPw");
+		return mav;
 	}
 
-	// findPwResult
-	@RequestMapping(value = "/member/pwresult", method = RequestMethod.POST)
-	public ModelAndView findPwResult(CommandMap commandMap) throws Exception {
-		ModelAndView mv = new ModelAndView("/member/login/resultPw");
-		List<Map<String, Object>> list = loginService.findPw(commandMap.getMap());
-		mv.addObject("list", list);
-		return mv;
+	@RequestMapping(value = "/member/pwfind", method = RequestMethod.POST)
+	public ModelAndView findPw(CommandMap commandMap) throws Exception {
+		ModelAndView mav = new ModelAndView();
+
+		Map<String, Object> map = loginService.findPw(commandMap.getMap());
+
+		if (commandMap.get("MEMBER_ID") == null) {
+			mav.setViewName("member/login/findPw");
+		} else {
+			mav.addObject("MEMBER_PW", map.get("MEMBER_PW"));
+			mav.setViewName("member/login/resultPw");
+		}
+		return mav;
 	}
+
 }
