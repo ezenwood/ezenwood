@@ -129,7 +129,7 @@
                                 <a href="/ezenwood/mypage/main">MY PAGE</a>
                             </li>
                            <li>
-                                <a href="#">CART</a>
+                                <a href="/ezenwood/cart">CART</a>
                             </li>
                         
                         
