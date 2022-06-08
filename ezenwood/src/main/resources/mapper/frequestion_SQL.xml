@@ -16,7 +16,7 @@ question_content
 FROM
 question
 where
-question_deL_gb='N';
+question_deL_gb='N'
 ]]>
 <include refid="common.pagingPost"/> 
 </select>

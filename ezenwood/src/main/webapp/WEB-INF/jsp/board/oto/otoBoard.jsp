@@ -73,26 +73,15 @@
 											</c:choose>
 										</tbody>
 									</table>
-									<!-- //board_zone_list -->
 								</div>
-								<!-- //board_zone_cont -->
 							</div>
-							<!-- //board_zone_sec -->
-							<div class="pagination">
-								<ul>
-									<li class="on"><span>1</span></li>
-									<li class="btn_page btn_page_next"><a aria-label="Next"
-										href="#"> <img src="css/img/icon_arrow_page_r.png"
-											class="img-page-arrow"> 다음
-									</a></li>
-									<li class="btn_page btn_page_last"><a aria-label="Last"
-										href="#"> <img src="css/img/icon_arrow_page_rr.png"
-											class="img-page-arrow"> 맨뒤
-									</a></li>
-								</ul>
-							</div>
-
-
+							<!-- //board_zone_list -->
+							<div class="btn_right_box">
+                                <button type="button" class="btn_write" onclick="location.href='http://localhost:9001/ezenwood/board/oto/otoWrite'">
+                                    문의하기
+                                </button>
+                            </div>
+                            
 						</div>
 						<!-- //sub_content -->
 					</div>
