@@ -11,8 +11,47 @@
     <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
      <link href="/ezenwood/css/order.css" type="text/css" rel="stylesheet">
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+function cartDelete(){
+    var checked = $("td input[type=checkbox]:checked");
+	var aaa=$($("td input[type=checkbox]:checked")[0]).siblings(".cartinsu")[0].value;
+    for(let i = 1 ; i<checked.length; i++){
+		aaa+=","+$($("td input[type=checkbox]:checked")[i]).siblings(".cartinsu")[0].value;
+      
+    }
+    
+    var obj = {"cartDeleteList" : aaa};
+    
+    $.ajax({
+  	  url: "/ezenwood/cartDelete",
+  	  type: "post",
+  	  data: JSON.stringify(obj),
+  	  dataType: "json",
+  	  contentType: "application/json",
+  	  success: function(data){
+  		  if(data ==1){
+  	            location.reload();
+  	          }else{
+  	        	location.reload();
+  	          }
+  	  }
+    
+    });
+    
+    
+
+  }
+
+</script>
   <script>
         $(document).ready(function(){
+        	
+        	
+        	
+        	
+        	
+        	
+        	
 
             $("#allcheck").on("change",function(){
                 if (this.checked){
@@ -149,23 +188,25 @@
                                 <th>상품/옵션 정보</th>
                                 <th>수량</th>
                                 <th>상품금액</th>  
-                                <th>합계금액</th>
                                 <th>배송비</th>
+                                <th>합계금액</th>
                             </tr>
                             </thead>
                             <tbody>
 
+                            <c:forEach items="${cartListMap }" var="cartMap" >
                             <tr>
                                 <td class="td_chk">
                                     
                                         <input type="checkbox" id="cartSno1_17181" name="cartSno[]" value="17181">
+                                        <input type="hidden" class="cartinsu" value="${cartMap.BASKET_NUM }"  >
                                         <label for="cartSno1_17181" class="check_s on"></label>
                                    
                                 </td>
                                 <td class="td_left">
                                     <div class="pick_add_cont">
                                         <span class="pick_add_img">
-                                            <a href="../goods/goods_view.php?goodsNo=551"><img src="/ezenwood/resource/image/pet1.jpg" width="400" height="300" alt="pet1" title="pet1" class="middle"></a>
+                                            <a href="/ezenwood/goods?idx=${cartMap.goodsMap.GOODS_NUM }"><img src="/ezenwood/resource/image/${cartMap.subImage }" width="400" height="300" alt="pet1" title="pet1" class="middle"></a>
                                         </span>
                                     </div>
                                     <!-- //pick_add_cont -->
@@ -175,16 +216,18 @@
                                 </td>
                                 <td class="td_order_amount">
                                     <div class="order_goods_num">
-                                        <strong>1개</strong>
+                                        <strong>${cartMap.BASKET_GOODS_AMOUNT }개</strong>
                     
                                     </div>
                                 </td>
-                                <td class="td_priceP"><strong>29000</strong></td>
+                                <td class="td_priceP"><strong>${cartMap.goodsMap.GOODS_PRICE * cartMap.BASKET_GOODS_AMOUNT }</strong></td>
                                
-                                <td class="td_priceD"><strong>1000</strong></td>
+                                <td class="td_priceD"><strong>${cartMap.goodsMap.GOODS_DCOST}</strong></td>
                           
-                                <td class="td_priceT"><strong>30000</strong></td>
+                                <td class="td_priceT"><strong>${cartMap.goodsMap.GOODS_PRICE * cartMap.BASKET_GOODS_AMOUNT + cartMap.goodsMap.GOODS_DCOST }</strong></td>
                             </tr>
+                            
+                            </c:forEach>
 
                             </tbody>
 
@@ -231,7 +274,7 @@
             <div class="btn_order_box" style="text-align:center ">
                
                 <span class="btn_center_box">
-                   
+                   <button type="button" class="btn_order_whole_buy" onclick="cartDelete()">상품 삭제</button>
                     <button type="button" class="btn_order_whole_buy" onclick="gd_order_all();">상품 주문</button>
                 </span>
             </div>
