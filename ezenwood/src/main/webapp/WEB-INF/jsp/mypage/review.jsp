@@ -1,8 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+	function fn_search(pageNo) {
+		var comSubmit = new ComSubmit();
+		comSubmit.setUrl("<c:url value='/mypage/oto/{pageNum}'/>");
+		comSubmit.addParam("currentPageNo", pageNo);
+		comSubmit.submit();
+	}
+</script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/ezenwood/css/mypage.css">
 <link rel="stylesheet" href="/ezenwood/css/layout.css">
@@ -12,7 +21,7 @@
 <link rel="stylesheet" href="/ezenwood/css/common.css">
 <title>review2</title>
 </head>
-s
+
 <body>
 	<%@include file="/include/header.jsp"%>
 	<div id="container">
@@ -20,8 +29,8 @@ s
 			<!-- 본문  -->
 			<div class="location_wrap">
 				<div class="location_cont">
-					<em> <a href="/ezenwood/mypage/main" class="local_home">Home</a> &gt;마이페이지&gt;게시판
-						관리&gt;1:1문의
+					<em> <a href="/ezenwood/mypage/main" class="local_home">Home</a>
+						&gt;마이페이지&gt;게시판 관리&gt;1:1문의
 					</em>
 				</div>
 			</div>
@@ -30,13 +39,7 @@ s
 				<div class="side_cont">
 					<%@include file="/include/left.jsp"%>
 					<!--sub_menu_box -->
-					<script type="text/javascript">
-						//메뉴선택
-						$(
-								'sub_menu_mypage li> a[href*="'
-										+ document.location.pathname + '"]')
-								.addClass('active');
-					</script>
+
 				</div>
 				<!-- side_cont-->
 
@@ -56,45 +59,41 @@ s
 								<col>
 								<col style="width: 35%">
 								<col style="width: 12%">
-								<col style="width: 7%">
+
 								<col style="width: 15%">
-								<col style="width: 6%">
+
 								<!--확인/리뷰 -->
 							</colgroup>
 							<thead>
 								<tr>
 									<th>번호</th>
-									<th>이미지</th>
+
 									<th>제목</th>
 									<th>날짜</th>
 									<th>작성자</th>
-									<th>조회</th>
+
 								</tr>
 							</thead>
-							<tbody>
-								<tr data-sno="${review_num}" data-auth="y" style="height: 10px">
-									<td>"${review_num}"</td>
-									<td>
-										<!-- 이미지-->
-										<div class="board_img">
-											<a
-												href="jsvascript:gd_btn_view('goodsreview','${review_num}','y')">
-												<img src="/mypage/board/upload/review/${image_std}"
-												width="105" height="70" class="js_image_load">
-											</a>
-										</div>
-									</td>
-									<td class="board_tit">
-										<!-- 제목--> <a
-										href="jsvascript:gd_btn_view('goodsreview','${review_num}','y'">
-											<strong>${review_title}</strong>
-									</a>
-									</td>
-									<td>${review_date}</td>
-									<td>${review_writer}</td>
-									<td>0</td>
-								</tr>
-							</tbody>
+							<c:forEach items="${list}" var="review">
+								<tbody>
+
+									<tr data-sno="${review.REVIEW_NUM}" data-auth="y"
+										style="height: 10px">
+										<td>"${review.REVIEW_NUM}"</td>
+
+										<td class="board_tit">
+											<!-- 제목--> <a
+											href="jsvascript:gd_btn_view('goodsreview','${review.REVIEW_NUM}','y'">
+												<strong>${review.REVIEW_TITLE}</strong>
+										</a>
+										</td>
+										<td>${review.REVIEW_DATE}</td>
+										<td>${review.REVIEW_WRITER}</td>
+
+									</tr>
+
+								</tbody>
+							</c:forEach>
 						</table>
 					</div>
 				</div>

@@ -1,7 +1,9 @@
 package com.ezen.ezenwood.mypage.controller;
 
 import java.io.PrintWriter;
+
 import java.math.BigDecimal;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -198,39 +200,141 @@ public class MyPageController {
 	}
 
 	// 리뷰리스트 폼
-	@RequestMapping(value = "/review", method = RequestMethod.GET)
-	public void myPageReviewForm() {
+	@RequestMapping(value = "/review/{pageNum}", method = RequestMethod.GET)
+public ModelAndView myPageReviewForm(@PathVariable int pageNum, CommandMap commandMap,HttpServletRequest request) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		HttpSession session = request.getSession();
+	      
+	      String MEMBER_ID = (String)session.getAttribute("MEMBER_ID");
+	      
+	      
+	      Map<String, Object> insertMap =  new HashMap<String,Object>();
+	      
+	      PaginationInfo paginationInfo = new PaginationInfo();
+	      
+	      //현재 페이지 번호
+	      paginationInfo.setCurrentPageNo(pageNum);
+	      //한 페이지에 게시되는 게시물 건수
+	      paginationInfo.setRecordCountPerPage(9);
+	      //페이징 리스트의 사이즈
+	      paginationInfo.setPageSize(5);
+	      
+	      insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+	      insertMap.put("END", paginationInfo.getLastRecordIndex());
+	      insertMap.put("MEMBER_ID", MEMBER_ID);
 
+
+		
+		List<Map<String, Object>> list = mypageService.memberReivewList(insertMap);
+		mv.addObject("list", list);
+		
+		 int totalCount = 0;
+	      
+	      if(list.isEmpty()) {
+	      
+	      }else {
+	         totalCount = list.size();
+	         mv.addObject("paginationInfo", (PaginationInfo)list.get(0).get("paginationInfo"));
+	      }
+
+		mv.setViewName("/mypage/review");
+		return mv;
 	}
 
-	// 리뷰리스트
-	@RequestMapping(value = "/review", method = RequestMethod.POST)
-	public void myPageReview() {
+	
 
-	}
+
 
 	// 큐엔에이리스트 폼
 	@RequestMapping(value = "/qna", method = RequestMethod.GET)
-	public void myPageQnaForm() {
+public ModelAndView myPageQNAForm(@PathVariable int pageNum, CommandMap commandMap,HttpServletRequest request) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		 HttpSession session = request.getSession();
+	      
+	      String MEMBER_ID = (String)session.getAttribute("MEMBER_ID");
+	      
+	      
+	      Map<String, Object> insertMap =  new HashMap<String,Object>();
+	      
+	      PaginationInfo paginationInfo = new PaginationInfo();
+	      
+	      //현재 페이지 번호
+	      paginationInfo.setCurrentPageNo(pageNum);
+	      //한 페이지에 게시되는 게시물 건수
+	      paginationInfo.setRecordCountPerPage(9);
+	      //페이징 리스트의 사이즈
+	      paginationInfo.setPageSize(5);
+	      
+	      insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+	      insertMap.put("END", paginationInfo.getLastRecordIndex());
+	      insertMap.put("MEMBER_ID", MEMBER_ID);
 
+
+		
+		List<Map<String, Object>> list = mypageService.memberQNAList(insertMap);
+		mv.addObject("list", list);
+		
+		 int totalCount = 0;
+	      
+	      if(list.isEmpty()) {
+	      
+	      }else {
+	         totalCount = list.size();
+	         mv.addObject("paginationInfo", (PaginationInfo)list.get(0).get("paginationInfo"));
+	      }
+
+		mv.setViewName("/mypage/qna");
+		return mv;
 	}
 
-	// 큐엔에이리스트
-	@RequestMapping(value = "/qna", method = RequestMethod.POST)
-	public void myPageQna() {
 
-	}
 
 	// 1대1문의리스트 폼
-	@RequestMapping(value = "/oto", method = RequestMethod.GET)
-	public void myPageOtoForm() {
+	@RequestMapping(value = "/oto/{pageNum}", method = RequestMethod.GET)
+	public ModelAndView myPageOtOForm(@PathVariable int pageNum, CommandMap commandMap,HttpServletRequest request) throws Exception {
+		
+		ModelAndView mv = new ModelAndView();
+		 HttpSession session = request.getSession();
+	      
+	      String MEMBER_ID = (String)session.getAttribute("MEMBER_ID");
+	      
+	      
+	      Map<String, Object> insertMap =  new HashMap<String,Object>();
+	      
+	      PaginationInfo paginationInfo = new PaginationInfo();
+	      
+	      //현재 페이지 번호
+	      paginationInfo.setCurrentPageNo(pageNum);
+	      //한 페이지에 게시되는 게시물 건수
+	      paginationInfo.setRecordCountPerPage(9);
+	      //페이징 리스트의 사이즈
+	      paginationInfo.setPageSize(5);
+	      
+	      insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+	      insertMap.put("END", paginationInfo.getLastRecordIndex());
+	      insertMap.put("MEMBER_ID", MEMBER_ID);
 
+
+		
+		List<Map<String, Object>> list = mypageService.memberOTOList(insertMap);
+		mv.addObject("list", list);
+		
+		 int totalCount = 0;
+	      
+	      if(list.isEmpty()) {
+	      
+	      }else {
+	         totalCount = list.size();
+	         mv.addObject("paginationInfo", (PaginationInfo)list.get(0).get("paginationInfo"));
+	      }
+
+		mv.setViewName("/mypage/oto");
+		return mv;
 	}
-
-	// 1대1문의리스트
-	@RequestMapping(value = "/oto", method = RequestMethod.POST)
-	public void myPageOto() {
-
-	}
+	
+	
+	
 
 }

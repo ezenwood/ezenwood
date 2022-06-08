@@ -90,10 +90,10 @@
                                             <a href="#">NOTICE</a>
                                         </li>
                                         <li>
-                                            <a href="#">1:1</a>
+                                            <a href="/ezenwood/board/oto">1:1 문의</a>
                                         </li>
                                         <li>
-                                            <a href="#">QNA</a>
+                                            <a href="/ezenwood/board/fq">자주 묻는 질문</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -129,7 +129,7 @@
                                 <a href="/ezenwood/mypage/main">MY PAGE</a>
                             </li>
                            <li>
-                                <a href="#">CART</a>
+                                <a href="/ezenwood/cart">CART</a>
                             </li>
                         
                         

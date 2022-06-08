@@ -32,11 +32,14 @@ public class BoardDAOImpl extends AbstractDAO implements BoardDAO{
 		// TODO Auto-generated method stub
 		return (Map<String, Object>) selectOne("onetoone.AnswerForOTODetail", insertMap);
 	}
-
-	
-	
 	
 	//FQ
+	
+	@Override
+	public List<Map<String, Object>> FQList(Map<String, Object> insertMap) {
+		// TODO Auto-generated method stub
+		return selectList("frequestion.frequestionList", insertMap);
+	}
 	
 	//NOTICE
 

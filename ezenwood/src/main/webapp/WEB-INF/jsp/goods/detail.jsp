@@ -6,6 +6,42 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+<script type="text/javascript">
+$(document).ready(function(){
+
+    $("#cartButton").click(function(){
+
+      var GOODS_NUM = '${GOODS_MAP.GOODS_NUM}';
+
+      var GOODS_AMOUNT = $("#option_box1_quantity")[0].value;
+	var obj = {"BASKET_GOODS_NUM": GOODS_NUM, "BASKET_GOODS_AMOUNT": GOODS_AMOUNT };
+     
+      $.ajax({
+    	  url: "/ezenwood/cart",
+    	  type: "post",
+    	  data: JSON.stringify(obj),
+    	  dataType: "json",
+    	  contentType: "application/json",
+    	  success: function(data){
+    		  if(data ==1){
+    	            alert("장바구니 추가 성공");
+    	          }else{
+    	            alert("fail");
+    	          }
+    	  }
+      
+      });
+
+
+      
+
+      });
+
+
+  });
+
+</script>
 <title>Insert title here</title>
     <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/goods_detail.css" type="text/css" rel="stylesheet">
@@ -197,7 +233,7 @@
                                     <div class="ec-base-button">
                                         <a href="#none" class="first dj-btn-1  wwwbuy" onclick="product_submit(1, '#', this)">buy now</a>
 
-                                        <a href="#none" class="dj-btn-1-2  wwwcart" onclick="product_submit(2, '#', this)">add cart</a>
+                                        <a href="#none" id="cartButton" class="dj-btn-1-2  wwwcart" onclick="product_submit(2, '#', this)">add cart</a>
                                         <span class="dj-btn-1-2 displaynone wwwsoldout">SOLD OUT</span>
 
                                     </div>
