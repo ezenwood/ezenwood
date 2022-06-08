@@ -1,8 +1,19 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script>
+   function fn_search(pageNo) {
+      var comSubmit = new ComSubmit();
+      comSubmit.setUrl("<c:url value='/mypage/oto/{pageNum}'/>");
+      comSubmit.addParam("currentPageNo", pageNo);
+      comSubmit.submit();
+   }
+</script>
+
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/ezenwood/css/mypage.css">
 <link rel="stylesheet" href="/ezenwood/css/layout.css">
@@ -28,14 +39,7 @@
 			<div class="sub_content">
 				<div class="side_cont">
 					<%@include file="/include/left.jsp"%>
-					<!--sub_menu_box -->
-					<script type="text/javascript">
-						//메뉴선택
-						$(
-								'sub_menu_mypage li> a[href*="'
-										+ document.location.pathname + '"]')
-								.addClass('active');
-					</script>
+					
 				</div>
 				<!-- side_cont-->
 
@@ -65,14 +69,16 @@
 									<th>문의상태</th>
 								</tr>
 							</thead>
+							<c:forEach items="${list}" var="oto">
 							<tbody>
 								<tr>
-									<td>"${oto_date}"</td>
-									<td><a href="#"> "${onetoone_title}" </a></td>
-									<td>"${onetoone_writer}"</td>
-									<td>"${onetoone_re_gb}"</td>
+									<td>${oto.ONETOONE_DATE}</td>
+									<td><a href="#"> ${oto.ONETOONE_TITLE} </a></td>
+									<td>${oto.ONETOONE_MEMBER_NUM}</td>
+									<td>${oto.ONETOONE_RE_GB}</td>
 								</tr>
 							</tbody>
+							</c:forEach>
 						</table>
 					</div>
 				</div>
