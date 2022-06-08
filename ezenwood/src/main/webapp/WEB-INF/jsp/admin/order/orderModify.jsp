@@ -66,6 +66,10 @@
 </script>
 </head>
 <body>
+<%@include file ="/include/admin_header.jsp" %>
+<%@include file ="/include/admin_left.jsp" %>
+        <div id="wrapper">
+        <div id="page-wrapper" style="min-height: 703px;">
     <div class="row" style="padding-left:15px;width:900px;">    
 	<h1 class="page-header">주문수정</h1>
 </div>
@@ -173,6 +177,8 @@
                    
                     </div>
 	</div>
+</div>
+</div>
 </div>
 </body>
 </html>

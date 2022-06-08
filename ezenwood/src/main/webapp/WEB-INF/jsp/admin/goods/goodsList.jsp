@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -8,17 +8,19 @@
     <link href="/ezenwood/css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
 </head>
 <body>
+<%@include file ="/include/admin_header.jsp" %>
+<%@include file ="/include/admin_left.jsp" %>
         <div id="wrapper">
         <div id="page-wrapper" style="min-height: 703px;">
        		
-            <!-- ¸ÞÀÎcontainer-->
+            <!-- ë©”ì¸container-->
            	 
 <div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">»óÇ°¸ñ·Ï</h1>
+	<h1 class="page-header">ìƒí’ˆëª©ë¡</h1>
 </div>
 <div class="panel panel-default">
                         <div class="panel-heading">
-                            <i class="fa fa-clock-o fa-fw"></i> »óÇ°¸ñ·ÏÆäÀÌÁö´Â °Ë»ö,¼öÁ¤,»èÁ¦ ±â´É ÆäÀÌÁöÀÔ´Ï´Ù.
+                            <i class="fa fa-clock-o fa-fw"></i> ìƒí’ˆëª©ë¡íŽ˜ì´ì§€ëŠ” ê²€ìƒ‰,ìˆ˜ì •,ì‚­ì œ ê¸°ëŠ¥ íŽ˜ì´ì§€ìž…ë‹ˆë‹¤.
                         </div>
                         <!-- /.panel-heading -->
                         <div class="panel-body">
@@ -27,9 +29,9 @@
 				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						<div class="col-sm-6">
-							<a href="/pet/admin/goodsadminList.dog?searchNum=0&amp;isSearch="><button type="button" class="btn btn-outline btn-default">ÀüÃ¼</button></a>
+							<a href="/pet/admin/goodsadminList.dog?searchNum=0&amp;isSearch="><button type="button" class="btn btn-outline btn-default">ì „ì²´</button></a>
 							<select class="form-control" name="select" onchange="window.open(value,'_self');">
-								<option value="">--Ä«Å×°í¸®--</option>
+								<option value="">--ì¹´í…Œê³ ë¦¬--</option>
 								<option value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=0">TABLE</option>
 								<option value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=1">CHAIR</option>
 								<option value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=2">SOFA</option>
@@ -38,7 +40,7 @@
 							</select>						
 						</div>
 						<div class="col-sm-6" style="text-align:right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">ÃÑ »óÇ° µî·Ï¼ö : 2</div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">ì´ ìƒí’ˆ ë“±ë¡ìˆ˜ : 2</div>
 						</div>
 						
 					</div>
@@ -47,26 +49,26 @@
 							<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
 								<thead>
 									<tr role="row">
-										<th style="width: 6%; text-align:center;">¹øÈ£</th>
-										<th style="width: 8%; text-align:center;">»óÇ°»çÁø</th>
-										<th style="width: 8%; text-align:center;">Ä«Å×°í¸®</th>				
-										<th style="width: 32%; text-align:center;">»óÇ°¸í</th>
-										<th style="width: 10%; text-align:center;">°¡°Ý</th>
-										<th style="width: 6%; text-align:center;">¼ö·®</th>
-										<th style="width: 10%; text-align:center;">µî·ÏÀÏÀÚ</th>
+										<th style="width: 6%; text-align:center;">ë²ˆí˜¸</th>
+										<th style="width: 8%; text-align:center;">ìƒí’ˆì‚¬ì§„</th>
+										<th style="width: 8%; text-align:center;">ì¹´í…Œê³ ë¦¬</th>				
+										<th style="width: 32%; text-align:center;">ìƒí’ˆëª…</th>
+										<th style="width: 10%; text-align:center;">ê°€ê²©</th>
+										<th style="width: 6%; text-align:center;">ìˆ˜ëŸ‰</th>
+										<th style="width: 10%; text-align:center;">ë“±ë¡ì¼ìž</th>
 									</tr>
 								</thead>
 								<tbody>
 										<tr>
 										<td>1</td>
                                         <td>   
-                                        <img src="image/°­¾ÆÁö1.jpg" alt="Missing Image">
+                                        <img src="/ezenwood/resource/image/pet1.jpg" alt="Missing Image">
                                         </td>
                                         <td>
                                         TABLE
                                         </td>
                                         <td>
-                                        À§Æ²Å×ÀÌºí
+                                        ìœ„í‹€í…Œì´ë¸”
                                         </td>
                                         <td>
                                         19,900
@@ -82,13 +84,13 @@
 									  	<tr>
 										<td>2</td>
                                         <td>   
-                                        <img src="image/°­¾ÆÁö1.jpg" alt="Missing Image">
+                                        <img src="/ezenwood/resource/image/pet1.jpg" alt="Missing Image">
                                         </td>
                                         <td>
                                         SOFA
                                         </td>
                                         <td>
-                                        À§Æ²¼ÒÆÄ
+                                        ìœ„í‹€ì†ŒíŒŒ
                                         </td>
                                         <td>
                                         19,800
@@ -109,11 +111,11 @@
 								<div id="dataTables-example_filter" class="dataTables_filter">
 									<form action="">
 									<select class="form-control" name="searchNum" id="searchNum">
-										<option value="0">»óÇ° Á¦¸ñ</option>
+										<option value="0">ìƒí’ˆ ì œëª©</option>
 									</select>
 										<input class="form-control" type="text" name="isSearch" id="isSearch">
 										<span>
-										<button type="submit" class="btn btn-default">°Ë»ö</button>
+										<button type="submit" class="btn btn-default">ê²€ìƒ‰</button>
 										</span>
 									</form>
 								</div>							

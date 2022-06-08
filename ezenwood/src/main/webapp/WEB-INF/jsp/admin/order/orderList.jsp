@@ -1,5 +1,8 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -25,13 +28,17 @@
 </style>
 </head>
 <body>
+<%@include file ="/include/admin_header.jsp" %>
+<%@include file ="/include/admin_left.jsp" %>
+        <div id="wrapper">
+        <div id="page-wrapper" style="min-height: 703px;">
     <div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">ÁÖ¹®¸ñ·Ï</h1>
+	<h1 class="page-header">ì£¼ë¬¸ëª©ë¡</h1>
 </div>
 <div class="row">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-                         ÁÖ¹®¸ñ·ÏÆäÀÌÁö °Ë»ö, ¼öÁ¤, »èÁ¦ ±â´ÉÇÏ´Â ÆäÀÌÁöÀÔ´Ï´Ù.
+                         ì£¼ë¬¸ëª©ë¡íŽ˜ì´ì§€ ê²€ìƒ‰, ìˆ˜ì •, ì‚­ì œ ê¸°ëŠ¥í•˜ëŠ” íŽ˜ì´ì§€ìž…ë‹ˆë‹¤.
         </div>
         <div class="panel-body">
 			<div class="dataTable_wrapper">
@@ -39,20 +46,20 @@
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						<div class="col-sm-6">
-							<a href="/pet/admin/adminOrderAllList.dog?searchNum=0&isSearch="><button type="button" class="btn btn-outline btn-default">ÀüÃ¼</button></a>
+							<a href="/ezenwood/admin/orderList?searchNum=0&isSearch="><button type="button" class="btn btn-outline btn-default">ì „ì²´</button></a>
 							<select class="form-control" name="select" onchange="window.open(value,'_self');">
-								<option value ="">--ÁÖ¹®»óÅÂ--</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=°áÁ¦´ë±â Áß">°áÁ¦´ë±â Áß</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=°áÁ¦ ¿Ï·á">°áÁ¦ ¿Ï·á</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=¹è¼ÛÁØºñ Áß">¹è¼ÛÁØºñ Áß</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=¹è¼Û Áß">¹è¼Û Áß</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=¹è¼Û ¿Ï·á">¹è¼Û ¿Ï·á</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=°áÁ¦ Ãë¼Ò">°áÁ¦ Ãë¼Ò</option>
+								<option value ="">--ì£¼ë¬¸ìƒíƒœ--</option>
+								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=ê²°ì œëŒ€ê¸° ì¤‘">ê²°ì œëŒ€ê¸° ì¤‘</option>
+								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=ê²°ì œ ì™„ë£Œ">ê²°ì œ ì™„ë£Œ</option>
+								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=ë°°ì†¡ì¤€ë¹„ ì¤‘">ë°°ì†¡ì¤€ë¹„ ì¤‘</option>
+								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=ë°°ì†¡ ì¤‘">ë°°ì†¡ ì¤‘</option>
+								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=ë°°ì†¡ ì™„ë£Œ">ë°°ì†¡ ì™„ë£Œ</option>
+								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=ê²°ì œ ì·¨ì†Œ">ê²°ì œ ì·¨ì†Œ</option>
 							
 							</select>													
 						</div>
 						<div class="col-sm-6" style="text-align:right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">ÃÑ ÁÖ¹®¼ö : ${totalCount}</div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">ì´ ì£¼ë¬¸ìˆ˜ :1 </div>
 						</div>
 						
 					</div>
@@ -64,37 +71,34 @@
 								aria-describedby="dataTables-example_info">
 								<thead>
 									<tr role="row" style="vertical-align:middle;">
-										<th style="width: 5%; text-align:center;vertical-align:middle;">ÁÖ¹®¹øÈ£</th>
-										<th style="width: 8%; text-align:center;vertical-align:middle;">¼ÛÀå¹øÈ£</th>										
-										<th style="width: 16%; text-align:center;vertical-align:middle;">ÁÖ¹®»óÇ°</th>
-										<th style="width: 7%; text-align:center;vertical-align:middle;">È¸¿øID</th>
-										<th style="width: 8%; text-align:center;vertical-align:middle;">ÁÖ¹®±Ý¾×ÇÕ°è</th>
-										<th style="width: 12%; text-align:center;vertical-align:middle;">°áÀç¹æ½Ä</th>
-										<th style="width: 5%; text-align:center;vertical-align:middle;">ÁÖ¹®ÀÏÀÚ</th>
-										<th style="width: 6%; text-align:center;vertical-align:middle;">¹è¼Û»óÅÂ</th>	
+										<th style="width: 5%; text-align:center;vertical-align:middle;">ì£¼ë¬¸ë²ˆí˜¸</th>
+										<th style="width: 8%; text-align:center;vertical-align:middle;">ì†¡ìž¥ë²ˆí˜¸</th>										
+										<th style="width: 16%; text-align:center;vertical-align:middle;">ì£¼ë¬¸ìƒí’ˆ</th>
+										<th style="width: 7%; text-align:center;vertical-align:middle;">íšŒì›ID</th>
+										<th style="width: 8%; text-align:center;vertical-align:middle;">ì£¼ë¬¸ê¸ˆì•¡í•©ê³„</th>
+										<th style="width: 12%; text-align:center;vertical-align:middle;">ê²°ìž¬ë°©ì‹</th>
+										<th style="width: 5%; text-align:center;vertical-align:middle;">ì£¼ë¬¸ì¼ìž</th>
+										<th style="width: 6%; text-align:center;vertical-align:middle;">ë°°ì†¡ìƒíƒœ</th>	
 									</tr>
 								</thead>
 								<tbody>
-								<c:forEach var="orderList"  items="${orderList}" varStatus="stat">
-								<c:url var="viewURL" value="orderModifyForm.dog" >
-									<c:param name="order_num" value="${orderList.order_num }" />
-								</c:url>									
+								
 									<tr class="gradeA even" role="row">
 										<td style="text-align:center;vertical-align:middle;">1234-1</td>										
 										<td style="text-align:center;vertical-align:middle;">112354</td>
-										<td style="text-align:center;vertical-align:middle;">À§Æ²Å×ÀÌºí</td>
+										<td style="text-align:center;vertical-align:middle;">ìœ„í‹€í…Œì´ë¸”</td>
 										
 										<td style="text-align:center;vertical-align:middle;">admin</td>
 										<td style="text-align:center;vertical-align:middle;"><fmt:formatNumber value="${orderList.order_sum_money}" type="number"/>19,900</td>
 										
-										<td style="text-align:center;vertical-align:middle;">¹«ÅëÀåÀÔ±Ý</td>
+										<td style="text-align:center;vertical-align:middle;">ë¬´í†µìž¥ìž…ê¸ˆ</td>
 										
 										<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${orderList.order_date}" pattern="YY.MM.dd HH:mm" />22-05-10</td>
 										
-										<td style="text-align:center;vertical-align:middle;">¹è¼ÛÀü</td>										
+										<td style="text-align:center;vertical-align:middle;">ë°°ì†¡ì „</td>										
 										
-								</c:forEach>
-								<!--  µî·ÏµÈ »óÇ°ÀÌ ¾øÀ»¶§ -->
+								
+								<!--  ë“±ë¡ëœ ìƒí’ˆì´ ì—†ì„ë•Œ -->
 									<c:if test="${fn:length(orderList) le 0}">
 										<tr><td colspan="9" style="text-align:center;"> </td></tr>
 									</c:if> 
@@ -120,11 +124,11 @@
 									<form action="">
 									<select class="form-control" name="searchNum" id="searchNum">
 										<option value="0">ID</option>
-										<option value="1">ÁÖ¹® ¹øÈ£</option>
+										<option value="1">ì£¼ë¬¸ ë²ˆí˜¸</option>
 									</select>
 										<input class="form-control" type="text" name="isSearch" id="isSearch"/>
 										<span>
-										<button type="submit" class="btn btn-default">°Ë»ö</button>
+										<button type="submit" class="btn btn-default">ê²€ìƒ‰</button>
 										</span>
 									</form>
 								</div>							
@@ -138,6 +142,7 @@
 	</div>
         <!-- /.panel -->   
 </div>
-
+</div>
+</div>
 </body>
 </html>

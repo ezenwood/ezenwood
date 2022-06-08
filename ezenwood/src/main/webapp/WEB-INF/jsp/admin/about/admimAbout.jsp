@@ -1,42 +1,81 @@
-<%@ page language="java" contentType="text/html; charset="UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-
-
 <meta charset="UTF-8">
-<title>about</title>
+<title>aboutDetail</title>
+ <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/admin_layout.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/admin_board.css" type="text/css" rel="stylesheet">
+    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+     <link href="/ezenwood/css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
 </head>
+
 <body>
-	<div>
-		¾î¹Ù¿ô
-		<div>
-			<div style="background-color: gray;">È¸»öÃ¢</div>
-			<div>
-				<div>
-					<img src="/c/resources/image/aboutimg.jpg" alt="">
-				</div>
-				<div>
-					ÀÛÀº¾ğ´Ï³×°¡±¸Á¡Àº ´ç½ÅÀÇ »îÀÌ ¹İ¿µµÈ °ø°£°ú ½Ã°£, ÇöÀç¸¦ »ì¾Æ°¡´Â ¾Æ¸§´Ù¿î ÀÌµéÀÇ ²ŞÀÇ °ø°£À» ¸¸µé°íÀÚ ÇÏ´Â ¸¶À½¿¡¼­
-					½ÃÀÛµÇ¾ú½À´Ï´Ù. ÀÏ»ó¿¡ ½º¸çµå´Â °¡±¸, ¿À·¡ °£Á÷ÇÏ°í ½ÍÀº °Í¿¡ °¡Ä¡¸¦ µÓ´Ï´Ù. ÃëÇâÀ» °øÀ¯ÇÏ°í Á» ´õ ³ªÀº ¶óÀÌÇÁ
-					½ºÅ¸ÀÏÀ» ²Ş²Ù´Â ¸¹Àº ºĞµé¿¡°Ô ÀÛÀº¾ğ´Ï³×°¡±¸Á¡ÀÌ Å°¿öµå°¡ µÇ±â¸¦ Èñ¸ÁÇÕ´Ï´Ù.<br> <br>
-					Little Sister's Furniture started with the small yet determined
-					desire to be a space that reflects your place and moment and helps
-					you build what you dream of.<br> We put value on such
-					furniture that breathes in your everyday life and lasts as long as
-					your life goes.<br> Little Sister'es Furniture hopes to be a
-					companion for you to share preferences and pursue a better
-					lifestyle.
-				</div>
-				<div>
-					<input type="button" onclick="" value="¼öÁ¤">
-				</div>
-			</div>
-		</div>
-	</div>
+	  <div id="container">
+        <div id="contents">
+            <div class="sub_content">
+                <div class="content">
+                    <div class="board_zone_sec">
+                    <%@include file ="/include/admin_header.jsp" %>
+					<%@include file ="/include/admin_left.jsp" %>
+<div id="page-wrapper" style="min-height: 703px;">
 
+                        <div class="board_zone_tit">
+                            <h2>ì–´ë°”ì›ƒ</h2>
+                        </div>
 
-
+                        <div class="board_zone_cont">
+                            <div class="board_zone_view">
+                                <div class="board_view_tit">
+                                    <h3>Q.ì œëª©</h3>
+                                </div>
+                                <div class="board_view_info">
+                                    <span class="view_info_ipdp">
+                                        <strong>ì‘ì„±ì ì´ë¦„ </strong>
+                                    </span>
+                                    <span class="view_info_day">
+                                        <em><strong>ë‚ ì§œ</strong></em>
+                                    </span>
+                                </div>
+                                <!--//board_view_info-->
+                           
+                                <div class="board_view_content" style="border-bottom: 1px solid #dbdbdb;">
+                                    <div class="seem_cont">
+                                        <div style="margin: 10px 0 10px 0">
+                                            <img style="max-width: 700px">
+                                            
+                                            <c:forEach var="list" items="fqboardlist">
+                                                <p align="center">A.ìì£¼ë¬»ëŠ”ì§ˆë¬¸content</p>
+                                            </c:forEach>
+                                           
+                                        </div>
+                                    </div>
+                                    <!--//seem_cont-->
+                                </div>
+                              
+                                 
+                                
+                                <!--//board_view_content-->
+                              
+                            <!--//board_zone_view-->
+                          
+                        </div>
+                          <div style="text-align: center">
+                          <br>
+					
+						<button type="button" class="btn btn-success" onClick="location.href='/about/aboutWriteForm.jsp'">ìˆ˜ì •</button>
+						<button type="button" onclick="aboutDelete();"
+					class="btn btn-primary">ì‚­ì œ</button>
+                        <!--//board_zone_cont-->
+                    </div>
+                </div>
+            </div>
+        </div>
+       
+    </div>
+    		
+</div>
 </body>
 </html>

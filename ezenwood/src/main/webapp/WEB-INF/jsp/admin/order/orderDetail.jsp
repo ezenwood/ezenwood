@@ -1,5 +1,5 @@
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -36,102 +36,108 @@
 function validateForm() {
     var x = document.forms["joinform"]["goods_name"].value;
     if (x == null || x == "") {
-        alert("ªÛ«∞∏Ì¿∫ ¿‘∑¬«ÿæﬂ«’¥œ¥Ÿ");
+        alert("ÏÉÅÌíàÎ™ÖÏùÄ ÏûÖÎ†•Ìï¥ÏïºÌï©ÎãàÎã§");
         return false;
     }
 }
 </script>
 </head>
 <body>
+<%@include file ="/include/admin_header.jsp" %>
+<%@include file ="/include/admin_left.jsp" %>
+        <div id="wrapper">
+        <div id="page-wrapper" style="min-height: 703px;">
     <div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">¡÷πÆªÛºº</h1>
+	<h1 class="page-header">Ï£ºÎ¨∏ÏÉÅÏÑ∏</h1>
 </div>
 
 <div class="row" style="padding-left:15px;width:900px;">
 	<div class="panel panel-default">
-		<div class="panel-heading" >¡÷πÆªÛºº ∆‰¿Ã¡ˆ¿‘¥œ¥Ÿ.</div>
+		<div class="panel-heading" >Ï£ºÎ¨∏ÏÉÅÏÑ∏ ÌéòÏù¥ÏßÄÏûÖÎãàÎã§.</div>
 			<div class="panel-body">
 				<form:form commandName="orderModel" action="orderModify.dog" enctype="multipart/form-data" method="post"name="joinform" onsubmit="return validateForm()">
 				<input type="hidden" name="order_num" value="${orderModel.order_num}">
                     <div class="form-group">
-                            <label>ªÛ«∞∏Ì</label>
-                            <input type="text" class="form-control" value="∏Æ∆≤≈◊¿Ã∫Ì" style="width:initial;" readonly />                             
+                            <label>ÏÉÅÌíàÎ™Ö</label>
+                            <input type="text" class="form-control" value="Î¶¨ÌãÄÌÖåÏù¥Î∏î" style="width:initial;" readonly />                             
                         </div>
 						<div class="form-group">
-                            <label>¡÷πÆπ¯»£</label>
+                            <label>Ï£ºÎ¨∏Î≤àÌò∏</label>
                             <input type="text" class="form-control" value="1234-1" style="width:initial;" readonly/>                             
                         </div>
                         <div class="form-group">
-                            <label>º€¿Âπ¯»£</label>
+                            <label>ÏÜ°Ïû•Î≤àÌò∏</label>
                             <input type="text" class="form-control" value="1123454" style="width:initial;" readonly/>                             
                         </div>
                         <div style="border:1px;" class="form-group">
-                             <label>ø…º«√¢</label>
-                            <input type="text" class="form-control" value="±‚∫ª≈◊¿Ã∫Ì" style="width:initial;" readonly/>                            
+                             <label>ÏòµÏÖòÏ∞Ω</label>
+                            <input type="text" class="form-control" value="Í∏∞Î≥∏ÌÖåÏù¥Î∏î" style="width:initial;" readonly/>                            
                         </div>	
                         <p>
                         <div class="form-group" style="border-top: 1px dotted #999;width:550px;">
                           <br>
-                           <label>¡÷πÆ¿⁄¡§∫∏</label>
+                           <label>Ï£ºÎ¨∏ÏûêÏ†ïÎ≥¥</label>
                            <br>
-                            <label>¿Ã∏ß</label>
-                            <input type="text" class="form-control" value="»´±Ê∂À" style="width:initial;" readonly/>                             
+                            <label>Ïù¥Î¶Ñ</label>
+                            <input type="text" class="form-control" value="ÌôçÍ∏∏Îò•" style="width:initial;" readonly/>                             
                         </div>
                         <div class="form-group">
-                            <label>»ﬁ¥Î¿¸»≠ π¯»£</label>
+                            <label>Ìú¥ÎåÄÏ†ÑÌôî Î≤àÌò∏</label>
                             <input type="text" class="form-control" value="010-0000-0000" style="width:initial;" readonly/>                             
                         </div>		
                         <div class="form-group" style="border-bottom: 1px dotted #999;width:550px;">
-                            <label>¿Ã∏ﬁ¿œ</label>
+                            <label>Ïù¥Î©îÏùº</label>
                             <input type="text" class="form-control" value="ezen.naver.com" style="width:initial;" readonly/>   
                                              <p/>
                         </div>
                           <div class="form-group">
-                           <label>πËº€ ¡§∫∏</label>
+                           <label>Î∞∞ÏÜ° Ï†ïÎ≥¥</label>
                            <br>
-                            <label>¿Ã∏ß</label>
-                            <input type="text" class="form-control" value="»´±Ê∂À" style="width:initial;" readonly/>                             
+                            <label>Ïù¥Î¶Ñ</label>
+                            <input type="text" class="form-control" value="ÌôçÍ∏∏Îò•" style="width:initial;" readonly/>                             
                         </div>
                         <div class="form-group">
-                            <label>»ﬁ¥Î¿¸»≠ π¯»£</label>
+                            <label>Ìú¥ÎåÄÏ†ÑÌôî Î≤àÌò∏</label>
                             <input type="text" class="form-control" value="010-0000-0000" style="width:initial;" readonly/>                             
                         </div>		
                         <div class="form-group" style="border-bottom: 1px dotted #999;width:550px;">
-                            <label>ø‰√ªªÁ«◊</label>
-                            <input type="text" class="form-control" value="πËº€ ø‰√ª ªÁ«◊" style="width:initial;" readonly/>   
+                            <label>ÏöîÏ≤≠ÏÇ¨Ìï≠</label>
+                            <input type="text" class="form-control" value="Î∞∞ÏÜ° ÏöîÏ≤≠ ÏÇ¨Ìï≠" style="width:initial;" readonly/>   
                                              <p/>
                         </div>
                                <div class="form-group">
-                            <label>πËº€ ¡÷º“</label>
+                            <label>Î∞∞ÏÜ° Ï£ºÏÜå</label>
                             <br>
                             <input type="text" 
                            value="10112" disabled> <br>
-                           <input type="text" placeholder="º≠øÔ∆Ø∫∞Ω√ ∞≠≥≤±∏ ªÔº∫µø" disabled >
-                           <input type="text" placeholder="º≠øÔ∆Ø∫∞Ω√ ∞≠≥≤±∏ ∏Ìµø¥Î∑Œ"  disabled>
+                           <input type="text" placeholder="ÏÑúÏö∏ÌäπÎ≥ÑÏãú Í∞ïÎÇ®Íµ¨ ÏÇºÏÑ±Îèô" disabled >
+                           <input type="text" placeholder="ÏÑúÏö∏ÌäπÎ≥ÑÏãú Í∞ïÎÇ®Íµ¨ Î™ÖÎèôÎåÄÎ°ú"  disabled>
                            <span id="guide" style="color: #999; display: none"></span><br> <input
-                           type="text" placeholder="∫Ùµ˘" disabled >
-                           <input type="text" placeholder="¬¸∞Ì«◊∏Ò" disabled > 
+                           type="text" placeholder="ÎπåÎî©" disabled >
+                           <input type="text" placeholder="Ï∞∏Í≥†Ìï≠Î™©" disabled > 
                     </div>
                                     
                     					
 						<div class="form-group" style="border-top: 1px dotted #999;width:550px;">
                           <br>
-                           <label>∞·¡¶¡§∫∏</label>
+                           <label>Í≤∞Ï†úÏ†ïÎ≥¥</label>
                            <br>
-                            <label>ªÛ«∞«’∞Ë ±›æ◊</label>
+                            <label>ÏÉÅÌíàÌï©Í≥Ñ Í∏àÏï°</label>
                             <input type="text" class="form-control" value="2,222,999" style="width:initial;" readonly/>                             
                         </div>
                           <div class="form-group">
-                            <label>πËº€ªÛ≈¬</label>
-                            <input type="text" class="form-control" value="∞·¡¶¥Î±‚ ¡ﬂ" style="width:initial;" readonly/>   
+                            <label>Î∞∞ÏÜ°ÏÉÅÌÉú</label>
+                            <input type="text" class="form-control" value="Í≤∞Ï†úÎåÄÍ∏∞ Ï§ë" style="width:initial;" readonly/>   
                         
 						
-						<button type="submit" class="btn btn-success">ºˆ¡§</button>
-						<button type="reset" class="btn btn-default">ªË¡¶</button>					
+						<button type="submit" class="btn btn-success">ÏàòÏ†ï</button>
+						<button type="reset" class="btn btn-default">ÏÇ≠Ï†ú</button>					
 				</form:form>
                    
                     </div>
 	</div>
+</div>
+</div>
 </div>
 </body>
 </html>

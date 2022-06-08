@@ -1,10 +1,9 @@
-<!--<%@ page language="java" contentType="text/html; charset=UTF-8"
+<%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="form" uri="http://www.springframework.org/tags/form" %>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>    
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    -->
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %> 
 <html>
 <head>
 
@@ -136,7 +135,7 @@ function fnChkByte(obj, maxByte){
 							<table class="table table-striped table-bordered table-hover"
 								id="dataTables-example">
 								<thead>
-									<tr class="danger" style="background-color: #fff">
+									<tr class="dangers" >
 										<th width="100">글제목</th>
 										<td colspan=3>${qna_title}</td>
 									</tr>
@@ -146,7 +145,7 @@ function fnChkByte(obj, maxByte){
 										<!-- 작성자 -->
 										<th>작성자</th>
 										<td><strong> ${qna_writer} </strong></td>
-										<td><strong>작성일</strong></td>
+										<td style="width: 118px;"><strong>작성일</strong></td>
 										<td><fmt:formatDate value="${qna_date}"
 												pattern="yyyy.MM.dd" /></td>
 

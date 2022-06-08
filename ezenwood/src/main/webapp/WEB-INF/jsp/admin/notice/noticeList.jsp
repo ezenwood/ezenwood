@@ -1,24 +1,17 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-
-<html>
+    pageEncoding="UTF-8"%>
+    <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>noticeList</title>
-   <link href="/ezenwood/css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
-    <script type="text/javascript" src="/ezenwood/resource/js/jquery.min.js"></script>
-    <script type="text/javascript" src="/ezenwood/resource/js/bootstrap.min.js"></script>
-</head>
-<body>
-<div id="wrapper">
-        <div id="page-wrapper" style="min-height: 703px;">
-
-<script type="text/javascript">
-function delchk(){
-    return confirm("삭제하시겠습니까?");
-}
-</script>
-<style type="text/css">
+    <meta charset="UTF-8">
+    <title>noticeList</title>
+    <link href="css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="bootstrap/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+    <style type="text/css">
 .paging{text-align:center;height:32px;margin-top:5px;margin-bottom:15px;}
 .paging a,
 .paging strong{display:inline-block;width:36px;height:32px;line-height:28px;font-size:14px;border:1px solid #e0e0e0;margin-left:5px;
@@ -32,81 +25,83 @@ function delchk(){
 .paging a:first-child{margin-left:0;}
 .paging strong{color:#fff;background:#337AB7;border:1px solid #337AB7;}
 .paging .page_arw{font-size:11px;line-height:30px;}
-.col-sm-8 button {
-	min-width: 30px;
-    height: 40px;
-    padding: 0 20px 0 20px;
-    color: #ffffff;
-    font-size: 14px;
-    border: 1px solid #323437;
-    background: #323437;
-    cursor: pointer;
-    font-weight: bold;
-    border-radius: 6px;
-    float: right;
-    margin: 0 20% 0 0;
-}
 </style>
-
-<div class="row" style="padding-left:15px;width:900px;">    
+</head>
+<body>
+<%@include file ="/include/admin_header.jsp" %>
+<%@include file ="/include/admin_left.jsp" %>
+        <div id="wrapper">
+        <div id="page-wrapper" style="min-height: 703px;">
+    <div class="row" style="padding-left:15px;width:900px;">    
 	<h1 class="page-header">공지사항</h1>
 </div>
 <div class="row">
 	<div class="panel panel-default">
 		<div class="panel-heading">
-                         공지사항  수정, 삭제 기능하는 페이지입니다.
+                         공지사항은 검색, 수정, 삭제 기능하는 페이지입니다.
         </div>
         <div class="panel-body">
 			<div class="dataTable_wrapper">
-				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-					<div class="row" style="margin-bottom:5px;">
-						<div class="col-sm-6">
-							<a href="/ezenwood/admin/notice?searchNum=0&amp;isSearch="><button type="button" class="btn btn-outline btn-default">전체</button></a>													
-						</div>
-						<div class="col-sm-6" style="text-align:right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 게시물수 : 0</div>
-						</div>
-						
-					</div>
+				<div id="dataTables-example_wrapper"
+					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
+					
 					<div class="row">
 						<div class="col-sm-12">
-							<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
+							<table
+								class="table  table-bordered table-hover dataTable no-footer"
+								id="dataTables-example" role="grid"
+								aria-describedby="dataTables-example_info">
 								<thead>
-									<tr role="row">
-										<th style="width: 12%; text-align:center;">번호</th>
-										<th style="width: 20%; text-align:center;">제목</th>
-										<th style="width: 12%; text-align:center;">작성자</th>							
-										<th style="width: 12%; text-align:center;">등록일자</th>
-										<th style="width: 12%; text-align:center;">중요도</th>
-										
+									<tr role="row" style="vertical-align:middle;">
+										<th style="width: 5%; text-align:center;vertical-align:middle;">번호</th>
+										<th style="width: 8%; text-align:center;vertical-align:middle;">제목</th>										
+										<th style="width: 16%; text-align:center;vertical-align:middle;">작성자</th>
+										<th style="width: 5%; text-align:center;vertical-align:middle;">주문일자</th>
+										<th style="width: 6%; text-align:center;vertical-align:middle;">중요도</th>	
 									</tr>
 								</thead>
 								<tbody>
 								
-								<!--  등록된 상품이 없을때 -->
-									
-										<tr style="text-align:center;">
-										<td>1</td>
-										<td>사이트오픈</td>
-										<td>admin</td>
-										<td>22-06-03</td>
-										<td>1</td>
-										</tr>
-									 
-								</tbody>
+									<tr class="gradeA even" role="row">
+										<td style="text-align:center;vertical-align:middle;">1</td>										
+										<td style="text-align:center;vertical-align:middle;">사이트오픈</td>
+										<td style="text-align:center;vertical-align:middle;">admin</td>
+										
+										<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${orderList.order_date}" pattern="YY.MM.dd HH:mm" />22-05-10</td>
+										<td style="text-align:center;vertical-align:middle;">1</td>
+																
 								
+								<!--  등록된 상품이 없을때 -->
+									<c:if test="${fn:length(orderList) le 0}">
+										<tr><td colspan="9" style="text-align:center; "> </td></tr>
+									</c:if> 
+								</tbody>
 							</table>
-							
-                    
 						</div>
-							<div class="col-sm-8">
-	<button type="button" onclick="location.href='http://localhost:9001/ezenwood/admin/notice/write'">쓰기</button>
+					</div>
+					<div class="row">
+							<div style="text-align:right;">
+										<span>
+										<button type="submit" class="btn btn-default" style="margin-right:15px;">쓰기</button>
+										</span>
+									</form>
+								</div>							
+							</div>
+							
+					</div>
+					<div class="content-center">
+					<ul class="pagination">
+	                <li class="page-item active" aria-current="page">
+                      <span class="page-link">
+                        1
+                     <span class="sr-only">(current)</span>
+                      </span>
+                    </li>
+	                <li class="page-item"><a class="page-link" href="#">2</a></li>
+	                <li class="page-item"><a class="page-link" href="#">3</a></li>
+                    </ul>
                     </div>
-					</div>
-				
-					<div class="paging">
-						<strong>1</strong>
-					</div>
+
 				</div>
 			</div>
 			<!-- /.table-responsive -->							
@@ -114,11 +109,7 @@ function delchk(){
 	</div>
         <!-- /.panel -->   
 </div>
-
-            <!-- // container -->
-        </div>
-        <!-- /#page-wrapper -->
-
-    </div>
+</div>
+</div>
 </body>
 </html>

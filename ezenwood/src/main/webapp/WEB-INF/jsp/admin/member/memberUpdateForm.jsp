@@ -1,11 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
-<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+    pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="ko">
-<script
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AdminMemberUpdateform</title>
+    <link href="css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
+    <script type="text/javascript" src="bootstrap/jquery.min.js"></script>
+    <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
+    <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
@@ -66,149 +69,85 @@
 				}).open();
 	}
 </script>
-<head>
-<meta charset="UTF-8">
-<meta http-equiv="X-UA-Compatible" content="IE=edge">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Document</title>
-<style>
-* {
-	box-sizing: border-box;
-}
-
-body, th, td, input, select, textarea, button {
-	font-size: 14px;
-	line-height: 1.5;
-	font-family: Lato, "Malgun Gothic", "맑은 고딕", AppleGothic, Dotum, "돋움",
-		sans-serif;
-	color: #333;
-}
-
-.wrapper {
-	width: 1000px;
-	margin: 0 auto;
-}
-
-.wrapper2 {
-	width: 525px;
-	margin: 0 auto;
-}
-
-.wrapper3 {
-	border: 1px solid #ccc;
-}
-
-.wrapper4 {
-	margin: 10px 20px;
-}
-
-.w3 {
-	background-color: #dbdbdb;
-	padding: 5px;
-	padding-left: 15px;
-}
-
-h1 {
-	margin-left: 20px;
-}
-
-table, th, td {
-	border: 1px solid #ccc;
-	padding: 5px 15px;
-	border-collapse: collapse;
-}
-
-th {
-	padding: 9px 10px 10px 10px;
-	background: #f7f7f7;
-	border-top: 1px solid #dbdbdb;
-	border-bottom: 1px solid #dbdbdb;
-	background: #f7f7f7;
-	font-size: 12px;
-	line-height: 1.5;
-	font-family: Lato, "Malgun Gothic", "맑은 고딕", AppleGothic, Dotum, "돋움",
-		sans-serif;
-	text-align: left;
-}
-
-input[type=button] {
-	width: 100px;
-	height: 30px;
-	background-color: #333;
-	color: #fff;
-}
-</style>
 </head>
 <body>
-	<div class="wrapper">
-		<div class="wrapper2">
-			<h1>회원 정보 수정</h1>
-			<div class="wrapper3">
-				<div class="w3">회원정보를 수정합니다</div>
-				<div>
-					<div class="wrapper4">
-						<form>
-							<table>
-								<colgroup>
-									<col style="width: 20%;">
-									<col>
-								</colgroup>
-								<tr>
-									<th>아이디</th>
-									<td>ddd</td>
-								</tr>
+<!-- 메뉴 시작 -->
+<%@include file ="/include/admin_header.jsp" %>
+<%@include file ="/include/admin_left.jsp" %>
+<div id="page-wrapper" style="min-height: 703px;">
+<div class="row" style="padding-left:15px;width:900px;">    
+	<h1 class="page-header">회원정보수정</h1>
+</div>
 
-								<tr>
-									<th>비밀번호</th>
-									<td>ddd</td>
-								</tr>
-
-								<tr>
-									<th>이름</th>
-									<td>ddd</td>
-								</tr>
-
-								<tr>
-									<th>전화번호</th>
-									<td>ddd</td>
-								</tr>
-
-								<tr>
-									<th>이메일</th>
-									<td><input type="text"> <select>
-											<option value="">직접입력</option>
-											<option value="네이버">naver.com</option>
-											<option value="다음">daum.net</option>
-											<option value="구글">google.com</option>
-											<option value="이젠우드">ezenwood.cm</option>
-									</select></td>
-								</tr>
-
-								<tr>
-									<th>주소</th>
-									<td><input type="text" id="sample4_postcode"
+<div class="row" style="padding-left:15px;width:900px;">
+	<div class="panel panel-default">
+		<div class="panel-heading">회원정보수정 페이지입니다.</div>
+			<div class="panel-body">
+						
+                        <div class="form-group">
+                            <label>아이디</label>
+                            <input type="text" class="form-control" path="member_id" placeholder="admin" style="width:40%;" disabled>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>비밀번호</label>
+                             <input type="text" name="texts" class="form-control" path="member_pw" placeholder="1234" style="width:40%;">
+                          </div>
+                            <div class="form-group">
+                       <label>이름</label><input type="text" class="form-control" path="member_name" placeholder="홍길동" style="width:20%;">
+                               </div>
+    
+                        <div class="form-group">                            
+                             <tbody class="xans-element- xans-product xans-product-option xans-record-">
+                                        <tr>
+                                            <label>탈퇴여부</label>
+                                            <br>
+                                            <td><select option_product_no="#" option_select_element="option-select-finder" option_sort_no="1" option_type="T" item_listing_type="C" option_title="DESIGN" product_type="member_del_gb" product_option_area="#" name="option1" id="member_del_gb" class="ProductOption0" option_style="select" required="true">
+                                                  
+                                                    <optgroup label="선택해주세요">
+                                                        <option value="#"> N </option>
+                                                        <option value="#"> Y </option>
+                                                 
+                                                    </optgroup>
+                                                </select>
+                                                <p class="value"></p>
+                                            </td>
+                                        </tr>
+                                    </tbody>
+                        </div>
+                               
+                        <div class="form-group">
+                            <label>전화번호</label>
+                            <input type="text" class="form-control" path="member_phone" style="width:40%;"
+                            placeholder="010-1234-1234">
+                        </div>
+                           <div class="form-group">
+                            <label>이메일</label>
+                            <input type="text" class="form-control" path="member_email" style="width:40%;"
+                            placeholder="직접 입력하세요.">
+                        </div>
+                        <div class="form-group">
+                            <label>주소</label>
+                            <input type="text" id="sample4_postcode"
 										placeholder="우편번호"> <input type="button"
 										onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 										<input type="text" id="sample4_roadAddress"
 										placeholder="도로명주소"> <input type="text"
 										id="sample4_jibunAddress" placeholder="지번주소"> <span
-										id="guide" style="color: #999; display: none"></span> <input
+										id="guide" style="color: #999; display: none"></span><br> <input
 										type="text" id="sample4_detailAddress" placeholder="상세주소">
 										<input type="text" id="sample4_extraAddress"
-										placeholder="참고항목"></td>
-								</tr>
-							</table>
-						</form>
-					</div>
-
-					<div>
-						<input type="button" value="수정"> <input type="button"
-							value="탈퇴">
-					</div>
-				</div>
+										placeholder="참고항목">
+                        </div>
+          
+						<button type="submit" class="btn btn-success">회원수정</button>
+						<button type="reset" class="btn btn-default">작성취소</button>					
 			</div>
-		</div>
 	</div>
+	</div>
+</div>
+
+
 
 </body>
 </html>
