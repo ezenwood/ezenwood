@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AdminMemberList</title>
+    <title>AdminDelMemberList</title>
     <link href="/ezenwood/css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -16,7 +16,7 @@
             <!-- 메인container-->
            	 
 <div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">회원목록</h1>
+	<h1 class="page-header">탈퇴회원목록</h1>
 </div>
 <div class="panel panel-default">
                         <div class="panel-heading">
@@ -45,7 +45,7 @@
 										<th style="width: 15%; text-align:center;">이메일</th>
 										<th style="width: 10%; text-align:center;">주소</th>
 										<th style="width: 10%; text-align:center;">가입일자</th>
-										<th style="width: 10%; text-align:center;">탈퇴여부</th>
+										<th style="width: 10%; text-align:center;">복구</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -70,7 +70,7 @@
                                         22-05-10
                                         </td>
                                         <td>
-                                        N
+                                        <button id="member_del_gb" type="button" class="btn btn-default">복구</button>
                                         </td>
 									  </tr>
 									  

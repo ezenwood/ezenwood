@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>AdminAboutModify</title>
+    <title>AdminAboutWrite</title>
     <link href="css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="bootstrap/jquery.min.js"></script>
     <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
@@ -15,12 +15,12 @@
 <%@include file ="/include/admin_left.jsp" %>
 <div id="page-wrapper" style="min-height: 703px;">
 <div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">어바웃작성</h1>
+	<h1 class="page-header">어바웃수정</h1>
 </div>
 
 <div class="row" style="padding-left:15px;width:900px;">
 	<div class="panel panel-default">
-		<div class="panel-heading">어바웃 작성페이지입니다. 빠짐없이 입력해주세요</div>
+		<div class="panel-heading">어바웃 수정페이지입니다.</div>
 			<div class="panel-body">
 						
                       

@@ -22,19 +22,19 @@
 						<caption>번호,제목,글쓴이,날짜,조회를 나타내는 공지사항 표</caption>
 
 						<thead>
-							<tr class="danger" style="background-color: #fff">
+							<tr class="dangers" style="background-color: #fff">
 								<th width="100">글제목</th>
-								<td colspan=3>${reviewModel.subject}</td>
+								<td colspan=3>${review_title}</td>
 							</tr>
 						</thead>
 
 						<tbody>
 							<tr>
 								<!-- 작성자 -->
-								<th>작성자</th>
-								<td><strong> ${review_writer} </strong></td>
-								<td><strong>작성일</strong></td>
-								<td><fmt:formatDate value="${reviewModel.regdate}"
+								<th >작성자</th>
+								<td style="width: 218px;"><strong> ${review_writer} </strong></td>
+								<td style="width: 120px;"><strong>작성일</strong></td>
+								<td><fmt:formatDate value="${review_date}"
 										pattern="yyyy.MM.dd" /></td>
 
 							</tr>
@@ -43,10 +43,14 @@
 								<!-- 글내용 -->
 								<th>글내용</th>
 								<td colspan=3 height=600 style="padding: 0px !important;">
-									<img
-									src="/ezenwood/resource/#/${reviewModel.imagefile_savname}"/> 
-									<br />${reviewModel.content}
+									
+									<br />${review.content}
 								</td>
+							</tr>
+							<tr>
+							<th>이미지</th>
+							<td style="padding: 0px !important;">
+							<img src="/ezenwood/resource/image/pet1.jpg"/> </td>
 							</tr>
 
 						</tbody>

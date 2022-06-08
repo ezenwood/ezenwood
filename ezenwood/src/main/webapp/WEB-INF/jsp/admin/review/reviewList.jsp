@@ -31,7 +31,7 @@
 					<div class="dataTable_wrapper">
 						<div id="dataTables-example_wrapper"
 							class="dataTables_wrapper form-inline dt-bootstrap no-footer">
-							<div class="row" style="margin-bottom: 5px;">
+							<div class="row" style="margin-bottom: 5px; margin-left:1px">
 								<a href="/ezenwood/admin/reviewList"><button type="button"
 										class="btn btn-outline btn-default">전체</button></a>
 								<!-- <div style="background-color: green"> -->

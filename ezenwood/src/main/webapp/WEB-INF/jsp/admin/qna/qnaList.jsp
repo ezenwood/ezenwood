@@ -42,9 +42,9 @@
 											onchange="window.open(value,'_self');">
 											<option value="">--카테고리--</option>
 											<option
-												value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=0">답변대기중</option>
+												value="/ezenwood/admin/goods?searchNum=4&amp;isSearch=0">답변대기중</option>
 											<option
-												value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=1">답변완료</option>
+												value="/ezenwood/admin/goods?searchNum=4&amp;isSearch=1">답변완료</option>
 										</select>
 									</div>
 								</div>
@@ -57,32 +57,32 @@
 											aria-describedby="dataTables-example_info">
 											<thead>
 												<tr role="row">
-													<th style="width: 10%; text-align: center;">번호</th>
-													<th style="width: 10%; text-align: center;">상품이름</th>
-													<th style="width: 50%; text-align: center;">제목</th>
+													<th style="width: 5%; text-align: center;">번호</th>
+													<th style="width: 20%; text-align: center;">상품이름</th>
+													<th style="width: 20%; text-align: center;">제목</th>
 													<th style="width: 10%; text-align: center;">작성자</th>
-													<th style="width: 10%; text-align: center;">답변상태</th>
+													<th style="width: 5%; text-align: center;">답변상태</th>
 													<th style="width: 10%; text-align: center;">등록일자</th>
 												</tr>
 											</thead>
 											<tbody>
-												<c:forEach var="list" items="${noticelist}" varStatus="stat">
+												
 													<tr class="gradeA even" role="row">
-														<td style="text-align: center; vertical-align: middle;"></td>
+														<td style="text-align: center; vertical-align: middle;">1</td>
 
-														<td style="text-align: center; vertical-align: middle;"><a
+														<td style="text-align: center; vertical-align: middle;">1<a
 															href="제목을 통한 경로"></a></td>
 
-														<td style="text-align: center; vertical-align: middle;"></td>
-														<td style="text-align: center; vertical-align: middle;"></td>
-														<td style="text-align: center; vertical-align: middle;"></td>
+														<td style="text-align: center; vertical-align: middle;">1</td>
+														<td style="text-align: center; vertical-align: middle;">1</td>
+														<td style="text-align: center; vertical-align: middle;">1</td>
+														<td style="text-align: center; vertical-align: middle;">1</td>
 													</tr>
-												</c:forEach>
+												
 												<!--  등록된 상품이 없을때 -->
 												<c:if test="${fn:length(list) le 0}">
 													<tr>
-														<td colspan="9" style="text-align: center;">등록된 글이
-															없습니다.</td>
+														<td colspan="9" style="text-align: center;"></td>
 													</tr>
 												</c:if>
 											</tbody>
