@@ -117,11 +117,13 @@ public class MyPageController {
 	@RequestMapping(value = "/del", method = RequestMethod.POST)
 	public ModelAndView myPageDel(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
+		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
 		int memberInfo = mypageService.memberDelete(commandMap.getMap());
 
 		mav.addObject(memberInfo);
-
+		
+		session.invalidate();
 		mav.setViewName("/main");
 		return mav;
 	}
