@@ -9,27 +9,27 @@
 	<!-- 주문 입력 -->
 	<insert id="insertOrder" parameterType="hashmap">
 <![CDATA[
-insert into orders values(
+INSERT INTO ORDERS VALUES(
 	SEQ_ORDERS_NUM.NEXTVAL,
-	#{GOODSNUM},
-	#{ORDERAMOUNT},
+	#{ORDERS_GOODS_NUM},
+	#{ORDER_AMOUNT},
 	(select member_num from member where member_id = #{MEMBER_ID}),
-	#{GOODSOPTION},
-	#{RECEIVERNAME},
-	#{RECEIVERPHONE},
+	#{ORDERS_GOODS_OPTION},
+	#{ORDERS_RECEIVER},
+	#{ORDERS_PHONE},
 	'주문대기중',
 	sysdate,
-	#{ORDERPRICE},
-	#{DCOST},
-	#{TCOST},
-	#{RECEIVERZIPCODE},
-	#{RECEIVERADD1},
-	#{RECEIVERADD2},
-	#{RECEIVERADD3},
-	#{ORDERTRACK},
-	#{ORDERMEMO},
-	#{ORDERPAY}
-)]]>
+	#{ORDERS_PRICE},
+	#{ORDERS_DCOST},
+	#{ORDERS_TCOST},
+	#{ORDERS_ZIPCODE},
+	#{ORDERS_ADD1},
+	#{ORDERS_ADD2},
+	#{ORDERS_ADD3},
+	#{ORDERS_TRACK},
+	#{ORDERS_DMEMO},
+	#{ORDERS_PAY})
+]]>
 	</insert>
 
 
@@ -49,7 +49,7 @@ select
     ORDERS_RECEIVER,
     ORDERS_PHONE,
     ORDERS_STATUS,
-    ORDERS_DATE,
+    TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
     ORDERS_PRICE,
     ORDERS_DCOST,
     ORDERS_TCOST,

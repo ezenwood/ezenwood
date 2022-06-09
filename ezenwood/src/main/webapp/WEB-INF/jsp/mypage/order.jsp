@@ -1,3 +1,4 @@
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -19,7 +20,9 @@
 		comSubmit.addParam("currentPageNo", pageNo);
 		comSubmit.submit();
 	}
+	
 </script>
+
 <title>order2</title>
 </head>
 <body>
@@ -86,23 +89,16 @@
 								<c:forEach items="${orderList}" var="order" varStatus="totalCount">
 									<tbody>
 										<tr>
-											<th><input type="hidden" name="date"
-												value="${order.ORDERS_DATE}" /> <input type="hidden"
-												name="order_num" value="${order.ORDERS_NUM}" />
-												<p>${order.ORDERS_DATE}&nbsp;/&nbsp;${order.ORDERS_NUM}</p></th>
+											<th>
+												<p>${order.ADATE}&nbsp;/&nbsp;${order.ORDERS_NUM}</p></th>
 
-											<th><input type="hidden" name="goods_num"
-												value="${order.ORDERS_GOODS_NUM}" /> <input type="hidden"
-												name="goods_option" value="${order.ORDERS_GOODS_OPTION}" />
+											<th>
 												<P>${order.ORDERS_GOODS_NUM}&nbsp;/&nbsp;${order.ORDERS_GOODS_OPTION}</P>
 											</th>
 
-											<th><input type="hidden" name="price"
-												value="${order.ORDERS_PRICE}" /> <input type="hidden"
-												name="amount" value="${order.ORDERS_AMOUNT}" />
+											<th>
 												<P>${order.ORDERS_PRICE}&nbsp;/&nbsp;${order.ORDERS_AMOUNT}</P></th>
-											<th><input type="hidden" name="status"
-												value="${order.ORDERS_STATUS}" />
+											<th>
 												<P>${order.ORDERS_STATUS}</P></th>
 
 											<th>확인 리뷰 란은 뭐죠>??</th>
