@@ -61,10 +61,10 @@
 						<table>
 							<colgroup>
 								<col style="width: 6%">
-								<col style="width: 32%">
-								<col style="width: 35%">
+								<col style="width: 25%">
+								<col style="width: 22%">
+								<col style="width: 20%">
 								<col style="width: 12%">
-
 								<col style="width: 15%">
 
 								<!--확인/리뷰 -->
@@ -73,6 +73,7 @@
 								<tr>
 									<th>번호</th>
 									<th>상품</th>
+									<th>상품명</th>
 									<th>제목</th>
 									<th>날짜</th>
 									<th>작성자</th>
@@ -85,6 +86,8 @@
 									<tr data-sno="${review.REVIEW_NUM}" data-auth="y"
 										style="height: 10px">
 										<td>${review.REVIEW_NUM}</td>
+										<td><img src="/ezenwood/resource/image/pet1.jpg"></td>
+										<td>${review.TITLE}</td>
 
 										<td class="board_tit">
 											<!-- 제목--> <a
