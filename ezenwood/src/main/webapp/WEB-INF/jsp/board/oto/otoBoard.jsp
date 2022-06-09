@@ -49,7 +49,7 @@
 										<tbody>
 											<c:choose>
 												<c:when test="${fn:length(OTOListMap) > 0 }">
-													<c:forEach var="list" items="${OTOListMap}">
+													<c:forEach var="row" items="${OTOListMap}">
 														<tr>
 															<td><fmt:formatDate value="${row.ONETOONE_DATE}"
 																	type="both" dateStyle="medium" timeStyle="medium" /></td>
@@ -57,7 +57,7 @@
 																href="/ezenwood/board/oto/otoBoard/${row.ONETOONE_NUM}">
 																	<strong>${row.ONETOONE_TITLE}</strong>
 															</a></td>
-															<td align="center">${row.ONETOONE_MEMBER_NUM }</td>
+															<td align="center">${row.ONETOONE_MEMBER_ID}</td>
 															<td align="center"><c:choose>
 																	<c:when test="${row.ONETOONE_RE_GB == 'Y'}">답변 완료</c:when>
 																	<c:otherwise>답변 대기</c:otherwise>
