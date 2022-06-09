@@ -29,9 +29,9 @@
 			</li>
 			<li>게시판 관리
 				<ul class="sub_depth1">
-					<li><a href="/ezenwood/mypage/review">- 리뷰관리</a></li>
-					<li><a href="/ezenwood/mypage/oto">- 1:1문의</a></li>
-					<li><a href="/ezenwood/mypage/qna">- Q&A</a></li>
+					<li><a href="/ezenwood/mypage/review/1">- 리뷰</a></li>
+					<li><a href="/ezenwood/mypage/oto/1">- 1:1문의</a></li>
+					<li><a href="/ezenwood/mypage/qna/1">- Q&A</a></li>
 				</ul>
 			</li>
 			<li>회원정보

@@ -130,62 +130,55 @@ public class MyPageController {
 		int memberInfo = mypageService.memberDelete(commandMap.getMap());
 
 		mav.addObject(memberInfo);
-		
+
 		session.invalidate();
 		mav.setViewName("/main");
 		return mav;
 	}
 
-
-
-
 	// 주문조회 & 배송조회 리스트
 	@RequestMapping(value = "/order/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView orderChkListForm(@PathVariable int pageNum, CommandMap commandMap,HttpServletRequest request) throws Exception {
+	public ModelAndView orderChkListForm(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		
-		String MEMBER_ID = (String)session.getAttribute("MEMBER_ID");
-		
-		
-		Map<String, Object> insertMap =  new HashMap<String,Object>();
-		
+
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
 		PaginationInfo paginationInfo = new PaginationInfo();
-		
-		//현재 페이지 번호
+
+		// 현재 페이지 번호
 		paginationInfo.setCurrentPageNo(pageNum);
-		//한 페이지에 게시되는 게시물 건수
+		// 한 페이지에 게시되는 게시물 건수
 		paginationInfo.setRecordCountPerPage(9);
-		//페이징 리스트의 사이즈
+		// 페이징 리스트의 사이즈
 		paginationInfo.setPageSize(5);
-		
-		insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 		insertMap.put("MEMBER_ID", MEMBER_ID);
-		
-		
+
 		Map<String, Object> count = mypageService.ordercount(insertMap);
-		mav.addObject("count",count);
-		
-		List<Map<String,Object>> orderList = mypageService.orderList(insertMap);
+		mav.addObject("count", count);
+
+		List<Map<String, Object>> orderList = mypageService.orderList(insertMap);
 		System.out.println(orderList);
 		mav.addObject("orderList", orderList);
-		
+
 		int totalCount = 0;
-		
-		if(orderList.isEmpty()) {
-		
-		}else {
+
+		if (orderList.isEmpty()) {
+
+		} else {
 			totalCount = orderList.size();
-			mav.addObject("paginationInfo", (PaginationInfo)orderList.get(0).get("paginationInfo"));
+			mav.addObject("paginationInfo", (PaginationInfo) orderList.get(0).get("paginationInfo"));
 		}
-		
-		
-		
+
 		mav.setViewName("/mypage/order");
 		return mav;
 	}
-	
 
 	// 취소내역 폼
 	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
@@ -201,140 +194,131 @@ public class MyPageController {
 
 	// 리뷰리스트 폼
 	@RequestMapping(value = "/review/{pageNum}", method = RequestMethod.GET)
-public ModelAndView myPageReviewForm(@PathVariable int pageNum, CommandMap commandMap,HttpServletRequest request) throws Exception {
-		
+	public ModelAndView myPageReviewForm(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
+
 		ModelAndView mv = new ModelAndView();
 		HttpSession session = request.getSession();
-	      
-	      String MEMBER_ID = (String)session.getAttribute("MEMBER_ID");
-	      
-	      
-	      Map<String, Object> insertMap =  new HashMap<String,Object>();
-	      
-	      PaginationInfo paginationInfo = new PaginationInfo();
-	      
-	      //현재 페이지 번호
-	      paginationInfo.setCurrentPageNo(pageNum);
-	      //한 페이지에 게시되는 게시물 건수
-	      paginationInfo.setRecordCountPerPage(9);
-	      //페이징 리스트의 사이즈
-	      paginationInfo.setPageSize(5);
-	      
-	      insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
-	      insertMap.put("END", paginationInfo.getLastRecordIndex());
-	      insertMap.put("MEMBER_ID", MEMBER_ID);
 
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
 
-		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
+
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+
 		List<Map<String, Object>> list = mypageService.memberReivewList(insertMap);
 		mv.addObject("list", list);
-		
-		 int totalCount = 0;
-	      
-	      if(list.isEmpty()) {
-	      
-	      }else {
-	         totalCount = list.size();
-	         mv.addObject("paginationInfo", (PaginationInfo)list.get(0).get("paginationInfo"));
-	      }
+
+		int totalCount = 0;
+
+		if (list.isEmpty()) {
+
+		} else {
+			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mv.addObject("paginationInfo", paginationInfo);
+
+		}
 
 		mv.setViewName("/mypage/review");
 		return mv;
 	}
 
-	
-
-
-
 	// 큐엔에이리스트 폼
-	@RequestMapping(value = "/qna", method = RequestMethod.GET)
-public ModelAndView myPageQNAForm(@PathVariable int pageNum, CommandMap commandMap,HttpServletRequest request) throws Exception {
-		
+	@RequestMapping(value = "/qna/{pageNum}", method = RequestMethod.GET)
+	public ModelAndView myPageQNAForm(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
+
 		ModelAndView mv = new ModelAndView();
-		 HttpSession session = request.getSession();
-	      
-	      String MEMBER_ID = (String)session.getAttribute("MEMBER_ID");
-	      
-	      
-	      Map<String, Object> insertMap =  new HashMap<String,Object>();
-	      
-	      PaginationInfo paginationInfo = new PaginationInfo();
-	      
-	      //현재 페이지 번호
-	      paginationInfo.setCurrentPageNo(pageNum);
-	      //한 페이지에 게시되는 게시물 건수
-	      paginationInfo.setRecordCountPerPage(9);
-	      //페이징 리스트의 사이즈
-	      paginationInfo.setPageSize(5);
-	      
-	      insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
-	      insertMap.put("END", paginationInfo.getLastRecordIndex());
-	      insertMap.put("MEMBER_ID", MEMBER_ID);
+		HttpSession session = request.getSession();
 
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
 
-		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
+
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+
 		List<Map<String, Object>> list = mypageService.memberQNAList(insertMap);
 		mv.addObject("list", list);
-		
-		 int totalCount = 0;
-	      
-	      if(list.isEmpty()) {
-	      
-	      }else {
-	         totalCount = list.size();
-	         mv.addObject("paginationInfo", (PaginationInfo)list.get(0).get("paginationInfo"));
-	      }
+
+		int totalCount = 0;
+
+		if (list.isEmpty()) {
+
+		} else {
+			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mv.addObject("paginationInfo", paginationInfo);
+
+		}
 
 		mv.setViewName("/mypage/qna");
 		return mv;
 	}
 
-
-
 	// 1대1문의리스트 폼
 	@RequestMapping(value = "/oto/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView myPageOtOForm(@PathVariable int pageNum, CommandMap commandMap,HttpServletRequest request) throws Exception {
-		
+	public ModelAndView myPageOtOForm(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
+
 		ModelAndView mv = new ModelAndView();
-		 HttpSession session = request.getSession();
-	      
-	      String MEMBER_ID = (String)session.getAttribute("MEMBER_ID");
-	      
-	      
-	      Map<String, Object> insertMap =  new HashMap<String,Object>();
-	      
-	      PaginationInfo paginationInfo = new PaginationInfo();
-	      
-	      //현재 페이지 번호
-	      paginationInfo.setCurrentPageNo(pageNum);
-	      //한 페이지에 게시되는 게시물 건수
-	      paginationInfo.setRecordCountPerPage(9);
-	      //페이징 리스트의 사이즈
-	      paginationInfo.setPageSize(5);
-	      
-	      insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
-	      insertMap.put("END", paginationInfo.getLastRecordIndex());
-	      insertMap.put("MEMBER_ID", MEMBER_ID);
+		HttpSession session = request.getSession();
 
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
 
-		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
+
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+
 		List<Map<String, Object>> list = mypageService.memberOTOList(insertMap);
 		mv.addObject("list", list);
-		
-		 int totalCount = 0;
-	      
-	      if(list.isEmpty()) {
-	      
-	      }else {
-	         totalCount = list.size();
-	         mv.addObject("paginationInfo", (PaginationInfo)list.get(0).get("paginationInfo"));
-	      }
+
+		int totalCount = 0;
+
+		if (list.isEmpty()) {
+
+		} else {
+			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mv.addObject("paginationInfo", paginationInfo);
+
+		}
 
 		mv.setViewName("/mypage/oto");
 		return mv;
 	}
-	
-	
-	
 
 }

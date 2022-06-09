@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui" %>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,23 +15,16 @@
 <link href="/ezenwood/css/list.css" type="text/css" rel="stylesheet">
 
 <script type="text/javascript">
+	var ddd = document.location.href;
 
-var ddd = document.location.href;
+	var idx = ddd.lastIndexOf("/");
 
-var idx = ddd.lastIndexOf("/");
+	var sss = ddd.substring(0, idx + 1);
 
-var sss = ddd.substring(0,idx+1);
+	function fn_search(pageNo) {
 
-
-
-function fn_search(pageNo){
-	
-	
-	
-	
-	location.href = sss+pageNo;
-}
-
+		location.href = sss + pageNo;
+	}
 </script>
 
 </head>
@@ -61,14 +54,16 @@ function fn_search(pageNo){
 											<li style="width: 33.3333333%">
 												<div class="item_cont">
 													<div class="item_photo_box">
-														<a href="/ezenwood/goods?idx=${goodsMap.GOODS_NUM }"> <img src="/ezenwood/resource/image/pet1.jpg" width="400"
+														<a href="/ezenwood/goods?idx=${goodsMap.GOODS_NUM }">
+															<img src="/ezenwood/resource/image/pet1.jpg" width="400"
 															height="600" alt="상품 이름" title="상품 이름" class="middle">
 														</a>
 													</div>
 
 													<div class="item_info_cont">
 														<div class="item_tit_box">
-															<a href="#"> <strong class="item_name"> ${goodsMap.GOODS_TITLE } </strong>
+															<a href="#"> <strong class="item_name">
+																	${goodsMap.GOODS_TITLE } </strong>
 															</a>
 														</div>
 
@@ -96,15 +91,13 @@ function fn_search(pageNo){
 
 						<div class="pagination">
 							<div class="pagination">
-							<!-- dsadsa -->
-							
-							
-							<!-- dsadsa -->
-							<div class="insu" style="margin: 0 auto; text-align: center;">
-								<c:if test="${not empty paginationInfo}">
-		<ui:pagination paginationInfo = "${paginationInfo}" type="text" jsFunction="fn_search"/>
-	</c:if>
-	</div>
+
+								<div class="insu" style="margin: 0 auto; text-align: center;">
+									<c:if test="${not empty paginationInfo}">
+										<ui:pagination paginationInfo="${paginationInfo}" type="text"
+											jsFunction="fn_search" />
+									</c:if>
+								</div>
 							</div>
 						</div>
 					</div>
