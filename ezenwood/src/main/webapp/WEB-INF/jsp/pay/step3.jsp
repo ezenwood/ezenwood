@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -102,55 +103,58 @@
                                                         </tr>
                                                     </thead>
                                                     <tbody>
-                                                        <tr class="order-goods-layout" data-goodsno="상품번호">
-                                                            <td class="td_left">
-                                                                이미지
-                                                                <div class="pick_add_cont">
-                                                                    <span class="pick_add_img">
-                                                                        <a href="상품주소">
-                                                                            <img src="#" width="400" height="600">
-                                                                        </a>
-                                                                    </span>
-                                                                    <div class="pick_add_info">
-                                                                        <em style="text-align: center">
-                                                                            <a href="상품 주소">상품 이름</a>
-                                                                        </em>
-                                                                    </div>
+                                                        <c:forEach items="${payInfo.payListMap }" var="payMap" >
+                                                <tr class="order-goods-layout" data-goodsno="상품번호">
+                                                    <td class="td_left">
+                                                        이미지
+                                                        <div class="pick_add_cont">
+                                                            <span class="pick_add_img">
+                                                                <a href="/ezenwood/goods?idx=${payMap.GOODS_NUM }">
+                                                                    <img src="/ezenwood/resource/image/${payMap.subImage }" width="400" height="600">
+                                                                </a>
+                                                            </span>
+                                                            <div class="pick_add_info">
+                                                                <em style="text-align: center">
+                                                                    <a href="/ezenwood/goods?idx=${payMap.GOODS_NUM }">${payMap.GOODS_TITLE }</a>
+                                                                </em>
+                                                            </div>
+                                                        </div>
+                                                        <!--//pick_add_cont-->
+                                                        <div class="pick_add_list">
+                                                            <div class="pick_add_cont">
+                                                                <div class="pick_option_box">
+                                                                    <em><b>사이즈</b>
+                                                                        :&nbsp;사이즈
+                                                                    </em>
                                                                 </div>
-                                                                <!--//pick_add_cont-->
-                                                                <div class="pick_add_list">
-                                                                    <div class="pick_add_cont">
-                                                                        <div class="pick_option_box">
-                                                                            <em><b>사이즈</b>
-                                                                                :&nbsp;사이즈
-                                                                            </em>
-                                                                        </div>
-                                                                    </div>
-                                                                    <!--//pick_add_cont-->
-                                                                </div>
-                                                                <!--//pick_add_list-->
-                                                            </td>
-                                                            <td class="td_order_amount">
-                                                                <div class="order_goods_num">
-                                                                    <strong>수량</strong>
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                                <strong class="order_sum_txt price">가격</strong>
-                                                            </td>
-                                                            <td class="td_delivery" rowspan="1">
-                                                                기본 - 금액별배송비
-                                                                <br> 비용
-                                                                <br> (택배 - 선결제)
-                                                            </td>
-                                                            <td>
-                                                                <strong class="order_sum_txt">가격</strong>
-                                                            </td>
-                                                            <td class="order_option">
-                                                                <strong>옵션</strong>
-                                                            </td>
+                                                            </div>
+                                                            <!--//pick_add_cont-->
+                                                        </div>
+                                                        <!--//pick_add_list-->
+                                                    </td>
+                                                    <td class="td_order_amount">
+                                                        <div class="order_goods_num">
+                                                            <strong>${payMap.GOODS_AMOUNT }</strong>
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <strong class="order_sum_txt price">${payMap.GOODS_PRICE * payMap.GOODS_AMOUNT }</strong>
+                                                    </td>
+                                                    <td class="td_delivery" rowspan="1">
+                                                       ${payMap.GOODS_DCOST }
+                                                    </td>
+                                                    <td>
+                                                        <strong class="order_sum_txt">${payMap.GOODS_PRICE * payMap.GOODS_AMOUNT + payMap.GOODS_DCOST }</strong>
+                                                    </td>
+                                                    <td class="order_option">
+                                                        <strong>옵션</strong>
+                                                    </td>
 
-                                                        </tr>
+                                                </tr>
+
+                                               
+                                               
+                                               </c:forEach>
                                                     </tbody>
                                                 </table>
                                             </div>
@@ -174,15 +178,15 @@
                             </colgroup>
                             <tr>
                                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">이름</th>
-                                <td style="border-top: 1px solid #dbdbdb;">홍길동</td>
+                                <td style="border-top: 1px solid #dbdbdb;">${payInfo.memberMap.MEMBER_NAME }</td>
                             </tr>
                             <tr>
                                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">휴대폰 번호</th>
-                                <td>010-0000-1234</td>
+                                <td>${payInfo.memberMap.MEMBER_PHONE }</td>
                             </tr>
                             <tr>
                                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">이메일</th>
-                                <td>123423@123123.com</td>
+                                <td>${payInfo.memberMap.MEMBER_EMAIL }</td>
                             </tr>
                         </table>
                         <br>
@@ -193,16 +197,16 @@
                                 <col>
                             </colgroup>
                             <tr>
-                                <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">우편번호</th>
-                                <td style="border-top: 1px solid #dbdbdb;">홍길동</td>
+                                <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">수령인 이름</th>
+                                <td style="border-top: 1px solid #dbdbdb;">${payInfo.memberMap.ORDER_RECEIVER }</td>
                             </tr>
                             <tr>
-                                <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">주소</th>
-                                <td>010-0000-1234</td>
+                                <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">수령인 번호</th>
+                                <td>${payInfo.memberMap.ORDER_PHONE }</td>
                             </tr>
                             <tr>
-                                <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">상세주소</th>
-                                <td>123423@123123.com</td>
+                                <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">수령인 주소</th>
+                                <td>${payInfo.memberMap.ORDER_RADD1}  ${payInfo.memberMap.ORDER_RADD2}  ${payInfo.memberMap.ORDER_RADD3}</td>
                             </tr>
                         </table>
                         <br>
@@ -214,11 +218,11 @@
                             </colgroup>
                             <tr>
                                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">총 결제금액</th>
-                                <td style="border-top: 1px solid #dbdbdb;">229,000원</td>
+                                <td style="border-top: 1px solid #dbdbdb;">${payInfo.priceSum + payInfo.priceDSum }원</td> 
                             </tr>
                             <tr>
-                                <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">무통장 입금</th>
-                                <td>010-0000-1234</td>
+                                <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">결제 수단</th>
+                                <td>무통장 입금</td>
                             </tr>
 
                         </table>

@@ -41,6 +41,62 @@ function cartDelete(){
     
 
   }
+  
+var doubleSubmitFlag = false;
+function doubleSubmitCheck(){
+    if(doubleSubmitFlag){
+        return doubleSubmitFlag;
+    }else{
+        doubleSubmitFlag = true;
+        return false;
+    }
+}
+  
+  
+  function goodsOrder() {
+	  
+	  if(doubleSubmitCheck()) return;
+	  
+	  var orderGoodsNumArray = $($("td input[type=checkbox]:checked")[0]).siblings(".goodsNum")[0].value;
+	  var orderGoodsAmountArray = $($("td input[type=checkbox]:checked")[0]).siblings(".goodsAmount")[0].value
+	  
+	  var checkboxnum = $("td input[type=checkbox]:checked").length;
+	  
+	  for(let i = 1 ; i< checkboxnum ; i++){
+		  
+		  orderGoodsNumArray += ","+ $($("td input[type=checkbox]:checked")[i]).siblings(".goodsNum")[0].value;
+		  orderGoodsAmountArray += ","+ $($("td input[type=checkbox]:checked")[i]).siblings(".goodsAmount")[0].value;
+		  
+	  }
+	  
+	  
+	  
+	  
+	  var form = document.createElement("form");
+	  form.setAttribute("method","post");
+	  form.setAttribute("action","/ezenwood/pay/step1");
+	  
+	  var input_GOODS_NUM = document.createElement("input");
+	  var input_GOODS_AMOUNT = document.createElement("input");
+	  
+	    input_GOODS_NUM.setAttribute("type", "hidden");
+		input_GOODS_NUM.setAttribute("name", "ORDERS_GOODS_NUM");		
+		input_GOODS_NUM.setAttribute("value", orderGoodsNumArray);
+		
+		input_GOODS_AMOUNT.setAttribute("type", "hidden");
+		input_GOODS_AMOUNT.setAttribute("name", "ORDERS_AMOUNT");
+		input_GOODS_AMOUNT.setAttribute("value", orderGoodsAmountArray);
+	  
+		form.appendChild(input_GOODS_NUM); 
+		form.appendChild(input_GOODS_AMOUNT); 
+		
+		
+		document.body.appendChild(form);
+		
+		form.submit();
+	  
+	
+}
 
 </script>
   <script>
@@ -200,6 +256,8 @@ function cartDelete(){
                                     
                                         <input type="checkbox" id="cartSno1_17181" name="cartSno[]" value="17181">
                                         <input type="hidden" class="cartinsu" value="${cartMap.BASKET_NUM }"  >
+                                        <input type="hidden" class="goodsNum" value="${cartMap.goodsMap.GOODS_NUM }"  >
+                                        <input type="hidden" class="goodsAmount" value="${cartMap.BASKET_GOODS_AMOUNT }"  >
                                         <label for="cartSno1_17181" class="check_s on"></label>
                                    
                                 </td>
@@ -275,7 +333,7 @@ function cartDelete(){
                
                 <span class="btn_center_box">
                    <button type="button" class="btn_order_whole_buy" onclick="cartDelete()">상품 삭제</button>
-                    <button type="button" class="btn_order_whole_buy" onclick="gd_order_all();">상품 주문</button>
+                    <button type="button" class="btn_order_whole_buy" onclick="goodsOrder()">상품 주문</button>
                 </span>
             </div>
             <!-- //btn_order_box -->
