@@ -45,7 +45,7 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public Map<String, Object> cancelOrder(Map<String, Object> map) throws Exception {
+	public List<Map<String,Object>> cancelOrder(Map<String, Object> map) throws Exception {
 		return mypageDAO.cancelOrder(map);
 	}
 
@@ -65,8 +65,8 @@ public class MyPageServiceImpl implements MyPageService{
 	}
 
 	@Override
-	public Map<String, Object> ordercount(Map<String, Object> map) {
-		return mypageDAO.ordercount(map);
+	public int ordercount() {
+		return mypageDAO.ordercount();
 	}
 
 }

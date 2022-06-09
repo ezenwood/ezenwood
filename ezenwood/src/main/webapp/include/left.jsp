@@ -23,13 +23,15 @@
 		<ul class="sub_menu_mypage">
 			<li>쇼핑정보
 				<ul class="sub_depth1">
-					<li><a href="/ezenwood/mypage/order">- 주문목록/배송조회</a></li>
-					<li><a href="/ezenwood/mypage/cancel">- 취소/반품/교환 내역</a></li>
+					<li><a href="/ezenwood/mypage/order/1">- 주문목록/배송조회</a></li>
+					<li><a href="/ezenwood/mypage/cancel/1">- 취소/반품/교환 내역</a></li>
 				</ul>
 			</li>
 			<li>게시판 관리
 				<ul class="sub_depth1">
+
 					<li><a href="/ezenwood/mypage/review/1">- 리뷰</a></li>
+
 					<li><a href="/ezenwood/mypage/oto/1">- 1:1문의</a></li>
 					<li><a href="/ezenwood/mypage/qna/1">- Q&A</a></li>
 				</ul>
