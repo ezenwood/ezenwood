@@ -168,7 +168,6 @@ public class MyPageController {
 		mav.addObject("count",count);
 		
 		List<Map<String,Object>> orderList = mypageService.orderList(insertMap);
-		System.out.println(orderList);
 		mav.addObject("orderList", orderList);
 		
 		int totalCount = 0;
