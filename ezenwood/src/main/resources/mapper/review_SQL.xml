@@ -4,8 +4,9 @@
 <mapper namespace="review">
 
 
-<!-- 전체 review 보기 -->
-<select id="selectAllReview" parameterType="hashmap" resultType="hashmap">
+	<!-- 전체 review 보기 -->
+	<select id="selectAllReview" parameterType="hashmap"
+		resultType="hashmap">
 <![CDATA[
 
 SELECT REVIEW_NUM, REVIEW_TITLE, REVIEW_WRITER,REVIEW_DATE
@@ -13,10 +14,11 @@ FROM REVIEW
 WHERE REVIEW_DEL_GB = 'N';
 
 ]]>
-</select>
- 
-<select id="selectReviewList" resultType="hashmap" parameterType="hashmap">
-<include refid="common.pagingPre"></include>
+	</select>
+
+	<select id="selectReviewList" resultType="hashmap"
+		parameterType="hashmap">
+		<include refid="common.pagingPre"></include>
 <![CDATA[
 
 SELECT 
@@ -31,10 +33,11 @@ where REVIEW_DEL_GB = 'N' and REVIEW_PARENT=#{GOODS_NUM}
 
 
 ]]>
-<include refid="common.pagingPost"></include>
-</select>
+		<include refid="common.pagingPost"></include>
+	</select>
 
-<select id="selectReviewDetail" resultType="hashmap" parameterType="hashmap">
+	<select id="selectReviewDetail" resultType="hashmap"
+		parameterType="hashmap">
 <![CDATA[
 SELECT 
 	REVIEW_NUM,
@@ -49,26 +52,35 @@ where REVIEW_DEL_GB = 'N' and REVIEW_NUM=#{REVIEW_NUM}
 
 
 ]]>
-</select>
+	</select>
 
 
 
 
-<!-- Client review 보기 -->
-<select id="selectClientReview" parameterType="hashmap" resultType="hashmap">
+	<!-- Client review 보기 -->
+	<select id="selectClientReview" parameterType="hashmap"
+		resultType="hashmap">
+		<include refid="common.pagingPre"></include>
 <![CDATA[
-
-SELECT REVIEW_NUM, REVIEW_TITLE, REVIEW_WRITER,REVIEW_DATE
+SELECT
+ROW_NUMBER() OVER (ORDER BY REVIEW_NUM DESC) RNUM,
+REVIEW_NUM,
+REVIEW_TITLE,
+REVIEW_WRITER,
+REVIEW_DATE,
+REVIEW_CONTENT,
+REVIEW_DEL_GB,
+(SELECT GOODS_TITLE FROM GOODS WHERE GOODS_NUM=(SELECT REVIEW_PARENT FROM REVIEW WHERE REVIEW_WRITER=(SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID}))) TITLE,
+REVIEW_PARENT
 FROM REVIEW
-WHERE REVIEW_DEL_GB = 'N'
-AND
-REVIEW_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID};
-
+where REVIEW_WRITER =(select MEMBER_NUM from MEMBER where MEMBER_ID =#{MEMBER_ID})
+and REVIEW_DEL_GB = 'N'
 ]]>
-</select>
+		<include refid="common.pagingPost"></include>
+	</select>
 
-<!-- 고객 review 작성 -->
-<insert id="insertClientReview" parameterType="hashmap">
+	<!-- 고객 review 작성 -->
+	<insert id="insertClientReview" parameterType="hashmap">
 <![CDATA[
 
 insert into review 
@@ -82,14 +94,16 @@ REVIEW_DEL_GB = #{REVIEW_DEL_GB},
 REVIEW_PARENT = #{REVIEW_PARENT}
 )
 ]]>
-</insert>
+	</insert>
 
 
 
-<insert id="insertReview" parameterType="hashmap" useGeneratedKeys="true" keyProperty="REVIEW_NUM">
-<selectKey keyProperty="REVIEW_NUM" resultType="string" order="BEFORE">
-select SEQ_REVIEW_NUM.nextval from dual
-</selectKey>
+	<insert id="insertReview" parameterType="hashmap"
+		useGeneratedKeys="true" keyProperty="REVIEW_NUM">
+		<selectKey keyProperty="REVIEW_NUM" resultType="string"
+			order="BEFORE">
+			select SEQ_REVIEW_NUM.nextval from dual
+		</selectKey>
 <![CDATA[
 insert into 
 	review  
@@ -104,12 +118,12 @@ values(
 	
 
 ]]>
-</insert>
+	</insert>
 
 
 
-<!-- 고객 review 수정 -->
-<update id="updateClient" parameterType="hashmap">
+	<!-- 고객 review 수정 -->
+	<update id="updateClient" parameterType="hashmap">
 <![CDATA[
 UPDATE REVIEW
 SET
@@ -117,10 +131,10 @@ REVIEW_TITLE = #{review_title}
 REVIEW_CONTENT = #{REVIEW_CONTENT}
 WHERE REVIEW_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
 ]]>
-</update>
+	</update>
 
-<!--고객/ 관리자 review 삭제  -->
-<update id="deleteReview" parameterType="hashmap">
+	<!--고객/ 관리자 review 삭제 -->
+	<update id="deleteReview" parameterType="hashmap">
 <![CDATA[
 UPDATE REVIEW
 SET
@@ -128,6 +142,6 @@ REVIEW_DEL_GB = 'Y'
 WHERE REVIEW_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
 
 ]]>
-</update>
+	</update>
 
 </mapper>

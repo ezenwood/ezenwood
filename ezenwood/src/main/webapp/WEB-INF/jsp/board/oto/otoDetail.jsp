@@ -14,6 +14,22 @@
 <link href="/ezenwood/css/qnaDetail.css" type="text/css"
 	rel="stylesheet">
 <title>이젠 우드</title>
+<script type="text/javascript">
+    
+    //글 삭제
+    function fn_del() {
+ 
+        if (confirm("정말 삭제하시겠습니까??") == true) { //확인
+            location.href = "/board/oto/otoBoard/{otonum}/otoDelete"+${map.otonum};
+            console.log('success');
+        } else {
+            console.log('fail');
+            return false;
+        }
+    }
+    
+</script>
+
 </head>
 
 <body>
@@ -62,20 +78,20 @@
 													</tr>
 													<tr>
 														<th scope="row">작성자</th>
-														<td>${OTOMap.ONETOONE_MEMBER_NUM}</td>
+														<td>${OTOMap.ONETOONE_MEMBER_ID}</td>
 													</tr>
 													<tr>
 														<td colspan="2">
 															<ul class="etcArea">
 																<li class=""><strong>작성일</strong> 
-																<span class="txtNum"><fmt:formatDate value="${OTOMap.ONETOONE_DATE }" type="both" dateStyle="medium" timeStyle="medium"/></span></li>
+																<span class="txtNum"><fmt:formatDate value="${OTOMap.ONETOONE_DATE}" type="both" dateStyle="medium" timeStyle="medium"/></span></li>
 															</ul>
 															<div class="detail">
 																<div class="fr-view fr-view-article">
-																	<c:if test="${OTOMap.OTO_IMAGE != null}">
-																	<img alt="/ezenwood/resource/image/${OTOMap.OTO_IMAGE}">
-																	</c:if>
-																	<br>${OTOMap.OTO_CONTENT }
+																	<!--<c:if test="${OTOMap.OTO_IMAGE != null}">
+																	/<img alt="/ezenwood/resource/image/${OTOMap.OTO_IMAGE}">
+																	</c:if>-->
+																	<br>${OTOMap.ONETOONE_CONTENT}
 																</div>
 															</div>
 														</td>
@@ -96,12 +112,10 @@
 											</table>
 										</div>
 										<div class="ec-base-button ">
-											<span class="gLeft"> <a href="board/oto"
+											<span class="gLeft"> <a href="/ezenwood/board/oto"
 												class="btnNormalFix sizeS">목록</a>
-											</span> <span class="gRight"> <a href="#none"
-												onclick="BOARD_READ.article_delete('BoardDelForm','#');"
-												class="btnNormalFix sizeS ">삭제</a> <a href="#"
-												class="btnEmFix sizeS ">수정</a>
+											</span> <span class="gRight">  
+												<button id="button1" onclick="fn_del();" class="btnEmFix sizeS">삭제</button>
 
 											</span>
 										</div>

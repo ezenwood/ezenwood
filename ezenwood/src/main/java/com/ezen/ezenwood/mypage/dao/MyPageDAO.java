@@ -20,13 +20,13 @@ public interface MyPageDAO {
 	public List<Map<String,Object>> orderList(Map<String,Object> map);
 	
 	//orderlistcount
-	public Map<String, Object> ordercount(Map<String, Object> map);
+	public int ordercount();
 	
 	//배송조회
 	public Map<String, Object> deliveryTracking(Map<String,Object> map);
 	
 	//취소내역
-	public Map<String,Object> cancelOrder(Map<String,Object> map);
+	public List<Map<String,Object>> cancelOrder(Map<String,Object> map);
 	
 	
 	//리뷰(review)

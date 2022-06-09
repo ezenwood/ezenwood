@@ -1,8 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <html lang="en">
 <head>
+<script type="text/javascript">
+	var ddd = document.location.href;
+
+	var idx = ddd.lastIndexOf("/");
+
+	var sss = ddd.substring(0, idx + 1);
+
+	function fn_search(pageNo) {
+
+		location.href = sss + pageNo;
+	}
+</script>
 <meta charset="UTF-8">
 <link rel="stylesheet" href="/ezenwood/css/mypage.css">
 <link rel="stylesheet" href="/ezenwood/css/layout.css">
@@ -19,8 +32,8 @@
 			<!-- 본문  -->
 			<div class="location_wrap">
 				<div class="location_cont">
-					<em> <a href="/ezenwood/mypage/main" class="local_home">Home</a> &gt;마이페이지&gt;게시글
-						관리&gt;Q&A
+					<em> <a href="/ezenwood/mypage/main" class="local_home">Home</a>
+						&gt;마이페이지&gt;게시글 관리&gt;Q&A
 					</em>
 				</div>
 			</div>
@@ -28,14 +41,8 @@
 			<div class="sub_content">
 				<div class="side_cont">
 					<%@include file="/include/left.jsp"%>
-					<!--sub_menu_box -->
-					<script type="text/javascript">
-						//메뉴선택
-						$(
-								'sub_menu_mypage li> a[href*="'
-										+ document.location.pathname + '"]')
-								.addClass('active');
-					</script>
+
+
 				</div>
 				<!-- side_cont-->
 
@@ -69,21 +76,33 @@
 									<th>문의상태</th>
 								</tr>
 							</thead>
-							<tbody>
-								<tr>
-									<td>"${qna_date}"</td>
-									<td>"${qna_category}"</td>
-									<td><a href="#"> "${qna_title}" </a></td>
-									<td>"${qna_writer}"</td>
-									<td>"${qna_re_gb}"</td>
-								</tr>
-							</tbody>
+							<c:forEach items="${list}" var="qna">
+								<tbody>
+									<tr>
+										<td>${qna.QNA_DATE}</td>
+										<td>몰랑</td>
+										<td><a href="#">${qna.QNA_TITLE} </a></td>
+										<td>${qna.QNA_WRITER}</td>
+										<td>${qna.QNA_RE_GB}</td>
+									</tr>
+								</tbody>
+							</c:forEach>
 						</table>
+						<div class="pagination">
+							<div class="pagination">
+
+								<div class="insu" style="margin: 0 auto; text-align: center;">
+									<c:if test="${not empty paginationInfo}">
+										<ui:pagination paginationInfo="${paginationInfo}" type="text"
+											jsFunction="fn_search" />
+									</c:if>
+								</div>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-	</div>
-	<%@include file="/include/footer.jsp"%>
+		<%@include file="/include/footer.jsp"%>
 </body>
 </html>

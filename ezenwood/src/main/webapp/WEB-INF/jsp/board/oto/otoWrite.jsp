@@ -42,7 +42,7 @@
 											<tbody>
 												<tr>
 													<th scope="row">작성자</th>
-													<td>${MEMBER_ID }</td>
+													<td>${MEMBER_ID}</td>
 												</tr>
 												<tr>
 													<th scope="row">제목</th>

@@ -9,7 +9,7 @@
 	<!-- 주문 입력 -->
 	<insert id="insertOrder" parameterType="hashmap">
 <![CDATA[
-insert into orders values(
+INSERT INTO ORDERS VALUES(
 	SEQ_ORDERS_NUM.NEXTVAL,
 	#{GOODS_NUM},
 	#{ORDER_AMOUNT},
@@ -30,6 +30,7 @@ insert into orders values(
 	#{ORDER_DMEMO},
 	'무통장'
 )]]>
+
 	</insert>
 
 
@@ -49,7 +50,7 @@ select
     ORDERS_RECEIVER,
     ORDERS_PHONE,
     ORDERS_STATUS,
-    ORDERS_DATE,
+    TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
     ORDERS_PRICE,
     ORDERS_DCOST,
     ORDERS_TCOST,
@@ -69,9 +70,9 @@ where
 		<include refid="common.pagingPost"></include>
 	</select>
 
-<select id="selectorders" parameterType="hashmap" resultType="hashmap">
+<select id="selectorders" parameterType="hashmap">
 <![CDATA[
-SELECT COUNT(*) FROM orders
+SELECT COUNT(ORDERS_NUM) FROM orders
 ]]>
 </select>
 	<!-- 주문 내역 날짜별 -->
@@ -88,7 +89,7 @@ select
 	ORDERS_RECEIVER,
 	ORDERS_PHONE,
 	ORDERS_STATUS,
-	ORDERS_DATE,
+	TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
 	ORDERS_PRICE,
 	ORDERS_DCOST,
 	ORDERS_TCOST,
@@ -114,10 +115,10 @@ where
 	
 
 	<!-- 주문 내역 상태별 -->
-	<select id="selectAllByStatus" parameterType="hashmap" resultType="hashmap">
+	<select id="selectCancel" parameterType="hashmap" resultType="hashmap">
 	<include refid="common.pagingPre"></include>
 <![CDATA[
-select 
+SELECT 
 	ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
 	ORDERS_NUM,
 	ORDERS_GOODS_NUM,
@@ -127,22 +128,22 @@ select
 	ORDERS_RECEIVER,
 	ORDERS_PHONE,
 	ORDERS_STATUS,
-	ORDERS_DATE,
+	TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
 	ORDERS_PRICE,
 	ORDERS_DCOST,
 	ORDERS_TCOST,
-	ORDERS_RZIPCODE,
+	ORDERS_ZIPCODE,
 	ORDERS_RADD1,
 	ORDERS_RADD2,
 	ORDERS_RADD3,
 	ORDERS_TRACK,
 	ORDERS_DMEMO,
 	ORDERS_PAY  
-from  
-	orders 
-where
-	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBER_ID}) and
-	ORDERS_STATUS = #{ORDER_STATUS}
+FROM  
+	ORDERS 
+WHERE
+	ORDERS_MEMBER_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}) and
+	ORDERS_STATUS = '주문 취소'
 	
 ]]>
 <include refid="common.pagingPost"></include>
@@ -158,7 +159,7 @@ where
 select * from orders
 	where
 	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBER_ID}) and
-	ORDERS_NUM = #{ORDER_NUM}
+	ORDERS_NUM = (SELECT GOODS_NUM FROM GOODS WHERE GOODS_NUM=#{GOODS_NUM})
 	
 	
 ]]>
@@ -174,10 +175,10 @@ select * from orders
 update 
 	orders 
 set 
-	ORDERS_STATUS = 'CANCLE' 
+	ORDERS_STATUS = (SELECT DELIVERY_STATUES FROM DELIVERY WHERE DELIVERY_NUM = 6) 
 where 
-	ORDERS_MEMBER_NUM = (select MEMBER_NUM from member where Member_id = #{MEMBER_ID}) and
-	ORDERS_NUM = #{ORDER_NUM}
+	ORDERS_MEMBER_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID}) and
+	ORDERS_GOODS_NUM = (SELECT GOODS_NUM FROM GOODS WHERE GOODS_NUM=#{GOODS_NUM})
 ]]>
 	</update>
 
@@ -204,7 +205,7 @@ select
 	ORDERS_RECEIVER,
 	ORDERS_PHONE,
 	ORDERS_STATUS,
-	ORDERS_DATE,
+	TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
 	ORDERS_PRICE,
 	ORDERS_DCOST,
 	ORDERS_TCOST,
@@ -215,8 +216,7 @@ select
 	ORDERS_TRACK,
 	ORDERS_DMEMO,
 	ORDERS_PAY  
-from orders
-	
+from ORDERS
 ]]>
 	</select>
 
@@ -236,7 +236,7 @@ select
 	ORDERS_RECEIVER,
 	ORDERS_PHONE,
 	ORDERS_STATUS,
-	ORDERS_DATE,
+	TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
 	ORDERS_PRICE,
 	ORDERS_DCOST,
 	ORDERS_TCOST,
@@ -272,7 +272,7 @@ select
 	ORDERS_RECEIVER,
 	ORDERS_PHONE,
 	ORDERS_STATUS,
-	ORDERS_DATE,
+	TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
 	ORDERS_PRICE,
 	ORDERS_DCOST,
 	ORDERS_TCOST,
@@ -308,7 +308,7 @@ select
 	ORDERS_RECEIVER,
 	ORDERS_PHONE,
 	ORDERS_STATUS,
-	ORDERS_DATE,
+	TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
 	ORDERS_PRICE,
 	ORDERS_DCOST,
 	ORDERS_TCOST,
@@ -344,7 +344,7 @@ select
 	ORDERS_RECEIVER,
 	ORDERS_PHONE,
 	ORDERS_STATUS,
-	ORDERS_DATE,
+	TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
 	ORDERS_PRICE,
 	ORDERS_DCOST,
 	ORDERS_TCOST,

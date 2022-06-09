@@ -1,6 +1,6 @@
 package com.ezen.ezenwood.board.service;
 
-import java.io.IOException;
+import java.io.IOException; 
 import java.util.List;
 import java.util.Map;
 
@@ -44,8 +44,8 @@ public class BoardServiceImpl implements BoardService {
 
 		resultMap.put("Answer", boardDAO.AnswerForOTODetil(resultMap));
 		
-		String BOARD_IMAGE = imageDAO.selectImage(resultMap);
-		resultMap.put("BOARD_IMAGE", BOARD_IMAGE);
+		//String BOARD_IMAGE = imageDAO.selectImage(resultMap);
+		//resultMap.put("BOARD_IMAGE", BOARD_IMAGE);
 		
 		
 		return resultMap;
@@ -58,6 +58,17 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return boardDAO.FQList(insertMap);
 	}
+	
+	@Override
+	public int OTODelete(Map<String, Object> insertMap, HttpServletRequest request) {
+
+		int checkNum = boardDAO.OTODelete(insertMap);
+		
+		return checkNum;
+	}
+	
+	
+
 	
 	//NOTICE
 
