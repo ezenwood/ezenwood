@@ -14,13 +14,15 @@
 <link rel="stylesheet" href="/ezenwood/css/board.css">
 <link rel="stylesheet" href="/ezenwood/css/common.css">
 <script>
+	var ddd = document.location.href;
+
+	var idx = ddd.lastIndexOf("/");
+
+	var sss = ddd.substring(0, idx + 1);
+
 	function fn_search(pageNo) {
-		var comSubmit = new ComSubmit();
-		comSubmit.setUrl("<c:url value='/mypage/order'/>");
-		comSubmit.addParam("currentPageNo", pageNo);
-		comSubmit.submit();
+		location.href = sss + pageNo;
 	}
-	
 </script>
 
 <title>order2</title>
@@ -54,13 +56,11 @@
 							<h2 style="font-size: large">주문목록/배송조회</h2>
 						</div>
 						<!-- mypage_zone_tit-->
-						<c:forEach items="${count}" var="count">
+
 						<span class="pick_list_num" style="width: 100%; align: left">
-							주문목록 <strong>
-							"${count}"
-							</strong> 건
+							주문목록 <strong> ${orderList.size()} </strong> 건
 						</span>
-						</c:forEach>
+
 						<!-- 주문상품 리스트-->
 
 						<div class="mypage_table_type">
@@ -74,7 +74,7 @@
 									<!-- 상품금액/수량-->
 									<col style="width: 14%">
 									<!--주문상태 -->
-									<col style="width: 14%">
+									
 									<!--확인/리뷰 -->
 								</colgroup>
 								<thead>
@@ -83,38 +83,49 @@
 										<th>상품명/옵션</th>
 										<th>상품금액/수량</th>
 										<th>주문상태</th>
-										<th>확인/리뷰</th>
+										
 									</tr>
 								</thead>
-								<c:forEach items="${orderList}" var="order" varStatus="totalCount">
+								<c:forEach items="${orderList}" var="order"
+									varStatus="totalCount">
 									<tbody>
 										<tr>
 											<th>
-												<p>${order.ADATE}&nbsp;/&nbsp;${order.ORDERS_NUM}</p></th>
+												<p>${order.ADATE}&nbsp;/&nbsp;${order.ORDERS_NUM}</p>
+											</th>
 
 											<th>
 												<P>${order.ORDERS_GOODS_NUM}&nbsp;/&nbsp;${order.ORDERS_GOODS_OPTION}</P>
 											</th>
 
 											<th>
-												<P>${order.ORDERS_PRICE}&nbsp;/&nbsp;${order.ORDERS_AMOUNT}</P></th>
+												<P>${order.ORDERS_PRICE}&nbsp;/&nbsp;${order.ORDERS_AMOUNT}</P>
+											</th>
 											<th>
-												<P>${order.ORDERS_STATUS}</P></th>
+												<P>${order.ORDERS_STATUS}</P>
+											</th>
 
-											<th>확인 리뷰 란은 뭐죠>??</th>
+											
 										</tr>
 									</tbody>
 								</c:forEach>
 							</table>
 						</div>
 					</div>
+					<div class="pagination">
+						<div class="pagination">
+							<!-- dsadsa -->
 
-					<c:if test="${not empty paginationInfo}">
-						<ui:pagination paginationInfo="${paginationInfo}" type="text"
-							jsFunction="fn_search" />
-					</c:if>
-					<input type="hidden" id="currentPageNo" name="currentPageNo" />
 
+							<!-- dsadsa -->
+							<div class="insu" style="margin: 0 auto; text-align: center;">
+								<c:if test="${not empty paginationInfo}">
+									<ui:pagination paginationInfo="${paginationInfo}" type="text"
+										jsFunction="fn_search" />
+								</c:if>
+							</div>
+						</div>
+					</div>
 				</div>
 			</div>
 
