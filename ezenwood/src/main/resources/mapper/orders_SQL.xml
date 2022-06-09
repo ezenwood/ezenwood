@@ -11,25 +11,26 @@
 <![CDATA[
 INSERT INTO ORDERS VALUES(
 	SEQ_ORDERS_NUM.NEXTVAL,
-	#{ORDERS_GOODS_NUM},
+	#{GOODS_NUM},
 	#{ORDER_AMOUNT},
 	(select member_num from member where member_id = #{MEMBER_ID}),
-	#{ORDERS_GOODS_OPTION},
-	#{ORDERS_RECEIVER},
-	#{ORDERS_PHONE},
-	'주문대기중',
+	'no option',
+	#{ORDER_RECEIVER},
+	#{ORDER_PHONE},
+	'1',
 	sysdate,
-	#{ORDERS_PRICE},
-	#{ORDERS_DCOST},
-	#{ORDERS_TCOST},
-	#{ORDERS_ZIPCODE},
-	#{ORDERS_ADD1},
-	#{ORDERS_ADD2},
-	#{ORDERS_ADD3},
-	#{ORDERS_TRACK},
-	#{ORDERS_DMEMO},
-	#{ORDERS_PAY})
-]]>
+	(select GOODS_PRICE from goods where GOODS_NUM = #{GOODS_NUM}),
+	(select GOODS_DCOST from goods where GOODS_NUM = #{GOODS_NUM}),
+	(select (select GOODS_PRICE from goods where GOODS_NUM = #{GOODS_NUM})* #{ORDER_AMOUNT} + (select GOODS_DCOST from goods where GOODS_NUM = #{GOODS_NUM})  from dual),
+	#{ORDER_RZIPCODE},
+	#{ORDER_RADD1},
+	#{ORDER_RADD2},
+	#{ORDER_RADD3},
+	'dnsthdwkdqjsgh',
+	#{ORDER_DMEMO},
+	'무통장'
+)]]>
+
 	</insert>
 
 

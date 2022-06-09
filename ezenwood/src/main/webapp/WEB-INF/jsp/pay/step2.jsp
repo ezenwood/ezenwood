@@ -15,13 +15,13 @@
         $(document).ready(function(){
             $("#same").click(function(){
                 
-                $("#sample4_postcode").get(0).value="ddd";
-                $("#sample4_roadAddress").get(0).value="ddd";
-                $("#sample4_detailAddress").get(0).value="ddd";
-                $("#sample4_jibunAddress").get(0).value="ddd";
-                $("#sample4_extraAddress").get(0).value="ddd";
-                $("#dname").get(0).value="dddd";
-                $("#dphone").get(0).value="ddd";
+                $("#sample4_postcode").get(0).value="${memberMap.MEMBER_ZIP}";
+                $("#sample4_roadAddress").get(0).value="${memberMap.MEMBER_ADD1}";
+                $("#sample4_detailAddress").get(0).value="${memberMap.MEMBER_ADD2}";
+                $("#sample4_jibunAddress").get(0).value="";
+                $("#sample4_extraAddress").get(0).value="${memberMap.MEMBER_ADD3}";
+                $("#dname").get(0).value="${memberMap.MEMBER_NAME}";
+                $("#dphone").get(0).value="${memberMap.MEMBER_PHONE}";
 
             });
 
@@ -77,21 +77,7 @@
                     document.getElementById("sample4_extraAddress").value = '';
                 }
 
-                var guideTextBox = document.getElementById("guide");
-                // 사용자가 '선택 안함'을 클릭한 경우, 예상 주소라는 표시를 해준다.
-                if(data.autoRoadAddress) {
-                    var expRoadAddr = data.autoRoadAddress + extraRoadAddr;
-                    guideTextBox.innerHTML = '(예상 도로명 주소 : ' + expRoadAddr + ')';
-                    guideTextBox.style.display = 'block';
-
-                } else if(data.autoJibunAddress) {
-                    var expJibunAddr = data.autoJibunAddress;
-                    guideTextBox.innerHTML = '(예상 지번 주소 : ' + expJibunAddr + ')';
-                    guideTextBox.style.display = 'block';
-                } else {
-                    guideTextBox.innerHTML = '';
-                    guideTextBox.style.display = 'none';
-                }
+               
             }
         }).open();
     }
@@ -207,7 +193,7 @@
             <!--//location_wrap-->
             <div class="sub_content">
                 <div class="content_box">
-                    <form id="frmOrder" name="frmOrder" action="#" method="post" novalidate="novalidate">
+                    
                         <div class="order_wrap">
                             <div class="order_tit">
                                 <h2>주문서작성/결제</h2>
@@ -221,8 +207,9 @@
    <div class="warpper">
 
 
-<form>
+
     <div class="order_form_title">주문자 정보</div>
+    <form action="/ezenwood/pay/step3" method="post">
         <table>
             <colgroup>
             <col width="15%">
@@ -230,15 +217,15 @@
             </colgroup>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">주문하시는 분</th>
-                <td><input type="text" placeholder="이름을 입력해주세요"></td>
+                <td><input type="text" name="MEMBER_NAME" placeholder="이름을 입력해주세요" value="${memberMap.MEMBER_NAME }" readonly="readonly" ></td>
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">휴대폰 번호</th>
-                <td><input type="text" placeholder="휴대폰 번호를 입력해주세요 ex)01012345678"></td>
+                <td><input type="text" name="MEMBER_PHONE" placeholder="휴대폰 번호를 입력해주세요 ex)01012345678"  value="${memberMap.MEMBER_PHONE }" readonly="readonly" ></td>
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">이메일</th>
-                <td><input type="text" placeholder="이메일 주소를 입력해주세요 ex)hong@naver.com"></td>
+                <td><input type="text" name="MEMBER_EMAIL" placeholder="이메일 주소를 입력해주세요 ex)hong@naver.com" value="${memberMap.MEMBER_EMAIL }"  readonly="readonly" ></td>
             </tr>
         </table>
         <div class="order_form_title">배송 정보</div>
@@ -253,21 +240,21 @@
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">받으실 분</th>
-                <td><input type="text" id="dname" placeholder="이름을 입력해주세요"></td>
+                <td><input type="text" id="dname" name="ORDER_RECEIVER" placeholder="이름을 입력해주세요"></td>
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">받으실 곳</th>
-                <td><input type="text" id="sample4_postcode" placeholder="우편번호"> <button type="button" value="우편번호 검색" onclick="sample4_execDaumPostcode()" class="postbox">우편번호 검색</button><br>
-                    <input type="text" id="sample4_roadAddress" placeholder="도로명주소"><input type="text" id="sample4_jibunAddress" placeholder="지번주소"><br>
-                    <input type="text" id="sample4_detailAddress" placeholder="상세주소"><input type="text" id="sample4_extraAddress" placeholder="참고사항"></td>
+                <td><input type="text" name="ORDER_RZIPCODE" id="sample4_postcode" placeholder="우편번호"> <button type="button" value="우편번호 검색" onclick="sample4_execDaumPostcode()" class="postbox">우편번호 검색</button><br>
+                    <input type="text" name="ORDER_RADD1" id="sample4_roadAddress" placeholder="도로명주소"><input type="text" id="sample4_jibunAddress" placeholder="지번주소"><br>
+                    <input type="text" name="ORDER_RADD2"  id="sample4_detailAddress" placeholder="상세주소"><input type="text" id="sample4_extraAddress" name="ORDER_RADD3" placeholder="참고사항"></td>
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">휴대폰 번호</th>
-                <td><input type="text" id="dphone" placeholder="휴대폰 번호를 입력해주세요 ex)01012345678"></td>
+                <td><input type="text" name="ORDER_PHONE" id="dphone" placeholder="휴대폰 번호를 입력해주세요 ex)01012345678"></td>
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">배송 요청사항</th>
-                <td><input type="text" placeholder="배송 요청사항"></td>
+                <td><input type="text" name="ORDER_DMEMO" placeholder="배송 요청사항"></td>
             </tr>
         </table>
         <div class="order_form_title">결제 정보</div>
@@ -278,15 +265,15 @@
             </colgroup>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">상품합계 금액</th>
-                <td>222,900원</td>
+                <td>${payInfo.priceSum }원</td>
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">배송비</th>
-                <td>0원</td>
+                <td>${payInfo.priceDSum }원</td>
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">최종합계 금액</th>
-                <td>222,900원</td>
+                <td>${payInfo.priceSum + payInfo.priceDSum }원</td>
             </tr>
         </table>
         <div class="order_form_title">결제 수단</div>
@@ -303,29 +290,29 @@
         </table>
         <div class="fin">
             <div class="price">
-                <p>총 <b>1</b>개 상품 금액</p>
-                <p>299,000원</p>
+                <p>총 <b>${payInfo.goodsQuantity }</b>개 상품 금액</p>
+                <p>${payInfo.priceSum }원</p>
             </div>
             <div class="plus">
                 +
             </div>
             <div class="deprice">
                 <p>배송비</p>
-                <p>0원</p>
+                <p>${payInfo.priceDSum }원</p>
             </div>
             <div class="equal">
                 =
             </div>
             <div class="totalprice">
                 <p>합계</p>
-                <p>299,000원</p>
+                <p>${payInfo.priceSum + payInfo.priceDSum }원</p>
             </div>
         </div>
         <button class="paybutton" style=" vertical-align: middle; display: inline-block; width: 200px; height: 61px; line-height: 59px; color: #fff; font-size: 20px; border: 1px solid #323437; background: #323437; text-align: center">결제하기</button>
 </form>
 </div>
        </div>
-                    </form>
+                    
                 </div>
             </div>
        </div></div>

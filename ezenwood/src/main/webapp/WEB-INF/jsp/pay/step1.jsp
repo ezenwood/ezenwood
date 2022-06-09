@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -65,18 +66,19 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
+                                               <c:forEach items="${payListMap }" var="payMap" >
                                                 <tr class="order-goods-layout" data-goodsno="상품번호">
                                                     <td class="td_left">
                                                         이미지
                                                         <div class="pick_add_cont">
                                                             <span class="pick_add_img">
-                                                                <a href="상품주소">
-                                                                    <img src="#" width="400" height="600">
+                                                                <a href="/ezenwood/goods?idx=${payMap.GOODS_NUM }">
+                                                                    <img src="/ezenwood/resource/image/${payMap.subImage }" width="400" height="600">
                                                                 </a>
                                                             </span>
                                                             <div class="pick_add_info">
                                                                 <em style="text-align: center">
-                                                                    <a href="상품 주소">상품 이름</a>
+                                                                    <a href="/ezenwood/goods?idx=${payMap.GOODS_NUM }">${payMap.GOODS_TITLE }</a>
                                                                 </em>
                                                             </div>
                                                         </div>
@@ -95,25 +97,27 @@
                                                     </td>
                                                     <td class="td_order_amount">
                                                         <div class="order_goods_num">
-                                                            <strong>수량</strong>
+                                                            <strong>${payMap.GOODS_AMOUNT }</strong>
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <strong class="order_sum_txt price">가격</strong>
+                                                        <strong class="order_sum_txt price">${payMap.GOODS_PRICE * payMap.GOODS_AMOUNT }</strong>
                                                     </td>
                                                     <td class="td_delivery" rowspan="1">
-                                                        기본 - 금액별배송비
-                                                        <br> 비용
-                                                        <br> (택배 - 선결제)
+                                                       ${payMap.GOODS_DCOST }
                                                     </td>
                                                     <td>
-                                                        <strong class="order_sum_txt">가격</strong>
+                                                        <strong class="order_sum_txt">${payMap.GOODS_PRICE * payMap.GOODS_AMOUNT + payMap.GOODS_DCOST }</strong>
                                                     </td>
                                                     <td class="order_option">
                                                         <strong>옵션</strong>
                                                     </td>
 
                                                 </tr>
+
+                                               
+                                               
+                                               </c:forEach>
                                             </tbody>
                                         </table>
                                     </div>
@@ -130,21 +134,21 @@
                                         <div class="price_sum_list">
                                             <dl>
                                                 <dt>총
-                                                    <strong>1</strong>개의 상품금액
+                                                    <strong>${payInfo.goodsQuantity }</strong>개의 상품금액
                                                 </dt>
-                                                <dd><strong>가격</strong></dd>
+                                                <dd><strong>${payInfo.priceSum }</strong></dd>
                                             </dl>
                                             <span>
                                                 +
                                             </span>
                                             <dl>
                                                 <dt>배송비</dt>
-                                                <dd><strong>0</strong>원</dd>
+                                                <dd><strong>${payInfo.priceDSum }</strong>원</dd>
                                             </dl>
                                             <span>=</span>
                                             <dl class="price_total">
                                                 <dt>합계</dt>
-                                                <dd><strong>가격</strong>
+                                                <dd><strong>${payInfo.priceSum + payInfo.priceDSum }</strong>
                                                     원
                                                 </dd>
                                             </dl>
@@ -155,7 +159,7 @@
                                 <!--//price_sum-->
                                 <div class="payment_final">
                                     <div class="btn_center_box">
-                                        <input type="button" name="btn_order_buy" value="결제 진행하기" style="display: inline-block; width: 300px; height: 61px; line-height: 59px; color: #fff; font-size: 20px; border: 1px solid #323437; background: #323437; text-align: center">
+                                        <input type="button" name="btn_order_buy" onclick="location.href='/ezenwood/pay/step2'"   value="결제 진행하기" style="display: inline-block; width: 300px; height: 61px; line-height: 59px; color: #fff; font-size: 20px; border: 1px solid #323437; background: #323437; text-align: center">
 
                                     </div>
                                 </div>

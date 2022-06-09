@@ -15,6 +15,23 @@
 	FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID} AND MEMBER_DEL_GB = 'N'
 ]]>
 	</select>
+	
+	<select id="selectOne"  parameterType="hashmap" resultType="hashmap" >
+	<![CDATA[
+	select MEMBER_NUM,
+	MEMBER_NAME,
+	MEMBER_PHONE,
+	MEMBER_EMAIL, 
+	MEMBER_ZIP, 
+	MEMBER_ADD1, 
+	MEMBER_ADD2, 
+	MEMBER_ADD3 
+	from member where MEMBER_ID = #{MEMBER_ID}
+	
+	
+	]]>
+	</select>
+	
 
 
 	<!-- 회원 가입 -->
