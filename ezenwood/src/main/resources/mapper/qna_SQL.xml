@@ -114,21 +114,22 @@ AND QNA_DEL_GB = 'N';
 
 <!-- 고객 QNA목록 불러오기 -->
 <select id="selectClientQna" parameterType="hashmap" resultType="hashmap">
+<include refid="common.pagingPre"></include>
 <![CDATA[
 SELECT
+ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
 QNA_NUM,
 QNA_TITLE,
 QNA_WRITER,
 QNA_TYPE,
-QNA_SECREAT,
-QNA_DATE
-from qna
-where QNA_WRITER = (
-SELECT MEMBER_NUM 
-FROM MEMBER
-WHERE MEMBER_ID=#{MEMBER_ID})
-AND QNA_DEL_GB = 'N';
+QNA_SECREATE,
+QNA_DATE,
+QNA_RE_GB
+FROM QNA
+where QNA_WRITER =(select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBER_ID})
+and QNA_DEL_GB = 'N'
 ]]>
+<include refid="common.pagingPost"></include>
 </select>
 
 <!-- 관리자 QNA상세페이지 -->

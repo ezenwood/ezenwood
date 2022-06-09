@@ -71,7 +71,7 @@ ONETOONE_DATE,
 ONETOONE_RE_GB
 from ONETOONE
 where ONETOONE_MEMBER_NUM =(select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBER_ID})
-
+and ONETOONE_DEL_GB = 'N'
 ]]>
 <include refid="common.pagingPost"></include>
 </select>
