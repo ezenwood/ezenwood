@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.commons.collections.map.HashedMap;
 import org.apache.log4j.Logger;
+import org.apache.maven.model.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -137,8 +138,6 @@ public class MyPageController {
 	}
 
 
-
-
 	// 주문조회 & 배송조회 리스트
 	@RequestMapping(value = "/order/{pageNum}", method = RequestMethod.GET)
 	public ModelAndView orderChkListForm(@PathVariable int pageNum, CommandMap commandMap,HttpServletRequest request) throws Exception {
@@ -163,12 +162,7 @@ public class MyPageController {
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 		insertMap.put("MEMBER_ID", MEMBER_ID);
 		
-		
-		Map<String, Object> count = mypageService.ordercount(insertMap);
-		mav.addObject("count",count);
-		
 		List<Map<String,Object>> orderList = mypageService.orderList(insertMap);
-		mav.addObject("orderList", orderList);
 		
 		int totalCount = 0;
 		
@@ -176,27 +170,61 @@ public class MyPageController {
 		
 		}else {
 			totalCount = orderList.size();
-			mav.addObject("paginationInfo", (PaginationInfo)orderList.get(0).get("paginationInfo"));
+			totalCount = ((BigDecimal) orderList.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mav.addObject("paginationInfo",paginationInfo);
 		}
 		
 		
-		
+		mav.addObject("orderList",orderList);
 		mav.setViewName("/mypage/order");
 		return mav;
 	}
 	
 
 	// 취소내역 폼
-	@RequestMapping(value = "/cancel", method = RequestMethod.GET)
-	public void myPageCancelForm() {
-
+	@RequestMapping(value = "/cancel/{pageNum}", method = RequestMethod.GET)
+	public ModelAndView myPageCancelForm(@PathVariable int pageNum, CommandMap commandMap,HttpServletRequest request)throws Exception {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		
+		String MEMBER_ID = (String)session.getAttribute("MEMBER_ID");
+		
+		
+		Map<String, Object> insertMap =  new HashMap<String,Object>();
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+		
+		//현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		//한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		//페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
+		
+		insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+		
+		List<Map<String,Object>> cancelList = mypageService.cancelOrder(insertMap);
+		
+		int totalCount = 0;
+		
+		if(cancelList.isEmpty()) {
+		
+		}else {
+			totalCount = cancelList.size();
+			totalCount = ((BigDecimal) cancelList.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mav.addObject("paginationInfo",paginationInfo);
+		}
+		
+		
+		mav.addObject("cancelList",cancelList);
+		mav.setViewName("/mypage/cancel");
+		return mav;
 	}
-
-	// 취소내역
-	@RequestMapping(value = "/cancel", method = RequestMethod.POST)
-	public void myPageCancel() {
-
-	}
+	
 
 	// 리뷰리스트 폼
 	@RequestMapping(value = "/review/{pageNum}", method = RequestMethod.GET)

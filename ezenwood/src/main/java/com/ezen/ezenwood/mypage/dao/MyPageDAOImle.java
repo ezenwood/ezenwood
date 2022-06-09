@@ -32,12 +32,13 @@ public class MyPageDAOImle extends AbstractDAO implements MyPageDAO{
 
 	@Override
 	public Map<String, Object> deliveryTracking(Map<String, Object> map) {
-		return (Map<String, Object>) selectOne("order.selectAllByStatus", map);
+		return (Map<String, Object>) selectOne("orders.selectAllByStatus", map);
 	}
 
 	@Override
-	public Map<String, Object> cancelOrder(Map<String, Object> map) {
-		return (Map<String, Object>) selectOne("order.deleteOrder", map);
+	//주문취소 내역보기
+	public List<Map<String,Object>> cancelOrder(Map<String, Object> map) {
+		return (List<Map<String,Object>>) selectList("orders.selectCancel", map);
 	}
 
 	@Override
@@ -56,8 +57,8 @@ public class MyPageDAOImle extends AbstractDAO implements MyPageDAO{
 	}
 
 	@Override
-	public Map<String, Object> ordercount(Map<String, Object> map) {
-		return (Map<String, Object>) selectOne("orders.selectorders");
+	public int ordercount() {
+		return (int) selectOne("orders.selectorders");
 	}
 	
 	

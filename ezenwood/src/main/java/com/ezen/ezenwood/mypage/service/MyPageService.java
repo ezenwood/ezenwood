@@ -20,13 +20,13 @@ public interface MyPageService {
 	public List<Map<String,Object>> orderList(Map<String,Object> map) throws Exception;
 	
 	//orderlistcount
-	public Map<String, Object> ordercount(Map<String, Object> map);
+	public int ordercount();
 	
 	//배송조회
 	public Map<String, Object> deliveryTracking(Map<String,Object> map) throws Exception;
 	
 	//취소내역
-	public Map<String,Object> cancelOrder(Map<String,Object> map) throws Exception;
+	public List<Map<String,Object>> cancelOrder(Map<String,Object> map) throws Exception;
 	
 	
 	//리뷰(review)
