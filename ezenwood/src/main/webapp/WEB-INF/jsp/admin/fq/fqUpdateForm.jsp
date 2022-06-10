@@ -15,12 +15,12 @@
 <%@include file ="/include/admin_left.jsp" %>
 <div id="page-wrapper" style="min-height: 703px;">
 <div class="row" style="padding-left:15px;width:900px;">    
-	<h1 class="page-header">공지사항등록</h1>
+	<h1 class="page-header">자주묻는질문수정</h1>
 </div>
 
 <div class="row" style="padding-left:15px;width:900px;">
 	<div class="panel panel-default">
-		<div class="panel-heading">공지사항 등록페이지입니다. 빠짐없이 입력하셔야합니다</div>
+		<div class="panel-heading">자주묻는질문 수정페이지입니다.</div>
 			<div class="panel-body">
 						
                         <div class="form-group">

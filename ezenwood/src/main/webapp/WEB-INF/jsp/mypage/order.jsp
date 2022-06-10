@@ -90,20 +90,20 @@
 									varStatus="totalCount">
 									<tbody>
 										<tr>
-											<th>
+											<td>
 												<p>${order.ADATE}&nbsp;/&nbsp;${order.ORDERS_NUM}</p>
-											</th>
+											</td>
 
-											<th>
+											<td>
 												<P>${order.ORDERS_GOODS_NUM}&nbsp;/&nbsp;${order.ORDERS_GOODS_OPTION}</P>
-											</th>
+											</td>
 
-											<th>
+											<td>
 												<P>${order.ORDERS_PRICE}&nbsp;/&nbsp;${order.ORDERS_AMOUNT}</P>
-											</th>
-											<th>
+											</td>
+											<td>
 												<P>${order.ORDERS_STATUS}</P>
-											</th>
+											</td>
 
 											
 										</tr>

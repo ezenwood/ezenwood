@@ -20,7 +20,7 @@
 
 <div class="row" style="padding-left:15px;width:900px;">
 	<div class="panel panel-default">
-		<div class="panel-heading">자주묻는질문 등록페이지입니다. 빠짐없이 입력하셔야합니다</div>
+		<div class="panel-heading">자주묻는질문 등록페이지입니다.</div>
 			<div class="panel-body">
 						
                         <div class="form-group">

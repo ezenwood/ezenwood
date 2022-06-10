@@ -26,6 +26,13 @@ public class BoardDAOImpl extends AbstractDAO implements BoardDAO{
 		// TODO Auto-generated method stub
 		return (Map<String, Object>) selectOne("onetoone.selectClientDetail", insertMap);
 	}
+  
+  	@Override
+	public Map<String, Object> OTODelete(Map<String, Object> insertMap) {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne("onetoone.deleteAdmin", insertMap);		
+
+	}
 
 	
 	@Override
@@ -48,12 +55,16 @@ public class BoardDAOImpl extends AbstractDAO implements BoardDAO{
 		return selectList("frequestion.frequestionList", insertMap);
 	}
 
+
 	
 	//NOTICE
 	@Override
 	public List<Map<String, Object>> NoticeList(Map<String, Object> insertMap){
 		return selectList("notice.noticeList", insertMap);
-	}
+
+	
+	
+	
 
 	@Override
 	public Map<String, Object> getNoticeDetail(Map<String, Object> insertMap) {

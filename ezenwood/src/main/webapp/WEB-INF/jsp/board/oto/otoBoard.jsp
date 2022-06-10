@@ -57,7 +57,7 @@
 																href="/ezenwood/board/oto/otoBoard/${row.ONETOONE_NUM}">
 																	<strong>${row.ONETOONE_TITLE}</strong>
 															</a></td>
-															<td align="center">${row.ONETOONE_MEMBER_ID}</td>
+															<td align="center">${row.MEMBER_NAME}</td>
 															<td align="center"><c:choose>
 																	<c:when test="${row.ONETOONE_RE_GB == 'Y'}">답변 완료</c:when>
 																	<c:otherwise>답변 대기</c:otherwise>

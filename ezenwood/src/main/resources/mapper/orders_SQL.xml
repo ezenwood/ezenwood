@@ -7,10 +7,14 @@
 
 	<!-- Client -->
 	<!-- 주문 입력 -->
-	<insert id="insertOrder" parameterType="hashmap">
+	<insert id="insertOrder" parameterType="hashmap" useGeneratedKeys="true" keyProperty="IDX" >
+	<selectKey keyProperty="IDX" resultType="string" order="BEFORE" >
+	select SEQ_ORDERS_NUM.NEXTVAL from dual
+	</selectKey>
+	
 <![CDATA[
 INSERT INTO ORDERS VALUES(
-	SEQ_ORDERS_NUM.NEXTVAL,
+	#{IDX},
 	#{GOODS_NUM},
 	#{ORDER_AMOUNT},
 	(select member_num from member where member_id = #{MEMBER_ID}),

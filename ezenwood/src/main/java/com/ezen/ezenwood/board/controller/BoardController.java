@@ -27,39 +27,50 @@ public class BoardController {
 
 	// OTO
 
-	// 1:1 문의 리스트
-	@RequestMapping("/board/oto")
-	public ModelAndView OTOList() {
-		ModelAndView mav = new ModelAndView();
 
-		Map<String, Object> insertMap = new HashMap<String, Object>();
-		insertMap.put("START", "1");
-		insertMap.put("END", "15");
+	//OTO
+	@RequestMapping({"/board/oto"})
+	  public ModelAndView OTOList(HttpServletRequest request) {
+	    ModelAndView mav = new ModelAndView();
+	    HttpSession session = request.getSession();
+	    String membername= (String)session.getAttribute("MEMBER_NAME");
+	    Map<String, Object> insertMap = new HashMap<String, Object>();
+	    insertMap.put("START", "1");
+	    insertMap.put("END", "15");
+	    insertMap.put("MEMBER_NAME", membername);
+	    List<Map<String, Object>> OTOListMap = this.boardService.OTOList(insertMap);
+	    mav.addObject("OTOListMap", OTOListMap);
+	    mav.setViewName("board/oto/otoBoard");
+	    return mav;
+	  }
 
-		List<Map<String, Object>> OTOListMap = boardService.OTOList(insertMap);
-
-		mav.addObject("OTOListMap", OTOListMap);
-		mav.setViewName("board/oto/otoBoard");
-		return mav;
-	}
-
-	// 1:1 문의 디테일
 	@RequestMapping("/board/oto/otoBoard/{otonum}")
 	public ModelAndView OTODetail(@PathVariable String otonum, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		String memberid = (String) session.getAttribute("MEMBER_ID");
 
-		Map<String, Object> insertMap = new HashMap<String, Object>();
+		String memberid = (String)session.getAttribute("MEMBER_ID");
+		Map<String, Object> insertMap = new HashMap<>();
 		insertMap.put("MEMBER_ID", memberid);
 		insertMap.put("ONETOONE_NUM", otonum);
-
 		Map<String, Object> resultMap = boardService.getOTODetail(insertMap);
-
 		mav.addObject("OTOMap", resultMap);
 		mav.setViewName("board/oto/otoDetail");
 		return mav;
 	}
+	@RequestMapping("/ezenwood/board/oto/otoBoardDel/{otonum}")
+	public ModelAndView OTODelete(@PathVariable String otonum, HttpServletRequest request) {
+		ModelAndView mav = new ModelAndView();
+		HttpSession session = request.getSession();
+		String memberid = (String)session.getAttribute("MEMBER_ID");
+		Map<String, Object> insertMap = new HashMap<>();
+		insertMap.put("MEMBER_ID", memberid);
+		Map<String, Object> resultMap = boardService.getOTODelete(insertMap);
+		mav.addObject("OTODelMap", resultMap);
+		mav.setViewName("board/oto/otoBoard");
+		return mav;
+	}
+
 
 	
 	 // 1:1 문의 삭제
@@ -80,6 +91,7 @@ public class BoardController {
 	 
 
 	// 1:1 문의 글쓰기
+
 	@RequestMapping(value = "/board/oto/otoWrite", method = RequestMethod.GET)
 	public String otoWriteForm(CommandMap commandMap, HttpServletRequest request, Model model) {
 		String writer = (String) request.getSession().getAttribute("MEMBER_ID");

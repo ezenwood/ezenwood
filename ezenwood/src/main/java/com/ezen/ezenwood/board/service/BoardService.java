@@ -13,8 +13,10 @@ public interface BoardService {
 	public Map<String, Object> getOTODetail(Map<String, Object> insertMap);
 	public int OTODelete(Map<String, Object> insertMap, HttpServletRequest request);
 
+
 	//FQ
 	public List<Map<String, Object>> FQList (Map<String, Object> insertMap);
+	public Map<String, Object> getOTODelete(Map<String, Object> insertMap);
 	 
 
 	//Notice

@@ -59,6 +59,8 @@ public class LoginController {
 			if (result.get("MEMBER_PW").equals(commandMap.get("MEMBER_PW"))) { // 비밀번호가 같다면
 				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
 				session.setAttribute("MEMBER_PW", commandMap.get("MEMBER_PW"));
+				session.setAttribute("MEMBER_NUM", commandMap.get("MEMBER_NUM"));
+				session.setAttribute("MEMBER_NAME", commandMap.get("MEMBER_NAME"));
 			} else {// 비밀번호가 일치하지 않을 때
 				response.setCharacterEncoding("UTF-8");
 				response.setContentType("text/html; charset=utf-8");

@@ -50,12 +50,12 @@
 
 				<div class="content">
 					<div class="mypage_cont">
-					
+
 						<div class="mypage_lately_info">
 							<h2 style="font-size: large">상품후기</h2>
 						</div>
 					</div>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+					<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 					<!-- review 리스트-->
 					<div class="mypage_table_type">
@@ -87,11 +87,15 @@
 									<tr data-sno="${review.REVIEW_NUM}" data-auth="y"
 										style="height: 10px">
 										<td>${review.REVIEW_NUM}</td>
-										<td><img src="/ezenwood/resource/image/pet1.jpg"></td>
-										<td>${review.TITLE}</td>
+										<td>
+												<img src="/ezenwood/resource/image/${review.GOODS_SUBIMAGE}" width="400"
+												height="600" alt="상품 이름" title="상품 이름" class="middle">
+										</td>
+										<td>${review.GOODS_TITLE}</td>
 
 										<td class="board_tit">
-											<!-- 제목--> <a href='${contextPath}/board/review/${review.REVIEW_NUM}'>
+											<!-- 제목--> <a
+											href='${contextPath}/board/review/${review.REVIEW_NUM}'>
 												<strong>${review.REVIEW_TITLE}</strong>
 										</a>
 										</td>

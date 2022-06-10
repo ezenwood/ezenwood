@@ -1,6 +1,14 @@
+<%@page import="java.util.Date"%>
+<%@page import="java.text.SimpleDateFormat"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+    <% SimpleDateFormat sdf = new SimpleDateFormat("yyyy/MM/dd");
+    	Date now = new Date();
+    	String today = sdf.format(now);
+    	
+    	
+    	%>
 <!DOCTYPE html>
 <html>
 
@@ -167,7 +175,7 @@
                     </form>
 
                     <div class="orderinfo" style="margin-top: 30px; margin: 0 0 0 0; padding: 0 0 10px 0; font-size: 16px;">
-                        <span>주문일자</span>&nbsp;&nbsp;<span>2022/05/11</span><span style="border-left: 1px solid #ccc; margin-left: 20px; padding-left: 20px;">주문번호</span>&nbsp;&nbsp;<span>0000000</span>
+                        <span>주문일자</span>&nbsp;&nbsp;<span><%=today %></span><span style="border-left: 1px solid #ccc; margin-left: 20px; padding-left: 20px;">주문번호</span>&nbsp;&nbsp;<span>${resultMap.orderGroup }</span>
                         <hr>
                         <br>
                         <h3>주문자 정보</h3>
@@ -229,7 +237,7 @@
                     </div>
 
                     <div class="btn_center_box" style="text-align: center">
-                        <button class="homebutton" style=" vertical-align: middle; display: inline-block; width: 200px; height: 61px; line-height: 59px; color: #323437; font-size: 16px; border: 1px solid #323437; background: #ffffff; text-align: center;">홈으로 가기</button>
+                        <button class="homebutton" onclick="location.href='/ezenwood/main'" style=" vertical-align: middle; display: inline-block; width: 200px; height: 61px; line-height: 59px; color: #323437; font-size: 16px; border: 1px solid #323437; background: #ffffff; text-align: center;">홈으로 가기</button>
                     </div>
 
 

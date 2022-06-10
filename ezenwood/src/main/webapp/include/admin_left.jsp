@@ -69,7 +69,7 @@
                             <a href="#" style="background: #e7e7e7;"><i class="fa fa-bar-chart-o fa-fw"></i>게시판관리<span class="fa arrow">▼</span></a>
 							 <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/ezenwood/admin/notice">- 공지사항</a>
+                                    <a href="/ezenwood/admin/notice/1">- 공지사항</a>
                                 </li>
                                 <li>
                                     <a href="/ezenwood/admin/qna">- Q&amp;A</a>
@@ -81,7 +81,7 @@
                                     <a href="/ezenwood/admin/oto">- 1:1문의</a>
                                 </li>
                                 <li>
-                                    <a href="/ezenwood/admin/fq">- 자주묻는질문</a>
+                                    <a href="/ezenwood/admin/fqlist/1">- 자주묻는질문</a>
                                 </li>
                                 <li>
                                     <a href="/ezenwood/admin/about">- 어바웃</a>
