@@ -14,14 +14,7 @@ public interface BoardDAO {
 	//FQ
 	public List<Map<String, Object>> FQList (Map<String, Object> insertMap);
 	public Map<String, Object> OTODelete(Map<String, Object> insertMap);
-	
-	
- 
-	
 
-	
-	//FQ
-	public List<Map<String, Object>> FQList (Map<String, Object> insertMap);
 	
 
 	//NOTICE
