@@ -81,7 +81,7 @@
                                     <a href="/ezenwood/admin/oto">- 1:1문의</a>
                                 </li>
                                 <li>
-                                    <a href="/ezenwood/admin/fq">- 자주묻는질문</a>
+                                    <a href="/ezenwood/admin/fqlist/1">- 자주묻는질문</a>
                                 </li>
                                 <li>
                                     <a href="/ezenwood/admin/about">- 어바웃</a>
