@@ -90,8 +90,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 
 	@Override
 	public List<Map<String, Object>> adminNoticeList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		return (List<Map<String, Object>>) selectList("notice.noticeListAdmin", map);
 	}
 
 	@Override

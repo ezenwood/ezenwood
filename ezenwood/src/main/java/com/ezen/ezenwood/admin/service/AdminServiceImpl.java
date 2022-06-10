@@ -3,14 +3,24 @@ package com.ezen.ezenwood.admin.service;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-@Service("AdminService")
-public class AdminServiceImpl implements AdminService{
+import com.ezen.ezenwood.admin.dao.AdminDAO;
+import com.ezen.ezenwood.admin.dao.AdminDAOImpl;
+import com.ezen.ezenwood.mypage.dao.MyPageDAO;
 
-	
-	//goods
-	
+@Service("AdminService")
+public class AdminServiceImpl implements AdminService {
+	Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "AdminDAO")
+	private AdminDAO adminDAO;
+
+	// goods
+
 	@Override
 	public List<Map<String, Object>> adminGoodsList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -41,9 +51,8 @@ public class AdminServiceImpl implements AdminService{
 		return 0;
 	}
 
-	
-	//member
-	
+	// member
+
 	@Override
 	public List<Map<String, Object>> adminMemberList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -68,9 +77,8 @@ public class AdminServiceImpl implements AdminService{
 		return 0;
 	}
 
-	
-	//order
-	
+	// order
+
 	@Override
 	public List<Map<String, Object>> adminOrderList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -95,13 +103,12 @@ public class AdminServiceImpl implements AdminService{
 		return 0;
 	}
 
-	
-	//notice
-	
+	// notice
+
 	@Override
 	public List<Map<String, Object>> adminNoticeList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+		
+		return adminDAO.adminNoticeList(map);
 	}
 
 	@Override
@@ -128,9 +135,8 @@ public class AdminServiceImpl implements AdminService{
 		return 0;
 	}
 
-	
-	//Qna
-	
+	// Qna
+
 	@Override
 	public List<Map<String, Object>> adminQNAList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -161,9 +167,8 @@ public class AdminServiceImpl implements AdminService{
 		return 0;
 	}
 
-	
-	//review
-	
+	// review
+
 	@Override
 	public List<Map<String, Object>> adminReviewList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -194,10 +199,8 @@ public class AdminServiceImpl implements AdminService{
 		return 0;
 	}
 
-	
-	
-	//oto
-	
+	// oto
+
 	@Override
 	public List<Map<String, Object>> adminOTOList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -228,9 +231,8 @@ public class AdminServiceImpl implements AdminService{
 		return 0;
 	}
 
-	
-	//fq(자주묻는질문)
-	
+	// fq(자주묻는질문)
+
 	@Override
 	public List<Map<String, Object>> adminFQList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -261,9 +263,7 @@ public class AdminServiceImpl implements AdminService{
 		return 0;
 	}
 
-	
-	
-	//about 
+	// about
 	@Override
 	public Map<String, Object> adminAboutDetail(Map<String, Object> map) {
 		// TODO Auto-generated method stub
