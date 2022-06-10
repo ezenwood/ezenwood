@@ -82,7 +82,7 @@
 			<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 			<div class="location_wrap">
 				<div class="location_cont">
-					<em><a href="/ezenwood/mypage/main" class="local_home">HOME</a>
+					<em><a href="/ezenwood/main" class="local_home">HOME</a>
 						&gt; 마이페이지 &gt; 내정보수정</em>
 				</div>
 			</div>
@@ -113,15 +113,10 @@
 										action="${contextPath}/mypage/update" method="post"
 										novalidate="novalidate">
 										<input type="hidden" name="MEMBER_NUM" value="${MEMBER_NUM}">
-										<input type="hidden" name="memberFl" value="personal">
-										<input type="hidden" name="dupeinfo" value=""> <input
-											type="hidden" name="rncheck" value="none"> <input
-											type="hidden" name="mode" value="modify">
 
 										<div class="location_wrap1">
 											<div class="location_cont1">
-												<em><a href="#" class="local_home1"
-													style="font-weight: bold">정보입력</a>&gt;가입완료</em>
+												<em>정보입력&gt;가입완료</em>
 											</div>
 										</div>
 										<!-- //location_wrap -->
@@ -130,7 +125,7 @@
 											<h3>기본정보</h3>
 
 											<div class="base_info_sec">
-												<table border="0" cellpadding="0" cellspacing="0">
+												<table>
 													<colgroup>
 														<col width="25%">
 														<col width="75%">
@@ -150,7 +145,7 @@
 																<div class="member_warning">
 																	<input type="text" name="MEMBER_PW"
 																		value="${MEMBER_PW}" maxlength="30"
-																		placeholder="현재 비밀번호를 입력하세요.">
+																		placeholder="변경하실 비밀번호를 입력하세요.">
 
 																</div>
 															</td>

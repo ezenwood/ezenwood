@@ -20,7 +20,7 @@
 			<!-- 본문  -->
 			<div class="location_wrap">
 				<div class="location_cont">
-					<em> <a href="/ezenwood/mypage/main" class="local_home">Home</a> &gt;마이페이지
+					<em> <a href="/ezenwood/main" class="local_home">Home</a> &gt;마이페이지
 					</em>
 				</div>
 			</div>

@@ -32,7 +32,7 @@
 			<!-- 본문  -->
 			<div class="location_wrap">
 				<div class="location_cont">
-					<em> <a href="/ezenwood/mypage/main" class="local_home">Home</a>
+					<em> <a href="/ezenwood/main" class="local_home">Home</a>
 						&gt;취소 내역
 					</em>
 				</div>
