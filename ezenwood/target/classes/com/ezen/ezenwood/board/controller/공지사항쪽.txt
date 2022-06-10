@@ -1,0 +1,80 @@
+0610 작업
+notice_sql 수정
+noticeBoard.jsp 수정
+noticeDetail.jsp 수정
+
+
+추가만 하면 됩니다
+
+[BoardController]
+	
+	//NOTICE
+	@RequestMapping("/board/notice") 
+	public ModelAndView NoticeList() {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("START", "1"); insertMap.put("END", "10");
+		List<Map<String, Object>> NoticeListMap = boardService.NoticeList(insertMap);
+		mav.addObject("NoticeListMap", NoticeListMap);
+		mav.setViewName("board/notice/noticeBoard"); 
+		return mav; 
+	}
+
+	@RequestMapping("/board/notice/{NOTICE_NUM}")
+	public ModelAndView noticeDetail(@PathVariable int NOTICE_NUM) {
+		ModelAndView mav = new ModelAndView();
+		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("NOTICE_NUM", NOTICE_NUM);
+
+		Map<String, Object> resultMap = boardService.getNoticeDetail(insertMap);
+		
+		mav.addObject("noticeMap", resultMap);
+		mav.setViewName("board/notice/noticeDetail");
+		return mav;
+	}
+
+
+[BoardDAO]
+
+	//NOTICE
+	public List<Map<String, Object>> NoticeList(Map<String, Object> insertMap);
+	public Map<String, Object> getNoticeDetail(Map<String, Object> insertMap);
+
+
+[BoardDAOImpl]
+	
+	//NOTICE
+	@Override
+	public List<Map<String, Object>> NoticeList(Map<String, Object> insertMap){
+		return selectList("notice.noticeList", insertMap);
+	}
+
+	@Override
+	public Map<String, Object> getNoticeDetail(Map<String, Object> insertMap) {
+		return (Map<String, Object>) selectOne("notice.noticeDetail", insertMap);
+	}
+
+
+
+[BoardService]
+
+	//Notice
+	public List<Map<String, Object>> NoticeList(Map<String, Object> insertMap);
+	public Map<String, Object> getNoticeDetail(Map<String, Object> insertMap);
+		
+
+
+[BoardServiceImpl]
+
+	//NOTICE
+	@Override
+	public List<Map<String, Object>> NoticeList(Map<String, Object> insertMap) {
+		return boardDAO.NoticeList(insertMap);
+	}
+
+	@Override
+	public Map<String, Object> getNoticeDetail(Map<String, Object> map) {
+		Map<String, Object> resultMap = boardDAO.getNoticeDetail(map);
+		return resultMap;
+	}

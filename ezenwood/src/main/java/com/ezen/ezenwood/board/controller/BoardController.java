@@ -22,11 +22,12 @@ import com.ezen.ezenwood.board.service.BoardService;
 
 public class BoardController {
 
-	@Resource(name="BoardService")
+	@Resource(name = "BoardService")
 	BoardService boardService;
 
+	// OTO
 
-	//OTO
+	// 1:1 문의 리스트
 	@RequestMapping("/board/oto")
 	public ModelAndView OTOList() {
 		ModelAndView mav = new ModelAndView();
@@ -42,14 +43,16 @@ public class BoardController {
 		return mav;
 	}
 
+	// 1:1 문의 디테일
 	@RequestMapping("/board/oto/otoBoard/{otonum}")
 	public ModelAndView OTODetail(@PathVariable String otonum, HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		String memberid = (String)session.getAttribute("MEMBER_ID");
-		
+		String memberid = (String) session.getAttribute("MEMBER_ID");
+
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("MEMBER_ID", memberid);
+		insertMap.put("ONETOONE_NUM", otonum);
 
 		Map<String, Object> resultMap = boardService.getOTODetail(insertMap);
 
@@ -58,26 +61,29 @@ public class BoardController {
 		return mav;
 	}
 
-	 @RequestMapping(value = "/board/oto/otoBoard/{otonum}/otoDelete", method = RequestMethod.POST)
-		public String otoDelete(CommandMap commandMap, HttpServletRequest request, Model model) {
-			String MEMBER_NUM = (String) request.getSession().getAttribute("MEMBER_NUM");
-		
-			commandMap.put("ONETOONE_MEMBER_NUM", MEMBER_NUM);
+	
+	 // 1:1 문의 삭제
+	  
+	  @RequestMapping(value = "/board/oto/otoBoard/{otonum}/otoDelete", method =
+	  RequestMethod.POST) public String otoDelete(CommandMap commandMap,
+	  HttpServletRequest request, Model model) { String MEMBER_NUM = (String)
+	  request.getSession().getAttribute("MEMBER_NUM");
+	  
+	  commandMap.put("ONETOONE_MEMBER_NUM", MEMBER_NUM);
+	  
+	  int checkNum = boardService.OTODelete(commandMap.getMap(), request); if
+	  (checkNum == 0) {
+	  
+	 } else {
+	  
+	 } return "redirect:/board/oto"; }
+	 
 
-			int checkNum = boardService.OTODelete(commandMap.getMap(), request);
-			if (checkNum == 0) {
-
-			} else {
-
-			}
-			return "redirect:/board/oto";
-		}
-
-
+	// 1:1 문의 글쓰기
 	@RequestMapping(value = "/board/oto/otoWrite", method = RequestMethod.GET)
 	public String otoWriteForm(CommandMap commandMap, HttpServletRequest request, Model model) {
 		String writer = (String) request.getSession().getAttribute("MEMBER_ID");
-		
+
 		model.addAttribute("writer", writer);
 
 		return "board/oto/otoWrite";
@@ -86,7 +92,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/oto/otoWrite", method = RequestMethod.POST)
 	public String otoWrite(CommandMap commandMap, HttpServletRequest request, Model model) {
 		String MEMBER_NUM = (String) request.getSession().getAttribute("MEMBER_NUM");
-	
+
 		commandMap.put("ONETOONE_MEMBER_NUM", MEMBER_NUM);
 
 		int checkNum = boardService.insertOTO(commandMap.getMap(), request);
@@ -98,8 +104,7 @@ public class BoardController {
 		return "redirect:/board/oto?idx=";
 	}
 
-
-	//FQ
+	// FQ 자주 묻는 질문 리스트
 	@RequestMapping("/board/fq")
 	public ModelAndView FQList() {
 		ModelAndView mav = new ModelAndView();
@@ -114,6 +119,36 @@ public class BoardController {
 		mav.setViewName("board/fq/fqBoard");
 		return mav;
 	}
+
+	// Notice
+	// 공지사항 리스트
+	@RequestMapping("/board/notice") 
+	public ModelAndView NoticeList() {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("START", "1"); insertMap.put("END", "10");
+		List<Map<String, Object>> NoticeListMap = boardService.NoticeList(insertMap);
+		mav.addObject("NoticeListMap", NoticeListMap);
+		mav.setViewName("board/notice/noticeBoard"); 
+		return mav; 
+	}
+
+	
+	//공지사항 상세 페이지
+	@RequestMapping("/board/notice/{NOTICE_NUM}")
+	public ModelAndView noticeDetail(@PathVariable int NOTICE_NUM) {
+		ModelAndView mav = new ModelAndView();
+		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("NOTICE_NUM", NOTICE_NUM);
+
+		Map<String, Object> resultMap = boardService.getNoticeDetail(insertMap);
+		
+		mav.addObject("noticeMap", resultMap);
+		mav.setViewName("board/notice/noticeDetail");
+		return mav;
+	}
+
 
 
 }

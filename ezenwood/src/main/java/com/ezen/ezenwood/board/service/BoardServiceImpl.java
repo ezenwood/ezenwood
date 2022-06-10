@@ -66,10 +66,18 @@ public class BoardServiceImpl implements BoardService {
 		
 		return checkNum;
 	}
-	
-	
 
 	
 	//NOTICE
+	@Override
+	public List<Map<String, Object>> NoticeList(Map<String, Object> insertMap) {
+		return boardDAO.NoticeList(insertMap);
+	}
+
+	@Override
+	public Map<String, Object> getNoticeDetail(Map<String, Object> map) {
+		Map<String, Object> resultMap = boardDAO.getNoticeDetail(map);
+		return resultMap;
+	}
 
 }
