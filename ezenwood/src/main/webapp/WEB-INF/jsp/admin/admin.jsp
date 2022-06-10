@@ -1,70 +1,31 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="UTF-8">
+<meta charset="UTF-8">
+<title>Insert title here</title>
     <link rel="stylesheet" href="/ezenwood/css/mypage.css">
-    <link rel="stylesheet" href="/ezenwood/css/admin_layout.css">
-    <link rel="stylesheet" href="/ezenwood/css/member.css">
-    <link rel="stylesheet" href="/ezenwood/css/reset.css">
-    <link rel="stylesheet" href="/ezenwood/css/board.css">
-    <link rel="stylesheet" href="/ezenwood/css/common.css">
-    
-    <title>order2</title>
-</head>
-<body>
-  <div id="container">
-  <nav class="navbar navbar-default navbar-static-top" role="navigation" style="background-color:#337AB7;">
- <div class="navbar-header" style="background-color:#337AB7">
-             
-                <a class="navbar-brand" style="color:#fff;" href="/pet/admin/admin.dog"><strong>EZENWOOD 관리자페이지</strong></a>
-            </div>
-            </nav>
-    <div id="contents">
+<!--     <link rel="stylesheet" href="/ezenwood/css/admin_layout.css"> -->
+    <link rel="stylesheet" href="/ezenwood/css/adminbootstrapadmin.min.css">
+        <link rel="stylesheet" href="/ezenwood/css/sb-admin-2.css">
+
+    <style type="text/css">
+		@media(min-width:768px) {
+   		 #page-wrapper {
+        margin: 0 0 0 250px !important;
        
-<!--location_wrap -->
-
- <div class="sub_content">
-          <div class="side_cont">
-          
-					<%@include file="/include/admin.jsp"%>
-					<!--sub_menu_box -->
-          </div> 
-          <!-- side_cont-->
-          <div class="content" style="padding-left: 25px;">
-             <div class="mypage_cont">
-                 <div class="mypage_lately_info">
-                    
-                 </div>
-             </div>
-             </div>
-             
-                     
-             <script type="text/javascript">
-function delchk(){
-    return confirm("삭제하시겠습니까?");
+  
+    }
 }
-</script>
-<style type="text/css">
-.paging{text-align:center;height:32px;margin-top:5px;margin-bottom:15px;}
-.paging a,
-.paging strong{display:inline-block;width:36px;height:32px;line-height:28px;font-size:14px;border:1px solid #e0e0e0;margin-left:5px;
--webkit-border-radius:3px;
-   -moz-border-radius:3px;
-		border-radius:3px;
--webkit-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
-	-moz-box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
-		  box-shadow:1px 1px 1px 0px rgba(235,235,235,1);
-}
-.paging a:first-child{margin-left:0;}
-.paging strong{color:#fff;background:#337AB7;border:1px solid #337AB7;}
-.paging .page_arw{font-size:11px;line-height:30px;}
-</style>
+	</style>
 
+</head>
 
-<div id="wrapper">
-        <div id="page-wrapper" style="min-height: 500px;">
+     <body>
+<%@include file ="/include/admin_header.jsp" %>
+<%@include file ="/include/admin_left.jsp" %>
+      <div id="page-wrapper" style="min-height: 703px;">
        		
             <!-- 메인container-->
            	 
@@ -158,12 +119,18 @@ function delchk(){
                         <!-- /.panel-body -->
                     </div>
 		
-		
 	
             <!-- // container -->
         </div>
+        <!-- /#page-wrapper -->
+
     </div>
-    </div>
-    </div>
-    </div>
-</body></html>
+    <!-- /#wrapper -->
+
+    
+
+
+
+</body>
+</body>
+</html>
