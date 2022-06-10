@@ -1,9 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
 <meta charset="UTF-8">
+
 <link rel="stylesheet" href="/ezenwood/css/mypage.css">
 <link rel="stylesheet" href="/ezenwood/css/admin_layout.css">
 <link rel="stylesheet" href="/ezenwood/css/member.css">
@@ -170,11 +171,15 @@
 
 
 
+</head>
+
+
 						<!-- // container -->
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+
 </body>
 </html>

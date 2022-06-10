@@ -7,7 +7,10 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
+
+import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -23,22 +26,33 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 @RequestMapping("/admin")
 public class AdminController {
 
-	@Resource(name = "AdminService")
-	AdminService adminService;
+
 
 	@RequestMapping("")
+
+	Logger log = Logger.getLogger(this.getClass());
+
+	@Resource(name = "AdminService")
+	private AdminService adminService;
 	public String admin() {
 		return "admin/admin";
 	}
 
-	@RequestMapping(value = "/fqlist/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView fqList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request) throws Exception {
-		
+
+	@RequestMapping(value = "/notice/{pageNum}", method = RequestMethod.GET)
+	public ModelAndView adminNoticeList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
+
 		ModelAndView mv = new ModelAndView();
-		
+		HttpSession session = request.getSession();
+
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+
 		Map<String, Object> insertMap = new HashMap<String, Object>();
-		
+
 		PaginationInfo paginationInfo = new PaginationInfo();
+
+
 		// 현재 페이지 번호
 		paginationInfo.setCurrentPageNo(pageNum);
 		// 한 페이지에 게시되는 게시물 건수
@@ -48,10 +62,13 @@ public class AdminController {
 
 		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
-		
-		List<Map<String, Object>> list = adminService.adminFQList(insertMap);
+
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+
+		List<Map<String, Object>> list = adminService.adminNoticeList(insertMap);
 		mv.addObject("list", list);
-		
+
+
 		int totalCount = 0;
 
 		if (list.isEmpty()) {
@@ -63,32 +80,9 @@ public class AdminController {
 
 		}
 
-		mv.setViewName("/admin/fq/fqList");
+		mv.setViewName("admin/notice/noticeList");
 		return mv;
 	}
 
-	@RequestMapping("/fqdetail/{fqdetailnum}")
-	public ModelAndView fqDetail(@PathVariable("fqdetailnum") int fqnum) {
-		ModelAndView mav = new ModelAndView();
-
-		Map<String, Object> insertMap = new HashMap<String, Object>();
-		insertMap.put("QUESTION_NUM", fqnum);
-
-		Map<String, Object> resultMap = adminService.adminFQDetail(insertMap);
-
-		mav.addObject("FQMap", resultMap);
-
-		mav.setViewName("/admin/fq/fqDetail");
-		return mav;
-	}
-
-	@RequestMapping("/fqupdate")
-	public String fqUpdate() {
-		return "admin/fq/fqUpdateForm";
-	}
-
-	@RequestMapping("/fqwrite")
-	public String fqWrite() {
-		return "admin/fq/fqWriteForm";
-	}
 }
+

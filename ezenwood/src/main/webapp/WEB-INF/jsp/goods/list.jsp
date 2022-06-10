@@ -55,7 +55,7 @@
 												<div class="item_cont">
 													<div class="item_photo_box">
 														<a href="/ezenwood/goods?idx=${goodsMap.GOODS_NUM }">
-															<img src="/ezenwood/resource/image/pet1.jpg" width="400"
+															<img src="/ezenwood/resource/image/${goodsMap.GOODS_SUBIMAGE }" width="400"
 															height="600" alt="상품 이름" title="상품 이름" class="middle">
 														</a>
 													</div>

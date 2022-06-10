@@ -63,13 +63,13 @@ public class PayServiceImpl implements PayService {
 				// 구매 하려는 상품이 하나일 때
 				insertMap.put("GOODS_NUM", insertMap.get("ORDERS_GOODS_NUM"));
 				Map<String, Object> goodsMap = goodsDAO.goodsDetail(insertMap);
-				int GOODS_NUM = Integer.parseInt((String)insertMap.get("ORDERS_GOODS_NUM"));
+				int GOODS_NUM = Integer.parseInt(orderGoodsNumArray[0]);
 				 goodsMap.put("subImage", subImageDAO.getSubImageByIDX(GOODS_NUM));
 				 goodsMap.put("GOODS_AMOUNT", insertMap.get("ORDERS_AMOUNT"));
 				 
 				 
-				 priceSum = ((BigDecimal) goodsMap.get("GOODS_PRICE")).intValue() * oga;
-				 priceDSum = ((BigDecimal) goodsMap.get("GOODS_DCOST")).intValue() * oga;
+				 priceSum = ((BigDecimal) goodsMap.get("GOODS_PRICE")).intValue() * Integer.parseInt(orderGoodsAmountArray[0]);
+				 priceDSum = ((BigDecimal) goodsMap.get("GOODS_DCOST")).intValue();
 				 
 				 
 				 result.add(goodsMap);
@@ -134,6 +134,10 @@ public class PayServiceImpl implements PayService {
 		int ogn = orderGoodsNumArray.length;
 		int oga = orderGoodsAmountArray.length;
 		
+		
+		String orderGroup = "";
+		
+		
 		for(int i =0 ; i<oga ; i++) {
 			Map<String, Object> map = new HashMap<String, Object>();
 			map.put("GOODS_NUM", orderGoodsNumArray[i]);
@@ -148,6 +152,11 @@ public class PayServiceImpl implements PayService {
 			map.put("ORDER_DMEMO", insertMap.get("ORDER_DMEMO"));
 			
 			int cnum = payDAO.step3Save(map);
+			if(i==0) {
+				orderGroup += map.get("IDX");
+			}else {
+				orderGroup += "-" + map.get("IDX");
+			}
 			if(cnum!=1) {
 				System.out.println("@@@@@@@@@@@@@@@@@@@@@@@@@ @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 			}
@@ -157,14 +166,16 @@ public class PayServiceImpl implements PayService {
 			
 		}
 		//
+		Map<String, Object> resultMap = new HashMap<String,Object>();
+		
+		resultMap.put("orderGroup", orderGroup);
 		
 		
 		
 		
 		
 		
-		
-		return null;
+		return resultMap;
 	}
 
 	

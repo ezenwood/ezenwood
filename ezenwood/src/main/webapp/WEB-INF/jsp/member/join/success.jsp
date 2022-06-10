@@ -34,15 +34,15 @@
 		</div>
 		<!-- //member_tit -->
 		<div class="member_cont">
-			<form id="formFindId" method="post" action="../member/member_ps" novalidate="novalidate">
+			<form id="formFindId" method="GET" action="/ezenwood/member/signin" novalidate="novalidate">
 				<div class="find_id_box">
 					<div class="find_id_sec">
-	<div class="find_complete_box"><p><strong>admin님</strong> 회원가입이 완료되었습니다</p></div>
+	<div class="find_complete_box"><p> 회원가입을 축하드립니다!!</p></div>
 </div>
 					<!-- //find_id_sec -->
 					<div class="btn_member_sec">
 						<ul>
-							<li><button class="btn_comfirm js_btn_login">로그인하기</button></li>
+							<li><button class="btn_comfirm js_btn_login" onclick="location.href='/ezenwood/member/signin'">로그인하기</button></li>
 						</ul>
 					</div>
 					<!-- //btn_member_sec -->
