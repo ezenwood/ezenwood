@@ -38,13 +38,13 @@ WHERE notice_deL_gb='N'
 <select id="noticeDetail" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
 SELECT ROW_NUMBER() OVER (order by notice_step desc)RNUM,
-	notice_num, 
-	notice_title, 
-	notice_step, 
-	notice_content,
-	notice_date
-FROM  notice
-WHERE notice_del_gb='N' and notice_num=#{notice_num}
+	NOTICE_NUM, 
+	NOTICE_TITLE, 
+	NOTICE_STEP, 
+	NOTICE_CONTENT,
+	NOTICE_DATE
+FROM  NOTICE
+WHERE NOTICE_DEL_GB='N' AND NOTICE_NUM=#{NOTICE_NUM}
 ]]>
 </select>
 

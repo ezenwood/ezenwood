@@ -11,15 +11,18 @@ public interface BoardService {
 	public int insertOTO(Map<String, Object> insertMap, HttpServletRequest request);
 	public List<Map<String, Object>> OTOList(Map<String, Object> insertMap);
 	public Map<String, Object> getOTODetail(Map<String, Object> insertMap);
-	
-	
+	public int OTODelete(Map<String, Object> insertMap, HttpServletRequest request);
+
 
 	//FQ
 	public List<Map<String, Object>> FQList (Map<String, Object> insertMap);
 	public Map<String, Object> getOTODelete(Map<String, Object> insertMap);
 	 
-		// TODO Auto-generated method stub
+
+	//Notice
+	public List<Map<String, Object>> NoticeList(Map<String, Object> insertMap);
+	public Map<String, Object> getNoticeDetail(Map<String, Object> insertMap);
 		
-	
+
 
 }

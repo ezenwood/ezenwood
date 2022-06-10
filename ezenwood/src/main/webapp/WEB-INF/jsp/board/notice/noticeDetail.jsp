@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -10,10 +12,11 @@
     <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
-    <title>공지사항_자세히</title>
+    <title>이젠 우드</title>
 </head>
 
 <body>
+	<%@include file="/include/header.jsp"%>
     <div id="container">
         <div id="contents">
             <div class="sub_content">
@@ -26,14 +29,14 @@
                         <div class="board_zone_cont">
                             <div class="board_zone_view">
                                 <div class="board_view_tit">
-                                    <h3>제목</h3>
+                                    <h3>${noticeMap.NOTICE_TITLE }</h3>
                                 </div>
                                 <div class="board_view_info">
                                     <span class="view_info_ipdp">
-                                        <strong>작성자 이름 </strong>
+                                        <strong>이젠 우드</strong>
                                     </span>
                                     <span class="view_info_day">
-                                        <em>날짜</em>
+                                        <em><fmt:formatDate value="${noticeMap.NOTICE_DATE}" type="both" dateStyle="medium" timeStyle="medium"/></em>
                                     </span>
                                 </div>
                                 <!--//board_view_info-->
@@ -44,19 +47,15 @@
                                     </span>
                                 </div>
                                 <div class="board_view_content">
-                                    <div class="seem_cont">
+                                    <div class="seem_cont">                                        
                                         <div style="margin: 10px 0 10px 0">
-                                            <img style="max-width: 700px">
-                                            <p>내용</p>
-                                            <c:forEach var="list" items="noticeboardlist">
-                                                <p align="center">공지사항content</p>
-                                            </c:forEach>
-                                            <c:forEach var="image" items="image">
-                                                <div style="align-content: center">
-                                                    <img>이미지 코드</img>
-                                                </div>
-                                            </c:forEach>
+                                  <%--       <c:if test="${noticeMap.NOTICE_IMAGE !=null }">
+                                         <img  src="/ezenwood/resource/image/${noticeMap.NOTICE_IMAGE}"  style="max-width: 700px">
+                                        </c:if> --%>
+                                           
+                                            ${noticeMap.NOTICE_CONTENT }
                                         </div>
+                                        
                                     </div>
                                     <!--//seem_cont-->
                                 </div>
@@ -71,9 +70,9 @@
                             </div>
                             <!--//board_zone_view-->
                             <div class="btn_right_box">
-                                <button type="button" class="btn_board_list" onclick="gd_btn_list('goodsreview')">
-                                    <strong>목록</strong>
-                                </button>
+                                <span class="gLeft"> <a href="/ezenwood/board/notice"
+												class="btnNormalFix sizeS">목록</a>
+                                </span>
                             </div>
                         </div>
                         <!--//board_zone_cont-->
@@ -116,4 +115,6 @@
          </div>
     </div>
     
-</body>--></html>
+</body>-->
+	<%@include file="/include/footer.jsp"%>
+</html>
