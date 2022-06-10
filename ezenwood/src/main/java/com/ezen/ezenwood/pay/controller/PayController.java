@@ -32,11 +32,9 @@ public class PayController {
 	@RequestMapping(value = "/step1", method = RequestMethod.POST)
 	public String userPayForm(CommandMap commandMap, Model model, HttpServletRequest request) {
 		
-		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
+		//commandMap.put("MEMBER_ID", (String) request.getSession().getAttribute("MEMBER_ID"));
 		
-		for(String a : commandMap.getMap().keySet()) {
-			System.out.println("key: "+ a + " value: "+ commandMap.get(a));
-		}
+		
 		
 		Map<String, Object> result = payService.step1(commandMap.getMap());
 		
@@ -76,7 +74,7 @@ public class PayController {
 		commandMap.put("payInfo", payInfo);
 		commandMap.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
 		
-		payService.step3(commandMap.getMap());
+		Map<String,Object> resultMap = payService.step3(commandMap.getMap());
 		
 		
 		
@@ -84,7 +82,7 @@ public class PayController {
 		payInfo.put("memberMap", commandMap.getMap());
 		
 		model.addAttribute("payInfo", payInfo);
-		
+		model.addAttribute("resultMap", resultMap);
 		
 		return "/pay/step3";
 	}

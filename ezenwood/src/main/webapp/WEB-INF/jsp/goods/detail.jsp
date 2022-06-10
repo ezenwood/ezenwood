@@ -118,7 +118,7 @@
 								<div class="keyImg">
 									<div class="thumbnail">
 										<a href="#none" alt="P00000TJ"> <img
-											src="data/goods/May%20Table.jpg" alt="May Table"
+											src="/ezenwood/resource/image/${GOODS_MAP.GOODS_SUBIMAGE }" alt="May Table"
 											class="BigImage ">
 										</a>
 									</div>
@@ -371,7 +371,7 @@
 								style="width: 1000px; max-width: 100%; margin: 0 auto;">
 
 								<div style="position: relative;" class="edb-img-tag-w">
-									<img alt="#" src="data/goods/May%20Table.jpg"
+									<img alt="#" src="/ezenwood/resource/image/${GOODS_MAP.GOODS_IMAGE }"
 										style="margin: 0 auto; display: block; max-width: 100%;">
 								</div>
 
