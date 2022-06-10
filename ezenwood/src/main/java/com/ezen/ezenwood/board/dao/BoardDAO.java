@@ -12,8 +12,9 @@ public interface BoardDAO {
 	public Map<String, Object> AnswerForOTODetil(Map<String, Object> insertMap);
 	//FQ
 	public List<Map<String, Object>> FQList (Map<String, Object> insertMap);
+	public Map<String, Object> OTODelete(Map<String, Object> insertMap);
 	
-	public int OTODelete(Map<String, Object> insertMap);
+	
  
 	
 	

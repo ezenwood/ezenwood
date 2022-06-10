@@ -58,15 +58,14 @@ public class BoardServiceImpl implements BoardService {
 		// TODO Auto-generated method stub
 		return boardDAO.FQList(insertMap);
 	}
-	
-	@Override
-	public int OTODelete(Map<String, Object> insertMap, HttpServletRequest request) {
 
-		int checkNum = boardDAO.OTODelete(insertMap);
+	@Override
+	public Map<String, Object> getOTODelete(Map<String, Object> insertMap) {
 		
-		return checkNum;
+		return boardDAO.OTODelete(insertMap);
 	}
 	
+
 	
 
 	
