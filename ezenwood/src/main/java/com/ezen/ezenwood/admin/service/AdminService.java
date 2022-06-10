@@ -42,7 +42,7 @@ public interface AdminService {
 		
 		//
 		
-		public List<Map<String,Object>> adminNoticeList(Map<String,Object> map);
+		public List<Map<String,Object>> adminNoticeList(Map<String,Object> map) throws Exception;
 		
 		public Map<String,Object> adminNoticeDetail(Map<String,Object> map);
 		
