@@ -13,22 +13,29 @@
 <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/qnaDetail.css" type="text/css"
 	rel="stylesheet">
-<title>이젠 우드</title>
 <script type="text/javascript">
-    
-    //글 삭제
-    function fn_del() {
  
-        if (confirm("정말 삭제하시겠습니까??") == true) { //확인
-            location.href = "/board/oto/otoBoard/{otonum}/otoDelete"+${map.otonum};
-            console.log('success');
-        } else {
-            console.log('fail');
-            return false;
-        }
-    }
+$(document).ready(function() {
+
+	var msg = "${msg}";
+	if(msg = ""){
+	alert(msg);	
+	}
+
+	});
+
+function deleteConfirm(){
+
+	if(confirm("삭제 하시겠습니까?")){
+		location.href="/ezenwood/board/oto/otoBoardDel/${OTOMap.ONETOONE_NUM}";
+	}else{
+		return false;
+	}
+}
     
 </script>
+<title>이젠 우드</title>
+
 
 </head>
 
@@ -74,11 +81,11 @@
 												<tbody>
 													<tr>
 														<th scope="row">제목</th>
-														<td>${OTOMap.ONETOONE_TITLE }</td>
+														<td>${OTOMap.ONETOONE_TITLE}</td>
 													</tr>
 													<tr>
 														<th scope="row">작성자</th>
-														<td>${OTOMap.ONETOONE_MEMBER_ID}</td>
+														<td>${OTOMap.MEMBER_NAME}</td>
 													</tr>
 													<tr>
 														<td colspan="2">
@@ -100,22 +107,16 @@
 														<th scope="row">첨부파일</th>
 														<td></td>
 													</tr>
-													<tr class=" displaynone">
-														<th scope="row">비밀번호</th>
-														<td><input id="password" name="password" fw-filter=""
-															fw-label="비밀번호" fw-msg=""
-															onkeydown="if (event.keyCode == 13 || event.which == 13) { return false; }"
-															value="" type="password"> <span
-															class="ec-base-help txtInfo">삭제하려면 비밀번호를 입력하세요.</span></td>
-													</tr>
+												
 												</tbody>
 											</table>
 										</div>
 										<div class="ec-base-button ">
 											<span class="gLeft"> <a href="/ezenwood/board/oto"
 												class="btnNormalFix sizeS">목록</a>
+												
 											</span> <span class="gRight">  
-												<button id="button1" onclick="fn_del();" class="btnEmFix sizeS">삭제</button>
+												<a href="javascript:void(0);" class="btnEmFix sizeS" onclick="deleteConfirm();">삭제</a>
 
 											</span>
 										</div>
