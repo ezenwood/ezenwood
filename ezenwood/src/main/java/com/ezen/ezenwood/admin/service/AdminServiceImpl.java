@@ -1,19 +1,20 @@
-package com.ezen.ezenwood.admin.dao;
+package com.ezen.ezenwood.admin.service;
 
 import java.util.List;
 import java.util.Map;
 
-import org.springframework.stereotype.Repository;
+import org.springframework.stereotype.Service;
 
-import com.ezen.common.AbstractDAO;
+@Service("AdminService")
+public class AdminServiceImpl implements AdminService{
 
-@Repository(value = "AdminDAO")
-public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
-
+	
+	//goods
+	
 	@Override
 	public List<Map<String, Object>> adminGoodsList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return selectList(null, map);
+		return null;
 	}
 
 	@Override
@@ -40,6 +41,9 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	//member
+	
 	@Override
 	public List<Map<String, Object>> adminMemberList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -64,6 +68,9 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	//order
+	
 	@Override
 	public List<Map<String, Object>> adminOrderList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -88,6 +95,9 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	//notice
+	
 	@Override
 	public List<Map<String, Object>> adminNoticeList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -118,6 +128,9 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	//Qna
+	
 	@Override
 	public List<Map<String, Object>> adminQNAList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -148,6 +161,9 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	//review
+	
 	@Override
 	public List<Map<String, Object>> adminReviewList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -178,6 +194,10 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	
+	//oto
+	
 	@Override
 	public List<Map<String, Object>> adminOTOList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -208,6 +228,9 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	//fq(자주묻는질문)
+	
 	@Override
 	public List<Map<String, Object>> adminFQList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -238,6 +261,9 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	
+	//about 
 	@Override
 	public Map<String, Object> adminAboutDetail(Map<String, Object> map) {
 		// TODO Auto-generated method stub
