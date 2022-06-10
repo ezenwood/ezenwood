@@ -33,7 +33,7 @@
 		<div id="contents">
 			<div class="location_wrap">
 				<div class="location_cont">
-					<em> <a href="/ezenwood/mypage/main" class="local_home">HOME</a>
+					<em> <a href="/ezenwood/main" class="local_home">HOME</a>
 						&gt;주문목록/배송조회
 					</em>
 				</div>

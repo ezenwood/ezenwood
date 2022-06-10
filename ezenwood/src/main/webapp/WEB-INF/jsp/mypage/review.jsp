@@ -34,7 +34,7 @@
 			<!-- 본문  -->
 			<div class="location_wrap">
 				<div class="location_cont">
-					<em> <a href="/ezenwood/mypage/main" class="local_home">Home</a>
+					<em> <a href="/ezenwood/main" class="local_home">Home</a>
 						&gt;마이페이지&gt;게시판 관리&gt;리뷰
 					</em>
 				</div>
@@ -50,11 +50,12 @@
 
 				<div class="content">
 					<div class="mypage_cont">
+					
 						<div class="mypage_lately_info">
 							<h2 style="font-size: large">상품후기</h2>
 						</div>
 					</div>
-
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 					<!-- review 리스트-->
 					<div class="mypage_table_type">
@@ -90,8 +91,7 @@
 										<td>${review.TITLE}</td>
 
 										<td class="board_tit">
-											<!-- 제목--> <a
-											href="jsvascript:gd_btn_view('goodsreview','${review.REVIEW_NUM}','y'">
+											<!-- 제목--> <a href='${contextPath}/board/review/${review.REVIEW_NUM}'>
 												<strong>${review.REVIEW_TITLE}</strong>
 										</a>
 										</td>

@@ -21,7 +21,7 @@
 			<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 			<div class="location_wrap">
 				<div class="location_cont">
-					<em><a href="/ezenwood/mypage/main" class="local_home">HOME</a>
+					<em><a href="/ezenwood/main" class="local_home">HOME</a>
 						&gt; 마이페이지 &gt; 회원탈퇴</em>
 				</div>
 			</div>
