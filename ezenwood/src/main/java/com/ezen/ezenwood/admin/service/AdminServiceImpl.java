@@ -10,16 +10,20 @@ import org.springframework.stereotype.Service;
 
 import com.ezen.ezenwood.admin.dao.AdminDAO;
 import com.ezen.ezenwood.admin.dao.AdminDAOImpl;
+
+import com.ezen.ezenwood.goods.dao.GoodsDAO;
 import com.ezen.ezenwood.mypage.dao.MyPageDAO;
 
 @Service("AdminService")
-public class AdminServiceImpl implements AdminService {
+public class AdminServiceImpl implements AdminService{
+	
 	Logger log = Logger.getLogger(this.getClass());
-
+	
 	@Resource(name = "AdminDAO")
-	private AdminDAO adminDAO;
-
-	// goods
+	AdminDAOImpl adminDAO;
+	
+	//goods
+	
 
 	@Override
 	public List<Map<String, Object>> adminGoodsList(Map<String, Object> map) {
@@ -236,13 +240,13 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Map<String, Object>> adminFQList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		return adminDAO.adminFQList(map);
 	}
 
 	@Override
 	public Map<String, Object> adminFQDetail(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		return adminDAO.adminFQDetail(map);
 	}
 
 	@Override

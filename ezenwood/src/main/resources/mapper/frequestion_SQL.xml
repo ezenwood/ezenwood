@@ -46,6 +46,7 @@ question_deL_gb='N';
 <![CDATA[
 SELECT 
 ROW_NUMBER() OVER (order by question_step desc) RNUM,
+QUESTION_CONTENT,
 question_step,
 question_num,
 question_title,
@@ -53,7 +54,7 @@ question_date
 FROM 
 question
 where 
-question_deL_gb='N' and question_num=#{question_num}
+question_deL_gb='N' and question_num=#{QUESTION_NUM}
 ]]>
 </select>
 
@@ -69,7 +70,7 @@ values
 	#{question_step},
 	#{question_content},
 	sysdate,
-	'Y')
+	'N')
 	]]>
 </insert>
 

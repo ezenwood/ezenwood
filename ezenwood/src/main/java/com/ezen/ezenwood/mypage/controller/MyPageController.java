@@ -13,9 +13,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-import org.apache.commons.collections.map.HashedMap;
+
 import org.apache.log4j.Logger;
-import org.apache.maven.model.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -253,6 +252,9 @@ public class MyPageController {
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 		insertMap.put("MEMBER_ID", MEMBER_ID);
 
+		
+		
+		
 		List<Map<String, Object>> list = mypageService.memberReivewList(insertMap);
 		mv.addObject("list", list);
 

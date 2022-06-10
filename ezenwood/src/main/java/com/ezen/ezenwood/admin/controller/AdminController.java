@@ -9,6 +9,7 @@ import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
+
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,15 +26,18 @@ import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 @RequestMapping("/admin")
 public class AdminController {
 
+
+
+	@RequestMapping("")
+
 	Logger log = Logger.getLogger(this.getClass());
 
 	@Resource(name = "AdminService")
 	private AdminService adminService;
-
-	@RequestMapping("/admin")
 	public String admin() {
 		return "admin/admin";
 	}
+
 
 	@RequestMapping(value = "/notice/{pageNum}", method = RequestMethod.GET)
 	public ModelAndView adminNoticeList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
@@ -48,6 +52,7 @@ public class AdminController {
 
 		PaginationInfo paginationInfo = new PaginationInfo();
 
+
 		// 현재 페이지 번호
 		paginationInfo.setCurrentPageNo(pageNum);
 		// 한 페이지에 게시되는 게시물 건수
@@ -57,10 +62,12 @@ public class AdminController {
 
 		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
+
 		insertMap.put("MEMBER_ID", MEMBER_ID);
 
 		List<Map<String, Object>> list = adminService.adminNoticeList(insertMap);
 		mv.addObject("list", list);
+
 
 		int totalCount = 0;
 
@@ -78,3 +85,4 @@ public class AdminController {
 	}
 
 }
+
