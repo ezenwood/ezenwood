@@ -65,9 +65,13 @@
 								</div>
 								<div style="text-align: center">
 									<br>
+									<input type="hidden" value="${FQMap.QUESTION_NUM}" name="QUESTION_NUM">
 									<button type="button" class="btn btn-success"
-										onclick="location.href='${contextPath}/admin/fqupdate'">수정</button>
+										onclick="location.href='${contextPath}/admin/fqupdate/${FQMap.QUESTION_NUM}'">수정</button>
 									<button type="reset" class="btn btn-default">작성취소</button>
+									<button type="button" class="btn btn-success"
+										onclick="location.href='${contextPath}/admin/fqdelete/${FQMap.QUESTION_NUM}'">삭제</button>
+								
 								</div>
 								<!--//board_zone_cont-->
 							</div>

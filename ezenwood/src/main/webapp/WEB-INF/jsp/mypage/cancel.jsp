@@ -87,18 +87,18 @@
 									varStatus="totalCount">
 									<tbody>
 										<tr>
-											<th>
+											<td>
 												<p>${cancel.ADATE}&nbsp;/&nbsp;${cancel.ORDERS_NUM}</p>
-											</th>
-											<th>
+											</td>
+											<td>
 												<P>${cancel.ORDERS_GOODS_NUM}&nbsp;/&nbsp;${cancel.ORDERS_GOODS_OPTION}</P>
-											</th>
-											<th>
+											</td>
+											<td>
 												<P>${cancel.ORDERS_PRICE}&nbsp;/&nbsp;${cancel.ORDERS_AMOUNT}</P>
-											</th>
-											<th>
+											</td>
+											<td>
 												<P>${cancel.ORDERS_STATUS}</P>
-											</th>
+											</td>
 											
 										</tr>
 									</tbody>

@@ -129,7 +129,7 @@
 										<span>
 										
 											<button type="submit" class="btn btn-default"
-												style="margin-right: 15px;"onclick="location.href='${contextPath}/admin/fqupdate'" >쓰기</button>
+												style="margin-right: 15px;"onclick="location.href='${contextPath}/admin/fqwrite'" >쓰기</button>
 										</span>
 
 									</div>

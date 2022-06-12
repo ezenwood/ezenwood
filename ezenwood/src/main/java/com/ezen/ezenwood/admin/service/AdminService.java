@@ -46,9 +46,9 @@ public interface AdminService {
 		
 		public Map<String,Object> adminNoticeDetail(Map<String,Object> map);
 		
-		public int adminNoticeUpdate(Map<String,Object> map);
+		public int adminNoticeUpdate(Map<String,Object> map) throws Exception;
 		
-		public int adminNoticeDelete(Map<String,Object> map);
+		public int adminNoticeDelete(Map<String,Object> map) throws Exception;
 		
 		public int adminNoticeInsert(Map<String,Object> map);
 		
@@ -93,15 +93,15 @@ public interface AdminService {
 		
 		// 자주묻는질문
 		
-		public List<Map<String,Object>> adminFQList(Map<String,Object> map);
+		public List<Map<String,Object>> adminFQList(Map<String,Object> map) throws Exception;
 		
-		public Map<String,Object> adminFQDetail(Map<String,Object> map);
+		public Map<String,Object> adminFQDetail(Map<String,Object> map) throws Exception;
 		
-		public int adminFQUpdate(Map<String,Object> map);
+		public int adminFQUpdate(Map<String,Object> map) throws Exception;
 		
-		public int adminFQDelete(Map<String,Object> map);
+		public int adminFQDelete(Map<String,Object> map) throws Exception;
 		
-		public int adminFQInsert(Map<String,Object> map);
+		public int adminFQInsert(Map<String,Object> map) throws Exception;
 		
 		//
 		
