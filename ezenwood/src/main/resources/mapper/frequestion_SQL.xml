@@ -62,13 +62,13 @@ question_deL_gb='N' and question_num=#{QUESTION_NUM}
 <!-- 관리자 insert -->
 <insert id="frequestionInsert" parameterType="hashmap" >
 <![CDATA[
-insert into 
-question 
-values
+INSERT INTO
+QUESTION
+VALUES
 (seq_question_num.nextval,
-	#{question_title},
-	#{question_step},
-	#{question_content},
+	#{QUESTION_TITLE},
+	#{QUESTION_STEP},
+	#{QUESTION_CONTENT},
 	sysdate,
 	'N')
 	]]>
@@ -77,23 +77,23 @@ values
 <!-- 관리자 update -->
 <update id="frequestionupdate" parameterType="hashmap">
 <![CDATA[
-update 
-question
-set 
-question_content= #{question_content},
-question_step=#{question_step},
-question_title=#{question_title}
-where 
-question_num =#{question_num}
+UPDATE 
+QUESTION
+SET
+QUESTION_CONTENT = #{QUESTION_CONTENT},
+QUESTION_STEP = #{QUESTION_STEP},
+QUESTION_TITLE = #{QUESTION_TITLE}
+WHERE 
+QUESTION_NUM = #{QUESTION_NUM}
 ]]>
 </update>
 
 <!-- 관리자 delete -->
 <update id="frequestiondelete" parameterType="hashmap">
 <![CDATA[
-update question
-set question_del_gb='Y'
-where question_num =#{question_num}
+UPDATE QUESTION 
+SET QUESTION_DEL_GB='Y'
+WHERE QUESTION_NUM = #{QUESTION_NUM}
 ]]>
 </update>
 

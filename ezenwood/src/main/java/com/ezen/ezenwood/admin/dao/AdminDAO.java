@@ -5,7 +5,7 @@ import java.util.Map;
 
 public interface AdminDAO {
 
-	//good list °Ë»ö Á¶°Ç¹®¸¸µé±â Ä«Å×°í¸®¶û, »óÇ°¸í
+	//good list ê²€ìƒ‰ ì¡°ê±´ë¬¸ë§Œë“¤ê¸° ì¹´í…Œê³ ë¦¬ë‘, ìƒí’ˆëª…
 	public List<Map<String,Object>> adminGoodsList(Map<String,Object> map);
 	
 	public Map<String,Object> adminGoodsDetail(Map<String,Object> map);
@@ -18,7 +18,7 @@ public interface AdminDAO {
 	
 	
 	//
-	//member List °Ë»ö Á¶°Ç¹® ¸¸µé±â ¾ÆÀÌµğ¶û, ÀÌ¸§ , Å»Åğ
+	//member List ê²€ìƒ‰ ì¡°ê±´ë¬¸ ë§Œë“¤ê¸° ì•„ì´ë””ë‘, ì´ë¦„ , íƒˆí‡´
 	public List<Map<String,Object>> adminMemberList(Map<String,Object> map);
 	
 	public Map<String,Object> adminMemberDetail(Map<String,Object> map);
@@ -30,7 +30,7 @@ public interface AdminDAO {
 	
 	//
 	
-	//order List °Ë»ö Á¶°Ç¹® ¸¸µé±â ¾ÆÀÌµğ, ÁÖ¹®¹øÈ£, ¹è¼Û»óÅÂ
+	//order List ê²€ìƒ‰ ì¡°ê±´ë¬¸ ë§Œë“¤ê¸° ì•„ì´ë””, ì£¼ë¬¸ë²ˆí˜¸, ë°°ì†¡ìƒíƒœ
 	public List<Map<String,Object>> adminOrderList(Map<String,Object> map);
 	
 	public Map<String,Object> adminOrderDetail(Map<String,Object> map);
@@ -53,7 +53,7 @@ public interface AdminDAO {
 	
 	//
 	
-	//QNA List °Ë»ö Á¶°Ç¹® ¸¸µé±â ÀÛ¼ºÀÚ, ´äº¯ÀÎÁöÁú¹®ÀÎÁö
+	//QNA List ê²€ìƒ‰ ì¡°ê±´ë¬¸ ë§Œë“¤ê¸° ì‘ì„±ì, ë‹µë³€ì¸ì§€ì§ˆë¬¸ì¸ì§€
 	public List<Map<String,Object>> adminQNAList(Map<String,Object> map);
 	
 	public Map<String,Object> adminQNADetail(Map<String,Object> map);
@@ -78,7 +78,7 @@ public interface AdminDAO {
 	
 	//
 	
-	// OTO List °Ë»ö Á¶°Ç¹® ¸¸µé±â ¾ÆÀÌµğ
+	// OTO List ê²€ìƒ‰ ì¡°ê±´ë¬¸ ë§Œë“¤ê¸° ì•„ì´ë””
 	public List<Map<String,Object>> adminOTOList(Map<String,Object> map);
 	
 	public Map<String,Object> adminOTODetail(Map<String,Object> map);

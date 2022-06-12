@@ -10,6 +10,10 @@ import com.ezen.common.AbstractDAO;
 @Repository(value = "AdminDAO")
 public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 
+	
+	
+	//상품 관리 goods
+	
 	@Override
 	public List<Map<String, Object>> adminGoodsList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -40,6 +44,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	
+	
+	//회원 관리 memeber
+	
 	@Override
 	public List<Map<String, Object>> adminMemberList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -64,6 +73,10 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	
+	//주문 관리 order
+	
 	@Override
 	public List<Map<String, Object>> adminOrderList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -88,6 +101,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	
+	
+	//공지사항 notice
+	
 	@Override
 	public List<Map<String, Object>> adminNoticeList(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("notice.noticeListAdmin", map);
@@ -117,6 +135,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	
+	
+	//큐엔에이 QNA
+	
 	@Override
 	public List<Map<String, Object>> adminQNAList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -147,6 +170,12 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	
+	
+	
+	//리뷰 review
+	
 	@Override
 	public List<Map<String, Object>> adminReviewList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -177,6 +206,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	
+	
+	//일대일 문의 OneToOne
+	
 	@Override
 	public List<Map<String, Object>> adminOTOList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -207,6 +241,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	
+	
+	// 자주묻는질문 fq
+	
 	@Override
 	public List<Map<String, Object>> adminFQList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -222,21 +261,26 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public int adminFQUpdate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
-	}
+		return (int) update("frequestion.frequestionupdate", map);
+	} 
 
 	@Override
 	public int adminFQDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) update("frequestion.frequestiondelete", map);
 	}
 
 	@Override
 	public int adminFQInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) selectOne("frequestion.frequestionInsert",map);
 	}
 
+	
+	
+	//회사소개 글 about
+	
+	
 	@Override
 	public Map<String, Object> adminAboutDetail(Map<String, Object> map) {
 		// TODO Auto-generated method stub

@@ -250,21 +250,21 @@ public class AdminServiceImpl implements AdminService{
 	}
 
 	@Override
-	public int adminFQUpdate(Map<String, Object> map) {
+	public int adminFQUpdate(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminFQUpdate(map);
 	}
 
 	@Override
-	public int adminFQDelete(Map<String, Object> map) {
+	public int adminFQDelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminFQDelete(map);
 	}
 
 	@Override
-	public int adminFQInsert(Map<String, Object> map) {
+	public int adminFQInsert(Map<String, Object> map)throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminFQInsert(map);
 	}
 
 	// about

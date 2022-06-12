@@ -7,10 +7,12 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,10 +37,8 @@ public class AdminController {
 	@Resource(name = "AdminService")
 	private AdminService adminService;
 
-	
-	
-	
-	
+	// notice
+
 	@RequestMapping(value = "/notice/{pageNum}", method = RequestMethod.GET)
 	public ModelAndView adminNoticeList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
 			throws Exception {
@@ -82,12 +82,8 @@ public class AdminController {
 		return mv;
 	}
 
-	
-	
-	
-	
-	
-	
+	// fq
+
 	@RequestMapping(value = "/fqlist/{pageNum}", method = RequestMethod.GET)
 	public ModelAndView fqList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
 			throws Exception {
@@ -125,12 +121,12 @@ public class AdminController {
 		return mv;
 	}
 
-	@RequestMapping("/fqdetail/{fqdetailnum}")
-	public ModelAndView fqDetail(@PathVariable("fqdetailnum") int fqnum) {
+	@RequestMapping("/fqdetail/{fqNum}")
+	public ModelAndView fqDetail(@PathVariable int fqNum) throws Exception{
 		ModelAndView mav = new ModelAndView();
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
-		insertMap.put("QUESTION_NUM", fqnum);
+		insertMap.put("QUESTION_NUM", fqNum);
 
 		Map<String, Object> resultMap = adminService.adminFQDetail(insertMap);
 
@@ -140,15 +136,62 @@ public class AdminController {
 		return mav;
 	}
 
-	@RequestMapping("/fqupdate")
-	public String fqUpdate() {
-		return "admin/fq/fqUpdateForm";
+	
+	
+	@RequestMapping(value = "/fqupdate/{fqNum}", method = RequestMethod.GET)
+	public ModelAndView fqUpdateForm(@PathVariable int fqNum, CommandMap commandMap)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();	
+		
+		mav.addObject("QUESTION_NUM", fqNum);
+		mav.setViewName("/admin/fq/fqUpdateForm");
+		return mav;
 	}
 
-	@RequestMapping("/fqwrite")
-	public String fqWrite() {
-		return "admin/fq/fqWriteForm";
+	@RequestMapping(value = "/fqupdate/{fqNum}", method = RequestMethod.POST)
+	public ModelAndView fqUpdate(CommandMap commandMap) throws Exception {
+		ModelAndView mav = new ModelAndView();
 
+		int resultMap = adminService.adminFQUpdate(commandMap.getMap());
+
+		mav.addObject(resultMap);
+		
+		mav.setViewName("/admin/fq/fqList");
+		return mav;
+	}
+	
+	@RequestMapping(value = "/fqwrite", method = RequestMethod.GET)
+	public String fqWriteForm() throws Exception{
+		
+		
+		return "/admin/fq/fqWriteForm";
+
+	}
+
+	@RequestMapping(value = "/fqwrite", method = RequestMethod.POST)
+	public String fqWrite(CommandMap commandMap) throws Exception {
+		
+		int resultMap = adminService.adminFQInsert(commandMap.getMap());
+
+		return "redirect:/admin/fq/fqList";
+
+	}
+	
+	
+	@RequestMapping(value="/fqdelete/{fqNum}", method=RequestMethod.GET)
+	public ModelAndView fqdelete(@PathVariable int fqNum) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		
+		int QUESTION_NUM = fqNum;
+
+		insertMap.put("QUESTION_NUM", QUESTION_NUM);
+		int resultMap = adminService.adminFQDelete(insertMap);
+		
+		mav.addObject(resultMap);
+		mav.setViewName("/admin/fq/fqList");
+		return mav;
 	}
 
 }

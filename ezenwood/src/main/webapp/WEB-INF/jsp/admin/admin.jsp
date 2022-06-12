@@ -58,14 +58,7 @@
 <%@include file ="/include/admin_header.jsp" %>
 <%@include file ="/include/admin_left.jsp" %>
 	<div id="container">
-		<nav class="navbar navbar-default navbar-static-top" role="navigation"
-			style="background-color: #337AB7;">
-			<div class="navbar-header" style="background-color: #337AB7">
-
-				<a class="navbar-brand" style="color: #fff;"
-					href="/ezenwood/admin"><strong>EZENWOOD 관리자페이지</strong></a>
-			</div>
-		</nav>
+		
 		<div id="contents">
 
 			<!--location_wrap -->
