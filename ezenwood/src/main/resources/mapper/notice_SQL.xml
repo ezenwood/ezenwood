@@ -51,14 +51,14 @@ WHERE NOTICE_DEL_GB='N' AND NOTICE_NUM=#{NOTICE_NUM}
 <!--관리자 공지사항 등록 --> 
 <insert id="insertNotice" parameterType="hashmap">
 <![CDATA[
-insert into notice
-values(
-seq_notice_num.nextval,
-#{notice_title},
-#{notice_step},
-#{notice_content},
+INSERT INTO NOTICE 
+VALUES(
+SEQ_NOTICE_NUM.nextval,
+#{NOTICE_TITLE},
+#{NOTICE_STEP},
+#{NOTICE_CONTENT},
 sysdate,
-#{notice_del_gb}
+'N'
 )
 ]]>
 </insert>
@@ -66,12 +66,12 @@ sysdate,
 <!--관리자 공지사항 수정 -->
 <update id="noticeupdate" parameterType="hashmap">
 <![CDATA[
-update notice
-set 
-notice_title = #{notice_title},
-notice_step = #{notice_step},
-notice_content = #{notice_content},
-where notice_num = #{notice_num}
+UPDATE NOTICE
+SET 
+NOTICE_TITLE = #{NOTICE_TITLE},
+NOTICE_STEP = #{NOTICE_STEP},
+NOTICE_CONTENT = #{NOTICE_CONTENT}
+WHERE NOTICE_NUM = #{NOTICE_NUM}
 ]]>
 </update>
 
@@ -82,7 +82,7 @@ where notice_num = #{notice_num}
 <![CDATA[
 UPDATE notice
 SET notice_del_gb='Y'
-WHERE notice_num = #{notice_num}
+WHERE notice_num = #{NOTICE_NUM}
 ]]>
 </update>
 
