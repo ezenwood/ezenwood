@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -13,6 +14,7 @@
 </head>
 
 <body>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	  <div id="container">
         <div id="contents">
             <div class="sub_content">
@@ -29,43 +31,32 @@
                         <div class="board_zone_cont">
                             <div class="board_zone_view">
                                 <div class="board_view_tit">
-                                    <h3>제목</h3>
+                                    <h3>${NTMap.NOTICE_TITLE}</h3>
                                 </div>
                                 <div class="board_view_info">
                                     <span class="view_info_ipdp">
-                                        <strong>작성자 이름 </strong>
+                                        <strong>${NTMap.NOTICE_NUM}</strong>
                                     </span>
                                     <span class="view_info_day">
-                                        <em>날짜</em>
+                                        <em>${NTMap.NOTICE_DATE}</em>
                                     </span>
                                 </div>
                                 <!--//board_view_info-->
-                                <div class="board_view_attach">
-                                    <strong>첨부파일</strong>
-                                    <span class="attach_list">
-                                        <a href="#">파일 이름</a>
-                                    </span>
-                                </div>
+                                
                                 <div class="board_view_content" style="border-bottom: 1px solid #dbdbdb;">
                                     <div class="seem_cont">
                                         <div style="margin: 10px 0 10px 0">
                                             <img style="max-width: 700px">
                                             
-                                            <c:forEach var="list" items="noticeboardlist">
-                                                <p align="center">공지사항content</p>
-                                            </c:forEach>
+                                          
+                                                <p align="center">${NTMap.NOTICE_CONTENT}</p>
+                                           
                                            
                                         </div>
                                     </div>
                                     <!--//seem_cont-->
                                 </div>
-                                <div class="board_view_content" style="border-bottom: 1px solid #dbdbdb;">
-                                   <c:forEach var="image" items="image">
-                                                <div style="text-align: center">
-                                                    <img src="/ezenwood/resource/image/pet1.jpg" alt="Missing Image">
-                                                </div>
-                                            </c:forEach>
-                                </div>
+                               
                                  
                                 
                                 <!--//board_view_content-->
@@ -74,16 +65,22 @@
                           
                         </div>
                           <div style="text-align: center">
-                          <br>
-						<button type="submit" class="btn btn-success">상품등록</button>
-						<button type="reset" class="btn btn-default">작성취소</button>	
-			</div>
+									<br>
+									<input type="hidden" value="${NTMap.NOTICE_NUM}" name="NOTICE_NUM">
+									<button type="button" class="btn btn-success"
+										onclick="location.href='${contextPath}/admin/notice/update/${NTMap.NOTICE_NUM}'">수정</button>
+									<button type="reset" class="btn btn-default"
+									onclick="location.href='${contextPath}/admin/notice/1'">작성취소</button>
+									<button type="button" class="btn btn-success"
+										onclick="location.href='${contextPath}/admin/notice/del/${NTMap.NOTICE_NUM}'">삭제</button>
+								
+								</div>
                         <!--//board_zone_cont-->
                     </div>
                 </div>
             </div>
         </div>
-       
+       </div>
     </div>
     		
 </div>

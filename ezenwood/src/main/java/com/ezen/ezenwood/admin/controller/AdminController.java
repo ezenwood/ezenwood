@@ -37,16 +37,121 @@ public class AdminController {
 	@Resource(name = "AdminService")
 	private AdminService adminService;
 
-	// notice
+	/*
+	// goods 
+	// 상품 리스트 보기
+	@RequestMapping(value = "")
+	public String goodsList() throws Exception {
+		return null;
+	}
+	
+	
+	// 상품 디테일 보기
+	@RequestMapping(value = "")
+	public String goodsListDetail() throws Exception {
+		return null;
+	}
+	
+	
+	// 상품 등록하기 (insert)
+	@RequestMapping(value = "")
+	public String goodsinsert() throws Exception {
+		return null;
+	}
+	
+	
+	// 상품 수정하기 (update)
+	@RequestMapping(value = "")
+	public String goodsUpdate() throws Exception {
+		return null;
+	}
+	
+	
+	// 상품 삭제하기 (delete)
+	@RequestMapping(value = "")
+	public String goodsDelete() throws Exception {
+		return null;
+	}
+	*/
+	
+	
+	
+	
+	/*
+	//member
+	// 회원 리스트 보기
+	@RequestMapping(value = "")
+	public String memberList() throws Exception {
+		return null;
+	}
+	
+	
+	// 탈퇴 회원 보기 
+	@RequestMapping(value = "")
+	public String delmemberList() throws Exception {
+		return null;
+	}
+	
+	
+	// 회원 수정
+	@RequestMapping(value = "")
+	public String memberUpdate() throws Exception {
+		return null;
+	}
+	
+	// 회원 삭제하기 
+	@RequestMapping(value = "")
+	public String memberDelete() throws Exception {
+		return null;
+	}
+	
+	*/
+	
+	
+	
+	
+	/*
+	// order
+	// 주문 리스트보기
+	@RequestMapping(value = "")
+	public String orderList() throws Exception {
+		return null;
+	}	
 
+	
+	// 주문 디테일 보기
+	@RequestMapping(value = "")
+	public String orderDetail() throws Exception {
+		return null;
+	}	
+	
+	
+	// 주문 수정하기 
+	@RequestMapping(value = "")
+	public String orderUpdate() throws Exception {
+		return null;
+	}	
+	
+	
+	// 주문 삭제하기
+	@RequestMapping(value = "")
+	public String orderDelete() throws Exception {
+		return null;
+	}	
+	
+	*/
+	
+	
+	
+	
+	
+	// notice
+	// 공지사항 리스트보기 
 	@RequestMapping(value = "/notice/{pageNum}", method = RequestMethod.GET)
 	public ModelAndView adminNoticeList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
 			throws Exception {
 
 		ModelAndView mv = new ModelAndView();
-		HttpSession session = request.getSession();
-
-		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 
@@ -62,7 +167,7 @@ public class AdminController {
 		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 
-		insertMap.put("MEMBER_ID", MEMBER_ID);
+		
 
 		List<Map<String, Object>> list = adminService.adminNoticeList(insertMap);
 		mv.addObject("list", list);
@@ -81,9 +186,204 @@ public class AdminController {
 		mv.setViewName("admin/notice/noticeList");
 		return mv;
 	}
+	
+	
+	// 공지사항 자세히 보기
+	@RequestMapping(value = "/noticedetail/{ntNum}")
+	public ModelAndView noticeDetail(@PathVariable int ntNum) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("NOTICE_NUM", ntNum);
+		
+		Map<String, Object> resultMap = adminService.adminNoticeDetail(insertMap);
 
+		mav.addObject("NTMap", resultMap);
+
+		mav.setViewName("/admin/notice/noticeDetail");
+		return mav;
+	}	
+	
+	
+	// 공지사항 수정하기 (update) (GET)
+	@RequestMapping(value = "/notice/update/{ntNum}", method = RequestMethod.GET)
+	public ModelAndView noticeUpdateForm(@PathVariable int ntNum) throws Exception {
+		ModelAndView mav = new ModelAndView();	
+		
+		mav.addObject("NOTICE_NUM", ntNum);
+		System.out.println(ntNum);
+		mav.setViewName("/admin/notice/noticeModify");
+		return mav;
+	}	
+	
+	// 공지사항 수정하기 (update) (POST)
+		@RequestMapping(value = "/notice/update/{ntNum}", method = RequestMethod.POST)
+		public ModelAndView noticeUpdate(CommandMap commandMap) throws Exception {
+			ModelAndView mav = new ModelAndView();
+
+			int resultMap = adminService.adminNoticeUpdate(commandMap.getMap());
+
+			mav.addObject(resultMap);
+			
+			mav.setViewName("/admin/notice/noticeList");
+			return mav;
+		}	
+	
+	
+	// 공지사항 쓰기 (insert) (GET)
+	@RequestMapping(value = "/notice/write", method = RequestMethod.GET)
+	public String noticeWriteForm() throws Exception {
+		return null;
+	}	
+	
+	
+	// 공지사항 쓰기 (insert) (POST)
+	@RequestMapping(value = "/notice/write", method = RequestMethod.POST)
+	public String noticeWrite() throws Exception {
+		return null;
+	}	
+	
+	
+	// 공지사항 삭제하기 (delete)
+	@RequestMapping(value = "/notice/del/{ntNum}", method=RequestMethod.GET)
+	public ModelAndView noticeDelete(@PathVariable int ntNum) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		
+		int NOTICE_NUM = ntNum;
+
+		insertMap.put("NOTICE_NUM", NOTICE_NUM);
+		int resultMap = adminService.adminNoticeDelete(insertMap);
+		
+		mav.addObject(resultMap);
+		mav.setViewName("/admin/notice/noticeList");
+		return mav;
+	}	
+	
+	
+	
+	
+	
+	
+	
+	/*
+	// QNA
+	// 큐엔에이 리스트 보기 
+	@RequestMapping(value = "")
+	public String qnaList() throws Exception {
+		return null;
+	}	
+	
+	
+	// 큐엔에이 디테일보기
+	@RequestMapping(value = "")
+	public String qnaDetail() throws Exception {
+		return null;
+	}	
+	
+	
+	// 큐엔에이 답변등록 (insert)
+	@RequestMapping(value = "")
+	public String qnaReply() throws Exception {
+		return null;
+	}	
+	
+	
+	// 큐엔에이 수정하기 (update)
+	@RequestMapping(value = "")
+	public String qnaReplyUpdate() throws Exception {
+		return null;
+	}	
+	
+	
+	// 큐엔에이 삭제하기 (delete)
+	@RequestMapping(value = "")
+	public String qnaDelete() throws Exception {
+		return null;
+	}	
+	*/
+	
+	
+	
+	
+	/*
+	//reivew
+	// 리뷰 리스트 보기
+	@RequestMapping(value = "")
+	public String reviewList() throws Exception {
+		return null;
+	}	
+	
+	// 리뷰 디테일 보기 
+	@RequestMapping(value = "")
+	public String reviewDetail() throws Exception {
+		return null;
+	}	
+	
+	
+	// 리뷰 답글 ??
+	
+	// 리뷰 수정 ??
+	
+	// 리뷰 삭제하기 (delete)
+	@RequestMapping(value = "")
+	public String reviewDelete() throws Exception {
+		return null;
+	}	
+	*/
+	
+	
+	
+	
+	/*
+	//OneToOne
+	// 일대일문의 리스트 보기 
+	@RequestMapping(value = "")
+	public String otoList() throws Exception {
+		return null;
+	}	
+	
+	
+	// 일대일 문의 디테일 보기 
+	@RequestMapping(value = "")
+	public String otoDetail() throws Exception {
+		return null;
+	}	
+	
+	
+	
+	// 일대일문의 답글 달기 (insert)
+	@RequestMapping(value = "")
+	public String otoReply() throws Exception {
+		return null;
+	}	
+	
+	
+	
+	// 일대일문의 수정하기 (update)
+	@RequestMapping(value = "")
+	public String otoReplyUpdate() throws Exception {
+		return null;
+	}	
+	
+	
+	
+	// 일대일 문의 삭제하기 (delete)
+	@RequestMapping(value = "")
+	public String otoReplyDelete() throws Exception {
+		return null;
+	}	
+	
+	*/
+	
+	
+	
+	
+	
+	
 	// fq
-
+	// 자주묻는질문 리스트보기
 	@RequestMapping(value = "/fqlist/{pageNum}", method = RequestMethod.GET)
 	public ModelAndView fqList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
 			throws Exception {
@@ -120,7 +420,9 @@ public class AdminController {
 		mv.setViewName("/admin/fq/fqList");
 		return mv;
 	}
-
+	
+	
+	//자주묻는 질문 자세히보기
 	@RequestMapping("/fqdetail/{fqNum}")
 	public ModelAndView fqDetail(@PathVariable int fqNum) throws Exception{
 		ModelAndView mav = new ModelAndView();
@@ -137,7 +439,7 @@ public class AdminController {
 	}
 
 	
-	
+	//자주묻는질문 수정하기 get
 	@RequestMapping(value = "/fqupdate/{fqNum}", method = RequestMethod.GET)
 	public ModelAndView fqUpdateForm(@PathVariable int fqNum, CommandMap commandMap)
 			throws Exception {
@@ -147,7 +449,9 @@ public class AdminController {
 		mav.setViewName("/admin/fq/fqUpdateForm");
 		return mav;
 	}
-
+	
+	
+	//자주묻는질문 수정하기 post
 	@RequestMapping(value = "/fqupdate/{fqNum}", method = RequestMethod.POST)
 	public ModelAndView fqUpdate(CommandMap commandMap) throws Exception {
 		ModelAndView mav = new ModelAndView();
@@ -160,6 +464,8 @@ public class AdminController {
 		return mav;
 	}
 	
+	
+	//자주묻는질문 쓰기 get
 	@RequestMapping(value = "/fqwrite", method = RequestMethod.GET)
 	public String fqWriteForm() throws Exception{
 		
@@ -167,7 +473,9 @@ public class AdminController {
 		return "/admin/fq/fqWriteForm";
 
 	}
-
+	
+	
+	//자주묻는질문 쓰기 post
 	@RequestMapping(value = "/fqwrite", method = RequestMethod.POST)
 	public String fqWrite(CommandMap commandMap) throws Exception {
 		
@@ -178,6 +486,7 @@ public class AdminController {
 	}
 	
 	
+	//자주묻는질문 삭제하기
 	@RequestMapping(value="/fqdelete/{fqNum}", method=RequestMethod.GET)
 	public ModelAndView fqdelete(@PathVariable int fqNum) throws Exception {
 		ModelAndView mav = new ModelAndView();

@@ -114,26 +114,28 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public Map<String, Object> adminNoticeDetail(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
-	}
-
-	@Override
-	public int adminNoticeUpdate(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int adminNoticeDelete(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return 0;
+		return (Map<String, Object>) selectOne("notice.noticeDetail",map);
 	}
 
 	@Override
 	public int adminNoticeInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) update("notice.insertNotice", map);
 	}
+	
+	@Override
+	public int adminNoticeUpdate(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (int) update("notice.noticeupdate", map);
+	}
+
+	@Override
+	public int adminNoticeDelete(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (int) update("notice.noticedelete", map);
+	}
+
+
 
 	
 	

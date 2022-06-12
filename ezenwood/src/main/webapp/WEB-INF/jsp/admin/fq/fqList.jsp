@@ -113,7 +113,7 @@
 														<td>${fq.QUESTION_DATE}</td>
 														<td>${fq.QUESTION_STEP}</td>
 														<!--  등록된 상품이 없을때 -->
-														 <c:if test="${fn:length(orderList) le 0}">
+														 <c:if test="${fn:length(fq) le 0}">
 															<tr>
 																<td colspan="9" style="text-align: center;"></td>
 															</tr>

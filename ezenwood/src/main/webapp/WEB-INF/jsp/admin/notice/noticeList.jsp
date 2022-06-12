@@ -72,6 +72,7 @@
 			<div class="row" style="padding-left: 15px; width: 900px;">
 				<h1 class="page-header">공지사항</h1>
 			</div>
+			<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 			<div class="row">
 				<div class="panel panel-default">
 					<div class="panel-heading">공지사항은 검색, 수정, 삭제 기능하는 페이지입니다.</div>
@@ -101,15 +102,25 @@
 												</tr>
 											</thead>
 											<tbody>
+												<c:forEach items="${list}" var="nt">
+													<tr class="gradeA even" role="row">
+														<td style="text-align: center; vertical-align: middle;">${nt.NOTICE_NUM}</td>
+														<td style="text-align: center; vertical-align: middle;">
+															<a href="/ezenwood/admin/noticedetail/${nt.NOTICE_NUM}">${nt.NOTICE_TITLE}</a>
+														</td>
+														<td style="text-align: center; vertical-align: middle;">admin</td>
 
-												<tr class="gradeA even" role="row">
-													<td style="text-align: center; vertical-align: middle;">1</td>
-													<td style="text-align: center; vertical-align: middle;">사이트오픈</td>
-													<td style="text-align: center; vertical-align: middle;">admin</td>
-
-													<td style="text-align: center; vertical-align: middle;"><fmt:formatDate
-															value="${orderList.order_date}" pattern="YY.MM.dd HH:mm" />22-05-10</td>
-													<td style="text-align: center; vertical-align: middle;">1</td>
+														<td style="text-align: center; vertical-align: middle;"><fmt:formatDate
+																value="${nt.NOTICE_DATE}" pattern="YY.MM.dd HH:mm" /></td>
+														<td style="text-align: center; vertical-align: middle;">${nt.NOTICE_STEP}</td>
+														<!--  등록된 상품이 없을때 -->
+														<c:if test="${fn:length(nt) le 0}">
+															<tr>
+																<td colspan="9" style="text-align: center;"></td>
+															</tr>
+														</c:if>
+													</tr>
+												</c:forEach>
 											</tbody>
 										</table>
 										<div class="pagination">
@@ -131,7 +142,7 @@
 												<button type="submit" class="btn btn-default"
 													style="margin-right: 15px;">쓰기</button>
 											</span>
-											</form>
+
 										</div>
 									</div>
 
