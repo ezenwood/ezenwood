@@ -1,10 +1,24 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
+<%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
+<script type="text/javascript">
+    var ddd = document.location.href;
+    var idx = ddd.lastIndexOf("&");
+    
+    var sss = ddd.substring(0,idx+1);
+    
+    function fn_search(pageNo){
+    	location.href = sss+"p="+pageNo;
+    }    
+    </script>
     <meta charset="UTF-8">
-    <title>AdminDelMemberList</title>
+    <title>이젠 우드 - 관리자 페이지</title>
     <link href="/ezenwood/css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
 </head>
 <body>
@@ -29,7 +43,7 @@
 				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite" style="text-align:right;">총 회원 등록수 : 1</div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite" style="text-align:right;">탈퇴 회원수 : ${totalCount}</div>
 						
 						
 					</div>
@@ -49,32 +63,29 @@
 									</tr>
 								</thead>
 								<tbody>
-										<tr>
-										<td>1</td>
-                                        <td>   
-                                       		admin
-                                        </td>
-                                        <td>
-                                        홍길동
-                                        </td>
-                                        <td>
-                                        010-1234-1235
-                                        </td>
-                                        <td>
-                                        admin@naver.com
-                                        </td>
-                                        <td>
-                                        서울특별시 강남구
-                                        </td>
-                                        <td>
-                                        22-05-10
-                                        </td>
-                                        <td>
-                                        <button id="member_del_gb" type="button" class="btn btn-default">복구</button>
-                                        </td>
-									  </tr>
-									  
-									
+										<c:choose>
+                                                <c:when test="${fn:length(adminDelMemberListMap) > 0}">
+                                                    <c:forEach items="${adminDelMemberListMap}" var="row">
+                                                        <tr>
+                                                        	<td>${row.MEMBER_NUM }</td>
+                                                        	<td>${row.MEMBER_ID }</td>
+                                                        	<td>${row.MEMBER_NAME }</td>
+                                                        	<td>${row.MEMBER_PHONE }</td>
+                                                        	<td>${row.MEMBER_EMAIL }</td>
+                                                        	<td>${row.MEMBER_ADD1}&nbsp;${row.MEMBER_ADD2}${row.MEMBER_ADD3}</td>
+                                                            <td><fmt:formatDate value="${row.MEMBER_JOINDATE }" type="both" dateStyle="medium" timeStyle="medium" /></td>
+                                                            <td><button id="MEMBER_DEL_GB" type="button" class="btn btn-default">복구</button></td>
+                                                            
+                                                        </tr>
+                                                    </c:forEach>
+                                                </c:when>
+                                                <c:otherwise>
+                                                    <tr>
+                                                        <td colspan="8" style="text-align: center">조회된 결과가 없습니다.</td>
+                                                    </tr>
+                                                </c:otherwise>
+                                            </c:choose>									
+
 								</tbody>
 							</table>
 						</div>
@@ -98,16 +109,18 @@
 							
 					</div>
 					<div class="content-center">
-					<ul class="pagination">
-	                <li class="page-item active" aria-current="page">
-                      <span class="page-link">
-                        1
-                     <span class="sr-only">(current)</span>
-                      </span>
-                    </li>
-	                <li class="page-item"><a class="page-link" href="#">2</a></li>
-	                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    </ul>
+					<div class="pagination">
+											<div class="pagination">
+
+												<div class="insu"
+													style="margin: 0 auto; text-align: center;">
+													<c:if test="${not empty paginationInfo}">
+														<ui:pagination paginationInfo="${paginationInfo}"
+															type="text" jsFunction="fn_search" />
+													</c:if>
+												</div>
+											</div>
+										</div>
                     </div>
 				</div>
 			</div>
