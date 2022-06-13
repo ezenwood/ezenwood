@@ -7,13 +7,22 @@
 	<!-- 전체 review 보기 -->
 	<select id="selectAllReview" parameterType="hashmap"
 		resultType="hashmap">
+		<include refid="common.pagingPre"></include>
 <![CDATA[
 
-SELECT REVIEW_NUM, REVIEW_TITLE, REVIEW_WRITER,REVIEW_DATE
+SELECT 
+	ROW_NUMBER() OVER (ORDER BY REVIEW_NUM DESC) RNUM,
+	REVIEW_NUM,
+	REVIEW_TITLE,
+	REVIEW_WRITER,
+	REVIEW_DATE ,
+	REVIEW_CONTENT,
+	REVIEW_PARENT
 FROM REVIEW
-WHERE REVIEW_DEL_GB = 'N';
+WHERE REVIEW_DEL_GB = 'N'
 
 ]]>
+		<include refid="common.pagingPost"></include>
 	</select>
 
 	<select id="selectReviewList" resultType="hashmap"
@@ -139,6 +148,16 @@ UPDATE REVIEW
 SET
 REVIEW_DEL_GB = 'Y'
 WHERE REVIEW_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
+
+]]>
+	</update>
+
+	<update id="admindeleteReview" parameterType="hashmap">
+<![CDATA[
+UPDATE REVIEW
+SET
+REVIEW_DEL_GB = 'Y'
+WHERE REVIEW_NUM = #{REVIEW_NUM}
 
 ]]>
 	</update>

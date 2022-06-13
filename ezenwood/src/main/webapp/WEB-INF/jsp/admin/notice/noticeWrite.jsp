@@ -56,7 +56,7 @@
 						</div>
 
 						<input type="submit" value="등록" class="btn btn-default"
-								onclick="${contextPath}/admin/notice/write"> <input
+								onclick="${contextPath}/admin/notice/${NOTICE_NUM}"> <input
 								type="button" value="작성취소" class="btn btn-default"
 								onclick="location.href='${contextPath}/admin/notice/1'">
 					</form>
