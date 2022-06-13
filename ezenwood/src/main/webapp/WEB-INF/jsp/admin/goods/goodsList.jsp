@@ -1,8 +1,62 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
+<script type="text/javascript">
+
+var ddd = document.location.href;
+
+var idx = ddd.lastIndexOf("=");
+
+var sss = ddd.substring(idx+1);
+
+
+
+
+function fn_search(pageNo) {
+	
+	var searchType ='6';
+	
+	if(sss!=null){
+		if(sss.length<3)
+		searchType=sss;
+		}
+	
+	
+	
+	var form = document.createElement("form");
+	
+	form.setAttribute("method","get");
+	
+	form.setAttribute("action","/ezenwood/admin/goods");
+	
+	
+	var input_pageNum = document.createElement("input");
+	var input_searchType = document.createElement("input");
+	
+	input_pageNum.setAttribute("type", "hidden");
+	input_pageNum.setAttribute("name", "searchNum");
+	input_pageNum.setAttribute("value", pageNo);
+	
+	input_searchType.setAttribute("type", "hidden");
+	input_searchType.setAttribute("name", "isSearch");
+	input_searchType.setAttribute("value", searchType);
+	
+	form.appendChild(input_pageNum); 
+	form.appendChild(input_searchType); 
+	
+	document.body.appendChild(form);
+	
+	form.submit();
+
+	
+}
+</script>
     <meta charset="UTF-8">
     <title>AdminGoodsList</title>
     <link href="/ezenwood/css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
@@ -32,15 +86,15 @@
 							<a href="/pet/admin/goodsadminList.dog?searchNum=0&amp;isSearch="><button type="button" class="btn btn-outline btn-default">전체</button></a>
 							<select class="form-control" name="select" onchange="window.open(value,'_self');">
 								<option value="">--카테고리--</option>
-								<option value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=0">TABLE</option>
-								<option value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=1">CHAIR</option>
-								<option value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=2">SOFA</option>
-								<option value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=3">BED</option>
-								<option value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=4">CHEST</option>
+								<option value="/ezenwood/admin/goods?searchNum=1&amp;isSearch=1">TABLE</option>
+								<option value="/ezenwood/admin/goods?searchNum=1&amp;isSearch=2">CHAIR</option>
+								<option value="/ezenwood/admin/goods?searchNum=1&amp;isSearch=3">SOFA</option>
+								<option value="/ezenwood/admin/goods?searchNum=1&amp;isSearch=4">BED</option>
+								<option value="/ezenwood/admin/goods?searchNum=1&amp;isSearch=5">CHEST</option>
 							</select>						
 						</div>
 						<div class="col-sm-6" style="text-align:right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 상품 등록수 : 2</div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 상품 등록수 : ${TOTAL_COUNT}</div>
 						</div>
 						
 					</div>
@@ -49,59 +103,42 @@
 							<table class="table table-striped table-bordered table-hover dataTable no-footer" id="dataTables-example" role="grid" aria-describedby="dataTables-example_info">
 								<thead>
 									<tr role="row">
-										<th style="width: 6%; text-align:center;">번호</th>
+										<th style="width: 10%; text-align:center;">번호</th>
 										<th style="width: 8%; text-align:center;">상품사진</th>
 										<th style="width: 8%; text-align:center;">카테고리</th>				
-										<th style="width: 32%; text-align:center;">상품명</th>
+										<th style="width: 28%; text-align:center;">상품명</th>
 										<th style="width: 10%; text-align:center;">가격</th>
 										<th style="width: 6%; text-align:center;">수량</th>
 										<th style="width: 10%; text-align:center;">등록일자</th>
 									</tr>
 								</thead>
 								<tbody>
+										<c:forEach items="${goodsListMap }" var="goodsMap">
 										<tr>
-										<td>1</td>
-                                        <td>   
-                                        <img src="/ezenwood/resource/image/pet1.jpg" alt="Missing Image">
+										<td>${goodsMap.GOODS_NUM }<br><a href="/ezenwood/admin/goods/${goodsMap.GOODS_NUM }">(상품수정)</a></td>
+                                        <td> 
+                                        <a href="/ezenwood/goods?idx=${goodsMap.GOODS_NUM }"><img src="/ezenwood/resource/image/${goodsMap.subImage }" alt="Missing Image"></a>  
+                                        
                                         </td>
                                         <td>
-                                        TABLE
+                                        ${goodsMap.GOODS_CATEGORY }
                                         </td>
                                         <td>
-                                        위틀테이블
+                                        <a href="/ezenwood/goods?idx=${goodsMap.GOODS_NUM }">
+                                        ${goodsMap.GOODS_TITLE }</a>
                                         </td>
                                         <td>
-                                        19,900
+                                        ${goodsMap.GOODS_PRICE }
                                         </td>
                                         <td>
-                                        2
+                                        ${goodsMap.GOODS_STORE_AMOUNT }
                                         </td>
                                         <td>
-                                        22-05-10
+                                      <fmt:formatDate value="${goodsMap.GOODS_DATE }" type="date" dateStyle="medium"  />
                                         </td>
 									  </tr>
 									  
-									  	<tr>
-										<td>2</td>
-                                        <td>   
-                                        <img src="/ezenwood/resource/image/pet1.jpg" alt="Missing Image">
-                                        </td>
-                                        <td>
-                                        SOFA
-                                        </td>
-                                        <td>
-                                        위틀소파
-                                        </td>
-                                        <td>
-                                        19,800
-                                        </td>
-                                        <td>
-                                        3
-                                        </td>
-                                        <td>
-                                        22-05-11
-                                        </td>
-									  </tr>
+										</c:forEach>
 								</tbody>
 							</table>
 						</div>
@@ -122,17 +159,11 @@
 							</div>
 							
 					</div>
-					<div class="content-center">
-					<ul class="pagination">
-	                <li class="page-item active" aria-current="page">
-                      <span class="page-link">
-                        1
-                     <span class="sr-only">(current)</span>
-                      </span>
-                    </li>
-	                <li class="page-item"><a class="page-link" href="#">2</a></li>
-	                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    </ul>
+					<div class="content-center" style="text-align: center;" >
+					<c:if test="${not empty paginationInfo}">
+										<ui:pagination paginationInfo="${paginationInfo}" type="text"
+											jsFunction="fn_search" />
+									</c:if>
                     </div>
 				</div>
 			</div>

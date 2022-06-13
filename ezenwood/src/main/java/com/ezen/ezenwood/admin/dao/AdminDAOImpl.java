@@ -17,13 +17,16 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public List<Map<String, Object>> adminGoodsList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return selectList(null, map);
+		
+		
+		
+		return selectList("goods.goodsListForAdmin", map);
 	}
 
 	@Override
 	public Map<String, Object> adminGoodsDetail(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		return (Map<String, Object>) selectOne("goods.goodsDetailForAdmin", map);
 	}
 
 	@Override
@@ -35,13 +38,13 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public int adminGoodsDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) delete("goods.goodsDelete", map);
 	}
 
 	@Override
 	public int adminGoodsInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) insert("goods.insertGoods", map);
 	}
 
 	

@@ -3,7 +3,7 @@
 
 <mapper namespace="subimage">
 
-<insert id="insertSubImage">
+<insert id="insertSubImage" parameterType="hashmap">
 <![CDATA[
 insert into 
 	subimage 
