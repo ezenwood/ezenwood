@@ -10,15 +10,17 @@ public interface BoardDAO {
 	public List<Map<String, Object>> OTOList(Map<String, Object> insertMap);
 	public Map<String, Object> getOTODetail(Map<String, Object> insertMap);
 	public Map<String, Object> AnswerForOTODetil(Map<String, Object> insertMap);
-
+	public Map<String, Object> OTODelete(Map<String, Object> insertMap);
 	//FQ
 	public List<Map<String, Object>> FQList (Map<String, Object> insertMap);
-	public Map<String, Object> OTODelete(Map<String, Object> insertMap);
+	
 
 	
 
 	//NOTICE
 	public List<Map<String, Object>> NoticeList(Map<String, Object> insertMap);
 	public Map<String, Object> getNoticeDetail(Map<String, Object> insertMap);
+	public Map<String, Object> InsertOTOGET(Map<String, Object> insertMap);
+	
 	
 }

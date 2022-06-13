@@ -30,84 +30,78 @@ public class BoardController {
 
 	//OTO
 	@RequestMapping({"/board/oto"})
-	  public ModelAndView OTOList(HttpServletRequest request) {
+	  public ModelAndView OTOList() {
 	    ModelAndView mav = new ModelAndView();
-	    HttpSession session = request.getSession();
-	    String membername= (String)session.getAttribute("MEMBER_NAME");
+	 
 	    Map<String, Object> insertMap = new HashMap<String, Object>();
 	    insertMap.put("START", "1");
 	    insertMap.put("END", "15");
-	    insertMap.put("MEMBER_NAME", membername);
+	    
 	    List<Map<String, Object>> OTOListMap = this.boardService.OTOList(insertMap);
 	    mav.addObject("OTOListMap", OTOListMap);
 	    mav.setViewName("board/oto/otoBoard");
 	    return mav;
 	  }
 
-	@RequestMapping("/board/oto/otoBoard/{otonum}")
-	public ModelAndView OTODetail(@PathVariable String otonum, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-
-		String memberid = (String)session.getAttribute("MEMBER_ID");
-		Map<String, Object> insertMap = new HashMap<>();
-		insertMap.put("MEMBER_ID", memberid);
-		insertMap.put("ONETOONE_NUM", otonum);
-		Map<String, Object> resultMap = boardService.getOTODetail(insertMap);
-		mav.addObject("OTOMap", resultMap);
-		mav.setViewName("board/oto/otoDetail");
-		return mav;
-	}
-	@RequestMapping("/ezenwood/board/oto/otoBoardDel/{otonum}")
-	public ModelAndView OTODelete(@PathVariable String otonum, HttpServletRequest request) {
-		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
-		String memberid = (String)session.getAttribute("MEMBER_ID");
-		Map<String, Object> insertMap = new HashMap<>();
-		insertMap.put("MEMBER_ID", memberid);
-		Map<String, Object> resultMap = boardService.getOTODelete(insertMap);
-		mav.addObject("OTODelMap", resultMap);
-		mav.setViewName("board/oto/otoBoard");
-		return mav;
-	}
-
+	 @RequestMapping({"/board/oto/otoBoard/{otonum}"})
+	  public ModelAndView OTODetail(@PathVariable String otonum, HttpServletRequest request) {
+	    ModelAndView mav = new ModelAndView();
+	    HttpSession session = request.getSession();
+	    String memberid = (String)session.getAttribute("MEMBER_ID");
+	    Map<String, Object> insertMap = new HashMap<String, Object>();
+	    insertMap.put("MEMBER_ID", memberid);
+	    insertMap.put("ONETOONE_NUM", otonum);
+	    Map<String, Object> resultMap = this.boardService.getOTODetail(insertMap);
+	    mav.addObject("OTOMap", resultMap);
+	    mav.setViewName("board/oto/otoDetail");
+	    return mav;
+	  }
+	  @RequestMapping({"/board/oto/otoBoardDel/{otonum}"})
+	  public ModelAndView OTODelete(@PathVariable String otonum,HttpServletRequest request) {
+	    ModelAndView mav = new ModelAndView();
+	    HttpSession session = request.getSession();
+	    String memberid = (String)session.getAttribute("MEMBER_ID");
+	    
+	    Map<String, Object> insertMap = new HashMap<String, Object>();
+	    insertMap.put("MEMBER_ID", memberid);
+	    insertMap.put("ONETOONE_NUM", otonum);
+	    Map<String, Object> resultMap = this.boardService.getOTODelete(insertMap);
+	    
+	    mav.addObject("OTODelMap", resultMap);
+	    mav.setViewName("board/oto/otoBoard");
+	    return mav;
+	  }
+	  
 
 	
 	 // 1:1 문의 삭제
-	  
-	  @RequestMapping(value = "/board/oto/otoBoard/{otonum}/otoDelete", method =
-	  RequestMethod.POST) public String otoDelete(CommandMap commandMap,
-	  HttpServletRequest request, Model model) { String MEMBER_NUM = (String)
-	  request.getSession().getAttribute("MEMBER_NUM");
-	  
-	  commandMap.put("ONETOONE_MEMBER_NUM", MEMBER_NUM);
-	  
-	  int checkNum = boardService.OTODelete(commandMap.getMap(), request); if
-	  (checkNum == 0) {
-	  
-	 } else {
-	  
-	 } return "redirect:/board/oto"; }
+
 	 
 
 	// 1:1 문의 글쓰기
 
 	@RequestMapping(value = "/board/oto/otoWrite", method = RequestMethod.GET)
-	public String otoWriteForm(CommandMap commandMap, HttpServletRequest request, Model model) {
-		String writer = (String) request.getSession().getAttribute("MEMBER_ID");
-
-		model.addAttribute("writer", writer);
-
-		return "board/oto/otoWrite";
+	public ModelAndView otoWriteForm(HttpServletRequest request) {
+		 ModelAndView mav = new ModelAndView();
+		 HttpSession session = request.getSession();
+		String writer = (String) session.getAttribute("MEMBER_ID");
+		String name = (String) session.getAttribute("MEMBER_NAME");
+		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("MEMBER_ID", writer);
+		insertMap.put("MEMBER_NAME", name);
+		Map<String, Object> resultMap = this.boardService.getinsertOTOGET(insertMap);
+		mav.addObject("OTOInsertMap", resultMap);
+		mav.setViewName("board/oto/otoWrite");
+		return mav;
 	}
 
 	@RequestMapping(value = "/board/oto/otoWrite", method = RequestMethod.POST)
-	public String otoWrite(CommandMap commandMap, HttpServletRequest request, Model model) {
+	public String otoWrite(CommandMap commandmap, HttpServletRequest request, Model model) {
+	
 		String MEMBER_NUM = (String) request.getSession().getAttribute("MEMBER_NUM");
-
-		commandMap.put("ONETOONE_MEMBER_NUM", MEMBER_NUM);
-
-		int checkNum = boardService.insertOTO(commandMap.getMap(), request);
+		commandmap.put("ONETOONE_MEMBER_NUM", MEMBER_NUM);	
+		int checkNum = boardService.insertOTO(commandmap.getMap(), request);
 		if (checkNum == 0) {
 
 		} else {
