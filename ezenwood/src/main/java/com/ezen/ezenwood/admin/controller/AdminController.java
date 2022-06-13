@@ -233,14 +233,19 @@ public class AdminController {
 	// 공지사항 쓰기 (insert) (GET)
 	@RequestMapping(value = "/notice/write", method = RequestMethod.GET)
 	public String noticeWriteForm() throws Exception {
-		return null;
+		
+		return "/admin/notice/noticeWrite";
 	}	
 	
 	
 	// 공지사항 쓰기 (insert) (POST)
 	@RequestMapping(value = "/notice/write", method = RequestMethod.POST)
-	public String noticeWrite() throws Exception {
-		return null;
+	public String noticeWrite(CommandMap commandMap) throws Exception {
+		
+		int resultMap = adminService.adminNoticeInsert(commandMap.getMap());
+
+		return "redirect:/admin/notice/1";
+
 	}	
 	
 	
@@ -481,7 +486,7 @@ public class AdminController {
 		
 		int resultMap = adminService.adminFQInsert(commandMap.getMap());
 
-		return "redirect:/admin/fq/fqList";
+		return "redirect:/admin/fqlist/1";
 
 	}
 	

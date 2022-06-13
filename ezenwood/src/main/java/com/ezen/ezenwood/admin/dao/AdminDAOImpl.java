@@ -120,7 +120,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public int adminNoticeInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (int) update("notice.insertNotice", map);
+		return (int) insert("notice.insertNotice", map);
 	}
 	
 	@Override
@@ -275,7 +275,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public int adminFQInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (int) selectOne("frequestion.frequestionInsert",map);
+		return (int) insert("frequestion.frequestionInsert",map);
 	}
 
 	
