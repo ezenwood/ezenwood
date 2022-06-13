@@ -2,9 +2,7 @@ package com.ezen.ezenwood.admin.dao;
 
 import java.util.List;
 import java.util.Map;
-
 import org.springframework.stereotype.Repository;
-
 import com.ezen.common.AbstractDAO;
 
 @Repository(value = "AdminDAO")
@@ -47,12 +45,16 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	
 	
 	
-	//회원 관리 memeber
+	//회원 관리 member
 	
 	@Override
-	public List<Map<String, Object>> adminMemberList(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Map<String, Object>> adminMemberList(Map<String, Object> insertMap) {
+		return selectList("member.selectMemberListAdmin", insertMap);
+	}
+	
+	@Override
+	public List<Map<String, Object>> adminDelMemberList(Map<String, Object> insertMap) {
+		return selectList("member.selectMemberList", insertMap);
 	}
 
 	@Override

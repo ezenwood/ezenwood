@@ -77,35 +77,102 @@ public class AdminController {
 	
 	
 	
-	/*
+	
 	//member
-	// 회원 리스트 보기
-	@RequestMapping(value = "")
-	public String memberList() throws Exception {
-		return null;
+	// 회원 리스트 보기	 
+	@RequestMapping(value = "/memberList/{pageNum}",method = RequestMethod.GET)
+	public ModelAndView adminMemberList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
+
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+		List<Map<String, Object>> adminMemberListMap = adminService.adminMemberList(insertMap);
+		mav.addObject("adminMemberListMap",adminMemberListMap);
+
+		int totalCount = 0;
+
+		if (adminMemberListMap.isEmpty()) {
+
+		} else {
+			totalCount = ((BigDecimal) adminMemberListMap.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mav.addObject("paginationInfo", paginationInfo);
+
+		}
+
+		mav.setViewName("admin/member/memberList");
+		return mav;
 	}
+
 	
 	
-	// 탈퇴 회원 보기 
-	@RequestMapping(value = "")
-	public String delmemberList() throws Exception {
-		return null;
+	
+	
+	// 탈퇴 회원 보기
+	@RequestMapping(value = "/delmemberList/{pageNum}" ,method = RequestMethod.GET) 
+	public ModelAndView delmemberList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request) throws Exception {
+
+		ModelAndView mav = new ModelAndView();
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
+
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+		List<Map<String, Object>> adminDelMemberListMap = adminService.adminDelMemberList(insertMap);
+		mav.addObject("adminDelMemberListMap",adminDelMemberListMap);
+
+		int totalCount = 0;
+
+		if (adminDelMemberListMap.isEmpty()) {
+
+		} else {
+			totalCount = ((BigDecimal) adminDelMemberListMap.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mav.addObject("paginationInfo", paginationInfo);
+
+		}
+
+		mav.setViewName("admin/member/DelmemberList");
+		return mav;
+
 	}
-	
-	
-	// 회원 수정
-	@RequestMapping(value = "")
-	public String memberUpdate() throws Exception {
-		return null;
-	}
-	
-	// 회원 삭제하기 
-	@RequestMapping(value = "")
-	public String memberDelete() throws Exception {
-		return null;
-	}
-	
-	*/
+	 
+	 
+	 /* // 회원 수정
+	 * 
+	 * @RequestMapping(value = "") public String memberUpdate() throws Exception {
+	 * return null; }
+	 * 
+	 * // 회원 삭제하기
+	 * 
+	 * @RequestMapping(value = "") public String memberDelete() throws Exception {
+	 * return null; }
+	 */
+
 	
 	
 	
