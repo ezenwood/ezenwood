@@ -3,19 +3,34 @@
 
 <mapper namespace="qna">
 
-<!-- 관리자 전체 QNA목록 불런오기 -->
-<select id="selectAdminAllQna" parameterType="hashmap" resultType="hashmap">
+	<!-- 관리자 전체 QNA목록 불런오기 -->
+	<select id="selectAdminAllQna" parameterType="hashmap"
+		resultType="hashmap">
+		<include refid="common.pagingPre"></include>
 <![CDATA[
-SELECT QNA_TITLE, QNA_WRITER, QNA_TYPE, QNA_DATE
+SELECT
+ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
+QNA_NUM,
+QNA_TITLE,
+QNA_WRITER,
+QNA_RE_GB,
+QNA_CONTENT,
+QNA_PARENT,
+QNA_TYPE,
+QNA_SECREATE,
+QNA_DATE,
+QNA_DEL_GB
 FROM QNA
 WHERE QNA_DEL_GB = 'N'
 ]]>
-</select>
+		<include refid="common.pagingPost"></include>
+	</select>
 
 
 
-<select id="selectQNAList" parameterType="hashmap" resultType="hashmap">
-<include refid="common.pagingPre"></include>
+	<select id="selectQNAList" parameterType="hashmap"
+		resultType="hashmap">
+		<include refid="common.pagingPre"></include>
 <![CDATA[
 SELECT 
 ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
@@ -29,13 +44,14 @@ QNA
 	WHERE  
 QNA_DEL_GB = 'N' and QNA_TYPE= 'Q' and QNA_PARENT = #{QNA_PARENT}
 ]]>
-<include refid="common.pagingPost"></include>
-</select>
+		<include refid="common.pagingPost"></include>
+	</select>
 
 
 
 
-<select id="AnswerForQNADetail" resultType="hashmap" parameterType="hashmap">
+	<select id="AnswerForQNADetail" resultType="hashmap"
+		parameterType="hashmap">
 <![CDATA[
 select 
 QNA_NUM,
@@ -49,11 +65,11 @@ from qna
 where qna_type = 'A'
 AND QNA_DEL_GB = 'N' and QNA_PARENT=#{QNA_NUM} 
 ]]>
-</select>
+	</select>
 
 
-<select id="selectQNAForDetail" parameterType="hashmap" resultType="hashmap">
-<include refid="common.pagingPre"></include>
+	<select id="selectQNAForDetail" parameterType="hashmap"
+		resultType="hashmap">
 <![CDATA[
 select 
 ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
@@ -66,15 +82,14 @@ QNA_DATE,
 QNA_PARENT
 from qna
 where qna_type = 'Q'
-AND QNA_DEL_GB = 'N' and QNA_PARENT=#{QNA_PARENT} 
-
-
+AND QNA_DEL_GB = 'N' and QNA_NUM=#{QNA_NUM} 
 ]]>
-<include refid="common.pagingPost"></include>
-</select>
+
+	</select>
 
 
-<select id="selectQNADetailForClient" parameterType="hashmap" resultType="hashmap">
+	<select id="selectQNADetailForClient" parameterType="hashmap"
+		resultType="hashmap">
 <![CDATA[
 select 
 QNA_NUM,
@@ -91,12 +106,13 @@ from qna
 
 ]]>
 
-</select>
+	</select>
 
 
 
-<!-- 관리자 QNA목록 불런오기 -->
-<select id="selectAdminQna" parameterType="hashmap" resultType="hashmap">
+	<!-- 관리자 QNA목록 불런오기 -->
+	<select id="selectAdminQna" parameterType="hashmap"
+		resultType="hashmap">
 <![CDATA[
 select 
 QNA_NUM,
@@ -109,12 +125,13 @@ from qna
 where qna_type = 'A'
 AND QNA_DEL_GB = 'N';
 ]]>
-</select>
+	</select>
 
 
-<!-- 고객 QNA목록 불러오기 -->
-<select id="selectClientQna" parameterType="hashmap" resultType="hashmap">
-<include refid="common.pagingPre"></include>
+	<!-- 고객 QNA목록 불러오기 -->
+	<select id="selectClientQna" parameterType="hashmap"
+		resultType="hashmap">
+		<include refid="common.pagingPre"></include>
 <![CDATA[
 SELECT
 ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
@@ -129,35 +146,39 @@ FROM QNA
 where QNA_WRITER =(select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBER_ID})
 and QNA_DEL_GB = 'N'
 ]]>
-<include refid="common.pagingPost"></include>
-</select>
+		<include refid="common.pagingPost"></include>
+	</select>
 
-<!-- 관리자 QNA상세페이지 -->
-<select id="selectAdminDetail" parameterType="hashmap" resultType="hashmap">
+	<!-- 관리자 QNA상세페이지 -->
+	<select id="selectAdminDetail" parameterType="hashmap"
+		resultType="hashmap">
 <![CDATA[
 SELECT *
 FROM QNA
 WHERE QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
 AND QNA_DEL_GB = 'N';
 ]]>
-</select>
+	</select>
 
 
-<!-- 고객 QNA상세페이지 -->
-<select id="selectClientDetail" parameterType="hashmap" resultType="hashmap">
+	<!-- 고객 QNA상세페이지 -->
+	<select id="selectClientDetail" parameterType="hashmap"
+		resultType="hashmap">
 <![CDATA[
 SELECT *
 FROM QNA
 WHERE QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
 AND QNA_DEL_GB = 'N'
 ]]>
-</select>
+	</select>
 
-<!-- 고객QAN작성 -->
-<insert id="clientQna" parameterType="hashmap" useGeneratedKeys="true" keyProperty="QNA_NUM" >
-<selectKey keyProperty="QNA_NUM" resultType="string" order="BEFORE">
-	select SEQ_QNA_NUM.NEXTVAL from dual
-</selectKey>
+	<!-- 고객QAN작성 -->
+	<insert id="clientQna" parameterType="hashmap"
+		useGeneratedKeys="true" keyProperty="QNA_NUM">
+		<selectKey keyProperty="QNA_NUM" resultType="string"
+			order="BEFORE">
+			select SEQ_QNA_NUM.NEXTVAL from dual
+		</selectKey>
 <![CDATA[
     INSERT INTO QNA(
     QNA_NUM,
@@ -183,11 +204,11 @@ AND QNA_DEL_GB = 'N'
     'N')
 
 ]]>
-</insert>
+	</insert>
 
 
-<!-- 비밀글업데이트 -->
-<update id="updateSecret" parameterType="hashmap">
+	<!-- 비밀글업데이트 -->
+	<update id="updateSecret" parameterType="hashmap">
 <![CDATA[
 
 update qna
@@ -195,11 +216,11 @@ set
 qna_secreat = 'n'
 
 ]]>
-</update>
+	</update>
 
 
-<!-- 고객 QNA수정 -->
-<update id="updateClientQna" parameterType="hashmap">
+	<!-- 고객 QNA수정 -->
+	<update id="updateClientQna" parameterType="hashmap">
 <![CDATA[
 	UPDATE QNA
     SET
@@ -209,11 +230,11 @@ qna_secreat = 'n'
     WHERE
     QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID})
 ]]>
-</update>
+	</update>
 
 
-<!-- 고객 QNA삭제 -->
-<update id="deleteClientQna" parameterType="hashmap">
+	<!-- 고객 QNA삭제 -->
+	<update id="deleteClientQna" parameterType="hashmap">
 <![CDATA[
   UPDATE QNA
   SET
@@ -221,11 +242,11 @@ qna_secreat = 'n'
   WHERE QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID})
 
 ]]>
-</update>
+	</update>
 
 
-<!-- 관리자 QNA입력 -->
-<insert id="insertAdminQna" parameterType="hashmap">
+	<!-- 관리자 QNA입력 -->
+	<insert id="insertAdminQna" parameterType="hashmap">
 <![CDATA[
 INSERT INTO QNA(
     QNA_NUM,
@@ -251,11 +272,11 @@ INSERT INTO QNA(
     sysdate,
     'N')
 ]]>
-</insert>
+	</insert>
 
 
-<!-- 관리자QNA수정 -->
-<update id="updateAdminQna" parameterType="hashmap">
+	<!-- 관리자QNA수정 -->
+	<update id="updateAdminQna" parameterType="hashmap">
 <![CDATA[
 
 UPDATE QNA
@@ -266,11 +287,11 @@ WHERE
 	QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBERS WHERE MEMBER_ID = #{MEMBER_ID})
 
 ]]>
-</update>
+	</update>
 
 
-<!-- 관리자 QNA삭제 -->
-<update id="deleteAdminQna" parameterType="hashmap">
+	<!-- 관리자 QNA삭제 -->
+	<update id="deleteAdminQna" parameterType="hashmap">
 <![CDATA[
 
 UPDATE QNA
@@ -279,7 +300,7 @@ SET
 WHERE #{QNA_WRITER} = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
 
 ]]>
-</update>
+	</update>
 
 
 </mapper>

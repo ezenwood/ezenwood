@@ -14,9 +14,8 @@
 <link href="/ezenwood/css/qnaDetail.css" type="text/css"
 	rel="stylesheet">
 <script type="text/javascript">
- 
 $(document).ready(function() {
-
+	var comSubmit = new ComSubmit();
 	var msg = "${msg}";
 	if(msg = ""){
 	alert(msg);	
@@ -25,9 +24,12 @@ $(document).ready(function() {
 	});
 
 function deleteConfirm(){
-
+	
+	
 	if(confirm("삭제 하시겠습니까?")){
-		location.href="/ezenwood/board/oto/otoBoardDel/${OTOMap.ONETOONE_NUM}";
+		location.href="/ezenwood/board/oto";
+		comSubmit.addParam("ONETOONE_NUM", $("ONETOONE_NUM").val());
+		comSubmit.submit();
 	}else{
 		return false;
 	}
@@ -104,7 +106,7 @@ function deleteConfirm(){
 														</td>
 													</tr>
 													<tr class="attach displaynone">
-														<th scope="row">첨부파일</th>
+														<th scope="row">이미지파일</th>
 														<td></td>
 													</tr>
 												

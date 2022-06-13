@@ -48,13 +48,13 @@
                             <a href="#" style="background: #e7e7e7;"><i class="fa fa-dashboard fa-fw"></i>회원관리<span class="fa arrow">▼</span></a>
                             <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/ezenwood/admin/member">- 회원목록</a>
+                                    <a href="/ezenwood/admin/memberList/1">- 회원목록</a>
                                 </li>
                                 <li>
-                                    <a href="/ezenwood/admin/delmember">- 탈퇴회원목록</a>
+                                    <a href="/ezenwood/admin/delmemberList/1">- 탈퇴회원목록</a>
                                 </li>
                             </ul>
-                            <!-- /.nav-second-level -->
+                            <!-- //nav-second-level -->
                         </li>   
                                              
                         <li class="active">
@@ -72,13 +72,13 @@
                                     <a href="/ezenwood/admin/notice/1">- 공지사항</a>
                                 </li>
                                 <li>
-                                    <a href="/ezenwood/admin/qna">- Q&amp;A</a>
+                                    <a href="/ezenwood/admin/qna/1">- Q&amp;A</a>
                                 </li>
                                 <li>
-                                    <a href="/ezenwood/admin/review">- 리뷰</a>
+                                    <a href="/ezenwood/admin/review/1">- 리뷰</a>
                                 </li>
                                 <li>
-                                    <a href="/ezenwood/admin/oto">- 1:1문의</a>
+                                    <a href="/ezenwood/admin/oto/1">- 1:1문의</a>
                                 </li>
                                 <li>
                                     <a href="/ezenwood/admin/fqlist/1">- 자주묻는질문</a>

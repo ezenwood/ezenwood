@@ -20,7 +20,9 @@ public interface AdminService {
 		
 		//
 		//member List 검색 조건문 만들기 아이디랑, 이름 , 탈퇴
-		public List<Map<String,Object>> adminMemberList(Map<String,Object> map) throws Exception;
+		public List<Map<String,Object>> adminMemberList(Map<String,Object> insertMap);
+		
+		public List<Map<String,Object>> adminDelMemberList(Map<String,Object> insertMap);
 		
 		public Map<String,Object> adminMemberDetail(Map<String,Object> map) throws Exception;
 		
@@ -57,7 +59,9 @@ public interface AdminService {
 		//QNA List 검색 조건문 만들기 작성자, 답변인지질문인지
 		public List<Map<String,Object>> adminQNAList(Map<String,Object> map) throws Exception;
 		
-		public Map<String,Object> adminQNADetail(Map<String,Object> map) throws Exception;
+		public Map<String,Object> adminQNADetailQ(Map<String,Object> map) throws Exception;
+		
+		public Map<String,Object> adminQNADetailA(Map<String,Object> map) throws Exception;
 		
 		public int adminQNAInsert(Map<String,Object> map) throws Exception;
 		
@@ -70,10 +74,6 @@ public interface AdminService {
 		public List<Map<String,Object>> adminReviewList(Map<String,Object> map) throws Exception;
 		
 		public Map<String,Object> adminReviewDetail(Map<String,Object> map) throws Exception;
-		
-		public int adminReviewInsert(Map<String,Object> map) throws Exception;
-		
-		public int adminReviewUpdate(Map<String,Object> map) throws Exception;
 		
 		public int adminReviewDelete(Map<String,Object> map) throws Exception;
 		

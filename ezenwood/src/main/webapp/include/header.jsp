@@ -99,19 +99,25 @@
 								<c:when test="${MEMBER_ID == null }">
 									<li><a href="/ezenwood/member/signin">LOGIN</a></li>
 									<li><a href="/ezenwood/member/signup">SIGN UP</a></li>
-
-
 								</c:when>
+								
+								
+								<c:when test="${MEMBER_ID == 'admin' }">
+									<li><a href="/ezenwood/admin">관리자 홈</a></li>
+									<li><a href="/ezenwood/member/signout">LOGOUT</a></li>
+									<li><a href="/ezenwood/mypage/main">MY PAGE</a></li>
+									<li><a href="/ezenwood/cart">CART</a></li>
+									</c:when>
+								
 								<c:otherwise>
 									<li><a href="/ezenwood/member/signout">LOGOUT</a></li>
 									<li><a href="/ezenwood/mypage/main">MY PAGE</a></li>
 									<li><a href="/ezenwood/cart">CART</a></li>
 
-
 								</c:otherwise>
+								
+															
 							</c:choose>
-
-
 
 						</ul>
 					</div>
