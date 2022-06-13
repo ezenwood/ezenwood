@@ -19,6 +19,7 @@ import com.ezen.ezenwood.admin.dao.AdminDAOImpl;
 import com.ezen.ezenwood.common.dao.ImageDAO;
 import com.ezen.ezenwood.common.dao.SubImageDAO;
 import com.ezen.ezenwood.goods.dao.GoodsDAO;
+import com.ezen.ezenwood.goods.dao.GoodsDAOImpl;
 import com.ezen.ezenwood.mypage.dao.MyPageDAO;
 
 
