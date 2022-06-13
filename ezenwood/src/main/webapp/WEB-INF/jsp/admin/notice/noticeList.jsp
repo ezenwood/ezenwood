@@ -140,7 +140,7 @@
 										<div style="text-align: right;">
 											<span>
 												<button type="submit" class="btn btn-default"
-													style="margin-right: 15px;">쓰기</button>
+													style="margin-right: 15px;"onclick="location.href='${contextPath}/admin/notice/write'">쓰기</button>
 											</span>
 
 										</div>

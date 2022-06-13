@@ -33,6 +33,12 @@ public class BoardServiceImpl implements BoardService {
 
 		return checkNum;
 	}
+	@Override
+	public Map<String, Object> getinsertOTOGET(Map<String, Object> insertMap) {
+		
+		return boardDAO.InsertOTOGET(insertMap);
+	}
+
 
 	@Override
 	public List<Map<String, Object>> OTOList(Map<String, Object> insertMap) {
@@ -54,8 +60,14 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Map<String, Object> getOTODelete(Map<String, Object> insertMap) {
+		Map<String, Object> resultMap = boardDAO.getOTODetail(insertMap);
 
-		return boardDAO.OTODelete(insertMap);
+		resultMap.put("Delete", boardDAO.OTODelete(insertMap));
+
+		// String BOARD_IMAGE = imageDAO.selectImage(resultMap);
+		// resultMap.put("BOARD_IMAGE", BOARD_IMAGE);
+
+		return resultMap;
 	}
 
 	// FQ
@@ -85,6 +97,9 @@ public class BoardServiceImpl implements BoardService {
 		
 		return resultMap;
 	}
+
+	
+
 
 
 }
