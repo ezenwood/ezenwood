@@ -14,6 +14,7 @@ public interface BoardService {
 	public Map<String, Object> getOTODelete(Map<String, Object> insertMap);
 
 
+
 	//FQ
 	public List<Map<String, Object>> FQList (Map<String, Object> insertMap);
 	
@@ -22,6 +23,7 @@ public interface BoardService {
 	//Notice
 	public List<Map<String, Object>> NoticeList(Map<String, Object> insertMap);
 	public Map<String, Object> getNoticeDetail(Map<String, Object> insertMap);
+	public Map<String, Object> getinsertOTOGET(Map<String, Object> insertMap);
 		
 
 
