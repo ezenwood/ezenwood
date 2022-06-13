@@ -47,6 +47,56 @@ select GOODS_TITLE from GOODS where GOODS_NUM = #{GOODS_NUM}
 </select>
 
 
+
+<select id="goodsListForAdmin" parameterType="hashmap" resultType="hashmap" >
+<include refid="common.pagingPre"></include>
+
+select 
+	ROW_NUMBER() OVER (ORDER BY GOODS_NUM DESC) RNUM, 
+	GOODS_NUM, 
+	GOODS_TITLE,
+	GOODS_CATEGORY,
+	GOODS_PRICE,
+	GOODS_STORE_AMOUNT,
+	GOODS_DATE 
+from	
+	GOODS 
+
+
+<choose>
+<when test='category=="1"'>
+
+where GOODS_CATEGORY = 'table'
+
+</when>
+<when test='category=="2"'>
+
+where GOODS_CATEGORY = 'chair'
+
+</when>
+<when test='category=="3"'>
+where GOODS_CATEGORY = 'sofa'
+
+</when>
+<when test='category=="4"'>
+where GOODS_CATEGORY = 'bed'
+</when>
+<when test='category=="5"'>
+where GOODS_CATEGORY = 'chest'
+
+</when>
+<otherwise>
+
+</otherwise>
+</choose>
+
+<include refid="common.pagingPost"></include>
+
+</select>
+
+
+
+
 <!-- 상세페이지 -->
 <select id="goodsDetailPage" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
@@ -63,6 +113,35 @@ GOODS_DCOST
 from goods
 where GOODS_NUM = #{GOODS_NUM}
 ]]>
+</select>
+
+
+<delete id="goodsDelete" parameterType="hashmap">
+delete goods where GOODS_NUM=#{GOODS_NUM}
+
+</delete>
+
+
+
+
+<select id="goodsDetailForAdmin"  parameterType="hashmap" resultType="hashmap">
+select 
+	GOODS_NUM,
+	GOODS_OPTION,
+	GOODS_TITLE,
+	GOODS_STORE_AMOUNT,
+	GOODS_CATEGORY,
+	GOODS_CONTENT1,
+	GOODS_CONTENT2,
+	GOODS_PRICE,
+	GOODS_DCOST 
+from 
+	GOODS 
+where 
+	 GOODS_NUM = #{GOODS_NUM}
+
+
+
 </select>
 
 
@@ -112,30 +191,33 @@ order by goods_sell_amount desc
 
 
 <!-- 상품등록 -->
-<insert id="insertGoods" parameterType="hashmap">
+<insert id="insertGoods" parameterType="hashmap" useGeneratedKeys="true" keyProperty="GOODS_NUM">
+<selectKey order="BEFORE" keyProperty="GOODS_NUM" resultType="string" >
+select seq_goods_num.nextval from dual
+</selectKey>
 <![CDATA[
 insert into goods
-(goods_num,
-goods_option,
-goods_title,
+(GOODS_NUM,
+GOODS_OPTION,
+GOODS_TITLE,
 GOODS_STORE_AMOUNT,
 GOODS_CONTENT1,
 GOODS_CONTENT2,
-goods_price,
-goods_date,
-goods_category,
+GOODS_PRICE,
+GOODS_DATE,
+GOODS_CATEGORY,
 GOODS_DCOST
 )
 values (
-    #{goods_num},
-    #{goods_option},
-    #{goods_title},
+    #{GOODS_NUM},
+    'nooption',
+    #{GOODS_TITLE},
     #{GOODS_STORE_AMOUNT},
     #{GOODS_CONTENT1},
     #{GOODS_CONTENT2},
     #{GOODS_PRICE},
-    #{goods_date},
-    #{goods_category},
+    sysdate,
+    #{GOODS_CATEGORY},
     #{GOODS_DCOST}
 )
 ]]>

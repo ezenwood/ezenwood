@@ -37,43 +37,146 @@ public class AdminController {
 	@Resource(name = "AdminService")
 	private AdminService adminService;
 
-	/*
 
 	// goods 
 	// 상품 리스트 보기
-	@RequestMapping(value = "")
-	public String goodsList() throws Exception {
-		return null;
-	}
-	
-	
-	// 상품 디테일 보기
-	@RequestMapping(value = "")
-	public String goodsListDetail() throws Exception {
-		return null;
-	}
-	
-	
-	// 상품 등록하기 (insert)
-	@RequestMapping(value = "")
-	public String goodsinsert() throws Exception {
-		return null;
+	@RequestMapping(value = "/goods")
+	public String goodsList(HttpServletRequest request, Model model) throws Exception {
+		
+		Map<String, Object> insertMap = new HashMap<String,Object>();
+		
+		
+		String category = request.getParameter("isSearch");
+		String currentPageNum = request.getParameter("searchNum");
+		
+		if(category==null) {
+			category="6";
+		}
+		if(currentPageNum==null) {
+			currentPageNum="1";
+		}
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+		
+		paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
+		paginationInfo.setPageSize(5);
+		paginationInfo.setRecordCountPerPage(10);
+		
+		insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+		insertMap.put("category", category);
+		
+		
+		List<Map<String,Object>> result = adminService.adminGoodsList(insertMap);
+		
+		
+		model.addAttribute("goodsListMap", result);
+		
+		
+		
+		if(result.isEmpty()) {
+			
+		}else {
+			
+			
+			paginationInfo.setTotalRecordCount(((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
+			
+			model.addAttribute("TOTAL_COUNT", ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
+			
+			
+			model.addAttribute("paginationInfo", paginationInfo);
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return "admin/goods/goodsList";
 	}
 	
 	
 	// 상품 수정하기 (update)
-	@RequestMapping(value = "")
-	public String goodsUpdate() throws Exception {
-		return null;
+	@RequestMapping(value = "/goods/{GOODS_NUM}" ,method = RequestMethod.GET)
+	public String goodsListDetail(@PathVariable String GOODS_NUM, Model model) throws Exception {
+		
+		Map<String,Object> insertMap = new HashMap<String,Object>();
+		insertMap.put("GOODS_NUM", GOODS_NUM);
+		
+		Map<String,Object> result = adminService.adminGoodsDetail(insertMap);
+		
+		
+		model.addAttribute("goodsMap", result);
+		
+		return "admin/goods/goodsmodify";
 	}
 	
 	
+	// 상품 등록하기 (insert)
+	@RequestMapping(value = "/goods/write", method = RequestMethod.GET )
+	public String goodsinsertForm() throws Exception {
+		
+		
+		
+		
+		
+		
+		
+		
+		return "/admin/goods/goodsInsert";
+	}
+	
+	
+	
+	@RequestMapping(value = "/goods/write", method = RequestMethod.POST )
+	public String goodsinsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
+		
+		
+		Map<String,Object> insertMap = commandMap.getMap();
+		insertMap.put("request", request);
+		
+		adminService.adminGoodsInsert(insertMap);
+		
+		
+		
+		
+		
+		return "redirect:/admin/goods";
+	}
+	
+	
+	
+	
+//	
+//	// (update) @@@@@@없음
+//	@RequestMapping(value = "")
+//	public String goodsUpdate() throws Exception {
+//		return null;
+//	}
+//	
+//	
 	// 상품 삭제하기 (delete)
-	@RequestMapping(value = "")
-	public String goodsDelete() throws Exception {
-		return null;
+	@RequestMapping(value = "/goods/delete", method = RequestMethod.GET)
+	public String goodsDelete(HttpServletRequest request) throws Exception {
+		
+		String GOODS_NUM = request.getParameter("GOODS_NUM");
+		
+		Map<String,Object> insertMap = new HashMap<String,Object>();
+		
+		insertMap.put("GOODS_NUM", GOODS_NUM); 
+		
+		int checkNum = adminService.adminGoodsDelete(insertMap);
+		
+		
+		
+		return "redirect:/admin/goods";
 	}
-	*/
+	
 	
 	
 	

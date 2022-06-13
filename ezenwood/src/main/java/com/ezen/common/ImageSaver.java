@@ -51,5 +51,55 @@ public class ImageSaver {
 		
 		return map;
 	}
+	
+	public Map<String,Object> insertGoods(Map<String,Object> map) throws IllegalStateException, IOException{
+		
+		
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) map.get("request");
+		
+		
+		MultipartFile subImageFile = multipartHttpServletRequest.getFile("subImage");
+		MultipartFile mainImageFile = multipartHttpServletRequest.getFile("mainImage");
+		
+		
+		String subImageORG = subImageFile.getOriginalFilename();
+		String subImageExtension = subImageORG.substring(subImageORG.lastIndexOf("."));
+		String subImageSTD = UUID.randomUUID().toString().replace("-", "") + subImageExtension;
+		
+		String mainImageORG = mainImageFile.getOriginalFilename();
+		String mainImageExtension = mainImageORG.substring(mainImageORG.lastIndexOf("."));
+		String mainImageSTD = UUID.randomUUID().toString().replace("-", "") + mainImageExtension;
+		
+		
+		File subImage = new File(filePath+subImageSTD);
+		File mainImage = new File(filePath+mainImageSTD);
+		
+		subImageFile.transferTo(subImage);
+		mainImageFile.transferTo(mainImage);
+		
+		
+		map.put("IMAGE_ORG", mainImageORG);
+		map.put("IMAGE_STD", mainImageSTD);
+		
+		
+		map.put("parent", map.get("GOODS_NUM"));
+		map.put("org", subImageORG);
+		map.put("std", subImageSTD);
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		return map;
+	}
+	
+	
+	
 
 }

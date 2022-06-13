@@ -1,18 +1,26 @@
 package com.ezen.ezenwood.admin.service;
 
 import java.math.BigDecimal;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
+import javax.servlet.http.HttpServletRequest;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
+
+import com.ezen.common.ImageSaver;
+import com.ezen.ezenwood.admin.dao.AdminDAO;
 import com.ezen.ezenwood.admin.dao.AdminDAOImpl;
+import com.ezen.ezenwood.common.dao.ImageDAO;
 import com.ezen.ezenwood.common.dao.SubImageDAO;
-import com.ezen.ezenwood.goods.dao.GoodsDAOImpl;
+import com.ezen.ezenwood.goods.dao.GoodsDAO;
+import com.ezen.ezenwood.mypage.dao.MyPageDAO;
+
 
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService {
@@ -22,23 +30,61 @@ public class AdminServiceImpl implements AdminService {
 	@Resource(name = "AdminDAO")
 	AdminDAOImpl adminDAO;
 
+	
+	
 	@Resource(name = "SubImageDAO")
 	SubImageDAO subImageDAO;
+	
+	@Resource(name = "ImageDAO")
+	ImageDAO imageDAO;
 
 	@Resource(name = "GoodsDAO")
 	GoodsDAOImpl goodsDAO;
 	// goods
 
+
 	@Override
 	public List<Map<String, Object>> adminGoodsList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		
+		List<Map<String,Object>> result = adminDAO.adminGoodsList(map);
+		
+		
+		
+		for(Map<String,Object> a : result) {
+			
+			String SubImage = subImageDAO.getSubImageByIDX(((BigDecimal) a.get("GOODS_NUM")).intValue());
+			a.put("subImage", SubImage);
+			
+			
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		return result;
 	}
 
 	@Override
 	public Map<String, Object> adminGoodsDetail(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		
+		map.put("IMAGE_TABLENAMES_TABLENAME", "GOODS");
+		map.put("IMAGE_PARENT", map.get("GOODS_NUM"));
+		
+		
+		Map<String,Object> result = adminDAO.adminGoodsDetail(map);
+		
+		String subImage = subImageDAO.getSubImageByIDX(Integer.parseInt((String)map.get("GOODS_NUM")));
+		String goodsImage = imageDAO.selectImage(map);
+		
+		result.put("subImage", subImage);
+		result.put("mainImage", goodsImage);
+		
+		return result;
 	}
 
 	@Override
@@ -49,14 +95,42 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminGoodsDelete(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		return adminDAO.adminGoodsDelete(map);
 	}
 
 	@Override
 	public int adminGoodsInsert(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		//
+		int checkNum = adminDAO.adminGoodsInsert(map);
+		
+		if(checkNum==1) {
+			map.put("IMAGE_TABLENAMES_TABLENAME", "GOODS");
+			map.put("IMAGE_PARENT", map.get("GOODS_NUM"));
+			
+			ImageSaver imageSaver = new ImageSaver();
+			
+			imageSaver.insertGoods(map);
+			
+			
+			
+			
+			
+			imageDAO.insertImage(map);
+			
+			subImageDAO.insertGoods(map);
+			
+			
+			
+			
+			
+		}
+		
+		
+		
+		
+		return checkNum;
 	}
 
 	// member
