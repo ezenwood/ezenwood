@@ -37,86 +37,67 @@ public class AdminController {
 	@Resource(name = "AdminService")
 	private AdminService adminService;
 
-
-	// goods 
+	// goods
 	// 상품 리스트 보기
 	@RequestMapping(value = "/goods")
 	public String goodsList(HttpServletRequest request, Model model) throws Exception {
-		
-		Map<String, Object> insertMap = new HashMap<String,Object>();
-		
-		
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
 		String category = request.getParameter("isSearch");
 		String currentPageNum = request.getParameter("searchNum");
+
 		
 		if(category==null) {
 			category="6";
 			
+
 		}
-		if(currentPageNum==null) {
-			currentPageNum="1";
+		if (currentPageNum == null) {
+			currentPageNum = "1";
 		}
-		
+
 		PaginationInfo paginationInfo = new PaginationInfo();
-		
+
 		paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
 		paginationInfo.setPageSize(5);
 		paginationInfo.setRecordCountPerPage(10);
-		
-		insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 		insertMap.put("category", category);
-		
-		
-		List<Map<String,Object>> result = adminService.adminGoodsList(insertMap);
-		
-		
+
+		List<Map<String, Object>> result = adminService.adminGoodsList(insertMap);
+
 		model.addAttribute("goodsListMap", result);
-		
-		
-		
-		if(result.isEmpty()) {
-			
-		}else {
-			
-			
+
+		if (result.isEmpty()) {
+
+		} else {
+
 			paginationInfo.setTotalRecordCount(((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
-			
+
 			model.addAttribute("TOTAL_COUNT", ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
-			
-			
+
 			model.addAttribute("paginationInfo", paginationInfo);
 		}
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
-		
+
 		return "admin/goods/goodsList";
 	}
-	
-	
+
 	// 상품 수정하기 (update)
-	@RequestMapping(value = "/goods/{GOODS_NUM}" ,method = RequestMethod.GET)
+	@RequestMapping(value = "/goods/{GOODS_NUM}", method = RequestMethod.GET)
 	public String goodsListDetail(@PathVariable String GOODS_NUM, Model model) throws Exception {
-		
-		Map<String,Object> insertMap = new HashMap<String,Object>();
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("GOODS_NUM", GOODS_NUM);
-		
-		Map<String,Object> result = adminService.adminGoodsDetail(insertMap);
-		
-		
+
+		Map<String, Object> result = adminService.adminGoodsDetail(insertMap);
+
 		model.addAttribute("goodsMap", result);
-		
+
 		return "admin/goods/goodsmodify";
 	}
-	
 	
 	@RequestMapping(value ="/goods/{GOODS_NUM}" ,method = RequestMethod.POST )
 	public String goodsUpdate(@PathVariable String GOODS_NUM, CommandMap commandMap, HttpServletRequest request) throws Exception{
@@ -128,53 +109,29 @@ public class AdminController {
 		int checkNum = adminService.adminGoodsUpdate(insertMap);
 		//
 		
-		
-		
-		
-		
-		
 		return "redirect:/admin/goods";
 	}
 	
-	
-	
-	
-	
+
+  
 	// 상품 등록하기 (insert)
-	@RequestMapping(value = "/goods/write", method = RequestMethod.GET )
+	@RequestMapping(value = "/goods/write", method = RequestMethod.GET)
 	public String goodsinsertForm() throws Exception {
-		
-		
-		
-		
-		
-		
-		
-		
+
 		return "/admin/goods/goodsInsert";
 	}
-	
-	
-	
-	@RequestMapping(value = "/goods/write", method = RequestMethod.POST )
+
+	@RequestMapping(value = "/goods/write", method = RequestMethod.POST)
 	public String goodsinsert(CommandMap commandMap, HttpServletRequest request) throws Exception {
-		
-		
-		Map<String,Object> insertMap = commandMap.getMap();
+
+		Map<String, Object> insertMap = commandMap.getMap();
 		insertMap.put("request", request);
-		
+
 		adminService.adminGoodsInsert(insertMap);
-		
-		
-		
-		
-		
+
 		return "redirect:/admin/goods";
 	}
-	
-	
-	
-	
+
 //	
 //	// (update) @@@@@@없음
 //	@RequestMapping(value = "")
@@ -186,28 +143,21 @@ public class AdminController {
 	// 상품 삭제하기 (delete)
 	@RequestMapping(value = "/goods/delete", method = RequestMethod.GET)
 	public String goodsDelete(HttpServletRequest request) throws Exception {
-		
+
 		String GOODS_NUM = request.getParameter("GOODS_NUM");
-		
-		Map<String,Object> insertMap = new HashMap<String,Object>();
-		
-		insertMap.put("GOODS_NUM", GOODS_NUM); 
-		
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		insertMap.put("GOODS_NUM", GOODS_NUM);
+
 		int checkNum = adminService.adminGoodsDelete(insertMap);
-		
-		
-		
+
 		return "redirect:/admin/goods";
 	}
-	
-	
-	
-	
-	
-	
-	//member
-	// 회원 리스트 보기	 
-	@RequestMapping(value = "/memberList/{pageNum}",method = RequestMethod.GET)
+
+	// member
+	// 회원 리스트 보기
+	@RequestMapping(value = "/memberList/{pageNum}", method = RequestMethod.GET)
 	public ModelAndView adminMemberList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
 			throws Exception {
 
@@ -228,7 +178,7 @@ public class AdminController {
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 
 		List<Map<String, Object>> adminMemberListMap = adminService.adminMemberList(insertMap);
-		mav.addObject("adminMemberListMap",adminMemberListMap);
+		mav.addObject("adminMemberListMap", adminMemberListMap);
 
 		int totalCount = 0;
 
@@ -245,13 +195,10 @@ public class AdminController {
 		return mav;
 	}
 
-	
-	
-	
-	
 	// 탈퇴 회원 보기
-	@RequestMapping(value = "/delmemberList/{pageNum}" ,method = RequestMethod.GET) 
-	public ModelAndView delmemberList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/delmemberList/{pageNum}", method = RequestMethod.GET)
+	public ModelAndView delmemberList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
 
 		ModelAndView mav = new ModelAndView();
 
@@ -270,7 +217,7 @@ public class AdminController {
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 
 		List<Map<String, Object>> adminDelMemberListMap = adminService.adminDelMemberList(insertMap);
-		mav.addObject("adminDelMemberListMap",adminDelMemberListMap);
+		mav.addObject("adminDelMemberListMap", adminDelMemberListMap);
 
 		int totalCount = 0;
 
@@ -287,23 +234,36 @@ public class AdminController {
 		return mav;
 
 	}
-	 
-	 
-	 /* // 회원 수정
-	 * 
-	 * @RequestMapping(value = "") public String memberUpdate() throws Exception {
-	 * return null; }
-	 * 
+	
+		//수정
+		@RequestMapping(value = "/memberUpdate/{MEMBER_ID}", method = RequestMethod.GET)
+		public ModelAndView memberUpdateForm(@PathVariable String MEMBER_ID) throws Exception {
+			ModelAndView mav = new ModelAndView();
+				
+			mav.addObject("MEMBER_ID", MEMBER_ID);
+			System.out.println(MEMBER_ID);
+			mav.setViewName("admin/member/memberUpdateForm");
+			return mav;
+		}
+
+		@RequestMapping(value = "/memberUpdate/{MEMBER_ID}", method = RequestMethod.POST)
+		public ModelAndView memberUpdate(CommandMap commandMap) throws Exception {
+			ModelAndView mav = new ModelAndView();
+
+			int resultMap = adminService.adminMemberUpdate(commandMap.getMap());
+
+			mav.addObject(resultMap);
+
+			mav.setViewName("admin/member/memberList");
+			return mav;
+		}
+
+	/*
 	 * // 회원 삭제하기
 	 * 
 	 * @RequestMapping(value = "") public String memberDelete() throws Exception {
 	 * return null; }
 	 */
-
-	
-	
-	
-	
 
 	/*
 	 * // order // 주문 리스트보기
@@ -613,40 +573,119 @@ public class AdminController {
 		return mav;
 	}
 
-	/*
-	 * //OneToOne // 일대일문의 리스트 보기
-	 * 
-	 * @RequestMapping(value = "") public String otoList() throws Exception { return
-	 * null; }
-	 * 
-	 * 
-	 * // 일대일 문의 디테일 보기
-	 * 
-	 * @RequestMapping(value = "") public String otoDetail() throws Exception {
-	 * return null; }
-	 * 
-	 * 
-	 * 
-	 * // 일대일문의 답글 달기 (insert)
-	 * 
-	 * @RequestMapping(value = "") public String otoReply() throws Exception {
-	 * return null; }
-	 * 
-	 * 
-	 * 
-	 * // 일대일문의 수정하기 (update)
-	 * 
-	 * @RequestMapping(value = "") public String otoReplyUpdate() throws Exception {
-	 * return null; }
-	 * 
-	 * 
-	 * 
-	 * // 일대일 문의 삭제하기 (delete)
-	 * 
-	 * @RequestMapping(value = "") public String otoReplyDelete() throws Exception {
-	 * return null; }
-	 * 
-	 */
+	
+	  //OneToOne // 일대일문의 리스트 보기
+	  
+	  @RequestMapping(value = "/oto/{pageNum}")
+	  public ModelAndView otoList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+				throws Exception {
+
+			ModelAndView mv = new ModelAndView();
+
+			Map<String, Object> insertMap = new HashMap<String, Object>();
+
+			PaginationInfo paginationInfo = new PaginationInfo();
+
+			// 현재 페이지 번호
+			paginationInfo.setCurrentPageNo(pageNum);
+			// 한 페이지에 게시되는 게시물 건수
+			paginationInfo.setRecordCountPerPage(9);
+			// 페이징 리스트의 사이즈
+			paginationInfo.setPageSize(5);
+
+			insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+			insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+			List<Map<String, Object>> list = adminService.adminOTOList(insertMap);
+			mv.addObject("list", list);
+
+			int totalCount = 0;
+
+			if (list.isEmpty()) {
+
+			} else {
+				totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+				paginationInfo.setTotalRecordCount(totalCount);
+				mv.addObject("paginationInfo", paginationInfo);
+
+			}
+
+			mv.setViewName("/admin/oto/otoList");
+			return mv;
+		}
+	  
+	  
+	  // 일대일 문의 디테일 보기
+	  
+	  @RequestMapping(value = "/otoDetail/{OTONum}")
+	  public ModelAndView otoDetail(@PathVariable String OTONum) throws Exception {
+		  ModelAndView mav = new ModelAndView();
+			Map<String, Object> insertMap = new HashMap<String, Object>();
+
+			String ONETOONE_NUM = OTONum;
+			insertMap.put("ONETOONE_NUM", ONETOONE_NUM);
+			
+			String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
+			insertMap.put("MEMBER_ID", MEMBER_ID);
+			
+			Map<String, Object> resultMap = adminService.adminOTODetailQ(insertMap);
+				
+			mav.addObject("QOTOMap", resultMap);
+
+			Map<String, Object> resultMapa = adminService.adminOTODetailA(insertMap);
+
+			mav.addObject("AOTOMap", resultMapa);
+			mav.setViewName("/admin/oto/otoDetail");
+			
+			return mav;
+		}
+		  
+	  
+	  
+	  
+	  // 일대일문의 답글 달기 (insert)
+	  
+	  @RequestMapping(value = "/oto/write")
+	  public String otoReply() throws Exception {
+	  
+		  return null; 
+	  }
+	  
+	  
+	  
+	  // 일대일문의 수정하기 (update)
+	  
+	  @RequestMapping(value = "/oto/update")
+	  public String otoReplyUpdate() throws Exception {
+	  
+		  return null; 
+	  }
+	  
+	  
+	  
+	  // 일대일 문의 삭제하기 (delete)
+	  
+	  @RequestMapping(value = "/oto/del/{otoNum}", method=RequestMethod.GET)
+	  public ModelAndView otoReplyDelete(@PathVariable String otoNum) throws Exception {
+		  ModelAndView mav = new ModelAndView();
+
+			Map<String, Object> insertMap = new HashMap<String, Object>();
+
+			String ONETOONE_NUM = otoNum;
+			
+			String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
+			insertMap.put("MEMBER_ID", MEMBER_ID);
+			
+
+			insertMap.put("ONETOONE_NUM", ONETOONE_NUM);
+			int resultMap = adminService.adminOTODelete(insertMap);
+
+			mav.addObject(resultMap);
+			mav.setViewName("/admin/oto/otoList");
+			return mav;
+	  }
+	  
+	 
 
 	// fq
 	// 자주묻는질문 리스트보기

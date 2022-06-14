@@ -21,8 +21,7 @@ insert into image values(
 <select id="selectImage" resultType="string" parameterType="hashmap">
 <![CDATA[
 select 
-	
-	IMAGE_STD 
+	IMAGE_ORG 
 from 
 	image 
 where 

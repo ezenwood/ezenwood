@@ -126,8 +126,8 @@
 												<h4 class="timeline-title">회원관리</h4>
 											</div>
 											<div class="timeline-body">
-												<p>회원목록 이동 - 회원목록을 볼수 있습니다</p>
-												<p>탈퇴회원목록 이동 - 탈퇴회원목록을 볼수 있습니다</p>
+												<p><a href="/ezenwood/admin/memberList/1">회원목록 이동 - 회원목록을 볼수 있습니다</p>
+												<p><a href="/ezenwood/admin/delmemberList/1">탈퇴회원목록 이동 - 탈퇴회원목록을 볼수 있습니다</p>
 											</div>
 										</div>
 									</li>

@@ -19,9 +19,9 @@ public interface AdminDAO {
 	
 	//
 	//member List 검색 조건문 만들기 아이디랑, 이름 , 탈퇴
-	public List<Map<String,Object>> adminMemberList(Map<String,Object> insertMap);
+	public List<Map<String,Object>> adminMemberList(Map<String,Object> map);
 	
-	public List<Map<String,Object>> adminDelMemberList(Map<String,Object> insertMap);
+	public List<Map<String,Object>> adminDelMemberList(Map<String,Object> map);
 	
 	public Map<String,Object> adminMemberDetail(Map<String,Object> map);
 	
@@ -81,7 +81,11 @@ public interface AdminDAO {
 	// OTO List 검색 조건문 만들기 아이디
 	public List<Map<String,Object>> adminOTOList(Map<String,Object> map);
 	
-	public Map<String,Object> adminOTODetail(Map<String,Object> map);
+	public Map<String,Object> adminOTODetailQ(Map<String,Object> map);
+	
+	public Map<String,Object> adminOTODetailA(Map<String,Object> map);
+	
+	public String adminOTODetailB(String ONETOONE_NUM);
 	
 	public int adminOTOUpdate(Map<String,Object> map);
 	
@@ -110,6 +114,8 @@ public interface AdminDAO {
 	public int adminAboutUpdate(Map<String,Object> map);
 	
 	public int adminAboutInsert(Map<String,Object> map);
+
+	
 	
 	
 	
