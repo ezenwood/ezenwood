@@ -27,7 +27,7 @@ public class GoodsDAOImpl extends AbstractDAO implements GoodsDAO {
 	@Override
 	public List<Map<String, Object>> getQNAListForDetail(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return selectList("qna.selectQNAForDetail", map);
+		return selectList("qna.selectQNAForDetailinsu", map);
 	}
 
 
@@ -111,6 +111,7 @@ public class GoodsDAOImpl extends AbstractDAO implements GoodsDAO {
 	@Override
 	public List<Map<String, Object>> goodList(Map<String, Object> insertMap) {
 		// TODO Auto-generated method stub
+		
 		return selectList("goods.selectAll", insertMap);
 	}
 	

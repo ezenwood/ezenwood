@@ -50,7 +50,7 @@
 			<div class="panel panel-default">
 				<div class="panel-heading">상품수정 페이지입니다. 빠짐없이 입력하셔야합니다   <button class="btn btn-success" onclick="deleteGoods('${goodsMap.GOODS_NUM }')" style="float: right; height: 25px; padding: 2px;">상품 삭제</button> </div>
 				<div class="panel-body">
-					<form method="post">
+					<form method="post" enctype="multipart/form-data">
 						<div class="form-group">
 							<label>상품명</label> <input type="text" class="form-control"
 								name="GOODS_TITLE" value="${goodsMap.GOODS_TITLE }">
@@ -109,6 +109,7 @@
                             <label>썸네일 이미지</label>
                             <img class="subimage"  alt="sub" src="/ezenwood/resource/image/${goodsMap.subImage }">
                             <input type="file" id="subfile" name="subImage" size="30" />
+                            <input type="hidden" name="subcheck" value="${goodsMap.subImage }">
                             <p class="help-block">썸네일 이미지 입니다 400x600 사이즈 권장합니다</p>
                         </div>
                         
@@ -116,6 +117,7 @@
                             <label>메인 이미지</label><!-- goods_contentimage -->
                             <img class="mainimage" alt="main" src="/ezenwood/resource/image/${goodsMap.mainImage }">
                             <input type="file" id="mainfile" name="mainImage" size="30" />
+                            <input type="hidden" name="maincheck" value="${goodsMap.mainImage }">
                             <p class="help-block">메인 이미지 입니다 가로 800px사이즈 권장합니다</p>
                         
                         </div>

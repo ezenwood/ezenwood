@@ -40,7 +40,7 @@ set
 	subimage_org = #{org},
 	subimage_std = #{std} 
 where 
-	subimage_num = #{subimage_num}
+	subimage_parent = #{GOODS_NUM}
 	
 ]]>
 

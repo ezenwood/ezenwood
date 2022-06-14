@@ -61,30 +61,50 @@ public class ImageSaver {
 		MultipartFile subImageFile = multipartHttpServletRequest.getFile("subImage");
 		MultipartFile mainImageFile = multipartHttpServletRequest.getFile("mainImage");
 		
+		if(subImageFile.isEmpty()) {
+			map.put("noSubImage", "1");
+		}else {
+			map.put("noSubImage", "0");
+			
+			
+			String subImageORG = subImageFile.getOriginalFilename();
+			String subImageExtension = subImageORG.substring(subImageORG.lastIndexOf("."));
+			String subImageSTD = UUID.randomUUID().toString().replace("-", "") + subImageExtension;
+			
+			
+			File subImage = new File(filePath+subImageSTD);
+			subImageFile.transferTo(subImage);
+			map.put("parent", map.get("GOODS_NUM"));
+			map.put("org", subImageORG);
+			map.put("std", subImageSTD);
+		}
+		if(mainImageFile.isEmpty()) {
+			map.put("noMainImage", "1");
+		}else {
+			map.put("noMainImage", "0");
+			
+			String mainImageORG = mainImageFile.getOriginalFilename();
+			String mainImageExtension = mainImageORG.substring(mainImageORG.lastIndexOf("."));
+			String mainImageSTD = UUID.randomUUID().toString().replace("-", "") + mainImageExtension;
+			
 		
-		String subImageORG = subImageFile.getOriginalFilename();
-		String subImageExtension = subImageORG.substring(subImageORG.lastIndexOf("."));
-		String subImageSTD = UUID.randomUUID().toString().replace("-", "") + subImageExtension;
-		
-		String mainImageORG = mainImageFile.getOriginalFilename();
-		String mainImageExtension = mainImageORG.substring(mainImageORG.lastIndexOf("."));
-		String mainImageSTD = UUID.randomUUID().toString().replace("-", "") + mainImageExtension;
-		
-		
-		File subImage = new File(filePath+subImageSTD);
-		File mainImage = new File(filePath+mainImageSTD);
-		
-		subImageFile.transferTo(subImage);
-		mainImageFile.transferTo(mainImage);
+			File mainImage = new File(filePath+mainImageSTD);
+			
+			
+			mainImageFile.transferTo(mainImage);
+			
+			
+			map.put("IMAGE_ORG", mainImageORG);
+			map.put("IMAGE_STD", mainImageSTD);
+			
+		}
 		
 		
-		map.put("IMAGE_ORG", mainImageORG);
-		map.put("IMAGE_STD", mainImageSTD);
 		
 		
-		map.put("parent", map.get("GOODS_NUM"));
-		map.put("org", subImageORG);
-		map.put("std", subImageSTD);
+		
+		
+		
 		
 		
 		
@@ -98,6 +118,80 @@ public class ImageSaver {
 		
 		return map;
 	}
+	
+	public void updateGoods(Map<String,Object> insertMap) throws IllegalStateException, IOException {
+		
+		HttpServletRequest request = (HttpServletRequest) insertMap.get("request");
+		MultipartHttpServletRequest multi = (MultipartHttpServletRequest) request;
+		
+		
+		String subImageExist = request.getParameter("subcheck");
+		
+		if(subImageExist.isEmpty()||subImageExist==""||subImageExist==null) {
+			insertMap.put("newSubImage", "1");
+		}else {
+			insertMap.put("newSubImage", "0");
+		}
+		
+		String mainImageExist = request.getParameter("maincheck");
+		if(mainImageExist.isEmpty()||mainImageExist==""||mainImageExist==null) {
+			insertMap.put("newMainImage", "1");
+		}else {
+			insertMap.put("newMainImage", "0");
+		}
+	
+		MultipartFile subImageFile = multi.getFile("subImage");
+		MultipartFile mainImageFile = multi.getFile("mainImage");
+		
+		if(subImageFile.isEmpty()) {
+			insertMap.put("noSubImage", "1");
+		}else {
+			insertMap.put("noSubImage", "0");
+			
+			
+			String subImageORG = subImageFile.getOriginalFilename();
+			String subImageExtension = subImageORG.substring(subImageORG.lastIndexOf("."));
+			String subImageSTD = UUID.randomUUID().toString().replace("-", "") + subImageExtension;
+			
+			
+			File subImage = new File(filePath+subImageSTD);
+			subImageFile.transferTo(subImage);
+			insertMap.put("parent", insertMap.get("GOODS_NUM"));
+			insertMap.put("org", subImageORG);
+			insertMap.put("std", subImageSTD);
+		}
+		
+		if(mainImageFile.isEmpty()) {
+			insertMap.put("noMainImage", "1");
+		}else {
+			insertMap.put("noMainImage", "0");
+			
+			String mainImageORG = mainImageFile.getOriginalFilename();
+			String mainImageExtension = mainImageORG.substring(mainImageORG.lastIndexOf("."));
+			String mainImageSTD = UUID.randomUUID().toString().replace("-", "") + mainImageExtension;
+			
+		
+			File mainImage = new File(filePath+mainImageSTD);
+			
+			
+			mainImageFile.transferTo(mainImage);
+			
+			
+			insertMap.put("IMAGE_ORG", mainImageORG);
+			insertMap.put("IMAGE_STD", mainImageSTD);
+			
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+	}
+	
 	
 	
 	

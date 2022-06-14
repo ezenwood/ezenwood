@@ -2,16 +2,30 @@ package com.ezen.ezenwood.member;
 
 import java.sql.Timestamp;
 
+import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class MemberDTO {
+	
 	public int MEMBER_NUM;
+	@NotEmpty
 	public String MEMBER_ID;
+	@NotEmpty
 	public String MEMBER_PW;
+	@NotEmpty
 	public String MEMBER_NAME;
+	@NotEmpty
+	@Email
 	public String MEMBER_EMAIL;
+	@NotEmpty
 	public String MEMBER_PHONE;
+	@NotEmpty
 	public String MEMBER_ZIP;
+	@NotEmpty
 	public String MEMBER_ADD1;
+	@NotEmpty
 	public String MEMBER_ADD2;
+	
 	public String MEMBER_ADD3;
 	public Timestamp MEMBER_JOINDATE;
 	public String MEMBER_EMAIL_CHECK;

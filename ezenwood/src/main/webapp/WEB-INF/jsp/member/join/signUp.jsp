@@ -1,5 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+	<%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
+	<%@ taglib uri="http://www.springframework.org/tags" prefix="spring"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -83,7 +85,16 @@
                         </div>
                         <!--//member_tit-->
                         <div class="member_cont">
-                           <form id="formTerms" name="formTerms" method="post" action="#">
+                        <spring:hasBindErrors name="memberDto" />
+                        
+                        <form:errors path="memberDto.MEMBER_PW" />
+                        <form:errors path="memberDto.MEMBER_EMAIL" />
+                        <form:errors path="memberDto.MEMBER_ID" />
+                        <form:errors path="memberDto.MEMBER_ID" />
+
+                      
+                        <form:form commandName="memberDto" method="post" action="/ezenwood/member/signup" >
+                           
                             <h3>약관동의</h3>
                             <div class="join_agreement_cont">
                                 <div class="join_agreement_box">
@@ -346,7 +357,7 @@
                                
                                 </div>
                                </div>
-                                </form>
+                                </form:form>
                         </div>
                                
                     </div>
@@ -367,6 +378,7 @@
                                 <form id="formJoin" name="formJoin" action="#" method="post" novalidate="novalidate">
                                    <!--회원가입 / 정보 기본정보-->
                                    <h3>기본정보</h3>
+                                  
                                    <span class="important"></span>
                                    <div class="base_info_sec">
                                        <table border="0" cellpadding="0" cellspacing="0">
@@ -382,7 +394,7 @@
                                                   <td>
                                                       <div class="member_warning">
                                                           <input type="text" id="id" name="MEMBER_ID" ><input
-				type="button" value="아이디 중복확인" onclick="idCheck()" style="font-size: 12px; line-height: 1.5; color: #333; margin: 0 0 0 5px; padding: 5px 10px 5px 10px; border: 1px solid #989898;">
+				type="button" value="아이디 중복확인" onclick="idCheck()" style="font-size: 12px; line-height: 1.5; color: #333; margin: 0 0 0 5px; padding: 5px 10px 5px 10px; border: 1px solid #989898;"><form:errors path="memberDto.MEMBER_ID" />
                                                       </div>
                                                   </td> 
                                                </tr>

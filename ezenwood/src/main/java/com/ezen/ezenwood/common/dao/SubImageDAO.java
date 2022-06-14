@@ -19,6 +19,12 @@ public class SubImageDAO extends AbstractDAO{
 		
 		return (int) insert("subimage.insertSubImage", insertMap);
 	}
+	
+	public int updateGoods(Map<String,Object> insertMap) {
+		
+		return (int) update("subimage.updateSubImage", insertMap);
+	}
+	
 
 	
 }
