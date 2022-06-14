@@ -82,7 +82,11 @@ public interface AdminService {
 		// OTO List 검색 조건문 만들기 아이디
 		public List<Map<String,Object>> adminOTOList(Map<String,Object> map) throws Exception;
 		
-		public Map<String,Object> adminOTODetail(Map<String,Object> map) throws Exception;
+		public Map<String,Object> adminOTODetailQ(Map<String,Object> map) throws Exception;
+		
+		public Map<String,Object> adminOTODetailA(Map<String,Object> map) throws Exception;
+		
+		public String adminOTODetailB(String ONETOONE_NUM) throws Exception;
 		
 		public int adminOTOUpdate(Map<String,Object> map) throws Exception;
 		
@@ -111,5 +115,7 @@ public interface AdminService {
 		public int adminAboutUpdate(Map<String,Object> map) throws Exception;
 		
 		public int adminAboutInsert(Map<String,Object> map) throws Exception;
+
+		
 	
 }
