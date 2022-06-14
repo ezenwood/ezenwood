@@ -64,7 +64,7 @@
 																style="overflow: hidden; width: 100%; margin: 5px 0 10px 0;">
 																
 																<div class="btn_upload_box">
-																	<input type="file" name="uploadFile">
+																	<input type="file" name="otoImage">
 																	</div>
 																</div>
 															</div>
