@@ -74,14 +74,17 @@
                            
                         </div>
                         <div class="form-group">
-                            <label>썸네일 이미지</label>
-                            <input type="file" name="subImage" size="30" />
+                            <label>썸네일 이미지</label><br>
+                            <img style="display: none;" alt="subimage" src="#" class="subimage">
+                            <input type="file" id="subfile" name="subImage" size="30" onchange="preview1()" />
                             <p class="help-block">썸네일 이미지 입니다 400x600 사이즈 권장합니다</p>
                         </div>
                         
                         <div class="form-group">
-                            <label>메인 이미지</label><!-- goods_contentimage -->
-                            <input type="file" name="mainImage" size="30" />
+                            <label>메인 이미지</label><br><!-- goods_contentimage -->
+                            
+                            <img style="display: none;" alt="mainimage" src="#" class="mainimage" >
+                            <input type="file" id="mainfile" name="mainImage" size="30" onchange="preview2()" />
                             <p class="help-block">메인 이미지 입니다 가로 800px사이즈 권장합니다</p>
                         
                         </div>
@@ -96,4 +99,28 @@
 
 
 </body>
+<script type="text/javascript">
+const fileDOM = document.querySelector('#subfile');
+const preview = document.querySelector('.subimage');
+
+function preview1() {
+	var imageSrc = URL.createObjectURL(fileDOM.files[0]);
+	preview.src = imageSrc;
+	preview.style.display ="block";
+}
+
+const fileDOM2 = document.querySelector('#mainfile');
+const preview3 = document.querySelector('.mainimage');
+
+function preview2() {
+	var imageSrc = URL.createObjectURL(fileDOM2.files[0]);
+	preview3.src = imageSrc;
+	preview3.style.display="block";
+}
+
+
+
+
+
+</script>
 </html>

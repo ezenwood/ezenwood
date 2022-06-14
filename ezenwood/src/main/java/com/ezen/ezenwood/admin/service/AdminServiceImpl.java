@@ -76,8 +76,59 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminGoodsUpdate(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		
+		int checkNum = adminDAO.adminGoodsUpdate(map);
+		
+		//image 
+	
+		if(checkNum==1) {
+			ImageSaver imageSaver = new ImageSaver();
+			imageSaver.updateGoods(map);
+			map.put("IMAGE_TABLENAMES_TABLENAME", "GOODS");
+			map.put("IMAGE_PARENT", map.get("GOODS_NUM"));
+			
+			//subImage
+			
+			if(map.get("noSubImage").equals("1")) {
+				//empty subImage
+			}else {
+				if(map.get("newSubImage").equals("1")) {
+					//insert subImage
+					subImageDAO.insertGoods(map);
+				}else {
+					//update subImage
+					subImageDAO.updateGoods(map);
+				}
+			}
+			
+			
+			//main Image
+			if(map.get("noMainImage").equals("1")) {
+				//empty subImage
+			}else {
+				if(map.get("newMainImage").equals("1")) {
+					//insert subImage
+					imageDAO.insertImage(map);
+				}else {
+					//update mainImage
+					imageDAO.updateGoods(map);
+				}
+			}
+			
+			
+			
+			
+		}else {
+			checkNum=0;
+		}
+		
+		
+		
+		
+		
+		
+		
+		return checkNum;
 	}
 
 	@Override
@@ -100,9 +151,20 @@ public class AdminServiceImpl implements AdminService {
 
 			imageSaver.insertGoods(map);
 
-			imageDAO.insertImage(map);
-
-			subImageDAO.insertGoods(map);
+			
+			if(map.get("noSubImage").equals("1")) {
+				//empty subImage
+			}else {
+				subImageDAO.insertGoods(map);
+			}
+			
+			if(map.get("noMainImage").equals("1")) {
+				// empty MainImage
+				
+			}else {
+				imageDAO.insertImage(map);
+			}
+			
 
 		}
 

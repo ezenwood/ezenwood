@@ -47,8 +47,11 @@ public class AdminController {
 		String category = request.getParameter("isSearch");
 		String currentPageNum = request.getParameter("searchNum");
 
-		if (category == null) {
-			category = "6";
+		
+		if(category==null) {
+			category="6";
+			
+
 		}
 		if (currentPageNum == null) {
 			currentPageNum = "1";
@@ -95,7 +98,22 @@ public class AdminController {
 
 		return "admin/goods/goodsmodify";
 	}
+	
+	@RequestMapping(value ="/goods/{GOODS_NUM}" ,method = RequestMethod.POST )
+	public String goodsUpdate(@PathVariable String GOODS_NUM, CommandMap commandMap, HttpServletRequest request) throws Exception{
+		
+		Map<String, Object> insertMap = commandMap.getMap();
+		insertMap.put("GOODS_NUM", GOODS_NUM);
+		insertMap.put("request", request);
+		
+		int checkNum = adminService.adminGoodsUpdate(insertMap);
+		//
+		
+		return "redirect:/admin/goods";
+	}
+	
 
+  
 	// 상품 등록하기 (insert)
 	@RequestMapping(value = "/goods/write", method = RequestMethod.GET)
 	public String goodsinsertForm() throws Exception {

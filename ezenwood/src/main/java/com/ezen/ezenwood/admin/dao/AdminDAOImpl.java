@@ -26,7 +26,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public int adminGoodsUpdate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (int)update("member.selectOneByMemberIdADMIN", map);
+		return (int) update("goods.updateGoods", map);
 	}
 
 	@Override

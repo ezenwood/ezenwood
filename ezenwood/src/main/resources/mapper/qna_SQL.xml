@@ -86,6 +86,27 @@ AND QNA_DEL_GB = 'N' and QNA_NUM=#{QNA_NUM}
 ]]>
 
 	</select>
+	
+	
+		<select id="selectQNAForDetailinsu" parameterType="hashmap"
+		resultType="hashmap">
+<![CDATA[
+select 
+ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
+QNA_NUM,
+QNA_TITLE,
+QNA_WRITER,
+QNA_TYPE,
+QNA_SECREATE,
+QNA_DATE,
+QNA_PARENT
+from qna
+where qna_type = 'Q'
+AND QNA_DEL_GB = 'N' and QNA_PARENT=#{GOODS_NUM} 
+]]>
+
+	</select>
+	
 
 
 	<select id="selectQNADetailForClient" parameterType="hashmap"

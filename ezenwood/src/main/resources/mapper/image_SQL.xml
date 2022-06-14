@@ -36,10 +36,11 @@ where
 update 
 	image 
 set 
-	image_org = #{org},
-	image_std = #{std}
+	image_org = #{IMAGE_ORG},
+	image_std = #{IMAGE_STD}
 where
-	image_num = #{image_num}
+	IMAGE_TABLENAMES_TABLENAME = #{IMAGE_TABLENAMES_TABLENAME} and 
+	IMAGE_PARENT =#{GOODS_NUM}
 	
 
 ]]>
