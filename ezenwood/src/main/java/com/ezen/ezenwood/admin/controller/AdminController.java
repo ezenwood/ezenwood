@@ -590,40 +590,119 @@ public class AdminController {
 		return mav;
 	}
 
-	/*
-	 * //OneToOne // 일대일문의 리스트 보기
-	 * 
-	 * @RequestMapping(value = "") public String otoList() throws Exception { return
-	 * null; }
-	 * 
-	 * 
-	 * // 일대일 문의 디테일 보기
-	 * 
-	 * @RequestMapping(value = "") public String otoDetail() throws Exception {
-	 * return null; }
-	 * 
-	 * 
-	 * 
-	 * // 일대일문의 답글 달기 (insert)
-	 * 
-	 * @RequestMapping(value = "") public String otoReply() throws Exception {
-	 * return null; }
-	 * 
-	 * 
-	 * 
-	 * // 일대일문의 수정하기 (update)
-	 * 
-	 * @RequestMapping(value = "") public String otoReplyUpdate() throws Exception {
-	 * return null; }
-	 * 
-	 * 
-	 * 
-	 * // 일대일 문의 삭제하기 (delete)
-	 * 
-	 * @RequestMapping(value = "") public String otoReplyDelete() throws Exception {
-	 * return null; }
-	 * 
-	 */
+	
+	  //OneToOne // 일대일문의 리스트 보기
+	  
+	  @RequestMapping(value = "/oto/{pageNum}")
+	  public ModelAndView otoList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+				throws Exception {
+
+			ModelAndView mv = new ModelAndView();
+
+			Map<String, Object> insertMap = new HashMap<String, Object>();
+
+			PaginationInfo paginationInfo = new PaginationInfo();
+
+			// 현재 페이지 번호
+			paginationInfo.setCurrentPageNo(pageNum);
+			// 한 페이지에 게시되는 게시물 건수
+			paginationInfo.setRecordCountPerPage(9);
+			// 페이징 리스트의 사이즈
+			paginationInfo.setPageSize(5);
+
+			insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+			insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+			List<Map<String, Object>> list = adminService.adminOTOList(insertMap);
+			mv.addObject("list", list);
+
+			int totalCount = 0;
+
+			if (list.isEmpty()) {
+
+			} else {
+				totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+				paginationInfo.setTotalRecordCount(totalCount);
+				mv.addObject("paginationInfo", paginationInfo);
+
+			}
+
+			mv.setViewName("/admin/oto/otoList");
+			return mv;
+		}
+	  
+	  
+	  // 일대일 문의 디테일 보기
+	  
+	  @RequestMapping(value = "/otoDetail/{OTONum}")
+	  public ModelAndView otoDetail(@PathVariable String OTONum) throws Exception {
+		  ModelAndView mav = new ModelAndView();
+			Map<String, Object> insertMap = new HashMap<String, Object>();
+
+			String ONETOONE_NUM = OTONum;
+			insertMap.put("ONETOONE_NUM", ONETOONE_NUM);
+			
+			String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
+			insertMap.put("MEMBER_ID", MEMBER_ID);
+			
+			Map<String, Object> resultMap = adminService.adminOTODetailQ(insertMap);
+				
+			mav.addObject("QOTOMap", resultMap);
+
+			Map<String, Object> resultMapa = adminService.adminOTODetailA(insertMap);
+
+			mav.addObject("AOTOMap", resultMapa);
+			mav.setViewName("/admin/oto/otoDetail");
+			
+			return mav;
+		}
+		  
+	  
+	  
+	  
+	  // 일대일문의 답글 달기 (insert)
+	  
+	  @RequestMapping(value = "/oto/write")
+	  public String otoReply() throws Exception {
+	  
+		  return null; 
+	  }
+	  
+	  
+	  
+	  // 일대일문의 수정하기 (update)
+	  
+	  @RequestMapping(value = "/oto/update")
+	  public String otoReplyUpdate() throws Exception {
+	  
+		  return null; 
+	  }
+	  
+	  
+	  
+	  // 일대일 문의 삭제하기 (delete)
+	  
+	  @RequestMapping(value = "/oto/del/{otoNum}", method=RequestMethod.GET)
+	  public ModelAndView otoReplyDelete(@PathVariable String otoNum) throws Exception {
+		  ModelAndView mav = new ModelAndView();
+
+			Map<String, Object> insertMap = new HashMap<String, Object>();
+
+			String ONETOONE_NUM = otoNum;
+			
+			String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
+			insertMap.put("MEMBER_ID", MEMBER_ID);
+			
+
+			insertMap.put("ONETOONE_NUM", ONETOONE_NUM);
+			int resultMap = adminService.adminOTODelete(insertMap);
+
+			mav.addObject(resultMap);
+			mav.setViewName("/admin/oto/otoList");
+			return mav;
+	  }
+	  
+	 
 
 	// fq
 	// 자주묻는질문 리스트보기
