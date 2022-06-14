@@ -26,7 +26,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public int adminGoodsUpdate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int)update("member.selectOneByMemberIdADMIN", map);
 	}
 
 	@Override
@@ -44,25 +44,25 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	// 회원 관리 member
 
 	@Override
-	public List<Map<String, Object>> adminMemberList(Map<String, Object> insertMap) {
-		return selectList("member.selectMemberListAdmin", insertMap);
+	public List<Map<String, Object>> adminMemberList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("member.selectMemberListAdmin", map);
 	}
 
 	@Override
-	public List<Map<String, Object>> adminDelMemberList(Map<String, Object> insertMap) {
-		return selectList("member.selectMemberList", insertMap);
+	public List<Map<String, Object>> adminDelMemberList(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("member.selectMemberList", map);
 	}
 
 	@Override
 	public Map<String, Object> adminMemberDetail(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		return (Map<String, Object>) selectOne("member.selectOneByMemberNumAdmin", map);
 	}
 
 	@Override
 	public int adminMemberUpdate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) update("member.selectOneByMemberIdADMIN", map);
 	}
 
 	@Override

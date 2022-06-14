@@ -11,7 +11,37 @@
 <link rel="stylesheet" href="/ezenwood/css/css/board.css">
 <link rel="stylesheet" href="/ezenwood/css/css/common.css">
 <link rel="stylesheet" href="/ezenwood/css/css/button.css">
-<title>pwchk</title>
+<title>이젠 우드</title>
+
+<style type="text/css">
+.btn_pw_cancel {
+    display: inline-block;
+    min-width: 80px;
+    height: 42px;
+    padding: 0 10px 0 10px;
+    line-height: 40px;
+    color: #3e3d3c;
+    font-size: 14px;
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    text-align: center;
+    cursor: pointer;
+}
+
+.btn_pw_certify {
+    min-width: 100px;
+    height: 44px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    vertical-align: top;
+}
+
+</style>
 </head>
 <body>
 	<%@include file="/include/header.jsp"%>
@@ -39,7 +69,7 @@
 						<!--마이페이지 회원 요약정보 -->
 						<div class="my_page_password">
 							<div class="mypage_zone_tit">
-								<h3>회원 정보 변경</h3>
+								<h3>회원정보 변경</h3>
 							</div>
 							<form id="formFind" method="post"
 								action="${contextPath}/mypage/pwch">
@@ -47,7 +77,7 @@
 									<dl>
 										<dt>아이디</dt>
 										<dd>
-											<strong></strong>
+											<strong>${MEMBER_ID}</strong>
 										</dd>
 									</dl>
 									<dl>
@@ -62,9 +92,9 @@
 									</dl>
 								</div>
 								<div class="btn_center_box">
-									<button type="submit" class="btn_pw_cancel">
+									<a class="btn_pw_cancel" href="/ezenwood/mypage/main">
 										<em>취소</em>
-									</button>
+									</a>
 									<button type="submit" class="btn_pw_certify" onclick="${contextPath}/mypage/update">
 										<em>인증하기</em>
 									</button>

@@ -11,7 +11,41 @@
 <link rel="stylesheet" href="/ezenwood/css/reset.css">
 <link rel="stylesheet" href="/ezenwood/css/board.css">
 <link rel="stylesheet" href="/ezenwood/css/common.css">
-<title>Document</title>
+<title>이젠 우드</title>
+
+<style type="text/css">
+.btn_claim_cancel {
+    display: inline-block;
+    min-width: 80px;
+    height: 42px;
+    padding: 0 10px 0 10px;
+    line-height: 40px;
+    color: #3e3d3c;
+    font-size: 14px;
+    border: 1px solid #cccccc;
+    background: #ffffff;
+    text-align: center;
+}
+
+.btn_claim_ok:hover {
+    border: 1px solid #46484c;
+    background: #46484c;
+}
+.btn_claim_ok {
+    min-width: 100px;
+    height: 44px;
+    padding: 0 10px 0 10px;
+    color: #ffffff;
+    font-size: 14px;
+    font-weight: bold;
+    border: 1px solid #323437;
+    background: #323437;
+    text-align: center;
+    vertical-align: top;
+}
+
+
+</style>
 </head>
 <body>
 	<%@include file="/include/header.jsp"%>
@@ -43,7 +77,7 @@
 							<div class="hack_out">
 
 								<div class="mypage_zone_tit">
-									<h2>회원탈퇴 -${sessionScope.MEMBER_ID}</h2>
+									<h2>회원탈퇴 <%-- -${sessionScope.MEMBER_ID} --%></h2>
 								</div>
 
 								<div class="mypage_unregister">
@@ -60,9 +94,9 @@
 								<!-- //hack_out -->
 
 								<div class="btn_center_box">
-									<button type="submit" class="btn_claim_cancel btn_prev">
+									<a class="btn_claim_cancel btn_prev" href="/ezenwood/mypage/update">
 										<em>이전으로</em>
-									</button>
+									</a>
 									<input type="hidden" name="MEMBER_ID" value="${sessionScope.MEMBER_ID}">
 									<input type="submit" value="탈퇴" class="btn_claim_ok" onclick="${contextPath}/mypage/del" />
 								</div>

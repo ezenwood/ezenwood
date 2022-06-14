@@ -72,7 +72,7 @@
                                                         	<td>${row.MEMBER_NAME }</td>
                                                         	<td>${row.MEMBER_PHONE }</td>
                                                         	<td>${row.MEMBER_EMAIL }</td>
-                                                        	<td>${row.MEMBER_ADD1}&nbsp;${row.MEMBER_ADD2}${row.MEMBER_ADD3}</td>
+                                                        	<td>${row.MEMBER_ADD1}${row.MEMBER_ADD2}${row.MEMBER_ADD3}</td>
                                                             <td><fmt:formatDate value="${row.MEMBER_JOINDATE }" type="both" dateStyle="medium" timeStyle="medium" /></td>
                                                             <td><button id="MEMBER_DEL_GB" type="button" class="btn btn-default">복구</button></td>
                                                             

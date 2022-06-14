@@ -19,7 +19,7 @@
 <body>
 
 	<div class="sub_menu_box">
-		<h2>마이페이지</h2>
+		<h2><a href="/ezenwood/mypage/main">마이페이지</a></h2>
 		<ul class="sub_menu_mypage">
 			<li>쇼핑정보
 				<ul class="sub_depth1">

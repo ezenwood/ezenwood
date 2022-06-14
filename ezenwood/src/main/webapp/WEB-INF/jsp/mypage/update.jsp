@@ -114,12 +114,6 @@
 										novalidate="novalidate">
 										<input type="hidden" name="MEMBER_NUM" value="${MEMBER_NUM}">
 
-										<div class="location_wrap1">
-											<div class="location_cont1">
-												<em>정보입력&gt;가입완료</em>
-											</div>
-										</div>
-										<!-- //location_wrap -->
 										<!-- 회원가입/정보 기본정보 -->
 										<div class="base_info_box">
 											<h3>기본정보</h3>
@@ -219,7 +213,7 @@
 										<button type="button" class="btn_member_cancel"
 											onclick="location.href='${contextPath}/mypage/del'" >탈퇴</button>
 									</div>
-									</form>`
+									</form>
 									<!-- //btn_center_box -->
 									
 								</div>
