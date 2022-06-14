@@ -86,16 +86,31 @@ public class ImageSaver {
 		map.put("org", subImageORG);
 		map.put("std", subImageSTD);
 		
+		return map;
+	}
+	
+public Map<String,Object> insertOTO(Map<String,Object> map) throws IllegalStateException, IOException{
 		
 		
+		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) map.get("request");
 		
 		
+		MultipartFile otoImageFile = multipartHttpServletRequest.getFile("otoImage");
 		
 		
+		String otoImageORG = otoImageFile.getOriginalFilename();
+		String otoImageExtension = otoImageORG.substring(otoImageORG.lastIndexOf("."));
+		String otoImageSTD = UUID.randomUUID().toString().replace("-", "") + otoImageExtension;
+	
 		
+		File otoImage = new File(filePath+otoImageSTD);
 		
+		otoImageFile.transferTo(otoImage);
+
 		
-		
+		map.put("parent", map.get("SONETOONE_NUM"));
+		map.put("IMAGE_ORG", otoImageORG);
+		map.put("IMAGE_STD", otoImageSTD);
 		return map;
 	}
 	

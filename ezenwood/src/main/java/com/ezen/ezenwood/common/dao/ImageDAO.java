@@ -20,5 +20,4 @@ public class ImageDAO extends AbstractDAO {
 		
 		return (String) selectOne("image.selectImage", insertMap);
 	}
-
 }

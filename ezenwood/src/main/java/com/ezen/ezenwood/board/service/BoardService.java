@@ -8,7 +8,7 @@ public interface BoardService {
 	
 	
 	//OTO
-	public int insertOTO(Map<String, Object> insertMap, HttpServletRequest request);
+	public int insertOTO(Map<String, Object> insertMap, HttpServletRequest request) throws Exception;
 	public List<Map<String, Object>> OTOList(Map<String, Object> insertMap);
 	public Map<String, Object> getOTODetail(Map<String, Object> insertMap);
 	public Map<String, Object> getOTODelete(Map<String, Object> insertMap);
