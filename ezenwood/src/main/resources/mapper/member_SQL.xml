@@ -264,4 +264,14 @@ SELECT	MEMBER_PW
 ]]>
 	</select>
 
+<!-- id 값 가져오기  -->
+	<select id="otoid" parameterType="hashmap" resultType="string">
+	<![CDATA[
+		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_NUM = (SELECT ONETOONE_MEMBER_NUM FROM ONETOONE WHERE ONETOONE_NUM = #{ONETOONE_NUM})
+]]>
+	</select>
+
+
+
+
 </mapper>

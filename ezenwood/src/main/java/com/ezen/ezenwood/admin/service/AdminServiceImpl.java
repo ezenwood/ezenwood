@@ -12,7 +12,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Service;
 
-
 import com.ezen.common.ImageSaver;
 import com.ezen.ezenwood.admin.dao.AdminDAO;
 import com.ezen.ezenwood.admin.dao.AdminDAOImpl;
@@ -22,7 +21,6 @@ import com.ezen.ezenwood.goods.dao.GoodsDAO;
 import com.ezen.ezenwood.goods.dao.GoodsDAOImpl;
 import com.ezen.ezenwood.mypage.dao.MyPageDAO;
 
-
 @Service("AdminService")
 public class AdminServiceImpl implements AdminService {
 
@@ -31,60 +29,48 @@ public class AdminServiceImpl implements AdminService {
 	@Resource(name = "AdminDAO")
 	AdminDAOImpl adminDAO;
 
-	
-	
 	@Resource(name = "SubImageDAO")
 	SubImageDAO subImageDAO;
-	
+
 	@Resource(name = "ImageDAO")
 	ImageDAO imageDAO;
 
 	@Resource(name = "GoodsDAO")
 	GoodsDAOImpl goodsDAO;
+	
+	
 	// goods
-
 
 	@Override
 	public List<Map<String, Object>> adminGoodsList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		
-		List<Map<String,Object>> result = adminDAO.adminGoodsList(map);
-		
-		
-		
-		for(Map<String,Object> a : result) {
-			
+
+		List<Map<String, Object>> result = adminDAO.adminGoodsList(map);
+
+		for (Map<String, Object> a : result) {
+
 			String SubImage = subImageDAO.getSubImageByIDX(((BigDecimal) a.get("GOODS_NUM")).intValue());
 			a.put("subImage", SubImage);
-			
-			
-			
-			
-			
-			
+
 		}
-		
-		
-		
-		
+
 		return result;
 	}
 
 	@Override
 	public Map<String, Object> adminGoodsDetail(Map<String, Object> map) throws Exception {
-		
+
 		map.put("IMAGE_TABLENAMES_TABLENAME", "GOODS");
 		map.put("IMAGE_PARENT", map.get("GOODS_NUM"));
-		
-		
-		Map<String,Object> result = adminDAO.adminGoodsDetail(map);
-		
-		String subImage = subImageDAO.getSubImageByIDX(Integer.parseInt((String)map.get("GOODS_NUM")));
+
+		Map<String, Object> result = adminDAO.adminGoodsDetail(map);
+
+		String subImage = subImageDAO.getSubImageByIDX(Integer.parseInt((String) map.get("GOODS_NUM")));
 		String goodsImage = imageDAO.selectImage(map);
-		
+
 		result.put("subImage", subImage);
 		result.put("mainImage", goodsImage);
-		
+
 		return result;
 	}
 
@@ -96,41 +82,30 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminGoodsDelete(Map<String, Object> map) throws Exception {
-		
+
 		return adminDAO.adminGoodsDelete(map);
 	}
 
 	@Override
 	public int adminGoodsInsert(Map<String, Object> map) throws Exception {
-		
+
 		//
 		int checkNum = adminDAO.adminGoodsInsert(map);
-		
-		if(checkNum==1) {
+
+		if (checkNum == 1) {
 			map.put("IMAGE_TABLENAMES_TABLENAME", "GOODS");
 			map.put("IMAGE_PARENT", map.get("GOODS_NUM"));
-			
+
 			ImageSaver imageSaver = new ImageSaver();
-			
+
 			imageSaver.insertGoods(map);
-			
-			
-			
-			
-			
+
 			imageDAO.insertImage(map);
-			
+
 			subImageDAO.insertGoods(map);
-			
-			
-			
-			
-			
+
 		}
-		
-		
-		
-		
+
 		return checkNum;
 	}
 
@@ -145,6 +120,7 @@ public class AdminServiceImpl implements AdminService {
 	public List<Map<String, Object>> adminDelMemberList(Map<String, Object> map) throws Exception{
 		
 		return adminDAO.adminDelMemberList(map);
+
 	}
 
 	@Override
@@ -226,19 +202,18 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<Map<String, Object>> adminQNAList(Map<String, Object> map) throws Exception {
-	List<Map<String, Object>> listMap = adminDAO.adminQNAList(map);
-		
-		
+		List<Map<String, Object>> listMap = adminDAO.adminQNAList(map);
+
 		for (Map<String, Object> goodsmap : listMap) {
-		
+
 			String GOODS_TITLE = ((BigDecimal) goodsmap.get("QNA_PARENT")).toString();
-		
+
 			String goods = goodsDAO.getGoodsTitle(GOODS_TITLE);
 			goodsmap.put("GOODS_TITLE", goods);
 		}
-	
-	return listMap;
-		
+
+		return listMap;
+
 	}
 
 	@Override
@@ -246,7 +221,7 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return adminDAO.adminQNADetailQ(map);
 	}
-	
+
 	@Override
 	public Map<String, Object> adminQNADetailA(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
@@ -302,14 +277,14 @@ public class AdminServiceImpl implements AdminService {
 	public Map<String, Object> adminReviewDetail(Map<String, Object> map) throws Exception {
 		Map<String, Object> listMap = adminDAO.adminReviewDetail(map);
 
-			String GOODS_TITLE = ((BigDecimal) listMap.get("REVIEW_PARENT")).toString();
-			int SUBIMAGE_PARENT = ((BigDecimal) listMap.get("REVIEW_PARENT")).intValue();
+		String GOODS_TITLE = ((BigDecimal) listMap.get("REVIEW_PARENT")).toString();
+		int SUBIMAGE_PARENT = ((BigDecimal) listMap.get("REVIEW_PARENT")).intValue();
 
-			String GOODS_SUBIMAGE = subImageDAO.getSubImageByIDX(SUBIMAGE_PARENT);
-			String goods = goodsDAO.getGoodsTitle(GOODS_TITLE);
-			listMap.put("GOODS_TITLE", goods);
-			listMap.put("GOODS_SUBIMAGE", GOODS_SUBIMAGE);
-		
+		String GOODS_SUBIMAGE = subImageDAO.getSubImageByIDX(SUBIMAGE_PARENT);
+		String goods = goodsDAO.getGoodsTitle(GOODS_TITLE);
+		listMap.put("GOODS_TITLE", goods);
+		listMap.put("GOODS_SUBIMAGE", GOODS_SUBIMAGE);
+
 		return listMap;
 	}
 
@@ -323,32 +298,44 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<Map<String, Object>> adminOTOList(Map<String, Object> map) throws Exception {
-	 return null;
-
+		return adminDAO.adminOTOList(map);
+				
 	}
 
 	@Override
-	public Map<String, Object> adminOTODetail(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+	public Map<String, Object> adminOTODetailQ(Map<String, Object> map) throws Exception {
+
+		return adminDAO.adminOTODetailQ(map);
+	}
+
+	@Override
+	public Map<String, Object> adminOTODetailA(Map<String, Object> map) throws Exception {
+
+		return adminDAO.adminOTODetailA(map);
+	}
+	
+	@Override
+	public String adminOTODetailB(String ONETOONE_NUM) throws Exception {
+
+		return adminDAO.adminOTODetailB(ONETOONE_NUM);
 	}
 
 	@Override
 	public int adminOTOUpdate(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminOTOUpdate(map);
 	}
 
 	@Override
 	public int adminOTODelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminOTODelete(map);
 	}
 
 	@Override
 	public int adminOTOInsert(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminOTOInsert(map);
 	}
 
 	// fq(자주묻는질문)
@@ -401,5 +388,7 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+
 
 }

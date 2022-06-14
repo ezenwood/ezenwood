@@ -8,72 +8,115 @@
 <head>
 <meta charset="UTF-8">
 <title>관리자 페이지 - 1:1문의 상세</title>
-<link href="/ezenwood/css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/bootstrapadmin.min.css" type="text/css"
+	rel="stylesheet">
 </head>
 <body>
-<%@include file ="/include/admin_header.jsp" %>
-<%@include file ="/include/admin_left.jsp" %>
-		<div id="page-wrapper" style="min-height: 703px;">
-			<div class="row">
-				<div class="col-lg-12">
-					<h3 class="page-header">1:1문의 상세보기</h3>
-					<table class="table table-striped table-bordered table-hover"
-						id="dataTables-example">
-						<caption>번호,제목,글쓴이,날짜,조회를 나타내는 공지사항 표</caption>
+<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+	<%@include file="/include/admin_header.jsp"%>
+	<%@include file="/include/admin_left.jsp"%>
+	<div id="page-wrapper" style="min-height: 703px;">
+		<div class="row">
+			<div class="col-lg-12">
+				<h3 class="page-header">1:1문의</h3>
+				<table class="table table-striped table-bordered table-hover"
+					id="dataTables-example">
 
-						<thead>
-							<tr class="dangers" style="background-color: #fff">
-								<th width="100">글제목</th>
-								<td colspan=3>${onetoone_title}</td>
-							</tr>
-						</thead>
 
-						<tbody>
-							<tr>
-								<!-- 작성자 -->
-								<th >작성자</th>
-								<td style="width: 218px;"><strong> ${onetoone_writer} </strong></td>
-								<td style="width: 120px;"><strong>작성일</strong></td>
-								<td><fmt:formatDate value="${onetoone_date}"
-										pattern="yyyy.MM.dd" /></td>
+					<thead>
+						<tr class="dangers" style="background-color: #fff">
+							<th width="100">글제목</th>
+							<td colspan=3>${QOTOMap.ONETOONE_TITLE}</td>
+						</tr>
+					</thead>
 
-							</tr>
+					<tbody>
+						<tr>
+							<!-- 작성자 -->
+							<th>작성자</th>
+							<td style="width: 218px;"><strong>
+									${QOTOMap.ONETOONE_MEMBER_NUM} </strong></td>
+							<td style="width: 120px;"><strong>작성일</strong></td>
+							<td><fmt:formatDate value="${QOTOMap.ONETOONE_DATE}"
+									pattern="yyyy.MM.dd" /></td>
 
-							<tr>
-								<!-- 글내용 -->
-								<th>글내용</th>
-								<td colspan=3 height=600 style="padding: 0px !important;">
-									
-									<br />${onetoone.content}
-								</td>
-							</tr>
-							<tr>
+						</tr>
+
+						<tr>
+							<!-- 글내용 -->
+							<th>문의 내용</th>
+							<td colspan=3 height=250 style="padding: 0px !important;"><br />${QOTOMap.ONETOONE_CONTENT}
+							</td>
+						</tr>
+						<tr>
 							<th>이미지</th>
-							<td style="padding: 0px !important;">
-							<img src="/ezenwood/resource/image/pet1.jpg"/> </td>
-							</tr>
+							<td style="padding: 0px !important;"><img
+								src="/ezenwood/resource/image/pet1.jpg" /></td>
+						</tr>
 
-						</tbody>
+					</tbody>
 
-					</table>
-				</div>
+				</table>
 			</div>
 		</div>
-		<div class="menu-wrap" style="text-align: center">
-		
-		
-			<button type="button" onclick="onetooneReplyForm();" class="btn btn-primary">답변</button>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<!-- 삭제 버튼 -->
-			<c:if
-				test="${session_member_name == onetoone.name || session_member_id == 'admin'}">
-				<!-- 관리자 혹은 글쓴이는 글 수정 , 삭제가능 -->
-				
-				<button type="button" onclick="onetooneDelete();"
-					class="btn btn-primary">삭제</button>
-			</c:if>
+	</div>
+
+	<div id="page-wrapper" style="min-height: 703px;">
+		<div class="row">
+			<div class="col-lg-12">
+				<h3 class="page-header">1:1답변</h3>
+				<table class="table table-striped table-bordered table-hover"
+					id="dataTables-example">
+
+
+					<thead>
+						<tr class="dangers" style="background-color: #fff">
+							<th width="100">글제목</th>
+							<td colspan=3>${AOTOMap.ONETOONE_TITLE}</td>
+						</tr>
+					</thead>
+
+					<tbody>
+						<tr>
+							<!-- 작성자 -->
+							<th>작성자</th>
+							<td style="width: 218px;"><strong> admin </strong></td>
+							<td style="width: 120px;"><strong>작성일</strong></td>
+							<td><fmt:formatDate value="${AOTOMap.ONETOONE_DATE}"
+									pattern="yyyy.MM.dd" /></td>
+
+						</tr>
+
+						<tr>
+							<!-- 글내용 -->
+							<th>답변 내용</th>
+							<td colspan=3 height=250 style="padding: 0px !important;"><br />${AOTOMap.ONETOONE_CONTENT}
+							</td>
+						</tr>
+						<tr>
+							<th>이미지</th>
+							<td style="padding: 0px !important;"><img
+								src="/ezenwood/resource/image/pet1.jpg" /></td>
+						</tr>
+
+					</tbody>
+
+				</table>
+			</div>
 		</div>
 	</div>
+	<div style="text-align: center">
+		<br> <input type="hidden" value="${QOTOMap.ONETOONE_NUM}"
+			name="NOTICE_NUM">
+		<button type="button" class="btn btn-success"
+			onclick="location.href='${contextPath}/admin/oto/otoReplyForm/${QOTOMap.ONETOONE_NUM}'">답변</button>
+		<button type="reset" class="btn btn-default"
+			onclick="location.href='${contextPath}/admin/oto/1'">작성취소</button>
+		<button type="button" class="btn btn-success"
+			onclick="location.href='${contextPath}/admin/oto/del/${AOTOMap.ONETOONE_NUM}'">삭제</button>
+
+	</div>
+
 	<br />
 	<br />
 </body>

@@ -1,6 +1,7 @@
 package com.ezen.ezenwood.board.service;
 
-import java.io.IOException;
+import java.io.IOException; 
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -19,7 +20,6 @@ public class BoardServiceImpl implements BoardService {
 	@Resource(name = "BoardDAO")
 	BoardDAO boardDAO;
 
-	
 	@Resource(name = "ImageDAO")
 	ImageDAO imageDAO;
 	
@@ -27,9 +27,21 @@ public class BoardServiceImpl implements BoardService {
 
 	// OTO
 	@Override
-	public int insertOTO(Map<String, Object> insertMap, HttpServletRequest request) {
+	public int insertOTO(Map<String, Object> insertMap, HttpServletRequest request) throws Exception{
 
 		int checkNum = boardDAO.insertOTO(insertMap);
+		
+		if(checkNum==1) {
+			insertMap.put("IMAGE_TABLENAMES_TABLENAME", "ONETOONE");
+			insertMap.put("IMAGE_PARENT", insertMap.get("SONETOONE_NUM"));
+			
+			ImageSaver imageSaver = new ImageSaver();
+			
+			imageSaver.insertOTO(insertMap);
+			
+			imageDAO.insertImage(insertMap);
+			
+		}
 
 		return checkNum;
 	}
@@ -48,12 +60,16 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public Map<String, Object> getOTODetail(Map<String, Object> insertMap) {
+
+		insertMap.put("IMAGE_TABLENAMES_TABLENAME", "ONETOONE");
+		insertMap.put("IMAGE_PARENT", insertMap.get("ONETOONE_NUM"));
+		
 		Map<String, Object> resultMap = boardDAO.getOTODetail(insertMap);
-
 		resultMap.put("Answer", boardDAO.AnswerForOTODetil(resultMap));
-
-		// String BOARD_IMAGE = imageDAO.selectImage(resultMap);
-		// resultMap.put("BOARD_IMAGE", BOARD_IMAGE);
+		String otoImage = imageDAO.selectImage(insertMap);
+		
+		
+		resultMap.put("otoImage", otoImage);
 
 		return resultMap;
 	}

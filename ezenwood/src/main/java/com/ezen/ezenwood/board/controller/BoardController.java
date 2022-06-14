@@ -56,6 +56,7 @@ public class BoardController {
 	    mav.setViewName("board/oto/otoDetail");
 	    return mav;
 	  }
+	// 1:1 문의 삭제
 	  @RequestMapping({"/board/oto/otoBoardDel/{otonum}"})
 	  public ModelAndView OTODelete(@PathVariable String otonum,HttpServletRequest request) {
 	    ModelAndView mav = new ModelAndView();
@@ -68,13 +69,13 @@ public class BoardController {
 	    Map<String, Object> resultMap = this.boardService.getOTODelete(insertMap);
 	    
 	    mav.addObject("OTODelMap", resultMap);
-	    mav.setViewName("board/oto/otoBoard");
+	    mav.setViewName("redirect:/board/oto");
 	    return mav;
 	  }
 	  
 
 	
-	 // 1:1 문의 삭제
+	 
 
 	 
 
@@ -97,16 +98,12 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board/oto/otoWrite", method = RequestMethod.POST)
-	public String otoWrite(CommandMap commandmap, HttpServletRequest request, Model model) {
-	
+	public String otoWrite(CommandMap commandmap, HttpServletRequest request) throws Exception {
+		Map<String,Object> insertMap = commandmap.getMap();
 		String MEMBER_NUM = (String) request.getSession().getAttribute("MEMBER_NUM");
-		commandmap.put("ONETOONE_MEMBER_NUM", MEMBER_NUM);	
-		int checkNum = boardService.insertOTO(commandmap.getMap(), request);
-		if (checkNum == 0) {
-
-		} else {
-
-		}
+		insertMap.put("ONETOONE_MEMBER_NUM", MEMBER_NUM);	
+		insertMap.put("request", request);
+		boardService.insertOTO(insertMap, request);
 		return "redirect:/board/oto?idx=";
 	}
 
