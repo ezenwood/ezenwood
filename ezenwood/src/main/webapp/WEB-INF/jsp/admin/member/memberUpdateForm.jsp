@@ -1,10 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>AdminMemberUpdateform</title>
+    <title>이젠 우드 - 관리제 페이지</title>
     <link href="css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="bootstrap/jquery.min.js"></script>
     <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
@@ -86,15 +86,15 @@
 						
                         <div class="form-group">
                             <label>아이디</label>
-                            <input type="text" class="form-control" path="member_id" placeholder="admin" style="width:40%;" disabled>
+                            <input type="text" class="form-control" path="MEMBER_ID" placeholder="${MEMBER_ID }" style="width:40%;" disabled>
                         </div>
                         
                         <div class="form-group">
                             <label>비밀번호</label>
-                             <input type="text" name="texts" class="form-control" path="member_pw" placeholder="1234" style="width:40%;">
+                             <input type="text" name="password" class="form-control" path="MEMBER_PW" placeholder="" style="width:40%;" disabled>
                           </div>
                             <div class="form-group">
-                       <label>이름</label><input type="text" class="form-control" path="member_name" placeholder="홍길동" style="width:20%;">
+                       <label>이름</label><input type="text" class="form-control" path="member_name" placeholder="" style="width:20%;">
                                </div>
     
                         <div class="form-group">                            

@@ -44,7 +44,8 @@
 				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite" style="text-align:right;">총 회원수 : ${totalCount}</div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite" style="text-align:right;">
+							총 회원수 : ${totalCount}</div>
 						
 					</div>
 					<div class="row">
@@ -65,11 +66,14 @@
 								<tbody>
 								
 								<c:choose>
+
                                                 <c:when test="${fn:length(adminMemberListMap) > 0}">
                                                     <c:forEach items="${adminMemberListMap}" var="row">
-                                                        <tr>
+                                                      <tr>
                                                         	<td>${row.MEMBER_NUM }</td>
-                                                        	<td>${row.MEMBER_ID }</td>
+                                                        	<td>
+                                                        	<a href="/ezenwood/admin/memberUpdate/${row.MEMBER_ID}">${row.MEMBER_ID }</a>
+                                                        	</td>
                                                         	<td>${row.MEMBER_NAME }</td>
                                                         	<td>${row.MEMBER_PHONE }</td>
                                                         	<td>${row.MEMBER_EMAIL }</td>
@@ -84,6 +88,7 @@
                                                         <td colspan="4">조회된 결과가 없습니다.</td>
                                                     </tr>
                                                 </c:otherwise>
+  
                                             </c:choose>									
 								</tbody>
 							</table>

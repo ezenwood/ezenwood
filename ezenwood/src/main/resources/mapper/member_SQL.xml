@@ -136,6 +136,7 @@ SELECT	MEMBER_PW
 	<!-- 회원 전체 목록 -->
 	<select resultType="hashmap" parameterType="hashmap"
 		id="selectMemberListAdmin">
+<include refid="common.pagingPre"></include>
    <![CDATA[
                  SELECT  ROW_NUMBER() OVER (ORDER BY MEMBER_NUM DESC) RNUM,
                         MEMBER_NUM,
@@ -151,6 +152,7 @@ SELECT	MEMBER_PW
                 FROM MEMBER
                 WHERE MEMBER_DEL_GB = 'N'
    ]]>
+<include refid="common.pagingPost"></include>
 	</select>
 
 
@@ -199,6 +201,7 @@ SELECT	MEMBER_PW
 	<!-- 탈퇴 회원 전체 목록 -->
 	<select resultType="hashmap" parameterType="hashmap"
 		id="selectMemberList">
+		<include refid="common.pagingPre"></include>
    <![CDATA[
                  SELECT  ROW_NUMBER() OVER (ORDER BY MEMBER_NUM DESC) RNUM,
                         MEMBER_NUM,
@@ -214,6 +217,7 @@ SELECT	MEMBER_PW
                 FROM MEMBER
                 WHERE MEMBER_DEL_GB = 'Y' 
    ]]>
+   <include refid="common.pagingPost"></include>
 	</select>
 
 
@@ -222,6 +226,7 @@ SELECT	MEMBER_PW
 <![CDATA[
 		SELECT *
 		FROM MEMBER
+		WHERE MEMBER_ID = #{MEMBER_ID} 
 ]]>
 	</select>
 
