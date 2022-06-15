@@ -87,7 +87,7 @@
 													<td style="text-align: center; vertical-align: middle;">${qna.GOODS_TITLE}</td>
 
 													<td style="text-align: center; vertical-align: middle;"><a
-													href="/ezenwood/admin/qnadetail/${qna.QNA_NUM}/${qna.QNA_TYPE}">${qna.QNA_TITLE}</a></td>
+													href="/ezenwood/admin/qnadetail/${qna.QNA_NUM}">${qna.QNA_TITLE}</a></td>
 													<td style="text-align: center; vertical-align: middle;">${qna.QNA_WRITER}</td>
 													<td style="text-align: center; vertical-align: middle;">${qna.QNA_RE_GB}</td>
 													<td style="text-align: center; vertical-align: middle;">${qna.QNA_DATE}</td>
@@ -104,30 +104,12 @@
 									</table>
 								</div>
 							</div>
-
-							<!--검색 기능-->
-							<div class="row">
-								<div style="text-align: center;">
-									<div id="dataTables-example_filter" class="dataTables_filter">
-										<form action="">
-											<select class="form-control" name="searchNum" id="searchNum">
-												<option value="0">작성자</option>
-											</select> <input class="form-control" type="text" name="isSearch"
-												id="isSearch"> <span>
-												<button type="submit" class="btn btn-default">검색</button>
-											</span>
-										</form>
-									</div>
-								</div>
-							</div>
 						</div>
 					</div>
 				</div>
 			</div>
 
 		</div>
-	</div>
-
 	</div>
 </body>
 </html>
