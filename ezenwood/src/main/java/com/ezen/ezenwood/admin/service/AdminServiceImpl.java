@@ -180,7 +180,8 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminMemberUpdate(Map<String, Object> map) throws Exception {
-		return adminDAO.adminMemberUpdate(map);
+		int checkNum = adminDAO.adminMemberUpdate(map);
+		return checkNum;
 	}
 
 	@Override

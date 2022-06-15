@@ -45,7 +45,7 @@
 					<div class="row" style="margin-bottom:5px;">
 						
 							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite" style="text-align:right;">
-							총 회원수 : ${totalCount}</div>
+							총 회원수 : ${TOTAL_COUNT}</div>
 						
 					</div>
 					<div class="row">
@@ -72,12 +72,12 @@
                                                       <tr>
                                                         	<td>${row.MEMBER_NUM }</td>
                                                         	<td>
-                                                        	<a href="/ezenwood/admin/memberUpdate/${row.MEMBER_ID}">${row.MEMBER_ID }</a>
+                                                        	<a href="/ezenwood/admin/member/${row.MEMBER_ID}">${row.MEMBER_ID }</a>
                                                         	</td>
                                                         	<td>${row.MEMBER_NAME }</td>
                                                         	<td>${row.MEMBER_PHONE }</td>
                                                         	<td>${row.MEMBER_EMAIL }</td>
-                                                        	<td>${row.MEMBER_ADD1}&nbsp;${row.MEMBER_ADD2}</td>
+                                                        	<td>${row.MEMBER_ADD1}${row.MEMBER_ADD2}${row.MEMBER_ADD3}</td>
                                                             <td><fmt:formatDate value="${row.MEMBER_JOINDATE }" type="both" dateStyle="medium" timeStyle="medium" /></td>
                                                             <td>${row.MEMBER_DEL_GB }</td>
                                                         </tr>

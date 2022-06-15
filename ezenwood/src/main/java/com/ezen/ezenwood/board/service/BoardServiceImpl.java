@@ -102,20 +102,21 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public Map<String, Object> getNoticeDetail(Map<String, Object> map) {
-		Map<String, Object> resultMap = boardDAO.getNoticeDetail(map);
+	public Map<String, Object> getNoticeDetail(Map<String, Object> insertMap) {
 		
-		map.put("IMAGE_TABLENAMES_TABLENAME", "NOTICE");
-		map.put("IMAGE_PARENT", map.get("NOTICE_NUM"));
-		
-		String NOTICE_IMAGE = imageDAO.selectImage(map);
-		resultMap.put("NOTICE_IMAGE", NOTICE_IMAGE);
-		
-		return resultMap;
+			insertMap.put("IMAGE_TABLENAMES_TABLENAME", "NOTICE");
+			insertMap.put("IMAGE_PARENT", insertMap.get("NOTICE_NUM"));
+			
+			Map<String, Object> resultMap = boardDAO.getNoticeDetail(insertMap);
+			String NOTICE_IMAGE = imageDAO.selectImage(insertMap);
+			
+			resultMap.put("NOTICE_IMAGE", NOTICE_IMAGE);
+
+			return resultMap;
+		}
+
 	}
+	
 
 	
 
-
-
-}

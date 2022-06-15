@@ -43,7 +43,7 @@
 				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite" style="text-align:right;">탈퇴 회원수 : ${totalCount}</div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite" style="text-align:right;">탈퇴 회원수 : ${TOTAL_COUNT}</div>
 						
 						
 					</div>
