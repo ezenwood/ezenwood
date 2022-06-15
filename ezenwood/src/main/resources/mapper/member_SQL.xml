@@ -222,7 +222,7 @@ SELECT	MEMBER_PW
 
 
 	<!-- 회원 정보 상세 보기 -->
-	<select id="selectOneByMemberNumAdmin">
+	<select id="selectOneByMemberNumAdmin" resultType="hashmap" parameterType="hashmap">
 <![CDATA[
 		SELECT *
 		FROM MEMBER
@@ -232,21 +232,22 @@ SELECT	MEMBER_PW
 
 
 	<!-- 회원 정보 수정 -->
-	<select id="selectOneByMemberIdADMIN">
+	<update id="selectOneByMemberIdADMIN" parameterType="hashmap">
 <![CDATA[
 	UPDATE MEMBER
         SET
+        	MEMBER_ID = #{MEMBER_ID},
         	MEMBER_PW = #{MEMBER_PW},
         	MEMBER_NAME = #{MEMBER_NAME},
         	MEMBER_PHONE = #{MEMBER_PHONE},
         	MEMBER_EMAIL = #{MEMBER_EMAIL},
-        	MEMBER_ZIPCODE = #{MEMBER_ZIPCODE},
+        	MEMBER_ZIP = #{MEMBER_ZIP},
         	MEMBER_ADD1 = #{MEMBER_ADD1},
         	MEMBER_ADD2 = #{MEMBER_ADD2},
         	MEMBER_ADD3 = #{MEMBER_ADD3}
     	WHERE MEMBER_ID = #{MEMBER_ID}
 ]]>
-	</select>
+	</update>
 
 
 	<!-- 회원 탈퇴 처리 -->

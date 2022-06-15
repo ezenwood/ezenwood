@@ -43,30 +43,25 @@
                                 <div class="board_view_attach">
                                     <strong>첨부파일</strong>
                                     <span class="attach_list">
-                                        <a href="#">파일 이름</a>
+                                        <a href="/ezenwood/resource/image/${noticeMap.NOTICE_IMAGE}">파일 이름</a>
                                     </span>
                                 </div>
                                 <div class="board_view_content">
                                     <div class="seem_cont">                                        
                                         <div style="margin: 10px 0 10px 0">
-                                  <%--       <c:if test="${noticeMap.NOTICE_IMAGE !=null }">
+<%--                                          <c:if test="${noticeMap.NOTICE_IMAGE !=null }">
                                          <img  src="/ezenwood/resource/image/${noticeMap.NOTICE_IMAGE}"  style="max-width: 700px">
                                         </c:if> --%>
-                                           
-                                            ${noticeMap.NOTICE_CONTENT }
+                                           	${noticeMap.NOTICE_CONTENT }
                                         </div>
-                                        
+                                        <tr class="attach displaynone">
+														<th scope="row">이미지파일</th>
+														<td><img src="/ezenwood/resource/image/${noticeMap.NOTICE_IMAGE}" alt="Missing Image"></td>
                                     </div>
                                     <!--//seem_cont-->
                                 </div>
                                 <!--//board_view_content-->
-                                <div class="board_view_comment">
-                                    <div class="view_comment js_comment_area">
-                                        <div class="view_comment_top">
-
-                                        </div>
-                                    </div>
-                                </div>
+                                
                             </div>
                             <!--//board_zone_view-->
                             <div class="btn_right_box">

@@ -4,7 +4,7 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title>이젠 우드 - 관리제 페이지</title>
+    <title>이젠 우드 - 관리자 페이지</title>
     <link href="css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
     <script type="text/javascript" src="bootstrap/jquery.min.js"></script>
     <script type="text/javascript" src="bootstrap/bootstrap.min.js"></script>
@@ -83,18 +83,18 @@
 	<div class="panel panel-default">
 		<div class="panel-heading">회원정보수정 페이지입니다.</div>
 			<div class="panel-body">
-						
+						<form method="post" enctype="multipart/form-data">
                         <div class="form-group">
                             <label>아이디</label>
-                            <input type="text" class="form-control" path="MEMBER_ID" placeholder="${MEMBER_ID }" style="width:40%;" disabled>
+                            <input type="text" class="form-control" name="MEMBER_ID" value="${memberUpdateMap.MEMBER_ID }" style="width:40%;" disabled>
                         </div>
                         
                         <div class="form-group">
                             <label>비밀번호</label>
-                             <input type="text" name="password" class="form-control" path="MEMBER_PW" placeholder="" style="width:40%;" disabled>
+                             <input type="text" name="MEMBER_PW" class="form-control" value="${memberUpdateMap.MEMBER_PW }" style="width:40%;">
                           </div>
                             <div class="form-group">
-                       <label>이름</label><input type="text" class="form-control" path="member_name" placeholder="" style="width:20%;">
+                       <label>이름</label><input type="text" class="form-control" name="MEMBER_NAME" value="${memberUpdateMap.MEMBER_NAME }" style="width:20%;">
                                </div>
     
                         <div class="form-group">                            
@@ -105,8 +105,8 @@
                                             <td><select option_product_no="#" option_select_element="option-select-finder" option_sort_no="1" option_type="T" item_listing_type="C" option_title="DESIGN" product_type="member_del_gb" product_option_area="#" name="option1" id="member_del_gb" class="ProductOption0" option_style="select" required="true">
                                                   
                                                     <optgroup label="선택해주세요">
-                                                        <option value="#"> N </option>
-                                                        <option value="#"> Y </option>
+                                                        <option value="no"> N </option>
+                                                        <option value="yes"> Y </option>
                                                  
                                                     </optgroup>
                                                 </select>
@@ -118,30 +118,29 @@
                                
                         <div class="form-group">
                             <label>전화번호</label>
-                            <input type="text" class="form-control" path="member_phone" style="width:40%;"
-                            placeholder="010-1234-1234">
+                            <input type="text" class="form-control" name="MEMBER_PHONE" style="width:40%;"
+                            placeholder="01011112222" value="${memberUpdateMap.MEMBER_PHONE }">
                         </div>
                            <div class="form-group">
                             <label>이메일</label>
-                            <input type="text" class="form-control" path="member_email" style="width:40%;"
-                            placeholder="직접 입력하세요.">
+                            <input type="text" class="form-control" name="MEMBER_EMAIL" style="width:40%;"
+                            placeholder="aaa@aaa.com" value="${memberUpdateMap.MEMBER_EMAIL }">
                         </div>
                         <div class="form-group">
                             <label>주소</label>
-                            <input type="text" id="sample4_postcode"
-										placeholder="우편번호"> <input type="button"
+                            <input type="text" id="sample4_postcode" name="MEMBER_ZIP" placeholder="우편번호" value="${memberUpdateMap.MEMBER_ZIP }"> <input type="button"
+                            
 										onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
-										<input type="text" id="sample4_roadAddress"
-										placeholder="도로명주소"> <input type="text"
-										id="sample4_jibunAddress" placeholder="지번주소"> <span
-										id="guide" style="color: #999; display: none"></span><br> <input
-										type="text" id="sample4_detailAddress" placeholder="상세주소">
-										<input type="text" id="sample4_extraAddress"
-										placeholder="참고항목">
+										<input type="text" id="sample4_roadAddress" name="MEMBER_ADD1" placeholder="도로명주소" value="${memberUpdateMap.MEMBER_ADD1}"> 
+										<input type="text" id="sample4_jibunAddress"  placeholder="지번주소" value="${memberUpdateMap.MEMBER_ADD1}"> 
+										<span id="guide" style="color: #999; display: none"></span><br> 
+										<input type="text" id="sample4_detailAddress" name="MEMBER_ADD2" placeholder="상세주소" value="${memberUpdateMap.MEMBER_ADD2}">
+										<input type="text" id="sample4_extraAddress" name="MEMBER_ADD3" placeholder="참고항목" value="${memberUpdateMap.MEMBER_ADD3}">
                         </div>
           
 						<button type="submit" class="btn btn-success">회원수정</button>
-						<button type="reset" class="btn btn-default">작성취소</button>					
+						<button class="btn btn-default" onclick="location.href='/ezenwood/admin/memberList/1'">작성취소</button>
+						</form>
 			</div>
 	</div>
 	</div>

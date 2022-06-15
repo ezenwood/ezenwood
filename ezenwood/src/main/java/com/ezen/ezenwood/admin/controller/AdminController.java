@@ -47,10 +47,8 @@ public class AdminController {
 		String category = request.getParameter("isSearch");
 		String currentPageNum = request.getParameter("searchNum");
 
-		
-		if(category==null) {
-			category="6";
-			
+		if (category == null) {
+			category = "6";
 
 		}
 		if (currentPageNum == null) {
@@ -98,22 +96,21 @@ public class AdminController {
 
 		return "admin/goods/goodsmodify";
 	}
-	
-	@RequestMapping(value ="/goods/{GOODS_NUM}" ,method = RequestMethod.POST )
-	public String goodsUpdate(@PathVariable String GOODS_NUM, CommandMap commandMap, HttpServletRequest request) throws Exception{
-		
+
+	@RequestMapping(value = "/goods/{GOODS_NUM}", method = RequestMethod.POST)
+	public String goodsUpdate(@PathVariable String GOODS_NUM, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
+
 		Map<String, Object> insertMap = commandMap.getMap();
 		insertMap.put("GOODS_NUM", GOODS_NUM);
 		insertMap.put("request", request);
-		
+
 		int checkNum = adminService.adminGoodsUpdate(insertMap);
 		//
-		
+
 		return "redirect:/admin/goods";
 	}
-	
 
-  
 	// 상품 등록하기 (insert)
 	@RequestMapping(value = "/goods/write", method = RequestMethod.GET)
 	public String goodsinsertForm() throws Exception {
@@ -158,112 +155,112 @@ public class AdminController {
 	// member
 	// 회원 리스트 보기
 	@RequestMapping(value = "/memberList/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView adminMemberList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
-			throws Exception {
+	   public ModelAndView adminMemberList(@PathVariable int pageNum,Model model, HttpServletRequest request)
+	         throws Exception {
 
-		ModelAndView mav = new ModelAndView();
+	      ModelAndView mav = new ModelAndView();
 
-		Map<String, Object> insertMap = new HashMap<String, Object>();
+	      Map<String, Object> insertMap = new HashMap<String, Object>();
 
-		PaginationInfo paginationInfo = new PaginationInfo();
+	      PaginationInfo paginationInfo = new PaginationInfo();
 
-		// 현재 페이지 번호
-		paginationInfo.setCurrentPageNo(pageNum);
-		// 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setRecordCountPerPage(9);
-		// 페이징 리스트의 사이즈
-		paginationInfo.setPageSize(5);
+	      // 현재 페이지 번호
+	      paginationInfo.setCurrentPageNo(pageNum);
+	      // 한 페이지에 게시되는 게시물 건수
+	      paginationInfo.setRecordCountPerPage(9);
+	      // 페이징 리스트의 사이즈
+	      paginationInfo.setPageSize(5);
 
-		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
+	      insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+	      insertMap.put("END", paginationInfo.getLastRecordIndex());
 
-		List<Map<String, Object>> adminMemberListMap = adminService.adminMemberList(insertMap);
-		mav.addObject("adminMemberListMap", adminMemberListMap);
+	      List<Map<String, Object>> adminMemberListMap = adminService.adminMemberList(insertMap);
 
-		int totalCount = 0;
+	      model.addAttribute("adminMemberListMap", adminMemberListMap);
 
-		if (adminMemberListMap.isEmpty()) {
+	      if (adminMemberListMap.isEmpty()) {
 
-		} else {
-			totalCount = ((BigDecimal) adminMemberListMap.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo", paginationInfo);
+	      } else {
 
-		}
+	         paginationInfo.setTotalRecordCount(((BigDecimal) adminMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
 
-		mav.setViewName("admin/member/memberList");
-		return mav;
-	}
+	         model.addAttribute("TOTAL_COUNT", ((BigDecimal) adminMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
+
+	         model.addAttribute("paginationInfo", paginationInfo);
+	      }
+
+
+	      mav.setViewName("admin/member/memberList");
+	      return mav;
+	   }
+
 
 	// 탈퇴 회원 보기
-	@RequestMapping(value = "/delmemberList/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView delmemberList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
-			throws Exception {
+	   @RequestMapping(value = "/delmemberList/{pageNum}", method = RequestMethod.GET)
+	   public ModelAndView delmemberList(@PathVariable int pageNum, Model model,HttpServletRequest request)
+	         throws Exception {
 
-		ModelAndView mav = new ModelAndView();
+	      ModelAndView mav = new ModelAndView();
+
+	      Map<String, Object> insertMap = new HashMap<String, Object>();
+
+	      PaginationInfo paginationInfo = new PaginationInfo();
+
+	      // 현재 페이지 번호
+	      paginationInfo.setCurrentPageNo(pageNum);
+	      // 한 페이지에 게시되는 게시물 건수
+	      paginationInfo.setRecordCountPerPage(9);
+	      // 페이징 리스트의 사이즈
+	      paginationInfo.setPageSize(5);
+
+	      insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+	      insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+	      List<Map<String, Object>> adminDelMemberListMap = adminService.adminDelMemberList(insertMap);
+
+	      model.addAttribute("adminDelMemberListMap", adminDelMemberListMap);
+
+	      if (adminDelMemberListMap.isEmpty()) {
+
+	      } else {
+
+	         paginationInfo.setTotalRecordCount(((BigDecimal) adminDelMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
+
+	         model.addAttribute("TOTAL_COUNT", ((BigDecimal) adminDelMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
+
+	         model.addAttribute("paginationInfo", paginationInfo);
+	      }
+
+	      mav.setViewName("admin/member/DelmemberList");
+	      return mav;
+
+	   }
+
+	// 회원 정보 수정
+	@RequestMapping(value="/member/{MEMBER_ID}", method = RequestMethod.GET) 
+	public String memberUpdateDetail(@PathVariable String MEMBER_ID, Model model) throws Exception {
+
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("MEMBER_ID", MEMBER_ID);
 
-		PaginationInfo paginationInfo = new PaginationInfo();
+		Map<String, Object> memberUpdateMap = adminService.adminMemberDetail(insertMap);
 
-		// 현재 페이지 번호
-		paginationInfo.setCurrentPageNo(pageNum);
-		// 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setRecordCountPerPage(9);
-		// 페이징 리스트의 사이즈
-		paginationInfo.setPageSize(5);
+		model.addAttribute("memberUpdateMap", memberUpdateMap);
 
-		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
-
-		List<Map<String, Object>> adminDelMemberListMap = adminService.adminDelMemberList(insertMap);
-		mav.addObject("adminDelMemberListMap", adminDelMemberListMap);
-
-		int totalCount = 0;
-
-		if (adminDelMemberListMap.isEmpty()) {
-
-		} else {
-			totalCount = ((BigDecimal) adminDelMemberListMap.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo", paginationInfo);
-
-		}
-
-		mav.setViewName("admin/member/DelmemberList");
-		return mav;
+		return "admin/member/memberUpdateForm"; 
+	}
+	
+	@RequestMapping(value = "/member/{MEMBER_ID}", method = RequestMethod.POST)
+	public String memberUpdate(@PathVariable String MEMBER_ID, CommandMap commandMap, HttpServletRequest request) throws Exception {
+		Map<String, Object> insertMap = commandMap.getMap();
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+		insertMap.put("request", request);
+		int checkNum = adminService.adminMemberUpdate(insertMap);
+		return "redirect:/admin/memberList/1";
 
 	}
 	
-		//수정
-		@RequestMapping(value = "/memberUpdate/{MEMBER_ID}", method = RequestMethod.GET)
-		public ModelAndView memberUpdateForm(@PathVariable String MEMBER_ID) throws Exception {
-			ModelAndView mav = new ModelAndView();
-				
-			mav.addObject("MEMBER_ID", MEMBER_ID);
-			System.out.println(MEMBER_ID);
-			mav.setViewName("admin/member/memberUpdateForm");
-			return mav;
-		}
-
-		@RequestMapping(value = "/memberUpdate/{MEMBER_ID}", method = RequestMethod.POST)
-		public ModelAndView memberUpdate(CommandMap commandMap) throws Exception {
-			ModelAndView mav = new ModelAndView();
-
-			int resultMap = adminService.adminMemberUpdate(commandMap.getMap());
-
-			mav.addObject(resultMap);
-
-			mav.setViewName("admin/member/memberList");
-			return mav;
-		}
-
-	/*
-	 * // 회원 삭제하기
-	 * 
-	 * @RequestMapping(value = "") public String memberDelete() throws Exception {
-	 * return null; }
-	 */
 
 	/*
 	 * // order // 주문 리스트보기
@@ -345,6 +342,7 @@ public class AdminController {
 
 		mav.setViewName("/admin/notice/noticeDetail");
 		return mav;
+
 	}
 
 	// 공지사항 수정하기 (update) (GET)
@@ -573,119 +571,109 @@ public class AdminController {
 		return mav;
 	}
 
-	
-	  //OneToOne // 일대일문의 리스트 보기
-	  
-	  @RequestMapping(value = "/oto/{pageNum}")
-	  public ModelAndView otoList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
-				throws Exception {
+	// OneToOne // 일대일문의 리스트 보기
 
-			ModelAndView mv = new ModelAndView();
+	@RequestMapping(value = "/oto/{pageNum}")
+	public ModelAndView otoList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
 
-			Map<String, Object> insertMap = new HashMap<String, Object>();
+		ModelAndView mv = new ModelAndView();
 
-			PaginationInfo paginationInfo = new PaginationInfo();
+		Map<String, Object> insertMap = new HashMap<String, Object>();
 
-			// 현재 페이지 번호
-			paginationInfo.setCurrentPageNo(pageNum);
-			// 한 페이지에 게시되는 게시물 건수
-			paginationInfo.setRecordCountPerPage(9);
-			// 페이징 리스트의 사이즈
-			paginationInfo.setPageSize(5);
+		PaginationInfo paginationInfo = new PaginationInfo();
 
-			insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-			insertMap.put("END", paginationInfo.getLastRecordIndex());
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
 
-			List<Map<String, Object>> list = adminService.adminOTOList(insertMap);
-			mv.addObject("list", list);
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
 
-			int totalCount = 0;
+		List<Map<String, Object>> list = adminService.adminOTOList(insertMap);
+		mv.addObject("list", list);
 
-			if (list.isEmpty()) {
+		int totalCount = 0;
 
-			} else {
-				totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
-				paginationInfo.setTotalRecordCount(totalCount);
-				mv.addObject("paginationInfo", paginationInfo);
+		if (list.isEmpty()) {
 
-			}
+		} else {
+			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mv.addObject("paginationInfo", paginationInfo);
 
-			mv.setViewName("/admin/oto/otoList");
-			return mv;
 		}
-	  
-	  
-	  // 일대일 문의 디테일 보기
-	  
-	  @RequestMapping(value = "/otoDetail/{OTONum}")
-	  public ModelAndView otoDetail(@PathVariable String OTONum) throws Exception {
-		  ModelAndView mav = new ModelAndView();
-			Map<String, Object> insertMap = new HashMap<String, Object>();
 
-			String ONETOONE_NUM = OTONum;
-			insertMap.put("ONETOONE_NUM", ONETOONE_NUM);
-			
-			String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
-			insertMap.put("MEMBER_ID", MEMBER_ID);
-			
-			Map<String, Object> resultMap = adminService.adminOTODetailQ(insertMap);
-				
-			mav.addObject("QOTOMap", resultMap);
+		mv.setViewName("/admin/oto/otoList");
+		return mv;
+	}
 
-			Map<String, Object> resultMapa = adminService.adminOTODetailA(insertMap);
+	// 일대일 문의 디테일 보기
 
-			mav.addObject("AOTOMap", resultMapa);
-			mav.setViewName("/admin/oto/otoDetail");
-			
-			return mav;
-		}
-		  
-	  
-	  
-	  
-	  // 일대일문의 답글 달기 (insert)
-	  
-	  @RequestMapping(value = "/oto/write")
-	  public String otoReply() throws Exception {
-	  
-		  return null; 
-	  }
-	  
-	  
-	  
-	 /* // 일대일문의 수정하기 (update)
-	  
-	  @RequestMapping(value = "/oto/update")
-	  public String otoReplyUpdate() throws Exception {
-	  
-		  return null; 
-	  }
-	  
-	  */
-	  
-	  // 일대일 문의 삭제하기 (delete)
-	  
-	  @RequestMapping(value = "/oto/del/{otoNum}", method=RequestMethod.GET)
-	  public ModelAndView otoReplyDelete(@PathVariable String otoNum) throws Exception {
-		  ModelAndView mav = new ModelAndView();
+	@RequestMapping(value = "/otoDetail/{OTONum}")
+	public ModelAndView otoDetail(@PathVariable String OTONum) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> insertMap = new HashMap<String, Object>();
 
-			Map<String, Object> insertMap = new HashMap<String, Object>();
+		String ONETOONE_NUM = OTONum;
+		insertMap.put("ONETOONE_NUM", ONETOONE_NUM);
 
-			String ONETOONE_NUM = otoNum;
-			
-			String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
-			insertMap.put("MEMBER_ID", MEMBER_ID);
-			
+		String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
+		insertMap.put("MEMBER_ID", MEMBER_ID);
 
-			insertMap.put("ONETOONE_NUM", ONETOONE_NUM);
-			int resultMap = adminService.adminOTODelete(insertMap);
+		Map<String, Object> resultMap = adminService.adminOTODetailQ(insertMap);
 
-			mav.addObject(resultMap);
-			mav.setViewName("/admin/oto/otoList");
-			return mav;
-	  }
-	  
-	 
+		mav.addObject("QOTOMap", resultMap);
+
+		Map<String, Object> resultMapa = adminService.adminOTODetailA(insertMap);
+
+		mav.addObject("AOTOMap", resultMapa);
+		mav.setViewName("/admin/oto/otoDetail");
+
+		return mav;
+	}
+
+	// 일대일문의 답글 달기 (insert)
+
+	@RequestMapping(value = "/oto/write")
+	public String otoReply() throws Exception {
+
+		return null;
+	}
+
+	/*
+	 * // 일대일문의 수정하기 (update)
+	 * 
+	 * @RequestMapping(value = "/oto/update") public String otoReplyUpdate() throws
+	 * Exception {
+	 * 
+	 * return null; }
+	 * 
+	 */
+
+	// 일대일 문의 삭제하기 (delete)
+
+	@RequestMapping(value = "/oto/del/{otoNum}", method = RequestMethod.GET)
+	public ModelAndView otoReplyDelete(@PathVariable String otoNum) throws Exception {
+		ModelAndView mav = new ModelAndView();
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		String ONETOONE_NUM = otoNum;
+
+		String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+
+		insertMap.put("ONETOONE_NUM", ONETOONE_NUM);
+		int resultMap = adminService.adminOTODelete(insertMap);
+
+		mav.addObject(resultMap);
+		mav.setViewName("/admin/oto/otoList");
+		return mav;
+	}
 
 	// fq
 	// 자주묻는질문 리스트보기
