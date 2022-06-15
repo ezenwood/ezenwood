@@ -21,7 +21,7 @@ QNA_SECREATE,
 QNA_DATE,
 QNA_DEL_GB
 FROM QNA
-WHERE QNA_DEL_GB = 'N'
+WHERE QNA_DEL_GB = 'N'AND QNA_TYPE = 'Q'
 ]]>
 		<include refid="common.pagingPost"></include>
 	</select>
@@ -240,6 +240,17 @@ qna_secreat = 'n'
 
 ]]>
 	</update>
+	
+	<select id="selectSecret" parameterType="String"
+		resultType="String">
+	<![CDATA[
+
+SELECT QNA_SECREATE
+FROM QNA
+WHERE QNA_NUM = #{QNA_NUM};
+
+]]>
+	</select>
 
 
 	<!-- 고객 QNA수정 -->
@@ -285,17 +296,25 @@ INSERT INTO QNA(
     VALUES(
     SEQ_QNA_NUM.NEXTVAL,
     #{QNA_TITLE},
-    (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}),
-    #{QNA_WRITER},
-    #{QNA_RE_GB},// 'Y'
+    (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID}),
+    'Y',
     #{QNA_CONTENT},
-    #{QNA_PARENT},
+    #{QNA_NUM},
     'A',
-    #{QNA_SECREAT},
+    #{QNA_SECREATE},
     sysdate,
     'N')
 ]]>
 	</insert>
+
+<update id="adminQNAcheck" parameterType="String">
+<![CDATA[
+UPDATE QNA 
+SET QNA_RE_GB = 'Y' 
+WHERE QNA_NUM = #{QNA_NUM}
+]]>
+</update>
+
 
 
 	<!-- 관리자QNA수정 -->
@@ -307,7 +326,8 @@ SET
 	QNA_TITLE = #{QNA_TITLE},
 	QNA_CONTENT = #{QNA_CONTENT}
 WHERE 
-	QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBERS WHERE MEMBER_ID = #{MEMBER_ID})
+	QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID})
+AND QNA_PARENT = #{QNA_NUM}
 
 ]]>
 	</update>
@@ -319,8 +339,9 @@ WHERE
 
 UPDATE QNA
 SET
-#{QNA_DEL_GB} = 'Y'
-WHERE #{QNA_WRITER} = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
+QNA_DEL_GB = 'Y'
+WHERE QNA_WRITER = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID=#{MEMBER_ID})
+AND QNA_PARENT = #{QNA_NUM}
 
 ]]>
 	</update>

@@ -20,6 +20,7 @@ ONETOONE_MEMBER_NUM,
 ONETOONE_RE_GB
 FROM ONETOONE
 WHERE ONETOONE_DEL_GB = 'N'
+AND ONETOONE_TYPE = 'Q'
 
 ]]>
 <include refid="common.pagingPost"/> 
@@ -143,6 +144,7 @@ INSERT INTO ONETOONE(
     ONETOONE_DATE,
     ONETOONE_DEL_GB,
     ONETOONE_TYPE,
+    ONETOONE_RE_GB,
     ONETOONE_PARENT)
     VALUES(
     SEQ_ONETOONE_NUM.NEXTVAL,
@@ -152,10 +154,20 @@ INSERT INTO ONETOONE(
     sysdate,
     'N',
     'A',
-    #{ONETOONE_NUM});
+    'Y',
+    #{ONETOONE_NUM})
 
 ]]>
 </insert>
+
+<!--  관리자 OTO답변 확인 -->
+<update id="OTOcheck" parameterType="String">
+<![CDATA[
+UPDATE ONETOONE 
+SET ONETOONE_RE_GB = 'Y' 
+WHERE ONETOONE_NUM = #{ONETOONE_NUM}
+]]>
+</update>
 
 
 <!-- 관리자/고객 OTO수정 -->

@@ -37,8 +37,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Resource(name = "GoodsDAO")
 	GoodsDAOImpl goodsDAO;
-	
-	
+
 	// goods
 
 	@Override
@@ -76,58 +75,48 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminGoodsUpdate(Map<String, Object> map) throws Exception {
-		
+
 		int checkNum = adminDAO.adminGoodsUpdate(map);
-		
-		//image 
-	
-		if(checkNum==1) {
+
+		// image
+
+		if (checkNum == 1) {
 			ImageSaver imageSaver = new ImageSaver();
 			imageSaver.updateGoods(map);
 			map.put("IMAGE_TABLENAMES_TABLENAME", "GOODS");
 			map.put("IMAGE_PARENT", map.get("GOODS_NUM"));
-			
-			//subImage
-			
-			if(map.get("noSubImage").equals("1")) {
-				//empty subImage
-			}else {
-				if(map.get("newSubImage").equals("1")) {
-					//insert subImage
+
+			// subImage
+
+			if (map.get("noSubImage").equals("1")) {
+				// empty subImage
+			} else {
+				if (map.get("newSubImage").equals("1")) {
+					// insert subImage
 					subImageDAO.insertGoods(map);
-				}else {
-					//update subImage
+				} else {
+					// update subImage
 					subImageDAO.updateGoods(map);
 				}
 			}
-			
-			
-			//main Image
-			if(map.get("noMainImage").equals("1")) {
-				//empty subImage
-			}else {
-				if(map.get("newMainImage").equals("1")) {
-					//insert subImage
+
+			// main Image
+			if (map.get("noMainImage").equals("1")) {
+				// empty subImage
+			} else {
+				if (map.get("newMainImage").equals("1")) {
+					// insert subImage
 					imageDAO.insertImage(map);
-				}else {
-					//update mainImage
+				} else {
+					// update mainImage
 					imageDAO.updateGoods(map);
 				}
 			}
-			
-			
-			
-			
-		}else {
-			checkNum=0;
+
+		} else {
+			checkNum = 0;
 		}
-		
-		
-		
-		
-		
-		
-		
+
 		return checkNum;
 	}
 
@@ -151,20 +140,18 @@ public class AdminServiceImpl implements AdminService {
 
 			imageSaver.insertGoods(map);
 
-			
-			if(map.get("noSubImage").equals("1")) {
-				//empty subImage
-			}else {
+			if (map.get("noSubImage").equals("1")) {
+				// empty subImage
+			} else {
 				subImageDAO.insertGoods(map);
 			}
-			
-			if(map.get("noMainImage").equals("1")) {
+
+			if (map.get("noMainImage").equals("1")) {
 				// empty MainImage
-				
-			}else {
+
+			} else {
 				imageDAO.insertImage(map);
 			}
-			
 
 		}
 
@@ -174,26 +161,27 @@ public class AdminServiceImpl implements AdminService {
 	// member
 
 	@Override
-	public List<Map<String, Object>> adminMemberList(Map<String, Object> map) throws Exception{
-		
+	public List<Map<String, Object>> adminMemberList(Map<String, Object> map) throws Exception {
+
 		return adminDAO.adminMemberList(map);
 	}
-	
-	public List<Map<String, Object>> adminDelMemberList(Map<String, Object> map) throws Exception{
-		
+
+	public List<Map<String, Object>> adminDelMemberList(Map<String, Object> map) throws Exception {
+
 		return adminDAO.adminDelMemberList(map);
 
 	}
 
 	@Override
 	public Map<String, Object> adminMemberDetail(Map<String, Object> map) throws Exception {
-		
+
 		return adminDAO.adminMemberDetail(map);
 	}
 
 	@Override
 	public int adminMemberUpdate(Map<String, Object> map) throws Exception {
-		return adminDAO.adminMemberUpdate(map);
+		int checkNum = adminDAO.adminMemberUpdate(map);
+		return checkNum;
 	}
 
 	@Override
@@ -302,20 +290,27 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminQNAInsert(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		// 
+		int cheknum = adminDAO.adminQNAInsert(map);
+		
+		if(cheknum == 1) {
+			int QNANUM = (int) map.get("QNA_NUM");
+			adminDAO.adminQNAcheck(QNANUM);
+		}
+		
+		return cheknum;
 	}
 
 	@Override
 	public int adminQNAUpdate(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminQNAUpdate(map);
 	}
 
 	@Override
 	public int adminQNADelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminQNADelete(map);
 	}
 
 	// review
@@ -371,7 +366,7 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Map<String, Object>> adminOTOList(Map<String, Object> map) throws Exception {
 		return adminDAO.adminOTOList(map);
-				
+
 	}
 
 	@Override
@@ -385,7 +380,7 @@ public class AdminServiceImpl implements AdminService {
 
 		return adminDAO.adminOTODetailA(map);
 	}
-	
+
 	@Override
 	public String adminOTODetailB(String ONETOONE_NUM) throws Exception {
 
@@ -406,8 +401,19 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminOTOInsert(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return adminDAO.adminOTOInsert(map);
+		
+		int checknum = adminDAO.adminOTOInsert(map);
+		if (checknum == 1) {
+			int OTONUM = (int) map.get("ONETOONE_NUM");
+			adminDAO.adminOTOcheck(OTONUM);
+		}
+
+		return checknum;
+	}
+
+	@Override
+	public int adminOTOcheck(int ONETOONE_NUM) throws Exception {
+		return adminDAO.adminOTOcheck(ONETOONE_NUM);
 	}
 
 	// fq(자주묻는질문)
@@ -460,7 +466,5 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-
-
 
 }

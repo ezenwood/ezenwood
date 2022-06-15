@@ -155,112 +155,113 @@ public class AdminController {
 	// member
 	// 회원 리스트 보기
 	@RequestMapping(value = "/memberList/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView adminMemberList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
-			throws Exception {
+	   public ModelAndView adminMemberList(@PathVariable int pageNum,Model model, HttpServletRequest request)
+	         throws Exception {
 
-		ModelAndView mav = new ModelAndView();
+	      ModelAndView mav = new ModelAndView();
 
-		Map<String, Object> insertMap = new HashMap<String, Object>();
+	      Map<String, Object> insertMap = new HashMap<String, Object>();
 
-		PaginationInfo paginationInfo = new PaginationInfo();
+	      PaginationInfo paginationInfo = new PaginationInfo();
 
-		// 현재 페이지 번호
-		paginationInfo.setCurrentPageNo(pageNum);
-		// 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setRecordCountPerPage(9);
-		// 페이징 리스트의 사이즈
-		paginationInfo.setPageSize(5);
+	      // 현재 페이지 번호
+	      paginationInfo.setCurrentPageNo(pageNum);
+	      // 한 페이지에 게시되는 게시물 건수
+	      paginationInfo.setRecordCountPerPage(9);
+	      // 페이징 리스트의 사이즈
+	      paginationInfo.setPageSize(5);
 
-		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
+	      insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+	      insertMap.put("END", paginationInfo.getLastRecordIndex());
 
-		List<Map<String, Object>> adminMemberListMap = adminService.adminMemberList(insertMap);
-		mav.addObject("adminMemberListMap", adminMemberListMap);
+	      List<Map<String, Object>> adminMemberListMap = adminService.adminMemberList(insertMap);
 
-		int totalCount = 0;
+	      model.addAttribute("adminMemberListMap", adminMemberListMap);
 
-		if (adminMemberListMap.isEmpty()) {
+	      if (adminMemberListMap.isEmpty()) {
 
-		} else {
-			totalCount = ((BigDecimal) adminMemberListMap.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo", paginationInfo);
+	      } else {
 
-		}
+	         paginationInfo.setTotalRecordCount(((BigDecimal) adminMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
 
-		mav.setViewName("admin/member/memberList");
-		return mav;
-	}
+	         model.addAttribute("TOTAL_COUNT", ((BigDecimal) adminMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
+
+	         model.addAttribute("paginationInfo", paginationInfo);
+	      }
+
+
+	      mav.setViewName("admin/member/memberList");
+	      return mav;
+	   }
+
 
 	// 탈퇴 회원 보기
-	@RequestMapping(value = "/delmemberList/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView delmemberList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
-			throws Exception {
+	   @RequestMapping(value = "/delmemberList/{pageNum}", method = RequestMethod.GET)
+	   public ModelAndView delmemberList(@PathVariable int pageNum, Model model,HttpServletRequest request)
+	         throws Exception {
 
-		ModelAndView mav = new ModelAndView();
+	      ModelAndView mav = new ModelAndView();
+
+	      Map<String, Object> insertMap = new HashMap<String, Object>();
+
+	      PaginationInfo paginationInfo = new PaginationInfo();
+
+	      // 현재 페이지 번호
+	      paginationInfo.setCurrentPageNo(pageNum);
+	      // 한 페이지에 게시되는 게시물 건수
+	      paginationInfo.setRecordCountPerPage(9);
+	      // 페이징 리스트의 사이즈
+	      paginationInfo.setPageSize(5);
+
+	      insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+	      insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+	      List<Map<String, Object>> adminDelMemberListMap = adminService.adminDelMemberList(insertMap);
+
+	      model.addAttribute("adminDelMemberListMap", adminDelMemberListMap);
+
+	      if (adminDelMemberListMap.isEmpty()) {
+
+	      } else {
+
+	         paginationInfo.setTotalRecordCount(((BigDecimal) adminDelMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
+
+	         model.addAttribute("TOTAL_COUNT", ((BigDecimal) adminDelMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
+          
+	         model.addAttribute("paginationInfo", paginationInfo);
+	      }
+
+
+	      mav.setViewName("admin/member/DelmemberList");
+	      return mav;
+
+	   }
+
+	// 회원 정보 수정
+	@RequestMapping(value="/member/{MEMBER_ID}", method = RequestMethod.GET) 
+	public String memberUpdateDetail(@PathVariable String MEMBER_ID, Model model) throws Exception {
+
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("MEMBER_ID", MEMBER_ID);
 
-		PaginationInfo paginationInfo = new PaginationInfo();
+		Map<String, Object> memberUpdateMap = adminService.adminMemberDetail(insertMap);
 
-		// 현재 페이지 번호
-		paginationInfo.setCurrentPageNo(pageNum);
-		// 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setRecordCountPerPage(9);
-		// 페이징 리스트의 사이즈
-		paginationInfo.setPageSize(5);
+		model.addAttribute("memberUpdateMap", memberUpdateMap);
 
-		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
-
-		List<Map<String, Object>> adminDelMemberListMap = adminService.adminDelMemberList(insertMap);
-		mav.addObject("adminDelMemberListMap", adminDelMemberListMap);
-
-		int totalCount = 0;
-
-		if (adminDelMemberListMap.isEmpty()) {
-
-		} else {
-			totalCount = ((BigDecimal) adminDelMemberListMap.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo", paginationInfo);
-
-		}
-
-		mav.setViewName("admin/member/DelmemberList");
-		return mav;
+		return "admin/member/memberUpdateForm"; 
+	}
+	
+	@RequestMapping(value = "/member/{MEMBER_ID}", method = RequestMethod.POST)
+	public String memberUpdate(@PathVariable String MEMBER_ID, CommandMap commandMap, HttpServletRequest request) throws Exception {
+		Map<String, Object> insertMap = commandMap.getMap();
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+		insertMap.put("request", request);
+		int checkNum = adminService.adminMemberUpdate(insertMap);
+		return "redirect:/admin/memberList/1";
 
 	}
-
-	// 수정
-	@RequestMapping(value = "/memberUpdate/{MEMBER_ID}", method = RequestMethod.GET)
-	public ModelAndView memberUpdateForm(@PathVariable String MEMBER_ID) throws Exception {
-		ModelAndView mav = new ModelAndView();
-
-		mav.addObject("MEMBER_ID", MEMBER_ID);
-		System.out.println(MEMBER_ID);
-		mav.setViewName("admin/member/memberUpdateForm");
-		return mav;
-	}
-
-	@RequestMapping(value = "/memberUpdate/{MEMBER_ID}", method = RequestMethod.POST)
-	public ModelAndView memberUpdate(CommandMap commandMap) throws Exception {
-		ModelAndView mav = new ModelAndView();
-
-		int resultMap = adminService.adminMemberUpdate(commandMap.getMap());
-
-		mav.addObject(resultMap);
-
-		mav.setViewName("admin/member/memberList");
-		return mav;
-	}
-
-	/*
-	 * // 회원 삭제하기
-	 * 
-	 * @RequestMapping(value = "") public String memberDelete() throws Exception {
-	 * return null; }
-	 */
+	
 
 	// order // 주문 리스트보기
 
@@ -446,6 +447,7 @@ public class AdminController {
 
 		mav.setViewName("/admin/notice/noticeDetail");
 		return mav;
+
 	}
 
 	// 공지사항 수정하기 (update) (GET)
@@ -468,7 +470,7 @@ public class AdminController {
 
 		mav.addObject(resultMap);
 
-		mav.setViewName("/admin/notice/noticeList");
+		mav.setViewName("redirect:/admin/notice/1");
 		return mav;
 	}
 
@@ -548,53 +550,118 @@ public class AdminController {
 
 	// 큐엔에이 디테일보기
 
-	@RequestMapping(value = "/qnadetail/{QNANum}/{QNAType}")
-	public ModelAndView qnaDetail(@PathVariable int QNANum, @PathVariable String QNAType) throws Exception {
+	@RequestMapping(value = "/qnadetail/{QNANum}")
+	public ModelAndView qnaDetail(@PathVariable int QNANum) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
-		String QNA_TYPE = QNAType;
+		
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("QNA_NUM", QNANum);
-		if (QNA_TYPE.equals("A")) {
+		
 			Map<String, Object> resultMap = adminService.adminQNADetailA(insertMap);
 
-			mav.addObject("QNAMap", resultMap);
+			mav.addObject("AQNAMap", resultMap);
 
 			mav.setViewName("/admin/qna/qnaDetail");
 
-		} else {
-			Map<String, Object> resultMap = adminService.adminQNADetailQ(insertMap);
+		
+			Map<String, Object> resultMapa = adminService.adminQNADetailQ(insertMap);
 
-			mav.addObject("QNAMap", resultMap);
+			mav.addObject("QQNAMap", resultMapa);
 
 			mav.setViewName("/admin/qna/qnaDetail");
-		}
+		
 
 		return mav;
+	}
+	
+	// 큐엔에이 답변등록 (insert)
+
+	@RequestMapping(value = "/qna/writer/{QNANum}/{QNASE}", method = RequestMethod.GET)
+	public String qnaReplyForm(@PathVariable int QNANum,@PathVariable String QNASE, HttpServletRequest request) throws Exception {
+	
+		return "/admin/qna/qnaReplyForm";
 	}
 
 	// 큐엔에이 답변등록 (insert)
 
-	@RequestMapping(value = "/qna/writer")
-	public String qnaReply() throws Exception {
+	@RequestMapping(value = "/qna/writer/{QNANum}/{QNASE}", method = RequestMethod.POST)
+	public ModelAndView qnaReply(CommandMap commandMap,@PathVariable int QNANum,@PathVariable String QNASE, HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
 
-		return null;
+		
+		HttpSession session = request.getSession();
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+
+		String QNA_SECREATE = QNASE;
+		
+		int QNA_NUM = QNANum;
+		
+		commandMap.put("MEMBER_ID", MEMBER_ID);
+		commandMap.put("QNA_SECREATE", QNA_SECREATE);
+		commandMap.put("QNA_NUM", QNA_NUM);
+
+		int insert = adminService.adminQNAInsert(commandMap.getMap());
+		
+
+		mav.addObject(insert);
+		mav.setViewName("redirect:/admin/qna/1");
+		return mav;
 	}
 
 	// 큐엔에이 수정하기 (update)
 
-	@RequestMapping(value = "/qna/update")
-	public String qnaReplyUpdate() throws Exception {
+	@RequestMapping(value = "/qna/update/{qnaNum}", method = RequestMethod.GET)
+	public ModelAndView  qnaReplyUpdateForm(@PathVariable int qnaNum) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		
+		mav.addObject("QNA_NUM", qnaNum);
+		
+		mav.setViewName("/admin/qna/qnaModify");
+		return mav;
+	}
+	
+	// 큐엔에이 수정하기 (update)
 
-		return null;
+	@RequestMapping(value = "/qna/update/{qnaNum}", method = RequestMethod.POST)
+	public ModelAndView  qnaReplyUpdate(@PathVariable int qnaNum,CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
+
+		HttpSession session = request.getSession();
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+		int QNA_NUM = qnaNum;
+		
+		commandMap.put("MEMBER_ID", MEMBER_ID);
+		commandMap.put("QNA_NUM", QNA_NUM);
+		
+		int resultMap = adminService.adminQNAUpdate(commandMap.getMap());
+
+		mav.addObject(resultMap);
+
+		mav.setViewName("redirect:/admin/qnadetail/{qnaNum}");
+		return mav;
 	}
 
 	// 큐엔에이 삭제하기 (delete)
 
-	@RequestMapping(value = "/qna/del")
-	public String qnaDelete() throws Exception {
+	@RequestMapping(value = "/qna/del/{qnaNum}", method = RequestMethod.GET)
+	public ModelAndView  qnaDelete(@PathVariable int qnaNum, HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
 
-		return null;
+		HttpSession session = request.getSession();
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		int QNA_NUM = qnaNum;
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+		insertMap.put("QNA_NUM", QNA_NUM);
+		int resultMap = adminService.adminQNADelete(insertMap);
+
+		mav.addObject(resultMap);
+		mav.setViewName("redirect:/admin/qnadetail/{qnaNum}");
+		return mav;
 	}
 
 	// reivew
@@ -739,13 +806,44 @@ public class AdminController {
 		return mav;
 	}
 
+
+
+	// 일대일문의 답글 달기 폼 (insert)
+
+	@RequestMapping(value = "/oto/writer/{OTONum}", method = RequestMethod.GET)
+	   public String otoReplyForm(@PathVariable int OTONum, HttpServletRequest request) throws Exception {
+	   
+	      return "/admin/oto/otoReplyForm";
+	   }
+
+
 	// 일대일문의 답글 달기 (insert)
 
-	@RequestMapping(value = "/oto/write")
-	public String otoReply() throws Exception {
+	@RequestMapping(value = "/oto/writer/{OTONum}", method = RequestMethod.POST)
+	 public ModelAndView qnaReply(CommandMap commandMap,@PathVariable int OTONum, HttpServletRequest request) throws Exception {
+	      ModelAndView mav = new ModelAndView();
 
-		return null;
-	}
+	      
+	      HttpSession session = request.getSession();
+	      String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+
+	      
+	      
+	      int ONETOONE_NUM = OTONum;
+	    
+	      commandMap.put("MEMBER_ID", MEMBER_ID);
+	      
+	      commandMap.put("ONETOONE_NUM", ONETOONE_NUM);
+
+	      int insert = adminService.adminOTOInsert(commandMap.getMap());
+	      
+
+	      mav.addObject(insert);
+	      mav.setViewName("redirect:/admin/oto/1");
+	      return mav;
+	   }
+
+
 
 	/*
 	 * // 일대일문의 수정하기 (update)
@@ -774,7 +872,10 @@ public class AdminController {
 		int resultMap = adminService.adminOTODelete(insertMap);
 
 		mav.addObject(resultMap);
-		mav.setViewName("/admin/oto/otoList");
+
+
+		mav.setViewName("redirect:/admin/oto/1");
+
 		return mav;
 	}
 
