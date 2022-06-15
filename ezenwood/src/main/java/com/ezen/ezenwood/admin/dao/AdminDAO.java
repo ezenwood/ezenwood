@@ -95,6 +95,8 @@ public interface AdminDAO {
 	
 	public int adminOTOInsert(Map<String,Object> map);
 	
+	public int adminOTOcheck(int ONETOONE_NUM);
+	
 	
 	//
 	

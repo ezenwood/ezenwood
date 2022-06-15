@@ -236,7 +236,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public int adminOTOInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (int) update("onetoone.insertAdmin", map);
+		return (int) insert("onetoone.insertAdmin", map);
+	}
+	
+	 public int adminOTOcheck(int ONETOONE_NUM) {
+		return (int) update("onetoone.OTOcheck", ONETOONE_NUM);
 	}
 	// 자주묻는질문 fq
 
