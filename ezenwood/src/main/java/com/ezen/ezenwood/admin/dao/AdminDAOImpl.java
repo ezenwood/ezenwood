@@ -76,13 +76,13 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public List<Map<String, Object>> adminOrderList(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		return selectList("orders.orderListinsu", map);
 	}
 
 	@Override
 	public Map<String, Object> adminOrderDetail(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return null;
+		return (Map<String, Object>) selectOne("orders.adminOrderDetail", map);
 	}
 
 	@Override
@@ -97,7 +97,15 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	
+	
 	// 공지사항 notice
+
+	@Override
+	public List<Map<String, Object>> orderListByOrderNum(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return selectList("orders.orderListByOrderNum", map);
+	}
 
 	@Override
 	public List<Map<String, Object>> adminNoticeList(Map<String, Object> map) {

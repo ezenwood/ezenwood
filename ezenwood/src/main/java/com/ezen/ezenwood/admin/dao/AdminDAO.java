@@ -41,6 +41,9 @@ public interface AdminDAO {
 	
 	public int adminOrderDelete(Map<String,Object> map);
 	
+	
+	public List<Map<String, Object>> orderListByOrderNum(Map<String, Object> map);
+	
 	//
 	
 	public List<Map<String,Object>> adminNoticeList(Map<String,Object> map);

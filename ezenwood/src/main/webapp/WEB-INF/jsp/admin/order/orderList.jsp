@@ -3,9 +3,82 @@
     <%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
+<%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
+<script type="text/javascript">
+
+
+var ddd = document.location.href;
+
+var idx = ddd.lastIndexOf("=");
+
+var sss = ddd.substring(idx+1);
+
+
+function fn_search(pageNo) {
+	
+	var searchType ='7';
+	
+	if(sss!=null){
+		if(sss.length<3)
+		searchType=sss;
+		}
+	
+	
+	
+	var form = document.createElement("form");
+	
+	form.setAttribute("method","get");
+	
+	form.setAttribute("action","/ezenwood/admin/order");
+	
+	
+	var input_pageNum = document.createElement("input");
+	var input_searchType = document.createElement("input");
+	
+	input_pageNum.setAttribute("type", "hidden");
+	input_pageNum.setAttribute("name", "PageNum");
+	input_pageNum.setAttribute("value", pageNo);
+	
+	input_searchType.setAttribute("type", "hidden");
+	input_searchType.setAttribute("name", "searchType");
+	input_searchType.setAttribute("value", searchType);
+	
+	form.appendChild(input_pageNum); 
+	form.appendChild(input_searchType); 
+	
+	if(ddd.indexOf("searchOption")!=-1){
+		var searchOptionNum = ddd.substring(ddd.indexOf("searchOption")+13,ddd.indexOf("searchOption")+14);
+		var searchKeywordValue = ddd.substring(ddd.lastIndexOf("=")+1);
+		
+		var input_searchOptionNum = document.createElement("input");
+		var input_searchKeywordValue = document.createElement("input");
+		
+		input_searchOptionNum.setAttribute("type", "hidden");
+		input_searchOptionNum.setAttribute("name", "searchOption");
+		input_searchOptionNum.setAttribute("value", searchOptionNum);
+		
+		input_searchKeywordValue.setAttribute("type", "hidden");
+		input_searchKeywordValue.setAttribute("name", "searchKeyword");
+		input_searchKeywordValue.setAttribute("value", searchKeywordValue);
+		
+		form.appendChild(input_searchOptionNum); 
+		form.appendChild(input_searchKeywordValue); 
+	}
+	
+	
+	
+	
+	document.body.appendChild(form);
+	
+	form.submit();
+
+	
+}
+
+</script>
     <meta charset="UTF-8">
     <title>orderList</title>
     <link href="css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
@@ -49,17 +122,17 @@
 							<a href="/ezenwood/admin/orderList?searchNum=0&isSearch="><button type="button" class="btn btn-outline btn-default">전체</button></a>
 							<select class="form-control" name="select" onchange="window.open(value,'_self');">
 								<option value ="">--주문상태--</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=결제대기 중">결제대기 중</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=결제 완료">결제 완료</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=배송준비 중">배송준비 중</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=배송 중">배송 중</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=배송 완료">배송 완료</option>
-								<option value ="/ezenwood/admin/order?searchNum=2&isSearch=결제 취소">결제 취소</option>
+								<option value ="/ezenwood/admin/order?PageNum=1&searchType=1">결제대기 중</option>
+								<option value ="/ezenwood/admin/order?PageNum=1&searchType=2">결제 완료</option>
+								<option value ="/ezenwood/admin/order?PageNum=1&searchType=3">배송준비 중</option>
+								<option value ="/ezenwood/admin/order?PageNum=1&searchType=4">배송 중</option>
+								<option value ="/ezenwood/admin/order?PageNum=1&searchType=5">배송 완료</option>
+								<option value ="/ezenwood/admin/order?PageNum=1&searchType=6">결제 취소</option>
 							
 							</select>													
 						</div>
 						<div class="col-sm-6" style="text-align:right;">
-							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 주문수 :1 </div>
+							<div class="dataTables_info" id="dataTables-example_info" role="status" aria-live="polite">총 주문수 :${TOTAL_COUNT } </div>
 						</div>
 						
 					</div>
@@ -83,20 +156,23 @@
 								</thead>
 								<tbody>
 								
+									<c:forEach items="${orderListMap }" var="orderMap" >
 									<tr class="gradeA even" role="row">
-										<td style="text-align:center;vertical-align:middle;">1234-1</td>										
-										<td style="text-align:center;vertical-align:middle;">112354</td>
-										<td style="text-align:center;vertical-align:middle;">위틀테이블</td>
+										<td style="text-align:center;vertical-align:middle;">${orderMap.ORDERS_NUM }</td>										
+										<td style="text-align:center;vertical-align:middle;">${orderMap.ORDERS_TRACK }</td>
+										<td style="text-align:center;vertical-align:middle;"><a href="/ezenwood/goods?idx=${orderMap.ORDERS_GOODS_NUM }">${orderMap.GOODS_TITLE}</a></td>
 										
-										<td style="text-align:center;vertical-align:middle;">admin</td>
-										<td style="text-align:center;vertical-align:middle;"><fmt:formatNumber value="${orderList.order_sum_money}" type="number"/>19,900</td>
+										<td style="text-align:center;vertical-align:middle;">${orderMap.MEMBER_ID }</td>
+										<td style="text-align:center;vertical-align:middle;">${orderMap.ORDERS_TCOST }</td>
 										
-										<td style="text-align:center;vertical-align:middle;">무통장입금</td>
+										<td style="text-align:center;vertical-align:middle;">${orderMap.ORDERS_PAY }</td>
 										
-										<td style="text-align:center;vertical-align:middle;"><fmt:formatDate value="${orderList.order_date}" pattern="YY.MM.dd HH:mm" />22-05-10</td>
+										<td style="text-align:center;vertical-align:middle;">${orderMap.ADATE }</td>
 										
-										<td style="text-align:center;vertical-align:middle;">배송전</td>										
-										
+										<td style="text-align:center;vertical-align:middle;">${orderMap.DELIVERY_STATUES }</td>										
+										</tr>
+									
+									</c:forEach>
 								
 								<!--  등록된 상품이 없을때 -->
 									<c:if test="${fn:length(orderList) le 0}">
@@ -107,26 +183,22 @@
 						</div>
 					</div>
 					<div class="content-center">
-					<ul class="pagination">
-	                <li class="page-item active" aria-current="page">
-                      <span class="page-link">
-                        1
-                     <span class="sr-only">(current)</span>
-                      </span>
-                    </li>
-	                <li class="page-item"><a class="page-link" href="#">2</a></li>
-	                <li class="page-item"><a class="page-link" href="#">3</a></li>
-                    </ul>
+					<div class="insu" style="margin: 0 auto; text-align: center;">
+									<c:if test="${not empty paginationInfo}">
+										<ui:pagination paginationInfo="${paginationInfo}" type="text"
+											jsFunction="fn_search" />
+									</c:if>
+								</div>
                     </div>
 					<div class="row">
 							<div style="text-align:center;">
 								<div id="dataTables-example_filter" class="dataTables_filter">
-									<form action="">
-									<select class="form-control" name="searchNum" id="searchNum">
-										<option value="0">ID</option>
-										<option value="1">주문 번호</option>
+									<form action="/ezenwood/admin/order">
+									<select class="form-control" name="searchOption" id="searchNum">
+										<option value="1">ID</option>
+										<option value="2">주문 번호</option>
 									</select>
-										<input class="form-control" type="text" name="isSearch" id="isSearch"/>
+										<input class="form-control" type="text" name="searchKeyword" id="isSearch"/>
 										<span>
 										<button type="submit" class="btn btn-default">검색</button>
 										</span>

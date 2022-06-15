@@ -2,28 +2,34 @@ package com.ezen.ezenwood.member;
 
 import java.sql.Timestamp;
 
+import javax.validation.constraints.Pattern;
+
 import org.hibernate.validator.constraints.Email;
+import org.hibernate.validator.constraints.NotBlank;
 import org.hibernate.validator.constraints.NotEmpty;
 
 public class MemberDTO {
 	
 	public int MEMBER_NUM;
-	@NotEmpty
+	@NotBlank(message = "아이디를 입력하지 않았거나 형식이 틀립니다")
+	@Pattern(regexp = "^([a-z0-9]){8,20}$", message = "아이디를 입력하지 않았거나 형식이 틀립니다")
 	public String MEMBER_ID;
-	@NotEmpty
+	@NotBlank(message = "비밀번호는 필수항목입니다.")
+	@Pattern(regexp = "(?=.*[0-9])(?=.*[a-zA-Z])(?=.*\\W)(?=\\S+$).{8,20}")
 	public String MEMBER_PW;
-	@NotEmpty
+	@NotBlank(message = "이름은 필수항목입니다.")
 	public String MEMBER_NAME;
-	@NotEmpty
-	@Email
+	@NotBlank(message = "이메일은 필수항목입니다.")
+	@Email(message = "올바른 이메일 형식이 아닙니다.")
 	public String MEMBER_EMAIL;
-	@NotEmpty
+	@NotBlank(message = "전화번호는 필수항목입니다.")
+	@Pattern(regexp = "^[0-9]{11,11}$")
 	public String MEMBER_PHONE;
-	@NotEmpty
+	@NotBlank(message = "주소는 필수항목입니다.")
 	public String MEMBER_ZIP;
-	@NotEmpty
+	@NotBlank(message = "주소는 필수항목입니다.")
 	public String MEMBER_ADD1;
-	@NotEmpty
+	@NotBlank(message = "주소는 필수항목입니다.")
 	public String MEMBER_ADD2;
 	
 	public String MEMBER_ADD3;

@@ -8,11 +8,11 @@
 	<!-- 로그인 -->
 	<select id="selectId" parameterType="hashmap" resultType="hashmap">
 <![CDATA[
-	SELECT MEMBER_NUM, 
+	SELECT MEMBER_NUM,MEMBER_NAME, 
 	MEMBER_ID,
 	MEMBER_PW, 
 	MEMBER_DEL_GB 
-	FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID} AND MEMBER_DEL_GB = 'N'
+	FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID} AND MEMBER_DEL_GB = 'N' and MEMBER_PW = #{MEMBER_PW}
 ]]>
 	</select>
 	

@@ -1,7 +1,8 @@
 package com.ezen.ezenwood.member.controller;
 
 import java.io.IOException;
-import java.util.ResourceBundle;
+import java.util.HashMap;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -11,8 +12,7 @@ import javax.validation.Valid;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.Errors;
-import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.InitBinder;
+import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -35,14 +35,16 @@ public class JoinController {
 	}
 	
 	@RequestMapping(value = "/signup", method = RequestMethod.POST )
-	public String join(@Valid @ModelAttribute("memberDto") MemberDTO  memberDto, Errors errors) {
-		System.out.println("dsadsa@@@@@@@@@@@@@");
+	public String join(@Valid @ModelAttribute("memberDto") MemberDTO  memberDto, Errors errors,Model model) {
 		
-		ResourceBundle resource = ResourceBundle.getBundle("Message.error");
-		System.out.println("dsadsa@@@@@@@@@@@@@");
 		
 		if(errors.hasErrors()) {
-			System.out.println("ererererererer");
+			Map<String,Object> errorMap = new HashMap<String,Object>();
+			for(FieldError fieldError :errors.getFieldErrors()) {
+				errorMap.put(String.format("vaild_%s", fieldError.getField()), fieldError.getDefaultMessage());
+				
+			}
+			model.addAttribute("errorMap", errorMap);
 			return "member/join/signUp";
 		}
 		

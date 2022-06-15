@@ -207,13 +207,13 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Map<String, Object>> adminOrderList(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return adminDAO.adminOrderList(map);
 	}
 
 	@Override
 	public Map<String, Object> adminOrderDetail(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return null;
+		return adminDAO.adminOrderDetail(map);
 	}
 
 	@Override
@@ -227,8 +227,18 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+	
+	
+	
+	
 
 	// notice
+
+	@Override
+	public List<Map<String, Object>> orderListByOrderNum(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminDAO.orderListByOrderNum(map);
+	}
 
 	@Override
 	public List<Map<String, Object>> adminNoticeList(Map<String, Object> map) throws Exception {
