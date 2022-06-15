@@ -12,7 +12,7 @@
 	rel="stylesheet">
 </head>
 <body>
-<c:set var="contextPath" value="${pageContext.request.contextPath}" />
+	<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 	<%@include file="/include/admin_header.jsp"%>
 	<%@include file="/include/admin_left.jsp"%>
 	<div id="page-wrapper" style="min-height: 703px;">
@@ -107,9 +107,9 @@
 	</div>
 	<div style="text-align: center">
 		<br> <input type="hidden" value="${QOTOMap.ONETOONE_NUM}"
-			name="NOTICE_NUM">
+			name="ONETOONE_NUM">
 		<button type="button" class="btn btn-success"
-			onclick="location.href='${contextPath}/admin/oto/otoReplyForm/${QOTOMap.ONETOONE_NUM}'">답변</button>
+			onclick="location.href='${contextPath}/admin/oto/writer/${QOTOMap.ONETOONE_NUM}/${QOTOMap.OTO_SECREATE}'">답변</button>
 		<button type="reset" class="btn btn-default"
 			onclick="location.href='${contextPath}/admin/oto/1'">작성취소</button>
 		<button type="button" class="btn btn-success"
