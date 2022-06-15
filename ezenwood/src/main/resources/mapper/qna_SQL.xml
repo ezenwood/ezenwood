@@ -70,6 +70,7 @@ AND QNA_DEL_GB = 'N' and QNA_PARENT=#{QNA_NUM}
 
 	<select id="selectQNAForDetail" parameterType="hashmap"
 		resultType="hashmap">
+		
 <![CDATA[
 select 
 ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
@@ -88,8 +89,9 @@ AND QNA_DEL_GB = 'N' and QNA_NUM=#{QNA_NUM}
 	</select>
 	
 	
-		<select id="selectQNAForDetailinsu" parameterType="hashmap"
+<select id="selectQNAForDetailinsu" parameterType="hashmap"
 		resultType="hashmap">
+		<include refid="common.pagingPre"></include>
 <![CDATA[
 select 
 ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
@@ -104,7 +106,7 @@ from qna
 where qna_type = 'Q'
 AND QNA_DEL_GB = 'N' and QNA_PARENT=#{GOODS_NUM} 
 ]]>
-
+<include refid="common.pagingPost"></include>
 	</select>
 	
 

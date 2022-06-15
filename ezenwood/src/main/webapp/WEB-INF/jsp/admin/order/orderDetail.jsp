@@ -59,62 +59,59 @@ function validateForm() {
 				<input type="hidden" name="order_num" value="${orderModel.order_num}">
                     <div class="form-group">
                             <label>상품명</label>
-                            <input type="text" class="form-control" value="리틀테이블" style="width:initial;" readonly />                             
+                            <input type="text" class="form-control" value="${orderMap.GOODS_TITLE }" style="width:initial;" readonly />                             
                         </div>
 						<div class="form-group">
                             <label>주문번호</label>
-                            <input type="text" class="form-control" value="1234-1" style="width:initial;" readonly/>                             
+                            <input type="text" class="form-control" value="${orderMap.ORDERS_NUM }" style="width:initial;" readonly/>                             
                         </div>
                         <div class="form-group">
                             <label>송장번호</label>
-                            <input type="text" class="form-control" value="1123454" style="width:initial;" readonly/>                             
+                            <input type="text" class="form-control" value="${orderMap.ORDERS_TRACK}" style="width:initial;" readonly/>                             
                         </div>
-                        <div style="border:1px;" class="form-group">
-                             <label>옵션창</label>
-                            <input type="text" class="form-control" value="기본테이블" style="width:initial;" readonly/>                            
-                        </div>	
+                        
                         <p>
                         <div class="form-group" style="border-top: 1px dotted #999;width:550px;">
                           <br>
                            <label>주문자정보</label>
                            <br>
                             <label>이름</label>
-                            <input type="text" class="form-control" value="홍길똥" style="width:initial;" readonly/>                             
+                            <input type="text" class="form-control" value="${orderMap.MEMBER_NAME }" style="width:initial;" readonly/>                             
                         </div>
                         <div class="form-group">
                             <label>휴대전화 번호</label>
-                            <input type="text" class="form-control" value="010-0000-0000" style="width:initial;" readonly/>                             
+                            <input type="text" class="form-control" value="${orderMap.MEMBER_PHONE }" style="width:initial;" readonly/>                             
                         </div>		
                         <div class="form-group" style="border-bottom: 1px dotted #999;width:550px;">
                             <label>이메일</label>
-                            <input type="text" class="form-control" value="ezen.naver.com" style="width:initial;" readonly/>   
+                            <input type="text" class="form-control" value="${orderMap.MEMBER_EMAIL }" style="width:initial;" readonly/>   
                                              <p/>
                         </div>
                           <div class="form-group">
                            <label>배송 정보</label>
                            <br>
                             <label>이름</label>
-                            <input type="text" class="form-control" value="홍길똥" style="width:initial;" readonly/>                             
+                            <input type="text" class="form-control" value="${orderMap.ORDERS_RECEIVER }" style="width:initial;" readonly/>                             
                         </div>
                         <div class="form-group">
                             <label>휴대전화 번호</label>
-                            <input type="text" class="form-control" value="010-0000-0000" style="width:initial;" readonly/>                             
+                            <input type="text" class="form-control" value="${orderMap.ORDERS_PHONE }" style="width:initial;" readonly/>                             
                         </div>		
                         <div class="form-group" style="border-bottom: 1px dotted #999;width:550px;">
                             <label>요청사항</label>
-                            <input type="text" class="form-control" value="배송 요청 사항" style="width:initial;" readonly/>   
+                            <input type="text" class="form-control" value="${orderMap.ORDERS_DMEMO }" style="width:initial;" readonly/>   
                                              <p/>
                         </div>
                                <div class="form-group">
                             <label>배송 주소</label>
                             <br>
                             <input type="text" 
-                           value="10112" disabled> <br>
-                           <input type="text" placeholder="서울특별시 강남구 삼성동" disabled >
-                           <input type="text" placeholder="서울특별시 강남구 명동대로"  disabled>
+                           value="${orderMap.ORDERS_ZIPCODE }" readonly="readonly"> <br>
+                           <input type="text" value="${orderMap.ORDERS_RADD1 }" readonly="readonly" >
+                           <input type="text" value="jibun"  readonly="readonly">
                            <span id="guide" style="color: #999; display: none"></span><br> <input
-                           type="text" placeholder="빌딩" disabled >
-                           <input type="text" placeholder="참고항목" disabled > 
+                           type="text" value="${orderMap.ORDERS_RADD2 }" readonly="readonly" >
+                           <input type="text" value="${orderMap.ORDERS_RADD3 }" readonly="readonly" > 
                     </div>
                                     
                     					
@@ -123,11 +120,11 @@ function validateForm() {
                            <label>결제정보</label>
                            <br>
                             <label>상품합계 금액</label>
-                            <input type="text" class="form-control" value="2,222,999" style="width:initial;" readonly/>                             
+                            <input type="text" class="form-control" value="${orderMap.ORDERS_TCOST }" style="width:initial;" readonly/>                             
                         </div>
                           <div class="form-group">
                             <label>배송상태</label>
-                            <input type="text" class="form-control" value="결제대기 중" style="width:initial;" readonly/>   
+                            <input type="text" class="form-control" value="${orderMap.DELIVERY_STATUES }" style="width:initial;" readonly/>   
                         
 						
 						<button type="submit" class="btn btn-success">수정</button>

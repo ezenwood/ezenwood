@@ -128,6 +128,7 @@ public class GoodsController {
 	public String qnaWrite(CommandMap commandMap, HttpServletRequest request, Model model) {
 		String MEMBER_NUM = (String) request.getSession().getAttribute("MEMBER_NUM");
 		
+		
 		String QNA_PARENT = request.getParameter("QNA_PARENT");
 		commandMap.put("QNA_WRITER", MEMBER_NUM);
 		if (commandMap.get("QNA_SECREAT") == null) {

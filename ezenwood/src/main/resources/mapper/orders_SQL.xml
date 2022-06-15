@@ -38,6 +38,131 @@ INSERT INTO ORDERS VALUES(
 	</insert>
 
 
+<select id="orderListinsu" parameterType="hashmap" resultType="hashmap" >
+
+		<include refid="common.pagingPre"></include>
+<![CDATA[
+
+select
+    ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
+    ORDERS_NUM,
+    ORDERS_GOODS_NUM,
+    GOODS_TITLE,
+    ORDERS_AMOUNT,
+    ORDERS_MEMBER_NUM,
+    MEMBER_ID,
+    ORDERS_GOODS_OPTION,
+    ORDERS_RECEIVER,
+    ORDERS_PHONE,
+    ORDERS_STATUS,
+    DELIVERY_STATUES,
+    TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
+    ORDERS_PRICE,
+    ORDERS_DCOST,
+    ORDERS_TCOST,
+    ORDERS_ZIPCODE,
+    ORDERS_RADD1,
+    ORDERS_RADD2,
+    ORDERS_RADD3,
+    ORDERS_TRACK,
+    ORDERS_DMEMO,
+    ORDERS_PAY
+from 
+	orders, goods, MEMBER,DELIVERY  where ORDERS_GOODS_NUM=GOODS_NUM and ORDERS_MEMBER_NUM = MEMBER_NUM and ORDERS_STATUS=DELIVERY_NUM 
+	
+
+
+
+
+
+]]>
+<choose>
+<when test='searchType=="1"'>
+and ORDERS_STATUS = 1
+</when>
+<when test='searchType=="2"'>
+and ORDERS_STATUS = 2
+</when>
+<when test='searchType=="3"'>
+and ORDERS_STATUS = 3
+</when>
+<when test='searchType=="4"'>
+and ORDERS_STATUS = 4
+</when>
+<when test='searchType=="5"'>
+and ORDERS_STATUS = 5
+</when>
+<when test='searchType=="6"'>
+and ORDERS_STATUS = 6
+</when>
+<when test='searchOption=="1"'>
+and MEMBER_ID = #{searchKeyword}
+</when>
+</choose>
+
+
+
+		<include refid="common.pagingPost"></include>
+</select>
+
+<select id="orderListByOrderNum" parameterType="hashmap" resultType="hashmap">
+
+<![CDATA[
+select
+    ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
+    ORDERS_NUM,
+    ORDERS_GOODS_NUM,
+    GOODS_TITLE,
+    ORDERS_AMOUNT,
+    ORDERS_MEMBER_NUM,
+    MEMBER_ID,
+    ORDERS_GOODS_OPTION,
+    ORDERS_RECEIVER,
+    ORDERS_PHONE,
+    ORDERS_STATUS,
+    DELIVERY_STATUES,
+    TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
+    ORDERS_PRICE,
+    ORDERS_DCOST,
+    ORDERS_TCOST,
+    ORDERS_ZIPCODE,
+    ORDERS_RADD1,
+    ORDERS_RADD2,
+    ORDERS_RADD3,
+    ORDERS_TRACK,
+    ORDERS_DMEMO,
+    ORDERS_PAY
+from 
+	orders, goods, MEMBER,DELIVERY  where ORDERS_GOODS_NUM=GOODS_NUM and ORDERS_MEMBER_NUM = MEMBER_NUM and ORDERS_STATUS=DELIVERY_NUM and ORDERS_NUM = #{searchKeyword}
+]]>
+</select>
+
+<select id="adminOrderDetail" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+select 
+	GOODS_TITLE, 
+	ORDERS_NUM,
+	ORDERS_TRACK,
+	MEMBER_NAME,
+	MEMBER_PHONE,
+	MEMBER_EMAIL,
+	ORDERS_RECEIVER,
+	ORDERS_PHONE,
+	ORDERS_DMEMO,
+	ORDERS_ZIPCODE,
+	ORDERS_RADD1,
+    ORDERS_RADD2,
+    ORDERS_RADD3,
+    ORDERS_TCOST,
+    DELIVERY_STATUES 
+from goods, orders, member, delivery 
+where ORDERS_GOODS_NUM = GOODS_NUM and ORDERS_MEMBER_NUM=MEMBER_NUM and ORDERS_STATUS=DELIVERY_NUM and ORDERS_NUM =#{ORDERS_NUM}
+	
+
+
+]]>
+</select>
+
 
 
 	<!-- 주문 내역 전체 -->

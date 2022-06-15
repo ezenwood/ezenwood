@@ -231,6 +231,7 @@ public class AdminController {
 	         model.addAttribute("paginationInfo", paginationInfo);
 	      }
 
+
 	      mav.setViewName("admin/member/DelmemberList");
 	      return mav;
 
@@ -262,31 +263,135 @@ public class AdminController {
 	}
 	
 
-	/*
-	 * // order // 주문 리스트보기
-	 * 
-	 * @RequestMapping(value = "") public String orderList() throws Exception {
-	 * return null; }
-	 * 
-	 * 
-	 * // 주문 디테일 보기
-	 * 
-	 * @RequestMapping(value = "") public String orderDetail() throws Exception {
-	 * return null; }
-	 * 
-	 * 
-	 * // 주문 수정하기
-	 * 
-	 * @RequestMapping(value = "") public String orderUpdate() throws Exception {
-	 * return null; }
-	 * 
-	 * 
-	 * // 주문 삭제하기
-	 * 
-	 * @RequestMapping(value = "") public String orderDelete() throws Exception {
-	 * return null; }
-	 * 
-	 */
+	// order // 주문 리스트보기
+
+	@RequestMapping(value = "/order")
+	public String orderList(HttpServletRequest request, Model model) throws Exception {
+		
+		String searchOption = request.getParameter("searchOption");
+		String searchKeyword = request.getParameter("searchKeyword");
+		
+		if(searchKeyword==null||searchOption==null) {
+		
+		
+		String currentPageNum = request.getParameter("PageNum");
+		String searchType = request.getParameter("searchType");
+		
+		if(currentPageNum==null||currentPageNum.equals("")||currentPageNum.isEmpty()) {
+			currentPageNum="1";
+		}
+		if(searchType==null||searchType.equals("")||searchType.isEmpty()) {
+			searchType="7";
+		}
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+		paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
+		paginationInfo.setPageSize(5);
+		paginationInfo.setRecordCountPerPage(10);
+		
+		Map<String,Object> insertMap = new HashMap<String,Object>();
+		insertMap.put("searchType", searchType);
+		insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+		
+		List<Map<String,Object>> result = adminService.adminOrderList(insertMap);
+		int TOTAL_COUNT = 0;
+		if(result.isEmpty()) {
+			//
+		}else {
+			TOTAL_COUNT = ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(TOTAL_COUNT);
+			model.addAttribute("paginationInfo", paginationInfo);
+		}
+		
+		
+		model.addAttribute("TOTAL_COUNT", TOTAL_COUNT);
+		model.addAttribute("orderListMap", result);
+		
+		
+		}else {
+			if(searchOption.equals("1")) {
+				//id
+				String currentPageNum = request.getParameter("PageNum");
+				String searchType = request.getParameter("searchType");
+				
+				if(currentPageNum==null||currentPageNum.equals("")||currentPageNum.isEmpty()) {
+					currentPageNum="1";
+				}
+				if(searchType==null||searchType.equals("")||searchType.isEmpty()) {
+					searchType="7";
+				}
+				
+				PaginationInfo paginationInfo = new PaginationInfo();
+				paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
+				paginationInfo.setPageSize(5);
+				paginationInfo.setRecordCountPerPage(10);
+				
+				Map<String,Object> insertMap = new HashMap<String,Object>();
+				insertMap.put("searchType", searchType);
+				insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+				insertMap.put("END", paginationInfo.getLastRecordIndex());
+				
+				List<Map<String,Object>> result = adminService.adminOrderList(insertMap);
+				int TOTAL_COUNT = 0;
+				if(result.isEmpty()) {
+					//
+				}else {
+					TOTAL_COUNT = ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue();
+					paginationInfo.setTotalRecordCount(TOTAL_COUNT);
+					model.addAttribute("paginationInfo", paginationInfo);
+				}
+				
+				
+				model.addAttribute("TOTAL_COUNT", TOTAL_COUNT);
+				model.addAttribute("orderListMap", result);
+			}else {
+				//orderNum
+				
+				Map<String,Object> insertMap = new HashMap<String,Object>();
+				
+				insertMap.put("searchKeyword", searchKeyword);
+				
+				List<Map<String,Object>> result = adminService.orderListByOrderNum(insertMap);
+				model.addAttribute("orderListMap", result);
+			}
+		}
+		
+		return "admin/order/orderList";
+	}
+
+	// 주문 디테일 보기
+
+	@RequestMapping(value = "/order/{ORDERS_NUM}")
+	public String orderDetail(@PathVariable String ORDERS_NUM, Model model) throws Exception {
+		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		
+		insertMap.put("ORDERS_NUM", ORDERS_NUM);
+		
+		
+		Map<String, Object> resultMap = adminService.adminOrderDetail(insertMap);
+		
+		model.addAttribute("orderMap", resultMap);
+		
+		
+		
+		return "admin/order/orderDetail";
+	}
+
+	// 주문 수정하기
+
+	@RequestMapping(value = "/order/update")
+	public String orderUpdate() throws Exception {
+		return "admin/order/orderModify";
+	}
+
+	// 주문 삭제하기
+
+//	@RequestMapping(value = "")
+//	public String orderDelete() throws Exception {
+//		return null;
+//	}
 
 	// notice
 	// 공지사항 리스트보기
@@ -702,6 +807,7 @@ public class AdminController {
 	}
 
 
+
 	// 일대일문의 답글 달기 폼 (insert)
 
 	@RequestMapping(value = "/oto/writer/{OTONum}", method = RequestMethod.GET)
@@ -738,6 +844,7 @@ public class AdminController {
 	   }
 
 
+
 	/*
 	 * // 일대일문의 수정하기 (update)
 	 * 
@@ -765,6 +872,7 @@ public class AdminController {
 		int resultMap = adminService.adminOTODelete(insertMap);
 
 		mav.addObject(resultMap);
+
 
 		mav.setViewName("redirect:/admin/oto/1");
 

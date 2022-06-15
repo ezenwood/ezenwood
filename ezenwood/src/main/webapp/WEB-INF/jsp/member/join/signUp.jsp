@@ -85,15 +85,12 @@
                         </div>
                         <!--//member_tit-->
                         <div class="member_cont">
-                        <spring:hasBindErrors name="memberDto" />
+                      
                         
-                        <form:errors path="memberDto.MEMBER_PW" />
-                        <form:errors path="memberDto.MEMBER_EMAIL" />
-                        <form:errors path="memberDto.MEMBER_ID" />
-                        <form:errors path="memberDto.MEMBER_ID" />
+                        
 
                       
-                        <form:form commandName="memberDto" method="post" action="/ezenwood/member/signup" >
+                      <form method="post">
                            
                             <h3>약관동의</h3>
                             <div class="join_agreement_cont">
@@ -357,7 +354,7 @@
                                
                                 </div>
                                </div>
-                                </form:form>
+                                </form>
                         </div>
                                
                     </div>
@@ -394,7 +391,7 @@
                                                   <td>
                                                       <div class="member_warning">
                                                           <input type="text" id="id" name="MEMBER_ID" ><input
-				type="button" value="아이디 중복확인" onclick="idCheck()" style="font-size: 12px; line-height: 1.5; color: #333; margin: 0 0 0 5px; padding: 5px 10px 5px 10px; border: 1px solid #989898;"><form:errors path="memberDto.MEMBER_ID" />
+				type="button" value="아이디 중복확인" onclick="idCheck()" style="font-size: 12px; line-height: 1.5; color: #333; margin: 0 0 0 5px; padding: 5px 10px 5px 10px; border: 1px solid #989898;"><br><red style="color:red;">${errorMap.vaild_MEMBER_ID }</red>
                                                       </div>
                                                   </td> 
                                                </tr>
@@ -404,7 +401,7 @@
                                                    </th>
                                                   <td class="member_password">
                                                 <div class="member_warning prior_half_pass">
-                                                    <input type="password" name="MEMBER_PW" id="password1">
+                                                    <input type="password" name="MEMBER_PW" id="password1"><br><red style="color:red;">${errorMap.vaild_MEMBER_PW }</red>
                                                 </div>
                                                   </td>
                                                </tr>
@@ -426,7 +423,7 @@
                                                    </th>
                                                    <td>
                                                        <div class="member_warning">
-                                                           <input type="text" name="MEMBER_NAME">
+                                                           <input type="text" name="MEMBER_NAME"><br><red style="color:red;">${errorMap.vaild_MEMBER_NAME }</red>
                                                        </div>
                                                    </td>
                                                </tr>
@@ -437,7 +434,7 @@
                                                    <td>
                                                        <div class="member_warning">
                                                            
-                                    <input type="text" placeholder="ex)01012345678" name="MEMBER_PHONE">
+                                    <input type="text" placeholder="ex)01012345678" name="MEMBER_PHONE"><br><red style="color:red;">${errorMap.vaild_MEMBER_PHONE }</red>
                                                        </div>
                                                    </td>
                                                </tr>
@@ -447,7 +444,7 @@
                                                    </th>
                                                    <td class="member_email">
                                                        <div class="member_warning prior_wrong">
-                                                           <input type="text" name="MEMBER_EMAIL" >
+                                                           <input type="text" name="MEMBER_EMAIL" ><br><red style="color:red;">${errorMap.vaild_MEMBER_EMAIL }</red>
                                                        </div>
                                                    </td>
                                                </tr>
@@ -460,7 +457,7 @@
                                                            <input type="text" id="sample4_postcode" name="MEMBER_ZIP" placeholder="우편번호">
                                                            &nbsp;&nbsp;<input type="button" onclick="sample4_execDaumPostcode()" value="우편번호 검색" style="font-size: 12px; line-height: 1.5; color: #333; margin: 0 0 0 5px; padding: 5px 10px 5px 10px; border: 1px solid #989898;">
                                                            <input type="text" id="sample4_roadAddress" name="MEMBER_ADD1" placeholder="도로명 주소"><input type="text" id="sample4_jibunAddress" placeholder="지번 주소" name="address2"><br>
-                                    <input type="text" name="MEMBER_ADD2" id="sample4_detailAddress" placeholder="상세주소"><input type="text" id="sample4_extraAddress" placeholder="참고항목" name="MEMBER_ADD3">
+                                    <input type="text" name="MEMBER_ADD2" id="sample4_detailAddress" placeholder="상세주소"><input type="text" id="sample4_extraAddress" placeholder="참고항목" name="MEMBER_ADD3"><br><red style="color:red;">${errorMap.vaild_MEMBER_ADD2 }</red>
                                                        </div>
                                                    </td>
                                                </tr>
@@ -471,7 +468,7 @@
                                    </div>
                                    <div class="btn_center_box" style="text-align: center;">
                                        <input type="button" value="취소" style="width: 150px; height: 45px; color: #3e3d3c; font-weight: bold; font-size: 13px; border: 1px solid #cccccc; background: #fff; cursor: pointer;">
-                                       &nbsp;&nbsp;<input type="submit" value="회원가입" style="width: 150px; height: 45px; margin: 0; color: #ffffff; font-size: 14px; border: 1px solid #323437; background: #323437; cursor: pointer; font-weight: bold;">
+                                       &nbsp;&nbsp;<input type="submit" value="회원가입" onsubmit="memberCheck()"  style="width: 150px; height: 45px; margin: 0; color: #ffffff; font-size: 14px; border: 1px solid #323437; background: #323437; cursor: pointer; font-weight: bold;">
                                    </div>
                                    
                                 </form>
@@ -492,6 +489,10 @@
 </body>
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 			<script>
+			
+			
+			
+			
 			
 			
 			    //본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.

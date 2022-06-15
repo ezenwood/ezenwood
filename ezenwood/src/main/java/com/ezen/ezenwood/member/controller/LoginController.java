@@ -1,6 +1,7 @@
 package com.ezen.ezenwood.member.controller;
 
 import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.List;
 import java.util.Map;
 
@@ -42,45 +43,40 @@ public class LoginController {
 	public ModelAndView login(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mav = new ModelAndView("main");
-		HttpSession session = request.getSession();
+		
 		Map<String, Object> result = loginService.login(commandMap.getMap());
-
-		if (result == null || result.get("MEMBER_DEL_GB").equals("Y")) {
-			// 아이디가 있는지 or 삭제된 아이디인지 확인
-
+		
+		if(result.isEmpty()) {
+			//login fail
+			
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인실패 Try Again'); location.href='" + request.getContextPath()
 					+ "/main';</script>");
 			out.flush();
+		}else {
+			// login success
+			HttpSession session = request.getSession();
+			session.setAttribute("MEMBER_ID", result.get("MEMBER_ID"));
+			session.setAttribute("MEMBER_PW", result.get("MEMBER_PW"));
+			session.setAttribute("MEMBER_NUM", ((BigDecimal) result.get("MEMBER_NUM")).toString());
+			session.setAttribute("MEMBER_NAME", result.get("MEMBER_NAME"));
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=utf-8");
 
-		} else {
-			if (result.get("MEMBER_PW").equals(commandMap.get("MEMBER_PW"))) { // 비밀번호가 같다면
-				session.setAttribute("MEMBER_ID", commandMap.get("MEMBER_ID"));
-				session.setAttribute("MEMBER_PW", commandMap.get("MEMBER_PW"));
-				session.setAttribute("MEMBER_NUM", commandMap.get("MEMBER_NUM"));
-				session.setAttribute("MEMBER_NAME", commandMap.get("MEMBER_NAME"));
-			} else {// 비밀번호가 일치하지 않을 때
-				response.setCharacterEncoding("UTF-8");
-				response.setContentType("text/html; charset=utf-8");
-				PrintWriter out = response.getWriter();
-				out.println("<script>alert('비밀번호가 일치하지않습니다. Cheking your Password'); location.href='"
-						+ request.getContextPath() + "/member/signin';</script>");
-				out.flush();
-
-			}
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('로그인 성공!'); location.href='" + request.getContextPath() + "/main';</script>");
+			out.flush();
 		}
 
-		session.setAttribute("session", mav);
+		
 
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=utf-8");
+		
 
-		PrintWriter out = response.getWriter();
-		out.println("<script>alert('로그인 성공!'); location.href='" + request.getContextPath() + "/main';</script>");
+		
 
-		out.flush();
+		
 		return mav;
 	}
 
