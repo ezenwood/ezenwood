@@ -637,8 +637,8 @@ public class AdminController {
 
 	// 일대일문의 답글 달기 폼 (insert)
 
-	@RequestMapping(value = "/oto/writer/{OTONum}/{OTOSE}", method = RequestMethod.GET)
-	   public String otoReplyForm(@PathVariable int OTONum,@PathVariable String OTOSE, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/oto/writer/{OTONum}", method = RequestMethod.GET)
+	   public String otoReplyForm(@PathVariable int OTONum, HttpServletRequest request) throws Exception {
 	   
 	      return "/admin/oto/otoReplyForm";
 	   }
@@ -646,21 +646,21 @@ public class AdminController {
 
 	// 일대일문의 답글 달기 (insert)
 
-	@RequestMapping(value = "/oto/writer/{OTONum}/{OTOSE}", method = RequestMethod.POST)
-	 public ModelAndView qnaReply(CommandMap commandMap,@PathVariable int OTONum,@PathVariable String OTOSE, HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/oto/writer/{OTONum}", method = RequestMethod.POST)
+	 public ModelAndView qnaReply(CommandMap commandMap,@PathVariable int OTONum, HttpServletRequest request) throws Exception {
 	      ModelAndView mav = new ModelAndView();
 
 	      
 	      HttpSession session = request.getSession();
 	      String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
 
-	      String OTO_SECREATE = OTOSE;
 	      
-	      int OTO_NUM = OTONum;
 	      
+	      int ONETOONE_NUM = OTONum;
+	    
 	      commandMap.put("MEMBER_ID", MEMBER_ID);
-	      commandMap.put("OTO_SECREATE", OTO_SECREATE);
-	      commandMap.put("OTO_NUM", OTO_NUM);
+	      
+	      commandMap.put("ONETOONE_NUM", ONETOONE_NUM);
 
 	      int insert = adminService.adminOTOInsert(commandMap.getMap());
 	      
@@ -697,7 +697,7 @@ public class AdminController {
 		int resultMap = adminService.adminOTODelete(insertMap);
 
 		mav.addObject(resultMap);
-		mav.setViewName("/admin/oto/otoList");
+		mav.setViewName("redirect:/admin/oto/1");
 		return mav;
 	}
 

@@ -383,6 +383,7 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminOTOInsert(Map<String, Object> map) throws Exception {
+		
 		int checknum = adminDAO.adminOTOInsert(map);
 		if (checknum == 1) {
 			int OTONUM = (int) map.get("ONETOONE_NUM");

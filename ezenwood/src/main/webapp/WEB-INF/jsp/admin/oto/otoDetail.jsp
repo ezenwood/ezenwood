@@ -109,7 +109,7 @@
 		<br> <input type="hidden" value="${QOTOMap.ONETOONE_NUM}"
 			name="ONETOONE_NUM">
 		<button type="button" class="btn btn-success"
-			onclick="location.href='${contextPath}/admin/oto/writer/${QOTOMap.ONETOONE_NUM}/${QOTOMap.OTO_SECREATE}'">답변</button>
+			onclick="location.href='${contextPath}/admin/oto/writer/${QOTOMap.ONETOONE_NUM}'">답변</button>
 		<button type="reset" class="btn btn-default"
 			onclick="location.href='${contextPath}/admin/oto/1'">작성취소</button>
 		<button type="button" class="btn btn-success"
