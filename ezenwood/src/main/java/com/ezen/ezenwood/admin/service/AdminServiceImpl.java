@@ -292,20 +292,27 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminQNAInsert(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return 0;
+		// 
+		int cheknum = adminDAO.adminQNAInsert(map);
+		
+		if(cheknum == 1) {
+			int QNANUM = (int) map.get("QNA_NUM");
+			adminDAO.adminQNAcheck(QNANUM);
+		}
+		
+		return cheknum;
 	}
 
 	@Override
 	public int adminQNAUpdate(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminQNAUpdate(map);
 	}
 
 	@Override
 	public int adminQNADelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminQNADelete(map);
 	}
 
 	// review

@@ -61,16 +61,16 @@
 							<thead>
 								<tr class="dangers">
 									<th width="100">글제목</th>
-									<td colspan=3>${QNAMap.QNA_TITLE}</td>
+									<td colspan=3>${QQNAMap.QNA_TITLE}</td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr>
 									<!-- 작성자 -->
 									<th>작성자</th>
-									<td><strong> ${QNAMap.QNA_WRITER} </strong></td>
+									<td><strong> ${QQNAMap.QNA_WRITER} </strong></td>
 									<td style="width: 118px;"><strong>작성일</strong></td>
-									<td><fmt:formatDate value="${QNAMap.QNA_DATE}"
+									<td><fmt:formatDate value="${QQNAMap.QNA_DATE}"
 											pattern="yyyy.MM.dd" /></td>
 
 								</tr>
@@ -78,8 +78,8 @@
 								<tr>
 									<!-- 글내용 -->
 									<th>글내용</th>
-									<td colspan=3 height=600 style="padding: 0px !important;">
-										<br />${QNAMap.QNA_CONTENT}
+									<td colspan=3 height=250 style="padding: 0px !important;">
+										<br />${QQNAMap.QNA_CONTENT}
 									</td>
 								</tr>
 
@@ -88,16 +88,58 @@
 					</div>
 				</div>
 			</div>
-			<div class="menu-wrap" style="text-align: center">
-				&nbsp;&nbsp;
-				<button type="button" onclick="qnaDelete();" class="btn btn-primary"
-					style="">수정</button>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<button type="button" onclick="qnaDelete();" class="btn btn-primary">삭제</button>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <input type="button"
-					onclick="location.href='QnAList.dog'" value="목록"
-					class="btn btn-primary" />
+			<div class="col-lg-12">
+				<div class="row">
+					<div class="col-lg-12">
+						<h3 class="page-header">Q&A 답변</h3>
+					</div>
+				</div>
+				<div class="panel panel-default">
 
+					<div class="dataTable_wrapper">
+						<table class="table table-striped table-bordered table-hover"
+							id="dataTables-example">
+							<thead>
+								<tr class="dangers">
+									<th width="100">글제목</th>
+									<td colspan=3>${AQNAMap.QNA_TITLE}</td>
+								</tr>
+							</thead>
+							<tbody>
+								<tr>
+									<!-- 작성자 -->
+									<th>작성자</th>
+									<td><strong> ${AQNAMap.QNA_WRITER} </strong></td>
+									<td style="width: 118px;"><strong>작성일</strong></td>
+									<td><fmt:formatDate value="${AQNAMap.QNA_DATE}"
+											pattern="yyyy.MM.dd" /></td>
+
+								</tr>
+
+								<tr>
+									<!-- 글내용 -->
+									<th>글내용</th>
+									<td colspan=3 height=250 style="padding: 0px !important;">
+										<br />${AQNAMap.QNA_CONTENT}
+									</td>
+								</tr>
+
+							</tbody>
+						</table>
+					</div>
+				</div>
+			</div>
+			<div style="text-align: center">
+				<br> <input type="hidden" value="${QQNAMap.QNA_NUM}"
+					name="NOTICE_NUM">
+				<button type="button" class="btn btn-success"
+					onclick="location.href='${contextPath}/admin/qna/writer/${QQNAMap.QNA_NUM}/${QQNAMap.QNA_SECREATE}'">답변</button>
+				<button type="reset" class="btn btn-default"
+					onclick="location.href='${contextPath}/admin/qna/1'">작성취소</button>
+				<button type="button" class="btn btn-success"
+					onclick="location.href='${contextPath}/admin/qna/del/${QQNAMap.QNA_NUM}'">삭제</button>
+				<button type="button" class="btn btn-success"
+					onclick="location.href='${contextPath}/admin/qna/update/${QQNAMap.QNA_NUM}'">수정</button>
 			</div>
 		</div>
 	</div>

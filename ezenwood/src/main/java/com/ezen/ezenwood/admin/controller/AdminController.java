@@ -367,7 +367,7 @@ public class AdminController {
 
 		mav.addObject(resultMap);
 
-		mav.setViewName("/admin/notice/noticeList");
+		mav.setViewName("redirect:/admin/notice/1");
 		return mav;
 	}
 
@@ -447,53 +447,118 @@ public class AdminController {
 
 	// 큐엔에이 디테일보기
 
-	@RequestMapping(value = "/qnadetail/{QNANum}/{QNAType}")
-	public ModelAndView qnaDetail(@PathVariable int QNANum, @PathVariable String QNAType) throws Exception {
+	@RequestMapping(value = "/qnadetail/{QNANum}")
+	public ModelAndView qnaDetail(@PathVariable int QNANum) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
-		String QNA_TYPE = QNAType;
+		
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("QNA_NUM", QNANum);
-		if (QNA_TYPE.equals("A")) {
+		
 			Map<String, Object> resultMap = adminService.adminQNADetailA(insertMap);
 
-			mav.addObject("QNAMap", resultMap);
+			mav.addObject("AQNAMap", resultMap);
 
 			mav.setViewName("/admin/qna/qnaDetail");
 
-		} else {
-			Map<String, Object> resultMap = adminService.adminQNADetailQ(insertMap);
+		
+			Map<String, Object> resultMapa = adminService.adminQNADetailQ(insertMap);
 
-			mav.addObject("QNAMap", resultMap);
+			mav.addObject("QQNAMap", resultMapa);
 
 			mav.setViewName("/admin/qna/qnaDetail");
-		}
+		
 
 		return mav;
+	}
+	
+	// 큐엔에이 답변등록 (insert)
+
+	@RequestMapping(value = "/qna/writer/{QNANum}/{QNASE}", method = RequestMethod.GET)
+	public String qnaReplyForm(@PathVariable int QNANum,@PathVariable String QNASE, HttpServletRequest request) throws Exception {
+	
+		return "/admin/qna/qnaReplyForm";
 	}
 
 	// 큐엔에이 답변등록 (insert)
 
-	@RequestMapping(value = "/qna/writer")
-	public String qnaReply() throws Exception {
+	@RequestMapping(value = "/qna/writer/{QNANum}/{QNASE}", method = RequestMethod.POST)
+	public ModelAndView qnaReply(CommandMap commandMap,@PathVariable int QNANum,@PathVariable String QNASE, HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
 
-		return null;
+		
+		HttpSession session = request.getSession();
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+
+		String QNA_SECREATE = QNASE;
+		
+		int QNA_NUM = QNANum;
+		
+		commandMap.put("MEMBER_ID", MEMBER_ID);
+		commandMap.put("QNA_SECREATE", QNA_SECREATE);
+		commandMap.put("QNA_NUM", QNA_NUM);
+
+		int insert = adminService.adminQNAInsert(commandMap.getMap());
+		
+
+		mav.addObject(insert);
+		mav.setViewName("redirect:/admin/qna/1");
+		return mav;
 	}
 
 	// 큐엔에이 수정하기 (update)
 
-	@RequestMapping(value = "/qna/update")
-	public String qnaReplyUpdate() throws Exception {
+	@RequestMapping(value = "/qna/update/{qnaNum}", method = RequestMethod.GET)
+	public ModelAndView  qnaReplyUpdateForm(@PathVariable int qnaNum) throws Exception {
+		ModelAndView mav = new ModelAndView();
+		
+		
+		mav.addObject("QNA_NUM", qnaNum);
+		
+		mav.setViewName("/admin/qna/qnaModify");
+		return mav;
+	}
+	
+	// 큐엔에이 수정하기 (update)
 
-		return null;
+	@RequestMapping(value = "/qna/update/{qnaNum}", method = RequestMethod.POST)
+	public ModelAndView  qnaReplyUpdate(@PathVariable int qnaNum,CommandMap commandMap, HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
+
+		HttpSession session = request.getSession();
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+		int QNA_NUM = qnaNum;
+		
+		commandMap.put("MEMBER_ID", MEMBER_ID);
+		commandMap.put("QNA_NUM", QNA_NUM);
+		
+		int resultMap = adminService.adminQNAUpdate(commandMap.getMap());
+
+		mav.addObject(resultMap);
+
+		mav.setViewName("redirect:/admin/qnadetail/{qnaNum}");
+		return mav;
 	}
 
 	// 큐엔에이 삭제하기 (delete)
 
-	@RequestMapping(value = "/qna/del")
-	public String qnaDelete() throws Exception {
+	@RequestMapping(value = "/qna/del/{qnaNum}", method = RequestMethod.GET)
+	public ModelAndView  qnaDelete(@PathVariable int qnaNum, HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
 
-		return null;
+		HttpSession session = request.getSession();
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		int QNA_NUM = qnaNum;
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+		insertMap.put("QNA_NUM", QNA_NUM);
+		int resultMap = adminService.adminQNADelete(insertMap);
+
+		mav.addObject(resultMap);
+		mav.setViewName("redirect:/admin/qnadetail/{qnaNum}");
+		return mav;
 	}
 
 	// reivew
