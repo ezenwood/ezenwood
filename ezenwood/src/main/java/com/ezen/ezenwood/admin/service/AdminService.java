@@ -94,6 +94,8 @@ public interface AdminService {
 		
 		public int adminOTOInsert(Map<String,Object> map) throws Exception;
 		
+		public int adminOTOcheck(int ONETOONE_NUM) throws Exception;
+		
 		
 		// 자주묻는질문
 		

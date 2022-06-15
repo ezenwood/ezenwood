@@ -151,22 +151,31 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public int adminQNAInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) insert("qna.insertAdminQna", map);
 	}
 
 	@Override
 	public int adminQNAUpdate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) update("qna.updateAdminQna", map);
 	}
 
 	@Override
 	public int adminQNADelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) update("qna.deleteAdminQna", map);
 	}
+	
+	@Override
+	public int adminQNAcheck(int QNA_NUM) {
+		// TODO Auto-generated method stub
+		return (int) update("qna.adminQNAcheck", QNA_NUM);
+	}
+	
+	
 
 	// 리뷰 review
+
 
 	@Override
 	public List<Map<String, Object>> adminReviewList(Map<String, Object> map) {
@@ -227,7 +236,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public int adminOTOInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (int) update("onetoone.insertAdmin", map);
+		return (int) insert("onetoone.insertAdmin", map);
+	}
+	
+	 public int adminOTOcheck(int ONETOONE_NUM) {
+		return (int) update("onetoone.OTOcheck", ONETOONE_NUM);
 	}
 	// 자주묻는질문 fq
 

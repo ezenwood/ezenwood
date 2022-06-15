@@ -42,7 +42,7 @@
 	<%@include file="/include/admin_left.jsp"%>
 	<div id="page-wrapper" style="min-height: 703px;">
 		<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-		<form action="${contextPath}/admin/oto/writer/${OTONum}/${OTOSE}"
+		<form action="${contextPath}/admin/qna/writer/${QNANum}/${QNASE}"
 			method="post">
 			<div class="row">
 				<div class="col-lg-12">
@@ -55,7 +55,7 @@
 							<tr class="danger">
 								<th width="100">글제목</th>
 								<td colspan=3><input type="text" style="width: 400px;"
-									name="ONETOONE_TITLE" value="${ONETOONE_TITLE}" /></td>
+									name="QNA_TITLE" value="${QNA_TITLE}" /></td>
 							</tr>
 						</thead>
 						<tbody>
@@ -68,12 +68,12 @@
 								<!-- 글내용 -->
 								<th>글내용</th>
 								<td colspan=3 height=250 style="padding: 0px !important;">
-									<input type="text" value="${ONETOONE_CONTENT}"
-									name="ONETOONE_CONTENT"
+									<input type="text" value="${QNA_CONTENT}"
+									name="QNA_CONTENT"
 									style="padding: 3px; margin: 2px; width: 100%; height: 98%;">
-									<input type="hidden" value="${OTONum}" name="ONETOONE_NUM">
-									<input type="hidden" value="${OTOSE}"
-									name="OTO_SECREATE"> <!-- 벨리데이터 표시 -->
+									<input type="hidden" value="${QNANum}" name="QNA_NUM">
+									<input type="hidden" value="${QNASE}"
+									name="QNA_SECREATE"> <!-- 벨리데이터 표시 -->
 								</td>
 							</tr>
 
@@ -87,10 +87,9 @@
 			<!-- 취소 작성완료 버튼 -->
 			<div class="menu-wrap" style="text-align: center">
 				<input type="submit" value="작성완료" class="btn btn-primary"
-					onclick="${contextPath}/admin/oto/writer/${OTONum}/${OTOSE}"> <input
+					onclick="${contextPath}/admin/qna/write/${QNANum}/${QNASE}"> <input
 					type="button" value="목록" class="btn btn-primary"
-					onclick="location.href='${contextPath}/admin/oto/1'">
-
+					onclick="location.href='${contextPath}/admin/qna/1'">
 
 			</div>
 		</form>
@@ -100,4 +99,3 @@
 </body>
 
 </html>
-
