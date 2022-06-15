@@ -126,8 +126,8 @@
 												<h4 class="timeline-title">회원관리</h4>
 											</div>
 											<div class="timeline-body">
-												<p><a href="/ezenwood/admin/memberList/1">회원목록 이동 - 회원목록을 볼수 있습니다</p>
-												<p><a href="/ezenwood/admin/delmemberList/1">탈퇴회원목록 이동 - 탈퇴회원목록을 볼수 있습니다</p>
+												<p><a href="/ezenwood/admin/memberList/1">회원목록 이동 - 회원목록을 볼수 있습니다</a></p>
+												<p><a href="/ezenwood/admin/delmemberList/1">탈퇴회원목록 이동 - 탈퇴회원목록을 볼수 있습니다</a></p>
 											</div>
 										</div>
 									</li>
@@ -148,12 +148,12 @@
 												<h4 class="timeline-title">게시판 관리</h4>
 											</div>
 											<div class="timeline-body">
-												<p>공지사항 - 게시판 등록,수정,삭제 등 관리</p>
-												<p>Q&amp;A - 게시판 수정,삭제 등 관리</p>
-												<p>리뷰 - 게시판 삭제 관리</p>
-												<p>1:1문의 - 게시판 답변,수정,삭제 등 관리</p>
-												<p>자주묻는질문 - 게시판 등록,수정,삭제 등 관리</p>
-												<p>어바웃 - 게시판 등록,수정,삭제 등 관리</p>
+												<p><a href="/ezenwood/admin/notice/1">공지사항 - 게시판 등록,수정,삭제 등 관리</a></p>
+												<p><a href="/ezenwood/admin/qna/1">Q&amp;A - 게시판 수정,삭제 등 관리</a></p>
+												<p><a href="/ezenwood/admin/review/1">리뷰 - 게시판 삭제 관리</a></p>
+												<p><a href="/ezenwood/admin/oto/1">1:1문의 - 게시판 답변,수정,삭제 등 관리</a></p>
+												<p><a href="/ezenwood/admin/fqlist/1">자주묻는질문 - 게시판 등록,수정,삭제 등 관리</a></p>
+				
 											</div>
 										</div>
 									</li>
@@ -161,10 +161,6 @@
 							</div>
 							<!-- /.panel-body -->
 						</div>
-
-
-
-</head>
 
 
 						<!-- // container -->

@@ -80,6 +80,7 @@
 										</thead>
 										<tbody>
 											<c:forEach items="${list}" var="qna">
+											<input type="hidden" name="QNA_NUM" value="${qna.QNA_NUM}">
 												<tr class="gradeA even" role="row">
 													<td style="text-align: center; vertical-align: middle;">${qna.QNA_NUM}</td>
 

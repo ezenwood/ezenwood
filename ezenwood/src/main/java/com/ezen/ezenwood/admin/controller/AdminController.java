@@ -653,7 +653,7 @@ public class AdminController {
 	  
 	  
 	  
-	  // 일대일문의 수정하기 (update)
+	 /* // 일대일문의 수정하기 (update)
 	  
 	  @RequestMapping(value = "/oto/update")
 	  public String otoReplyUpdate() throws Exception {
@@ -661,7 +661,7 @@ public class AdminController {
 		  return null; 
 	  }
 	  
-	  
+	  */
 	  
 	  // 일대일 문의 삭제하기 (delete)
 	  

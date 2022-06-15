@@ -83,9 +83,7 @@
                                 <li>
                                     <a href="/ezenwood/admin/fqlist/1">- 자주묻는질문</a>
                                 </li>
-                                <li>
-                                    <a href="/ezenwood/admin/about">- 어바웃</a>
-                                </li>
+                               
                             </ul>
                         </li>
                         
