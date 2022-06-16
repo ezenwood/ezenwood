@@ -74,7 +74,8 @@
                                                         	<td>${row.MEMBER_EMAIL }</td>
                                                         	<td>${row.MEMBER_ADD1}${row.MEMBER_ADD2}${row.MEMBER_ADD3}</td>
                                                             <td><fmt:formatDate value="${row.MEMBER_JOINDATE }" type="both" dateStyle="medium" timeStyle="medium" /></td>
-                                                            <td><button id="MEMBER_DEL_GB" type="button" class="btn btn-default">복구</button></td>
+                                                            <td><button id="MEMBER_DEL_GB" type="button" class="btn btn-default"
+                                                            onclick="location.href='/ezenwood/admin/member/return/${row.MEMBER_ID}'">복구</button></td>
                                                             
                                                         </tr>
                                                     </c:forEach>

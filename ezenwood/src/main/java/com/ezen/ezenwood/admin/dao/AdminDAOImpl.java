@@ -71,6 +71,10 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	public Map<String, Object> adminMemberReturn(Map<String, Object> insertMap) {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne("member.updateMemberADMIN", insertMap);
+	}
 	// 주문 관리 order
 
 	@Override
@@ -301,5 +305,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
+	
 
 }
