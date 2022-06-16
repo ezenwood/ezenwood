@@ -73,6 +73,8 @@ public interface AdminDAO {
 	
 	public int adminQNAcheck(int QNA_NUM);
 	
+	public int adminQNAcheckQ(int QNA_NUM);
+	
 	//
 	
 	public List<Map<String,Object>> adminReviewList(Map<String,Object> map);
@@ -99,6 +101,8 @@ public interface AdminDAO {
 	public int adminOTOInsert(Map<String,Object> map);
 	
 	public int adminOTOcheck(int ONETOONE_NUM);
+	
+	public int adminOTOcheckQ(int ONETOONE_NUM);
 	
 	
 	//
