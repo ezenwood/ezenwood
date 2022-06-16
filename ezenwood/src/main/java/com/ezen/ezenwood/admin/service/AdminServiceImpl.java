@@ -310,7 +310,14 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int adminQNADelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return adminDAO.adminQNADelete(map);
+		int checknum = adminDAO.adminQNADelete(map);
+		
+		if(checknum == 1) {
+			int QNANUM = (int)map.get("QNA_NUM");
+			adminDAO.adminQNAcheckQ(QNANUM);
+		}
+		
+		return checknum;
 	}
 
 	// review
@@ -395,8 +402,14 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminOTODelete(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return adminDAO.adminOTODelete(map);
+		int checknum = adminDAO.adminOTODelete(map);
+		
+		if( checknum == 1) {
+			int OTONUM = (int)map.get("ONETOONE_NUM");
+			adminDAO.adminOTOcheckQ(OTONUM);
+		}
+		
+		return checknum;
 	}
 
 	@Override
@@ -411,10 +424,6 @@ public class AdminServiceImpl implements AdminService {
 		return checknum;
 	}
 
-	@Override
-	public int adminOTOcheck(int ONETOONE_NUM) throws Exception {
-		return adminDAO.adminOTOcheck(ONETOONE_NUM);
-	}
 
 	// fq(자주묻는질문)
 

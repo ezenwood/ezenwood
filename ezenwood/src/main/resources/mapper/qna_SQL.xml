@@ -315,7 +315,13 @@ WHERE QNA_NUM = #{QNA_NUM}
 ]]>
 </update>
 
-
+<update id="adminQNAcheckQ" parameterType="String">
+<![CDATA[
+UPDATE QNA 
+SET QNA_RE_GB = 'N' 
+WHERE QNA_NUM = #{QNA_NUM}
+]]>
+</update>
 
 	<!-- 관리자QNA수정 -->
 	<update id="updateAdminQna" parameterType="hashmap">
