@@ -250,11 +250,11 @@ SELECT	MEMBER_PW
 	</update>
 
 
-	<!-- 회원 탈퇴 처리 -->
+	<!-- 회원 복구 처리 -->
 	<update id="updateMemberADMIN">
 <![CDATA[
 		UPDATE MEMBER
-		SET MEMBER_DEL_GB = 'Y'
+		SET MEMBER_DEL_GB = 'N'
 		WHERE MEMBER_ID = #{MEMBER_ID}
 ]]>
 	</update>

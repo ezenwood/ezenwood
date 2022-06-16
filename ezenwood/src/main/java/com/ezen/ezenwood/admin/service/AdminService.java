@@ -119,6 +119,8 @@ public interface AdminService {
 		
 		public int adminAboutInsert(Map<String,Object> map) throws Exception;
 
+		public Map<String, Object> adminMemberReturn(Map<String, Object> insertMap);
+
 		
 	
 }

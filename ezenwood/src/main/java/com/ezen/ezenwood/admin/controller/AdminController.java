@@ -262,6 +262,17 @@ public class AdminController {
 
 	}
 	
+	//탈퇴 회원 복구
+	  @RequestMapping({"/member/return/{MEMBER_ID}"})
+	  public ModelAndView memberReturn(@PathVariable String MEMBER_ID) {
+	    ModelAndView mav = new ModelAndView();
+	    Map<String, Object> insertMap = new HashMap<String, Object>();
+	    insertMap.put("MEMBER_ID", MEMBER_ID);
+	    Map<String, Object> resultMap = this.adminService.adminMemberReturn(insertMap);
+	    mav.addObject("MemReMap", resultMap);
+	    mav.setViewName("admin/member/DelmemberList");
+	    return mav;
+	  }
 
 	// order // 주문 리스트보기
 

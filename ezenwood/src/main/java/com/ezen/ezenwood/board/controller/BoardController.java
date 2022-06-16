@@ -101,7 +101,9 @@ public class BoardController {
 	public String otoWrite(CommandMap commandmap, HttpServletRequest request) throws Exception {
 		Map<String,Object> insertMap = commandmap.getMap();
 		String MEMBER_NUM = (String) request.getSession().getAttribute("MEMBER_NUM");
+		String MEMBER_ID = (String) request.getSession().getAttribute("MEMBER_ID");
 		insertMap.put("ONETOONE_MEMBER_NUM", MEMBER_NUM);	
+		insertMap.put("MEMBER_ID", MEMBER_ID);
 		insertMap.put("request", request);
 		boardService.insertOTO(insertMap, request);
 		return "redirect:/board/oto?idx=";

@@ -190,6 +190,13 @@ public class AdminServiceImpl implements AdminService {
 		return 0;
 	}
 
+
+	@Override
+	public Map<String, Object> adminMemberReturn(Map<String, Object> insertMap) {
+		// TODO Auto-generated method stub
+		return adminDAO.adminMemberReturn(insertMap);
+	}
+	
 	// order
 
 	@Override
@@ -475,5 +482,6 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
+
 
 }
