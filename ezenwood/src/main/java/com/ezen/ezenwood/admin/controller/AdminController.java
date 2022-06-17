@@ -875,11 +875,11 @@ public class AdminController {
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 
 		String ONETOONE_NUM = otoNum;
-
 		String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
 		insertMap.put("MEMBER_ID", MEMBER_ID);
-
-		insertMap.put("ONETOONE_NUM", ONETOONE_NUM);
+		
+		int ONETOONE_NUMa = Integer.valueOf(ONETOONE_NUM);
+		insertMap.put("ONETOONE_NUM", ONETOONE_NUMa);
 		int resultMap = adminService.adminOTODelete(insertMap);
 
 		mav.addObject(resultMap);

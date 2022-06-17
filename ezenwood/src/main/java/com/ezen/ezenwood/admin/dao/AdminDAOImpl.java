@@ -157,7 +157,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public Map<String, Object> adminQNADetailA(Map<String, Object> map) {
 
-		return (Map<String, Object>) selectOne("qna.AnswerForQNADetailA", map);
+		return (Map<String, Object>) selectOne("qna.AnswerForQNADetail", map);
 	}
 
 	@Override
@@ -223,7 +223,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public Map<String, Object> adminOTODetailQ(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (Map<String, Object>) selectOne("onetoone.selectClientDetailQ", map);
+		return (Map<String, Object>) selectOne("onetoone.selectClientDetail", map);
 	}
 
 	@Override

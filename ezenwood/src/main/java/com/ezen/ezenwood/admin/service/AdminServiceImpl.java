@@ -412,7 +412,8 @@ public class AdminServiceImpl implements AdminService {
 		int checknum = adminDAO.adminOTODelete(map);
 		
 		if( checknum == 1) {
-			int OTONUM = (int)map.get("ONETOONE_NUM");
+			
+			int OTONUM = (int) map.get("ONETOONE_NUM");
 			adminDAO.adminOTOcheckQ(OTONUM);
 		}
 		
