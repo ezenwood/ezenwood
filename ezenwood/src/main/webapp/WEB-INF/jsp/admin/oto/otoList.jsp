@@ -50,7 +50,15 @@
 							<div class="row" style="margin-bottom: 5px;">
 								<div class="col-sm-6">
 									<a href="${contextPath}/admin/oto/1"><button type="button"
-											class="btn btn-outline btn-default">전체</button></a>
+											class="btn btn-outline btn-default">전체</button></a> <select
+										class="form-control" name="select"
+										onchange="window.open(value,'_self');">
+										<option value="">--카테고리--</option>
+										<option
+											value="/ezenwood/admin/goods?searchNum=4&amp;isSearch=0">답변대기중</option>
+										<option
+											value="/ezenwood/admin/goods?searchNum=4&amp;isSearch=1">답변완료</option>
+									</select>
 								</div>
 							</div>
 
