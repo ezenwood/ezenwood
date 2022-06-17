@@ -795,15 +795,15 @@ public class AdminController {
 	// 일대일 문의 디테일 보기
 
 	@RequestMapping(value = "/otoDetail/{OTONum}")
-	public ModelAndView otoDetail(@PathVariable String OTONum) throws Exception {
+	public ModelAndView otoDetail(@PathVariable String OTONum, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> insertMap = new HashMap<String, Object>();
-
+		HttpSession session = request.getSession();
+		
+		insertMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		
 		String ONETOONE_NUM = OTONum;
 		insertMap.put("ONETOONE_NUM", ONETOONE_NUM);
-
-		String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
-		insertMap.put("MEMBER_ID", MEMBER_ID);
 
 		Map<String, Object> resultMap = adminService.adminOTODetailQ(insertMap);
 
@@ -866,7 +866,7 @@ public class AdminController {
 	 * 
 	 */
 
-	// 일대일 문의 삭제하기 (delete)
+	// 일대일 문의 답변 삭제하기 (delete)
 
 	@RequestMapping(value = "/oto/del/{otoNum}", method = RequestMethod.GET)
 	public ModelAndView otoReplyDelete(@PathVariable String otoNum) throws Exception {
@@ -889,6 +889,33 @@ public class AdminController {
 
 		return mav;
 	}
+	
+	// 일대일 문의 문의/답변 삭제하기 (delete)
+
+	@RequestMapping(value = "/oto/dell/{otoNum}", method = RequestMethod.GET)
+	public ModelAndView otoReplyDeleteAll(@PathVariable String otoNum) throws Exception {
+		ModelAndView mav = new ModelAndView();
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		String ONETOONE_NUM = otoNum;
+		String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+		
+		int ONETOONE_NUMa = Integer.valueOf(ONETOONE_NUM);
+		insertMap.put("ONETOONE_NUM", ONETOONE_NUMa);
+		int resultMap = adminService.adminOTODelete(insertMap);
+		int resultMapa = adminService.adminOTODeleteAll(insertMap);
+		
+		mav.addObject(resultMapa);
+		mav.addObject(resultMap);
+
+
+		mav.setViewName("redirect:/admin/oto/1");
+
+		return mav;
+	}
+
 
 	// fq
 	// 자주묻는질문 리스트보기

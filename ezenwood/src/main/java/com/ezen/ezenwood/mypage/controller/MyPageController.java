@@ -13,7 +13,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
-
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -39,9 +38,9 @@ public class MyPageController {
 	@RequestMapping("/main")
 	public String myPage(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
-		String getId = (String) session.getAttribute("MEMBER_ID");
+		String memberID = (String) session.getAttribute("MEMBER_ID");
 		session.getAttribute("MEMBER_PW");
-		if (getId == null) {
+		if (memberID == null) {
 			return "main";
 		}
 		return "mypage/main";
@@ -136,7 +135,6 @@ public class MyPageController {
 		return mav;
 	}
 
-
 	// 주문조회 & 배송조회 리스트
 	@RequestMapping(value = "/order/{pageNum}", method = RequestMethod.GET)
 	public ModelAndView orderChkListForm(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
@@ -161,8 +159,7 @@ public class MyPageController {
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 		insertMap.put("MEMBER_ID", MEMBER_ID);
 
-		
-		List<Map<String,Object>> orderList = mypageService.orderList(insertMap);
+		List<Map<String, Object>> orderList = mypageService.orderList(insertMap);
 
 		int totalCount = 0;
 
@@ -173,11 +170,10 @@ public class MyPageController {
 
 			totalCount = ((BigDecimal) orderList.get(0).get("TOTAL_COUNT")).intValue();
 			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo",paginationInfo);
+			mav.addObject("paginationInfo", paginationInfo);
 		}
-		
-		
-		mav.addObject("orderList",orderList);
+
+		mav.addObject("orderList", orderList);
 
 		mav.setViewName("/mypage/order");
 		return mav;
@@ -185,47 +181,45 @@ public class MyPageController {
 
 	// 취소내역 폼
 	@RequestMapping(value = "/cancel/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView myPageCancelForm(@PathVariable int pageNum, CommandMap commandMap,HttpServletRequest request)throws Exception {
+	public ModelAndView myPageCancelForm(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
-		
-		String MEMBER_ID = (String)session.getAttribute("MEMBER_ID");
-		
-		
-		Map<String, Object> insertMap =  new HashMap<String,Object>();
-		
+
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
 		PaginationInfo paginationInfo = new PaginationInfo();
-		
-		//현재 페이지 번호
+
+		// 현재 페이지 번호
 		paginationInfo.setCurrentPageNo(pageNum);
-		//한 페이지에 게시되는 게시물 건수
+		// 한 페이지에 게시되는 게시물 건수
 		paginationInfo.setRecordCountPerPage(9);
-		//페이징 리스트의 사이즈
+		// 페이징 리스트의 사이즈
 		paginationInfo.setPageSize(5);
-		
-		insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 		insertMap.put("MEMBER_ID", MEMBER_ID);
-		
-		List<Map<String,Object>> cancelList = mypageService.cancelOrder(insertMap);
-		
+
+		List<Map<String, Object>> cancelList = mypageService.cancelOrder(insertMap);
+
 		int totalCount = 0;
-		
-		if(cancelList.isEmpty()) {
-		
-		}else {
+
+		if (cancelList.isEmpty()) {
+
+		} else {
 			totalCount = cancelList.size();
 			totalCount = ((BigDecimal) cancelList.get(0).get("TOTAL_COUNT")).intValue();
 			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo",paginationInfo);
+			mav.addObject("paginationInfo", paginationInfo);
 		}
-		
-		
-		mav.addObject("cancelList",cancelList);
+
+		mav.addObject("cancelList", cancelList);
 		mav.setViewName("/mypage/cancel");
 		return mav;
 	}
-	
 
 	// 리뷰리스트 폼
 	@RequestMapping(value = "/review/{pageNum}", method = RequestMethod.GET)
@@ -252,9 +246,6 @@ public class MyPageController {
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 		insertMap.put("MEMBER_ID", MEMBER_ID);
 
-		
-		
-		
 		List<Map<String, Object>> list = mypageService.memberReivewList(insertMap);
 		mv.addObject("list", list);
 

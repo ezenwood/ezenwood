@@ -419,6 +419,19 @@ public class AdminServiceImpl implements AdminService {
 		
 		return checknum;
 	}
+	
+	@Override
+	public int adminOTODeleteAll(Map<String, Object> map) throws Exception {
+		int checknum = adminDAO.adminOTODeleteAll(map);
+		
+		if( checknum == 1) {
+			
+			int OTONUM = (int) map.get("ONETOONE_NUM");
+			adminDAO.adminOTOcheckQ(OTONUM);
+		}
+		
+		return checknum;
+	}
 
 	@Override
 	public int adminOTOInsert(Map<String, Object> map) throws Exception {

@@ -94,6 +94,8 @@ public interface AdminService {
 		
 		public int adminOTODelete(Map<String,Object> map) throws Exception;
 		
+		public int adminOTODeleteAll(Map<String,Object> map) throws Exception;
+		
 		public int adminOTOInsert(Map<String,Object> map) throws Exception;
 
 		

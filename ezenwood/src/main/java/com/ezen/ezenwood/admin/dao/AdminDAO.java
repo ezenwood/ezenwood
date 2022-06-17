@@ -98,6 +98,8 @@ public interface AdminDAO {
 	
 	public int adminOTODelete(Map<String,Object> map);
 	
+	public int adminOTODeleteAll(Map<String,Object> map);
+	
 	public int adminOTOInsert(Map<String,Object> map);
 	
 	public int adminOTOcheck(int ONETOONE_NUM);
