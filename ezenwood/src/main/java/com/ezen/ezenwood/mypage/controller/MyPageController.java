@@ -16,6 +16,7 @@ import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -94,9 +95,13 @@ public class MyPageController {
 
 	// 회원 수정 폼
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String mypageModifyForm(HttpServletRequest request) throws Exception {
+	public String mypageModifyForm(HttpServletRequest request,Model model) throws Exception {
 		HttpSession session = request.getSession();
-		session.getAttribute("MEMBER_ID");
+		String memberpw = (String)session.getAttribute("MEMBER_PW");
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("MEMBER_PW", memberpw);
+		Map<String, Object> result = mypageService.memberInfo(insertMap);
+		model.addAttribute("memberMap", result);
 		return "mypage/update";
 	}
 

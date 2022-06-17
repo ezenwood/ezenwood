@@ -42,4 +42,6 @@ public interface MyPageService {
 	public List<Map<String,Object>> memberOTOList(Map<String,Object> map) throws Exception;
 
 	
+
+	
 }

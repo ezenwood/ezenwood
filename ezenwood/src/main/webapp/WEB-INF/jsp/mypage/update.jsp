@@ -9,8 +9,8 @@
 <link rel="stylesheet" href="/ezenwood/css/member.css">
 <link rel="stylesheet" href="/ezenwood/css/reset.css">
 <link rel="stylesheet" href="/ezenwood/css/button.css">
-<link rel="stylesheet" href="/ezenwood/css/common.css">
-<title>update2</title>
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
@@ -138,9 +138,9 @@
 															<td>
 																<div class="member_warning">
 																	<input type="text" name="MEMBER_PW"
-																		value="${MEMBER_PW}" maxlength="30"
+																		value="${memberMap.MEMBER_PW}" maxlength="30"
 																		placeholder="변경하실 비밀번호를 입력하세요.">
-
+																<div id="pw_info" class="text_pass">영문 대소문자/숫자/특수문자 모두 포함해서 8~20자</div>
 																</div>
 															</td>
 														</tr>
@@ -152,7 +152,7 @@
 															<td>
 																<div class="member_warning">
 																	<input type="text" name="MEMBER_NAME"
-																		value="${MEMBER_NAME}" maxlength="30"
+																		value="${memberMap.MEMBER_NAME}" maxlength="30"
 																		placeholder="이름을 입력하세요.">
 																</div>
 															</td>
@@ -162,7 +162,7 @@
 															<td class="member_email">
 																<div class="member_warning">
 																	<input type="text" name="MEMBER_EMAIL" id="email"
-																		value="${MEMBER_EMAIL}" placeholder="이메일을 입력하세요.">
+																		value="${memberMap.MEMBER_EMAIL}" placeholder="이메일을 입력하세요.">
 																</div>
 															</td>
 														</tr>
@@ -172,27 +172,27 @@
 																<div class="member_warning">
 																	<input type="text" id="phone" name="MEMBER_PHONE"
 																		maxlength="12" placeholder="- 없이 입력하세요."
-																		data-pattern="gdNum" value="${MEMBER_PHONE}">
+																		data-pattern="gdNum" value="${memberMap.MEMBER_PHONE}">
 																</div>
 															</td>
 														</tr>
 														<tr>
 															<th>주소</th>
-															<td><input type="text" id="sample4_postcode"
+															<td><input type="text" id="sample4_postcode" 
 																placeholder="우편번호" name="MEMBER_ZIP"
-																value="${MEMBER_ZIP}"> <input type="button"
+																value="${memberMap.MEMBER_ZIP}"> <input type="button" class="btn_member_zipsearch"
 																onclick="sample4_execDaumPostcode()" value="우편번호 찾기"><br>
 																<input type="text" id="sample4_roadAddress"
 																placeholder="도로명주소" name="MEMBER_ADD1"
-																name="MEMBER_ADD1" value="${MEMBER_ADD1}"> <input
+																name="MEMBER_ADD1" value="${memberMap.MEMBER_ADD1}"> <input
 																type="text" id="sample4_jibunAddress" placeholder="지번주소"
-																name="" value="${MEMBER_ADD1}"> <span id="guide"
+																name="" value=""> <span id="guide"
 																style="color: #999; display: none"></span> <br> <input
 																type="text" id="sample4_detailAddress"
 																placeholder="상세주소" name="MEMBER_ADD2"
-																value="${MEMBER_ADD2}"> <input type="text"
+																value="${memberMap.MEMBER_ADD2}"> <input type="text"
 																id="sample4_extraAddress" placeholder="참고항목"
-																name="MEMBER_ADD3" value="${MEMBER_ADD3}"></td>
+																name="MEMBER_ADD3" value="${memberMap.MEMBER_ADD3}"></td>
 														</tr>
 													</tbody>
 												</table>
