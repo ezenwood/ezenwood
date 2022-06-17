@@ -28,7 +28,9 @@ public interface GoodsService {
 	
 	public Map<String, Object> getReviewDetail(Map<String,Object> map);
 	
+	public int qnaDelete(Map<String,Object> insertMap);
 	
 	
+	public int reviewDelete(Map<String,Object> insertMap);
 
 }
