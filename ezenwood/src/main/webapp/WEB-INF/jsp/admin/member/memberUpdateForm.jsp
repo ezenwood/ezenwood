@@ -11,14 +11,6 @@
     <script
 	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 <script>
-$(document).ready(function() {
-
-	var selectedOption = '${memberUpdateMap.MEMBER_DEL_GB}';
-
-	$('#selectTag').val(selectedOption).prop("selected", true);
-	
-});
-
 	//본 예제에서는 도로명 주소 표기 방식에 대한 법령에 따라, 내려오는 데이터를 조합하여 올바른 주소를 구성하는 방법을 설명합니다.
 	function sample4_execDaumPostcode() {
 		new daum.Postcode(
@@ -76,7 +68,6 @@ $(document).ready(function() {
 					}
 				}).open();
 	}
-	
 </script>
 </head>
 <body>
@@ -111,11 +102,11 @@ $(document).ready(function() {
                                         <tr>
                                             <label>탈퇴여부</label>
                                             <br>
-                                            <td><select option_product_no="#" option_select_element="option-select-finder" option_sort_no="1" option_type="T" item_listing_type="C" option_title="DESIGN" product_type="member_del_gb" product_option_area="#" name="MEMBER_DEL_GB" id="selectTag" class="ProductOption0" option_style="select" required="true">
-                                                
+                                            <td><select option_product_no="#" option_select_element="option-select-finder" option_sort_no="1" option_type="T" item_listing_type="C" option_title="DESIGN" product_type="member_del_gb" product_option_area="#" name="option1" id="member_del_gb" class="ProductOption0" option_style="select" required="true">
+                                                  
                                                     <optgroup label="선택해주세요">
-                                                        <option value="N"> N </option>
-                                                        <option value="Y"> Y </option>
+                                                        <option value="no"> N </option>
+                                                        <option value="yes"> Y </option>
                                                  
                                                     </optgroup>
                                                 </select>

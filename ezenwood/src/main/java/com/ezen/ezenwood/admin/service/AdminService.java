@@ -21,13 +21,8 @@ public interface AdminService {
 		//
 		//member List 검색 조건문 만들기 아이디랑, 이름 , 탈퇴
 		public List<Map<String,Object>> adminMemberList(Map<String,Object> map) throws Exception;
-		public List<Map<String, Object>> MemberListByName(Map<String, Object> map);
-		public List<Map<String, Object>> MemberListById(Map<String, Object> map);
 		
 		public List<Map<String,Object>> adminDelMemberList(Map<String,Object> map) throws Exception;
-		
-		public List<Map<String, Object>> DelMemberListByName(Map<String, Object> map);
-		public List<Map<String, Object>> DelMemberListById(Map<String, Object> map);
 		
 		public Map<String,Object> adminMemberDetail(Map<String,Object> map) throws Exception;
 		
@@ -35,7 +30,7 @@ public interface AdminService {
 		
 		public int adminMemberDelete(Map<String,Object> map) throws Exception;
 		
-	
+		
 		//
 		
 		//order List 검색 조건문 만들기 아이디, 주문번호, 배송상태
@@ -125,10 +120,6 @@ public interface AdminService {
 		public int adminAboutInsert(Map<String,Object> map) throws Exception;
 
 		public Map<String, Object> adminMemberReturn(Map<String, Object> insertMap);
-
-	
-
-		
 
 		
 	

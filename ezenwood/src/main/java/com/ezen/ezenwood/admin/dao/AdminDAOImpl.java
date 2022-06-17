@@ -47,31 +47,12 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	public List<Map<String, Object>> adminMemberList(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("member.selectMemberListAdmin", map);
 	}
-	@Override
-	public List<Map<String, Object>> memberListByName(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return selectList("member.MemberListByName", map);
-	}
-	@Override
-	public List<Map<String, Object>> memberListById(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return selectList("member.MemberListById", map);
-	}
+
 	@Override
 	public List<Map<String, Object>> adminDelMemberList(Map<String, Object> map) {
-		return (List<Map<String, Object>>) selectList("member.selectDelMemberList", map);
+		return (List<Map<String, Object>>) selectList("member.selectMemberList", map);
 	}
-	@Override
-	public List<Map<String, Object>> delmemberListByName(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return selectList("member.DelMemberListByName", map);
-	}
-	@Override
-	public List<Map<String, Object>> delmemberListById(Map<String, Object> map) {
-		// TODO Auto-generated method stub
-		return selectList("member.DelMemberListById", map);
-	}
-	
+
 	@Override
 	public Map<String, Object> adminMemberDetail(Map<String, Object> map) {
 		// TODO Auto-generated method stub
