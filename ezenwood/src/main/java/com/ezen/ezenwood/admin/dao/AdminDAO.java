@@ -101,6 +101,8 @@ public interface AdminDAO {
 	public int adminOTOUpdate(Map<String, Object> map);
 
 	public int adminOTODelete(Map<String, Object> map);
+  
+  public int adminOTODeleteAll(Map<String,Object> map);
 
 	public int adminOTOInsert(Map<String, Object> map);
 

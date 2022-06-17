@@ -112,6 +112,8 @@
 			onclick="location.href='${contextPath}/admin/oto/writer/${QOTOMap.ONETOONE_NUM}'">답변</button>
 		<button type="reset" class="btn btn-default"
 			onclick="location.href='${contextPath}/admin/oto/1'">작성취소</button>
+			<button type="button" class="btn btn-success"
+			onclick="location.href='${contextPath}/admin/oto/dell/${QOTOMap.ONETOONE_NUM}'">문의/답변삭제</button>
 		<button type="button" class="btn btn-success"
 			onclick="location.href='${contextPath}/admin/oto/del/${QOTOMap.ONETOONE_NUM}'">답변삭제</button>
 

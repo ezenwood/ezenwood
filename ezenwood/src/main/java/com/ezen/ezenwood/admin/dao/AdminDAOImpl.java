@@ -242,7 +242,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public Map<String, Object> adminOTODetailQ(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (Map<String, Object>) selectOne("onetoone.selectClientDetail", map);
+		return (Map<String, Object>) selectOne("onetoone.selectClientDetailQ", map);
 	}
 
 	@Override
@@ -267,6 +267,12 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	public int adminOTODelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return (int) update("onetoone.deleteAdmin", map);
+	}
+	
+	@Override
+	public int adminOTODeleteAll(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (int) update("onetoone.deleteAdminAll", map);
 	}
 
 	@Override

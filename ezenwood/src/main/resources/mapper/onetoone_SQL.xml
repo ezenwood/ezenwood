@@ -121,6 +121,27 @@ FROM MEMBER
 WHERE MEMBER_ID = #{MEMBER_ID}) AND ONETOONE_NUM = #{ONETOONE_NUM}
 ]]>
 </select>
+
+<select id="selectClientDetailQ" parameterType="hashmap" resultType="hashmap">
+<![CDATA[
+
+select 
+ONETOONE_NUM,
+ONETOONE_TITLE,
+MEMBER_NAME,
+ONETOONE_MEMBER_NUM,
+ONETOONE_CONTENT,
+ONETOONE_DATE
+from ONETOONE inner join member on MEMBER.MEMBER_NUM = ONETOONE.ONETOONE_MEMBER_NUM
+where 
+ONETOONE_DEL_GB = 'N'
+AND
+ONETOONE_MEMBER_NUM =
+(SELECT MEMBER_NUM 
+FROM MEMBER
+WHERE MEMBER_NUM = (SELECT ONETOONE_MEMBER_NUM FROM ONETOONE WHERE ONETOONE_NUM = #{ONETOONE_NUM})) AND ONETOONE_NUM = #{ONETOONE_NUM}
+]]>
+</select>
 <!-- 고객 OTO 작성 -->
 <insert id="insertClient" parameterType="hashmap" useGeneratedKeys="true" keyProperty="SONETOONE_NUM">
 <selectKey order="BEFORE" keyProperty="SONETOONE_NUM" resultType="string" >
@@ -212,7 +233,7 @@ WHERE ONETOONE_MEMBER_NUM = (SELECT MEMBER_NUM FROM MEMBER)
 </update>
 
 
-<!-- 관리자/ 고객 OTO삭제 -->
+<!-- 관리자/ 고객 OTO 답변 삭제 -->
 <update id="deleteAdmin" parameterType="hashmap">
 <![CDATA[
 
@@ -220,6 +241,18 @@ UPDATE ONETOONE
 SET ONETOONE_DEL_GB = 'Y'
 WHERE ONETOONE_MEMBER_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}) 
 AND ONETOONE_PARENT = #{ONETOONE_NUM}
+
+
+]]>
+</update>
+
+<!-- 관리자/ 고객 OTO 문의/답변 삭제 -->
+<update id="deleteAdminAll" parameterType="hashmap">
+<![CDATA[
+
+UPDATE ONETOONE
+SET ONETOONE_DEL_GB = 'Y'
+WHERE ONETOONE_NUM = #{ONETOONE_NUM}
 
 
 ]]>
