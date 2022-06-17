@@ -160,7 +160,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		// TODO Auto-generated method stub
 		return (int) update("notice.noticedelete", map);
 	}
-	
+
 	@Override
 	public List<Map<String, Object>> noticeSearching(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("notice.noticesearch", map);
@@ -215,10 +215,15 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		// TODO Auto-generated method stub
 		return (int) update("qna.adminQNAcheckQ", QNA_NUM);
 	}
-	
+
 	@Override
 	public List<Map<String, Object>> qnaSearching(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("qna.qnasearch", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> qnaCategory(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("qna.qnacategory", map);
 	}
 
 	// 리뷰 review
@@ -240,7 +245,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		// TODO Auto-generated method stub
 		return (int) update("review.admindeleteReview", map);
 	}
-	
+
 	@Override
 	public List<Map<String, Object>> reviewSearching(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("review.reviewsearch", map);
@@ -283,7 +288,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		// TODO Auto-generated method stub
 		return (int) update("onetoone.deleteAdmin", map);
 	}
-	
+
 	@Override
 	public int adminOTODeleteAll(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -310,6 +315,12 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	public List<Map<String, Object>> otoSearching(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("onetoone.otosearching", map);
 	}
+
+	@Override
+	public List<Map<String, Object>> otoCategory(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("onetoone.otocategory", map);
+	}
+
 	// 자주묻는질문 fq
 
 	@Override
@@ -341,7 +352,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		// TODO Auto-generated method stub
 		return (int) insert("frequestion.frequestionInsert", map);
 	}
-	
+
 	@Override
 	public List<Map<String, Object>> fqSearching(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("frequestion.fqsearch", map);

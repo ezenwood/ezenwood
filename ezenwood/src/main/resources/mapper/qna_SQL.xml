@@ -41,23 +41,59 @@ WHERE QNA_DEL_GB = 'N'AND QNA_TYPE = 'Q'
 		QNA_DATE,
 		QNA_DEL_GB
 		FROM QNA
-		WHERE QNA_DEL_GB = 'N'
+		WHERE QNA_DEL_GB =
+		'N'
 		AND QNA_TYPE = 'Q'
 
 		<if test="type=='title'">
 			AND (QNA_TITLE LIKE '%'||#{keyword}||'%')
 		</if>
 		<if test="type=='writer'">
-			AND (QNA_WRITER LIKE (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID
+			AND (QNA_WRITER LIKE (SELECT MEMBER_NUM FROM MEMBER WHERE
+			MEMBER_ID
 			= #{keyword}))
 		</if>
 
 	</select>
 
+
+	<select id="qnacategory" parameterType="hashmap"
+		resultType="hashmap">
+		SELECT
+		QNA_NUM,
+		QNA_TITLE,
+		QNA_WRITER,
+		QNA_RE_GB,
+		QNA_CONTENT,
+		QNA_PARENT,
+		QNA_TYPE,
+		QNA_SECREATE,
+		QNA_DATE,
+		QNA_DEL_GB
+		FROM QNA
+		WHERE QNA_DEL_GB =
+		'N'
+		AND QNA_TYPE = 'Q'
+
+		<choose>
+			<when test='category=="wating"'>
+				AND QNA_RE_GB = 'N'
+			</when>
+
+			<when test='category=="success"'>
+				AND QNA_RE_GB = 'Y'
+			</when>
+			<otherwise></otherwise>
+		</choose>
+
+	</select>
+
+
 	<update id="qnaDelete" parameterType="hashmap">
 
 		update qna
-		set QNA_DEL_GB = 'Y'
+		set QNA_DEL_GB =
+		'Y'
 		where QNA_NUM =#{QNA_NUM}
 		and QNA_WRITER=#{MEMBER_NUM}
 

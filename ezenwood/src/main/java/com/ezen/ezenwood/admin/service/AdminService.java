@@ -79,6 +79,8 @@ public interface AdminService {
 	public int adminQNADelete(Map<String, Object> map) throws Exception;
 	
 	public List<Map<String, Object>> qnaSearching(Map<String, Object> map) throws Exception;
+	
+	public List<Map<String, Object>> qnaCategory(Map<String, Object> map) throws Exception;
 
 	//
 	// Review
@@ -107,9 +109,11 @@ public interface AdminService {
 
 	public int adminOTOInsert(Map<String, Object> map) throws Exception;
   
-  public int adminOTODeleteAll(Map<String,Object> map) throws Exception;
+    public int adminOTODeleteAll(Map<String,Object> map) throws Exception;
 
 	public List<Map<String, Object>> otoSearching(Map<String, Object> map) throws Exception;
+	
+	public List<Map<String, Object>> otoCategory(Map<String, Object> map) throws Exception;
 
 	// 자주묻는질문
 
