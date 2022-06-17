@@ -46,6 +46,44 @@ public class GoodsServiceImpl implements GoodsService {
 	
 	
 	@Override
+	public int qnaDelete(Map<String, Object> insertMap) {
+		// TODO Auto-generated method stub
+		return goodsDAO.qnaDelete(insertMap);
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	@Override
+	public int reviewDelete(Map<String, Object> insertMap) {
+		// TODO Auto-generated method stub
+		return goodsDAO.reviewDelete(insertMap); 
+	}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+	@Override
 	public List<Map<String, Object>> goodsList(Map<String, Object> map) {
 		
 		List<Map<String,Object>> listMap = goodsDAO.goodList(map);

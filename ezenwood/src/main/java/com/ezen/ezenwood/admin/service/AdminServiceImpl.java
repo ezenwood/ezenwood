@@ -232,9 +232,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int adminOrderUpdate(Map<String, Object> map) throws Exception {
+	public int adminOrderUpdate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminOrderUpdate(map);
 	}
 
 	@Override

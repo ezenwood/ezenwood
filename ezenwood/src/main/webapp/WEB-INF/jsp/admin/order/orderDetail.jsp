@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+    <%@ taglib uri="http://www.springframework.org/tags/form" prefix="form"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -55,7 +56,7 @@ function validateForm() {
 	<div class="panel panel-default">
 		<div class="panel-heading" >주문상세 페이지입니다.</div>
 			<div class="panel-body">
-				<form:form commandName="orderModel" action="orderModify.dog" enctype="multipart/form-data" method="post"name="joinform" onsubmit="return validateForm()">
+				<form:form  method="post"  >
 				<input type="hidden" name="order_num" value="${orderModel.order_num}">
                     <div class="form-group">
                             <label>상품명</label>
@@ -67,7 +68,7 @@ function validateForm() {
                         </div>
                         <div class="form-group">
                             <label>송장번호</label>
-                            <input type="text" class="form-control" value="${orderMap.ORDERS_TRACK}" style="width:initial;" readonly/>                             
+                            <input type="text" class="form-control" name="ORDERS_TRACK" value="${orderMap.ORDERS_TRACK}" style="width:initial;" />                             
                         </div>
                         
                         <p>
@@ -124,11 +125,19 @@ function validateForm() {
                         </div>
                           <div class="form-group">
                             <label>배송상태</label>
+                            <select name="ORDERS_STATUS" id="selectTag">
+                            <option value="1">결제대기 중</option>
+                            <option value="2">결제 완료</option>
+                            <option value="3">배송준비 중</option>
+                            <option value="4">배송 중</option>
+                            <option value="5">배송 완료</option>
+                            <option value="6">주문 취소</option>
+                            </select>
                             <input type="text" class="form-control" value="${orderMap.DELIVERY_STATUES }" style="width:initial;" readonly/>   
                         
 						
 						<button type="submit" class="btn btn-success">수정</button>
-						<button type="reset" class="btn btn-default">삭제</button>					
+						<button type="button" onclick="history.back()" class="btn btn-default">취소</button>					
 				</form:form>
                    
                     </div>
@@ -137,4 +146,13 @@ function validateForm() {
 </div>
 </div>
 </body>
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+	<script type="text/javascript">
+	$(document).ready(function() {
+	var selectedOption = '${orderMap.ORDERS_STATUS}';
+	$('#selectTag').val(selectedOption).prop("selected", true);
+
+	});
+	</script>
 </html>

@@ -4,6 +4,12 @@
 <mapper namespace="review">
 
 
+<update id="reviewDelete" parameterType="hashmap">
+
+update review set REVIEW_DEL_GB ='Y' where REVIEW_WRITER=#{MEMBER_NUM} and REVIEW_NUM=#{REVIEW_NUM}
+</update>
+
+
 	<!-- 전체 review 보기 -->
 	<select id="selectAllReview" parameterType="hashmap"
 		resultType="hashmap">

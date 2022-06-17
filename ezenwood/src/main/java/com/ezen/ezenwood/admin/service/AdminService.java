@@ -5,6 +5,7 @@ import java.util.Map;
 
 public interface AdminService {
 
+
 	// good list 검색 조건문만들기 카테고리랑, 상품명
 	public List<Map<String, Object>> adminGoodsList(Map<String, Object> map) throws Exception;
 
@@ -123,5 +124,6 @@ public interface AdminService {
 	public int adminAboutInsert(Map<String, Object> map) throws Exception;
 
 	public Map<String, Object> adminMemberReturn(Map<String, Object> insertMap);
+
 
 }
