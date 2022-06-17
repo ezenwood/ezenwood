@@ -280,7 +280,7 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return adminDAO.adminNoticeDelete(map);
 	}
-	
+
 	@Override
 	public List<Map<String, Object>> noticeSearching(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
@@ -348,11 +348,17 @@ public class AdminServiceImpl implements AdminService {
 
 		return checknum;
 	}
-	
+
 	@Override
 	public List<Map<String, Object>> qnaSearching(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return adminDAO.qnaSearching(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> qnaCategory(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.qnaCategory(map);
 	}
 
 	// review
@@ -402,7 +408,7 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return adminDAO.adminReviewDelete(map);
 	}
-	
+
 	@Override
 	public List<Map<String, Object>> reviewSearching(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
@@ -453,17 +459,17 @@ public class AdminServiceImpl implements AdminService {
 
 		return checknum;
 	}
-	
+
 	@Override
 	public int adminOTODeleteAll(Map<String, Object> map) throws Exception {
 		int checknum = adminDAO.adminOTODeleteAll(map);
-		
-		if( checknum == 1) {
-			
+
+		if (checknum == 1) {
+
 			int OTONUM = (int) map.get("ONETOONE_NUM");
 			adminDAO.adminOTOcheckQ(OTONUM);
 		}
-		
+
 		return checknum;
 	}
 
@@ -483,6 +489,12 @@ public class AdminServiceImpl implements AdminService {
 	public List<Map<String, Object>> otoSearching(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return adminDAO.otoSearching(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> otoCategory(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.otoCategory(map);
 	}
 
 	// fq(자주묻는질문)
@@ -516,7 +528,7 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return adminDAO.adminFQInsert(map);
 	}
-	
+
 	@Override
 	public List<Map<String, Object>> fqSearching(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub

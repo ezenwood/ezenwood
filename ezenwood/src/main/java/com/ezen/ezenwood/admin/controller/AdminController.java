@@ -153,255 +153,239 @@ public class AdminController {
 	}
 
 	// member
-		// 회원 리스트 보기
-		@RequestMapping(value = "/memberList", method = RequestMethod.GET)
-		   public ModelAndView adminMemberList(Model model, HttpServletRequest request)
-		         throws Exception {
+	// 회원 리스트 보기
+	@RequestMapping(value = "/memberList", method = RequestMethod.GET)
+	public ModelAndView adminMemberList(Model model, HttpServletRequest request) throws Exception {
 
+		ModelAndView mav = new ModelAndView();
 
-		      ModelAndView mav = new ModelAndView();
+		String searchOption = request.getParameter("searchOption");
+		String searchKeyword = request.getParameter("searchKeyword");
 
+		if (searchKeyword == null || searchOption == null) {
 
-				String searchOption = request.getParameter("searchOption");
-				String searchKeyword = request.getParameter("searchKeyword");
+			String currentPageNum = request.getParameter("PageNum");
 
-				if(searchKeyword==null||searchOption==null) {
+			if (currentPageNum == null || currentPageNum.equals("") || currentPageNum.isEmpty()) {
+				currentPageNum = "1";
+			}
+			Map<String, Object> insertMap = new HashMap<String, Object>();
 
+			PaginationInfo paginationInfo = new PaginationInfo();
 
+			// 현재 페이지 번호
+			paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
+			// 한 페이지에 게시되는 게시물 건수
+			paginationInfo.setRecordCountPerPage(9);
+			// 페이징 리스트의 사이즈
+			paginationInfo.setPageSize(5);
+			insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+			insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+			List<Map<String, Object>> adminMemberList = adminService.adminMemberList(insertMap);
+
+			model.addAttribute("adminMemberList", adminMemberList);
+
+			if (adminMemberList.isEmpty()) {
+
+			} else {
+
+				paginationInfo.setTotalRecordCount(((BigDecimal) adminMemberList.get(0).get("TOTAL_COUNT")).intValue());
+
+				model.addAttribute("TOTAL_COUNT", ((BigDecimal) adminMemberList.get(0).get("TOTAL_COUNT")).intValue());
+
+				model.addAttribute("paginationInfo", paginationInfo);
+			}
+
+		} else {
+			if (searchOption.equals("1")) {
+				// id
 				String currentPageNum = request.getParameter("PageNum");
 
-
-				if(currentPageNum==null||currentPageNum.equals("")||currentPageNum.isEmpty()) {
-					currentPageNum="1";
+				if (currentPageNum == null || currentPageNum.equals("") || currentPageNum.isEmpty()) {
+					currentPageNum = "1";
 				}
-		      Map<String, Object> insertMap = new HashMap<String, Object>();
 
-		      PaginationInfo paginationInfo = new PaginationInfo();
+				PaginationInfo paginationInfo = new PaginationInfo();
+				paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
+				paginationInfo.setPageSize(5);
+				paginationInfo.setRecordCountPerPage(9);
 
-		      // 현재 페이지 번호
-		      paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
-		      // 한 페이지에 게시되는 게시물 건수
-		      paginationInfo.setRecordCountPerPage(9);
-		      // 페이징 리스트의 사이즈
-		      paginationInfo.setPageSize(5);
-		      insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		      insertMap.put("END", paginationInfo.getLastRecordIndex());
+				Map<String, Object> insertMap = new HashMap<String, Object>();
+				insertMap.put("searchKeyword", searchKeyword);
+				insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+				insertMap.put("END", paginationInfo.getLastRecordIndex());
 
-		      List<Map<String, Object>> adminMemberList = adminService.adminMemberList(insertMap);
+				List<Map<String, Object>> result = adminService.MemberListById(insertMap);
+				model.addAttribute("result", result);
 
-		      model.addAttribute("adminMemberList", adminMemberList);
+				if (result.isEmpty()) {
+				} else {
+					paginationInfo.setTotalRecordCount(((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
 
-		      if (adminMemberList.isEmpty()) {
+					model.addAttribute("TOTAL_COUNT", ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
 
-		      } else {
-
-		         paginationInfo.setTotalRecordCount(((BigDecimal) adminMemberList.get(0).get("TOTAL_COUNT")).intValue());
-
-		         model.addAttribute("TOTAL_COUNT", ((BigDecimal) adminMemberList.get(0).get("TOTAL_COUNT")).intValue());
-
-		         model.addAttribute("paginationInfo", paginationInfo);
-		      }
-
-
-
-				}else {
-					if(searchOption.equals("1")) {
-						//id
-						String currentPageNum = request.getParameter("PageNum");
-
-						if(currentPageNum==null||currentPageNum.equals("")||currentPageNum.isEmpty()) {
-							currentPageNum="1";
-						}
-
-						PaginationInfo paginationInfo = new PaginationInfo();
-						paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
-						paginationInfo.setPageSize(5);
-						paginationInfo.setRecordCountPerPage(9);
-
-						Map<String,Object> insertMap = new HashMap<String,Object>();
-						insertMap.put("searchKeyword", searchKeyword);
-						insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
-						insertMap.put("END", paginationInfo.getLastRecordIndex());
-
-						List<Map<String,Object>> result = adminService.MemberListById(insertMap);
-						 model.addAttribute("result", result);
-
-						if(result.isEmpty()) {
-						}else {
-							   paginationInfo.setTotalRecordCount(((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
-
-						         model.addAttribute("TOTAL_COUNT", ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
-
-						         model.addAttribute("paginationInfo", paginationInfo);
-						}
-
-						model.addAttribute("adminMemberList", result);
-					}else {
-						//name
-						String currentPageNum = request.getParameter("PageNum");
-
-						if(currentPageNum==null||currentPageNum.equals("")||currentPageNum.isEmpty()) {
-							currentPageNum="1";
-						}
-
-						Map<String,Object> insertMap = new HashMap<String,Object>();
-
-						PaginationInfo paginationInfo = new PaginationInfo();
-						paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
-						paginationInfo.setPageSize(5);
-						paginationInfo.setRecordCountPerPage(9);
-
-						insertMap.put("searchKeyword", searchKeyword);
-						insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
-						insertMap.put("END", paginationInfo.getLastRecordIndex());
-
-						insertMap.put("searchKeyword", searchKeyword);
-
-						List<Map<String,Object>> result = adminService.MemberListByName(insertMap);
-						 model.addAttribute("result", result);
-
-							if(result.isEmpty()) {
-							}else {
-								   paginationInfo.setTotalRecordCount(((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
-
-							         model.addAttribute("TOTAL_COUNT", ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
-
-							         model.addAttribute("paginationInfo", paginationInfo);
-							}
-						model.addAttribute("adminMemberList", result);
-					}
+					model.addAttribute("paginationInfo", paginationInfo);
 				}
-		      mav.setViewName("admin/member/memberList");
 
-
-
-		      return mav;
-
-		   }
-
-		// 탈퇴 회원 보기
-		   @RequestMapping(value = "/delmemberList", method = RequestMethod.GET)
-		   public ModelAndView delmemberList (Model model,HttpServletRequest request)
-		         throws Exception {
-
-		      ModelAndView mav = new ModelAndView();
-
-
-				String searchOption = request.getParameter("searchOption");
-				String searchKeyword = request.getParameter("searchKeyword");
-
-				if(searchKeyword==null||searchOption==null) {
-
-
+				model.addAttribute("adminMemberList", result);
+			} else {
+				// name
 				String currentPageNum = request.getParameter("PageNum");
 
-
-				if(currentPageNum==null||currentPageNum.equals("")||currentPageNum.isEmpty()) {
-					currentPageNum="1";
+				if (currentPageNum == null || currentPageNum.equals("") || currentPageNum.isEmpty()) {
+					currentPageNum = "1";
 				}
-		      Map<String, Object> insertMap = new HashMap<String, Object>();
 
-		      PaginationInfo paginationInfo = new PaginationInfo();
+				Map<String, Object> insertMap = new HashMap<String, Object>();
 
-		      // 현재 페이지 번호
-		      paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
-		      // 한 페이지에 게시되는 게시물 건수
-		      paginationInfo.setRecordCountPerPage(9);
-		      // 페이징 리스트의 사이즈
-		      paginationInfo.setPageSize(5);
-		      insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		      insertMap.put("END", paginationInfo.getLastRecordIndex());
-		      List<Map<String, Object>> adminDelMemberListMap = adminService.adminDelMemberList(insertMap);
-		      model.addAttribute("adminDelMemberListMap", adminDelMemberListMap);
-		      if (adminDelMemberListMap.isEmpty()) {
-		      } else {
-		         paginationInfo.setTotalRecordCount(((BigDecimal) adminDelMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
-		         model.addAttribute("TOTAL_COUNT", ((BigDecimal) adminDelMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
-	          
-		         model.addAttribute("paginationInfo", paginationInfo);
-		      }
+				PaginationInfo paginationInfo = new PaginationInfo();
+				paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
+				paginationInfo.setPageSize(5);
+				paginationInfo.setRecordCountPerPage(9);
 
+				insertMap.put("searchKeyword", searchKeyword);
+				insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+				insertMap.put("END", paginationInfo.getLastRecordIndex());
 
+				insertMap.put("searchKeyword", searchKeyword);
 
-				}else {
-					if(searchOption.equals("1")) {
-						//id
-						String currentPageNum = request.getParameter("PageNum");
+				List<Map<String, Object>> result = adminService.MemberListByName(insertMap);
+				model.addAttribute("result", result);
 
-						if(currentPageNum==null||currentPageNum.equals("")||currentPageNum.isEmpty()) {
-							currentPageNum="1";
-						}
+				if (result.isEmpty()) {
+				} else {
+					paginationInfo.setTotalRecordCount(((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
 
-						PaginationInfo paginationInfo = new PaginationInfo();
-						paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
-						paginationInfo.setPageSize(5);
-						paginationInfo.setRecordCountPerPage(9);
+					model.addAttribute("TOTAL_COUNT", ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
 
-						Map<String,Object> insertMap = new HashMap<String,Object>();
-						insertMap.put("searchKeyword", searchKeyword);
-						insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
-						insertMap.put("END", paginationInfo.getLastRecordIndex());
-
-						List<Map<String,Object>> result = adminService.DelMemberListById(insertMap);
-						 model.addAttribute("result", result);
-
-						if(result.isEmpty()) {
-						}else {
-							   paginationInfo.setTotalRecordCount(((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
-
-						         model.addAttribute("TOTAL_COUNT", ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
-
-						         model.addAttribute("paginationInfo", paginationInfo);
-						}
-
-						model.addAttribute("adminDelMemberListMap", result);
-					}else {
-						//name
-						String currentPageNum = request.getParameter("PageNum");
-
-						if(currentPageNum==null||currentPageNum.equals("")||currentPageNum.isEmpty()) {
-							currentPageNum="1";
-						}
-
-						Map<String,Object> insertMap = new HashMap<String,Object>();
-
-						PaginationInfo paginationInfo = new PaginationInfo();
-						paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
-						paginationInfo.setPageSize(5);
-						paginationInfo.setRecordCountPerPage(9);
-
-						insertMap.put("searchKeyword", searchKeyword);
-						insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
-						insertMap.put("END", paginationInfo.getLastRecordIndex());
-
-						insertMap.put("searchKeyword", searchKeyword);
-
-						List<Map<String,Object>> result = adminService.DelMemberListByName(insertMap);
-						 model.addAttribute("result", result);
-
-							if(result.isEmpty()) {
-							}else {
-								   paginationInfo.setTotalRecordCount(((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
-
-							         model.addAttribute("TOTAL_COUNT", ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
-
-							         model.addAttribute("paginationInfo", paginationInfo);
-							}
-						model.addAttribute("adminDelMemberListMap", result);
-					}
+					model.addAttribute("paginationInfo", paginationInfo);
 				}
-		      mav.setViewName("admin/member/DelmemberList");
+				model.addAttribute("adminMemberList", result);
+			}
+		}
+		mav.setViewName("admin/member/memberList");
 
+		return mav;
 
+	}
 
-		      return mav;
+	// 탈퇴 회원 보기
+	@RequestMapping(value = "/delmemberList", method = RequestMethod.GET)
+	public ModelAndView delmemberList(Model model, HttpServletRequest request) throws Exception {
 
-		   }
+		ModelAndView mav = new ModelAndView();
+
+		String searchOption = request.getParameter("searchOption");
+		String searchKeyword = request.getParameter("searchKeyword");
+
+		if (searchKeyword == null || searchOption == null) {
+
+			String currentPageNum = request.getParameter("PageNum");
+
+			if (currentPageNum == null || currentPageNum.equals("") || currentPageNum.isEmpty()) {
+				currentPageNum = "1";
+			}
+			Map<String, Object> insertMap = new HashMap<String, Object>();
+
+			PaginationInfo paginationInfo = new PaginationInfo();
+
+			// 현재 페이지 번호
+			paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
+			// 한 페이지에 게시되는 게시물 건수
+			paginationInfo.setRecordCountPerPage(9);
+			// 페이징 리스트의 사이즈
+			paginationInfo.setPageSize(5);
+			insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+			insertMap.put("END", paginationInfo.getLastRecordIndex());
+			List<Map<String, Object>> adminDelMemberListMap = adminService.adminDelMemberList(insertMap);
+			model.addAttribute("adminDelMemberListMap", adminDelMemberListMap);
+			if (adminDelMemberListMap.isEmpty()) {
+			} else {
+				paginationInfo
+						.setTotalRecordCount(((BigDecimal) adminDelMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
+				model.addAttribute("TOTAL_COUNT",
+						((BigDecimal) adminDelMemberListMap.get(0).get("TOTAL_COUNT")).intValue());
+
+				model.addAttribute("paginationInfo", paginationInfo);
+			}
+
+		} else {
+			if (searchOption.equals("1")) {
+				// id
+				String currentPageNum = request.getParameter("PageNum");
+
+				if (currentPageNum == null || currentPageNum.equals("") || currentPageNum.isEmpty()) {
+					currentPageNum = "1";
+				}
+
+				PaginationInfo paginationInfo = new PaginationInfo();
+				paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
+				paginationInfo.setPageSize(5);
+				paginationInfo.setRecordCountPerPage(9);
+
+				Map<String, Object> insertMap = new HashMap<String, Object>();
+				insertMap.put("searchKeyword", searchKeyword);
+				insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+				insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+				List<Map<String, Object>> result = adminService.DelMemberListById(insertMap);
+				model.addAttribute("result", result);
+
+				if (result.isEmpty()) {
+				} else {
+					paginationInfo.setTotalRecordCount(((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
+
+					model.addAttribute("TOTAL_COUNT", ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
+
+					model.addAttribute("paginationInfo", paginationInfo);
+				}
+
+				model.addAttribute("adminDelMemberListMap", result);
+			} else {
+				// name
+				String currentPageNum = request.getParameter("PageNum");
+
+				if (currentPageNum == null || currentPageNum.equals("") || currentPageNum.isEmpty()) {
+					currentPageNum = "1";
+				}
+
+				Map<String, Object> insertMap = new HashMap<String, Object>();
+
+				PaginationInfo paginationInfo = new PaginationInfo();
+				paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
+				paginationInfo.setPageSize(5);
+				paginationInfo.setRecordCountPerPage(9);
+
+				insertMap.put("searchKeyword", searchKeyword);
+				insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+				insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+				insertMap.put("searchKeyword", searchKeyword);
+
+				List<Map<String, Object>> result = adminService.DelMemberListByName(insertMap);
+				model.addAttribute("result", result);
+
+				if (result.isEmpty()) {
+				} else {
+					paginationInfo.setTotalRecordCount(((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
+
+					model.addAttribute("TOTAL_COUNT", ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
+
+					model.addAttribute("paginationInfo", paginationInfo);
+				}
+				model.addAttribute("adminDelMemberListMap", result);
+			}
+		}
+		mav.setViewName("admin/member/DelmemberList");
+
+		return mav;
+
+	}
 
 	// 회원 정보 수정
-	@RequestMapping(value="/member/{MEMBER_ID}", method = RequestMethod.GET) 
+	@RequestMapping(value = "/member/{MEMBER_ID}", method = RequestMethod.GET)
 	public String memberUpdateDetail(@PathVariable String MEMBER_ID, Model model) throws Exception {
-
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("MEMBER_ID", MEMBER_ID);
@@ -410,11 +394,12 @@ public class AdminController {
 
 		model.addAttribute("memberUpdateMap", memberUpdateMap);
 
-		return "admin/member/memberUpdateForm"; 
+		return "admin/member/memberUpdateForm";
 	}
-	
+
 	@RequestMapping(value = "/member/{MEMBER_ID}", method = RequestMethod.POST)
-	public String memberUpdate(@PathVariable String MEMBER_ID, CommandMap commandMap, HttpServletRequest request) throws Exception {
+	public String memberUpdate(@PathVariable String MEMBER_ID, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
 		Map<String, Object> insertMap = commandMap.getMap();
 		insertMap.put("MEMBER_ID", MEMBER_ID);
 		insertMap.put("request", request);
@@ -422,155 +407,142 @@ public class AdminController {
 		return "redirect:/admin/memberList/1";
 
 	}
-	
-	//탈퇴 회원 복구
-	  @RequestMapping({"/member/return/{MEMBER_ID}"})
-	  public ModelAndView memberReturn(@PathVariable String MEMBER_ID) {
-	    ModelAndView mav = new ModelAndView();
-	    Map<String, Object> insertMap = new HashMap<String, Object>();
-	    insertMap.put("MEMBER_ID", MEMBER_ID);
-	    Map<String, Object> resultMap = this.adminService.adminMemberReturn(insertMap);
-	    mav.addObject("MemReMap", resultMap);
-	    mav.setViewName("admin/member/DelmemberList");
-	    return mav;
-	  }
+
+	// 탈퇴 회원 복구
+	@RequestMapping({ "/member/return/{MEMBER_ID}" })
+	public ModelAndView memberReturn(@PathVariable String MEMBER_ID) {
+		ModelAndView mav = new ModelAndView();
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		insertMap.put("MEMBER_ID", MEMBER_ID);
+		Map<String, Object> resultMap = this.adminService.adminMemberReturn(insertMap);
+		mav.addObject("MemReMap", resultMap);
+		mav.setViewName("admin/member/DelmemberList");
+		return mav;
+	}
 
 	// order // 주문 리스트보기
 
 	@RequestMapping(value = "/order")
 	public String orderList(HttpServletRequest request, Model model) throws Exception {
-		
+
 		String searchOption = request.getParameter("searchOption");
 		String searchKeyword = request.getParameter("searchKeyword");
-		
-		if(searchKeyword==null||searchOption==null) {
-		
-		
-		String currentPageNum = request.getParameter("PageNum");
-		String searchType = request.getParameter("searchType");
-		
-		if(currentPageNum==null||currentPageNum.equals("")||currentPageNum.isEmpty()) {
-			currentPageNum="1";
-		}
-		if(searchType==null||searchType.equals("")||searchType.isEmpty()) {
-			searchType="7";
-		}
-		
-		PaginationInfo paginationInfo = new PaginationInfo();
-		paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
-		paginationInfo.setPageSize(5);
-		paginationInfo.setRecordCountPerPage(10);
-		
-		Map<String,Object> insertMap = new HashMap<String,Object>();
-		insertMap.put("searchType", searchType);
-		insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
-		
-		List<Map<String,Object>> result = adminService.adminOrderList(insertMap);
-		int TOTAL_COUNT = 0;
-		if(result.isEmpty()) {
-			//
-		}else {
-			TOTAL_COUNT = ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(TOTAL_COUNT);
-			model.addAttribute("paginationInfo", paginationInfo);
-		}
-		
-		
-		model.addAttribute("TOTAL_COUNT", TOTAL_COUNT);
-		model.addAttribute("orderListMap", result);
-		
-		
-		}else {
-			if(searchOption.equals("1")) {
-				//id
+
+		if (searchKeyword == null || searchOption == null) {
+
+			String currentPageNum = request.getParameter("PageNum");
+			String searchType = request.getParameter("searchType");
+
+			if (currentPageNum == null || currentPageNum.equals("") || currentPageNum.isEmpty()) {
+				currentPageNum = "1";
+			}
+			if (searchType == null || searchType.equals("") || searchType.isEmpty()) {
+				searchType = "7";
+			}
+
+			PaginationInfo paginationInfo = new PaginationInfo();
+			paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
+			paginationInfo.setPageSize(5);
+			paginationInfo.setRecordCountPerPage(10);
+
+			Map<String, Object> insertMap = new HashMap<String, Object>();
+			insertMap.put("searchType", searchType);
+			insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+			insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+			List<Map<String, Object>> result = adminService.adminOrderList(insertMap);
+			int TOTAL_COUNT = 0;
+			if (result.isEmpty()) {
+				//
+			} else {
+				TOTAL_COUNT = ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue();
+				paginationInfo.setTotalRecordCount(TOTAL_COUNT);
+				model.addAttribute("paginationInfo", paginationInfo);
+			}
+
+			model.addAttribute("TOTAL_COUNT", TOTAL_COUNT);
+			model.addAttribute("orderListMap", result);
+
+		} else {
+			if (searchOption.equals("1")) {
+				// id
 				String currentPageNum = request.getParameter("PageNum");
 				String searchType = request.getParameter("searchType");
-				
-				if(currentPageNum==null||currentPageNum.equals("")||currentPageNum.isEmpty()) {
-					currentPageNum="1";
+
+				if (currentPageNum == null || currentPageNum.equals("") || currentPageNum.isEmpty()) {
+					currentPageNum = "1";
 				}
-				if(searchType==null||searchType.equals("")||searchType.isEmpty()) {
-					searchType="7";
+				if (searchType == null || searchType.equals("") || searchType.isEmpty()) {
+					searchType = "7";
 				}
-				
+
 				PaginationInfo paginationInfo = new PaginationInfo();
 				paginationInfo.setCurrentPageNo(Integer.parseInt(currentPageNum));
 				paginationInfo.setPageSize(5);
 				paginationInfo.setRecordCountPerPage(10);
-				
-				Map<String,Object> insertMap = new HashMap<String,Object>();
+
+				Map<String, Object> insertMap = new HashMap<String, Object>();
 				insertMap.put("searchType", searchType);
-				insertMap.put("START", paginationInfo.getFirstRecordIndex()+1);
+				insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
 				insertMap.put("END", paginationInfo.getLastRecordIndex());
-				
-				List<Map<String,Object>> result = adminService.adminOrderList(insertMap);
+
+				List<Map<String, Object>> result = adminService.adminOrderList(insertMap);
 				int TOTAL_COUNT = 0;
-				if(result.isEmpty()) {
+				if (result.isEmpty()) {
 					//
-				}else {
+				} else {
 					TOTAL_COUNT = ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue();
 					paginationInfo.setTotalRecordCount(TOTAL_COUNT);
 					model.addAttribute("paginationInfo", paginationInfo);
 				}
-				
-				
+
 				model.addAttribute("TOTAL_COUNT", TOTAL_COUNT);
 				model.addAttribute("orderListMap", result);
-			}else {
-				//orderNum
-				
-				Map<String,Object> insertMap = new HashMap<String,Object>();
-				
+			} else {
+				// orderNum
+
+				Map<String, Object> insertMap = new HashMap<String, Object>();
+
 				insertMap.put("searchKeyword", searchKeyword);
-				
-				List<Map<String,Object>> result = adminService.orderListByOrderNum(insertMap);
+
+				List<Map<String, Object>> result = adminService.orderListByOrderNum(insertMap);
 				model.addAttribute("orderListMap", result);
 			}
 		}
-		
+
 		return "admin/order/orderList";
 	}
 
 	// 주문 디테일 보기
 
-	@RequestMapping(value = "/order/{ORDERS_NUM}" , method = RequestMethod.GET)
+	@RequestMapping(value = "/order/{ORDERS_NUM}", method = RequestMethod.GET)
 	public String orderDetail(@PathVariable String ORDERS_NUM, Model model) throws Exception {
-		
+
 		Map<String, Object> insertMap = new HashMap<String, Object>();
-		
+
 		insertMap.put("ORDERS_NUM", ORDERS_NUM);
-		
-		
+
 		Map<String, Object> resultMap = adminService.adminOrderDetail(insertMap);
-		
+
 		model.addAttribute("orderMap", resultMap);
-		
-		
-		
+
 		return "admin/order/orderDetail";
 	}
 
 	// 주문 수정하기
 
-	@RequestMapping(value = "/order/{ORDERS_NUM}" , method = RequestMethod.POST)
+	@RequestMapping(value = "/order/{ORDERS_NUM}", method = RequestMethod.POST)
 	public String orderUpdate(@PathVariable String ORDERS_NUM, CommandMap commandMap) throws Exception {
-		
-		Map<String,Object> insertMap = commandMap.getMap();
+
+		Map<String, Object> insertMap = commandMap.getMap();
 		insertMap.put("ORDERS_NUM", ORDERS_NUM);
-		
-		
-		for(String a : insertMap.keySet()) {
-			System.out.println("key: "+a+" value: "+insertMap.get(a));
+
+		for (String a : insertMap.keySet()) {
+			System.out.println("key: " + a + " value: " + insertMap.get(a));
 		}
-		
-		
+
 		int checkNum = adminService.adminOrderUpdate(insertMap);
-		
-		
-		
-		
-		
+
 		return "redirect:/admin/order";
 	}
 
@@ -620,31 +592,30 @@ public class AdminController {
 		mv.setViewName("admin/notice/noticeList");
 		return mv;
 	}
-	
-	
-	// 공지사항 검색기능 
-	  
-		 @RequestMapping(value = "/notice", method = RequestMethod.GET)
-		 public ModelAndView noticeSearch(HttpServletRequest request) throws Exception {
-			 ModelAndView mav = new ModelAndView("/admin/notice/noticeList");
 
-			 Map<String, Object> insertMap = new HashMap<String, Object>();
-			 
-			 String keyword = request.getParameter("keyword");
-			 String type = request.getParameter("type");
-			 String title = request.getParameter("title");
-			 String step = request.getParameter("step");
-			 
-			 insertMap.put("keyword", keyword);
-			 insertMap.put("type", type);
-			 insertMap.put("title", title);
-			 insertMap.put("step", step);
-			 
-			 List<Map<String, Object>> resultMap = adminService.noticeSearching(insertMap);
-			 
-			 mav.addObject("list",resultMap);
-			 return mav; 
-		 }
+	// 공지사항 검색기능
+
+	@RequestMapping(value = "/notice", method = RequestMethod.GET)
+	public ModelAndView noticeSearch(HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView("/admin/notice/noticeList");
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		String keyword = request.getParameter("keyword");
+		String type = request.getParameter("type");
+		String title = request.getParameter("title");
+		String step = request.getParameter("step");
+
+		insertMap.put("keyword", keyword);
+		insertMap.put("type", type);
+		insertMap.put("title", title);
+		insertMap.put("step", step);
+
+		List<Map<String, Object>> resultMap = adminService.noticeSearching(insertMap);
+
+		mav.addObject("list", resultMap);
+		return mav;
+	}
 
 	// 공지사항 자세히 보기
 	@RequestMapping(value = "/noticedetail/{ntNum}")
@@ -760,29 +731,51 @@ public class AdminController {
 		mav.setViewName("admin/qna/qnaList");
 		return mav;
 	}
-	
+
+	// 큐엔에이 검색기능
+
+	@RequestMapping(value = "/qnacategory", method = RequestMethod.GET)
+	public ModelAndView qnaCategory(HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView("/admin/qna/qnaList");
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		String category = request.getParameter("category");
+		String wating = request.getParameter("wating");
+		String success = request.getParameter("success");
+
+		insertMap.put("category", category);
+		insertMap.put("wating", wating);
+		insertMap.put("success", success);
+
+		List<Map<String, Object>> resultMap = adminService.qnaCategory(insertMap);
+
+		mav.addObject("list", resultMap);
+		return mav;
+	}
+
 	// 큐엔에이 검색기능
 	@RequestMapping(value = "/qna", method = RequestMethod.GET)
-	 public ModelAndView qnaSearch(HttpServletRequest request) throws Exception {
-		 ModelAndView mav = new ModelAndView("/admin/qna/qnaList");
-		 
-		 Map<String, Object> insertMap = new HashMap<String, Object>();
-		 
-		 String keyword = request.getParameter("keyword");
-		 String type = request.getParameter("type");
-		 String title = request.getParameter("title");
-		 String writer = request.getParameter("writer");
-		 
-		 insertMap.put("keyword", keyword);
-		 insertMap.put("type", type);
-		 insertMap.put("title", title);
-		 insertMap.put("writer", writer);
-		 
-		 List<Map<String, Object>> resultMap = adminService.qnaSearching(insertMap);
-		 
-		 mav.addObject("list",resultMap);
-		 return mav; 
-	 }
+	public ModelAndView qnaSearch(HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView("/admin/qna/qnaList");
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		String keyword = request.getParameter("keyword");
+		String type = request.getParameter("type");
+		String title = request.getParameter("title");
+		String writer = request.getParameter("writer");
+
+		insertMap.put("keyword", keyword);
+		insertMap.put("type", type);
+		insertMap.put("title", title);
+		insertMap.put("writer", writer);
+
+		List<Map<String, Object>> resultMap = adminService.qnaSearching(insertMap);
+
+		mav.addObject("list", resultMap);
+		return mav;
+	}
 
 	// 큐엔에이 디테일보기
 
@@ -790,55 +783,52 @@ public class AdminController {
 	public ModelAndView qnaDetail(@PathVariable int QNANum) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
-		
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("QNA_NUM", QNANum);
-		
-			Map<String, Object> resultMap = adminService.adminQNADetailA(insertMap);
 
-			mav.addObject("AQNAMap", resultMap);
+		Map<String, Object> resultMap = adminService.adminQNADetailA(insertMap);
 
-			mav.setViewName("/admin/qna/qnaDetail");
+		mav.addObject("AQNAMap", resultMap);
 
-		
-			Map<String, Object> resultMapa = adminService.adminQNADetailQ(insertMap);
+		mav.setViewName("/admin/qna/qnaDetail");
 
-			mav.addObject("QQNAMap", resultMapa);
+		Map<String, Object> resultMapa = adminService.adminQNADetailQ(insertMap);
 
-			mav.setViewName("/admin/qna/qnaDetail");
-		
+		mav.addObject("QQNAMap", resultMapa);
+
+		mav.setViewName("/admin/qna/qnaDetail");
 
 		return mav;
 	}
-	
+
 	// 큐엔에이 답변등록 (insert)
 
 	@RequestMapping(value = "/qna/writer/{QNANum}/{QNASE}", method = RequestMethod.GET)
-	public String qnaReplyForm(@PathVariable int QNANum,@PathVariable String QNASE, HttpServletRequest request) throws Exception {
-	
+	public String qnaReplyForm(@PathVariable int QNANum, @PathVariable String QNASE, HttpServletRequest request)
+			throws Exception {
+
 		return "/admin/qna/qnaReplyForm";
 	}
 
 	// 큐엔에이 답변등록 (insert)
 
 	@RequestMapping(value = "/qna/writer/{QNANum}/{QNASE}", method = RequestMethod.POST)
-	public ModelAndView qnaReply(CommandMap commandMap,@PathVariable int QNANum,@PathVariable String QNASE, HttpServletRequest request) throws Exception {
+	public ModelAndView qnaReply(CommandMap commandMap, @PathVariable int QNANum, @PathVariable String QNASE,
+			HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
-		
 		HttpSession session = request.getSession();
 		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
 
 		String QNA_SECREATE = QNASE;
-		
+
 		int QNA_NUM = QNANum;
-		
+
 		commandMap.put("MEMBER_ID", MEMBER_ID);
 		commandMap.put("QNA_SECREATE", QNA_SECREATE);
 		commandMap.put("QNA_NUM", QNA_NUM);
 
 		int insert = adminService.adminQNAInsert(commandMap.getMap());
-		
 
 		mav.addObject(insert);
 		mav.setViewName("redirect:/admin/qna/1");
@@ -848,29 +838,29 @@ public class AdminController {
 	// 큐엔에이 수정하기 (update)
 
 	@RequestMapping(value = "/qna/update/{qnaNum}", method = RequestMethod.GET)
-	public ModelAndView  qnaReplyUpdateForm(@PathVariable int qnaNum) throws Exception {
+	public ModelAndView qnaReplyUpdateForm(@PathVariable int qnaNum) throws Exception {
 		ModelAndView mav = new ModelAndView();
-		
-		
+
 		mav.addObject("QNA_NUM", qnaNum);
-		
+
 		mav.setViewName("/admin/qna/qnaModify");
 		return mav;
 	}
-	
+
 	// 큐엔에이 수정하기 (update)
 
 	@RequestMapping(value = "/qna/update/{qnaNum}", method = RequestMethod.POST)
-	public ModelAndView  qnaReplyUpdate(@PathVariable int qnaNum,CommandMap commandMap, HttpServletRequest request) throws Exception {
+	public ModelAndView qnaReplyUpdate(@PathVariable int qnaNum, CommandMap commandMap, HttpServletRequest request)
+			throws Exception {
 		ModelAndView mav = new ModelAndView();
 
 		HttpSession session = request.getSession();
 		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
 		int QNA_NUM = qnaNum;
-		
+
 		commandMap.put("MEMBER_ID", MEMBER_ID);
 		commandMap.put("QNA_NUM", QNA_NUM);
-		
+
 		int resultMap = adminService.adminQNAUpdate(commandMap.getMap());
 
 		mav.addObject(resultMap);
@@ -882,12 +872,12 @@ public class AdminController {
 	// 큐엔에이 삭제하기 (delete)
 
 	@RequestMapping(value = "/qna/del/{qnaNum}", method = RequestMethod.GET)
-	public ModelAndView  qnaDelete(@PathVariable int qnaNum, HttpServletRequest request) throws Exception {
+	public ModelAndView qnaDelete(@PathVariable int qnaNum, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
 		HttpSession session = request.getSession();
 		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
-		
+
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 
 		int QNA_NUM = qnaNum;
@@ -939,30 +929,30 @@ public class AdminController {
 		mav.setViewName("admin/review/reviewList");
 		return mav;
 	}
-	
-	 // 리뷰문의 검색기능 
-	  
-	 @RequestMapping(value = "/review", method = RequestMethod.GET)
-	 public ModelAndView reivewSearch(HttpServletRequest request) throws Exception {
-		 ModelAndView mav = new ModelAndView("/admin/review/reviewList");
 
-		 Map<String, Object> insertMap = new HashMap<String, Object>();
-		 
-		 String keyword = request.getParameter("keyword");
-		 String type = request.getParameter("type");
-		 String title = request.getParameter("title");
-		 String writer = request.getParameter("writer");
-		 
-		 insertMap.put("keyword", keyword);
-		 insertMap.put("type", type);
-		 insertMap.put("title", title);
-		 insertMap.put("writer", writer);
-		 
-		 List<Map<String, Object>> resultMap = adminService.reviewSearching(insertMap);
-		 
-		 mav.addObject("list",resultMap);
-		 return mav; 
-	 }
+	// 리뷰문의 검색기능
+
+	@RequestMapping(value = "/review", method = RequestMethod.GET)
+	public ModelAndView reivewSearch(HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView("/admin/review/reviewList");
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		String keyword = request.getParameter("keyword");
+		String type = request.getParameter("type");
+		String title = request.getParameter("title");
+		String writer = request.getParameter("writer");
+
+		insertMap.put("keyword", keyword);
+		insertMap.put("type", type);
+		insertMap.put("title", title);
+		insertMap.put("writer", writer);
+
+		List<Map<String, Object>> resultMap = adminService.reviewSearching(insertMap);
+
+		mav.addObject("list", resultMap);
+		return mav;
+	}
 
 	// 리뷰 디테일 보기
 	@RequestMapping(value = "/reviewdetail/{RVNum}")
@@ -1040,31 +1030,52 @@ public class AdminController {
 		mv.setViewName("/admin/oto/otoList");
 		return mv;
 	}
-	
-	
-	  // 일대일문의 검색기능 
-	  
-	 @RequestMapping(value = "/oto", method = RequestMethod.GET)
-	 public ModelAndView otoSearch(HttpServletRequest request) throws Exception {
-		 ModelAndView mav = new ModelAndView("/admin/oto/otoList");
 
-		 Map<String, Object> insertMap = new HashMap<String, Object>();
-		 
-		 String keyword = request.getParameter("keyword");
-		 String type = request.getParameter("type");
-		 String title = request.getParameter("title");
-		 String writer = request.getParameter("writer");
-		 
-		 insertMap.put("keyword", keyword);
-		 insertMap.put("type", type);
-		 insertMap.put("title", title);
-		 insertMap.put("writer", writer);
-		 
-		 List<Map<String, Object>> resultMap = adminService.otoSearching(insertMap);
-		 
-		 mav.addObject("list",resultMap);
-		 return mav; 
-	 }
+	// 일대일문의 검색기능
+
+	@RequestMapping(value = "/otocategory", method = RequestMethod.GET)
+	public ModelAndView otoCategory(HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView("/admin/oto/otoList");
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		String category = request.getParameter("category");
+		String wating = request.getParameter("wating");
+		String success = request.getParameter("success");
+
+		insertMap.put("category", category);
+		insertMap.put("wating", wating);
+		insertMap.put("success", success);
+
+		List<Map<String, Object>> resultMap = adminService.otoCategory(insertMap);
+
+		mav.addObject("list", resultMap);
+		return mav;
+	}
+
+	// 일대일문의 검색기능
+
+	@RequestMapping(value = "/oto", method = RequestMethod.GET)
+	public ModelAndView otoSearch(HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView("/admin/oto/otoList");
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		String keyword = request.getParameter("keyword");
+		String type = request.getParameter("type");
+		String title = request.getParameter("title");
+		String writer = request.getParameter("writer");
+
+		insertMap.put("keyword", keyword);
+		insertMap.put("type", type);
+		insertMap.put("title", title);
+		insertMap.put("writer", writer);
+
+		List<Map<String, Object>> resultMap = adminService.otoSearching(insertMap);
+
+		mav.addObject("list", resultMap);
+		return mav;
+	}
 
 	// 일대일 문의 디테일 보기
 
@@ -1073,9 +1084,9 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 		HttpSession session = request.getSession();
-		
+
 		insertMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
-		
+
 		String ONETOONE_NUM = OTONum;
 		insertMap.put("ONETOONE_NUM", ONETOONE_NUM);
 
@@ -1091,44 +1102,36 @@ public class AdminController {
 		return mav;
 	}
 
-
-
 	// 일대일문의 답글 달기 폼 (insert)
 
 	@RequestMapping(value = "/oto/writer/{OTONum}", method = RequestMethod.GET)
-	   public String otoReplyForm(@PathVariable int OTONum, HttpServletRequest request) throws Exception {
-	   
-	      return "/admin/oto/otoReplyForm";
-	   }
+	public String otoReplyForm(@PathVariable int OTONum, HttpServletRequest request) throws Exception {
 
+		return "/admin/oto/otoReplyForm";
+	}
 
 	// 일대일문의 답글 달기 (insert)
 
 	@RequestMapping(value = "/oto/writer/{OTONum}", method = RequestMethod.POST)
-	 public ModelAndView qnaReply(CommandMap commandMap,@PathVariable int OTONum, HttpServletRequest request) throws Exception {
-	      ModelAndView mav = new ModelAndView();
+	public ModelAndView qnaReply(CommandMap commandMap, @PathVariable int OTONum, HttpServletRequest request)
+			throws Exception {
+		ModelAndView mav = new ModelAndView();
 
-	      
-	      HttpSession session = request.getSession();
-	      String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+		HttpSession session = request.getSession();
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
 
-	      
-	      
-	      int ONETOONE_NUM = OTONum;
-	    
-	      commandMap.put("MEMBER_ID", MEMBER_ID);
-	      
-	      commandMap.put("ONETOONE_NUM", ONETOONE_NUM);
+		int ONETOONE_NUM = OTONum;
 
-	      int insert = adminService.adminOTOInsert(commandMap.getMap());
-	      
+		commandMap.put("MEMBER_ID", MEMBER_ID);
 
-	      mav.addObject(insert);
-	      mav.setViewName("redirect:/admin/oto/1");
-	      return mav;
-	   }
-	
-	
+		commandMap.put("ONETOONE_NUM", ONETOONE_NUM);
+
+		int insert = adminService.adminOTOInsert(commandMap.getMap());
+
+		mav.addObject(insert);
+		mav.setViewName("redirect:/admin/oto/1");
+		return mav;
+	}
 
 	// 일대일 문의 답변 삭제하기 (delete)
 
@@ -1141,19 +1144,18 @@ public class AdminController {
 		String ONETOONE_NUM = otoNum;
 		String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
 		insertMap.put("MEMBER_ID", MEMBER_ID);
-		
+
 		int ONETOONE_NUMa = Integer.valueOf(ONETOONE_NUM);
 		insertMap.put("ONETOONE_NUM", ONETOONE_NUMa);
 		int resultMap = adminService.adminOTODelete(insertMap);
 
 		mav.addObject(resultMap);
 
-
 		mav.setViewName("redirect:/admin/oto/1");
 
 		return mav;
 	}
-	
+
 	// 일대일 문의 문의/답변 삭제하기 (delete)
 
 	@RequestMapping(value = "/oto/dell/{otoNum}", method = RequestMethod.GET)
@@ -1165,21 +1167,19 @@ public class AdminController {
 		String ONETOONE_NUM = otoNum;
 		String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
 		insertMap.put("MEMBER_ID", MEMBER_ID);
-		
+
 		int ONETOONE_NUMa = Integer.valueOf(ONETOONE_NUM);
 		insertMap.put("ONETOONE_NUM", ONETOONE_NUMa);
 		int resultMap = adminService.adminOTODelete(insertMap);
 		int resultMapa = adminService.adminOTODeleteAll(insertMap);
-		
+
 		mav.addObject(resultMapa);
 		mav.addObject(resultMap);
-
 
 		mav.setViewName("redirect:/admin/oto/1");
 
 		return mav;
 	}
-
 
 	// fq
 	// 자주묻는질문 리스트보기
@@ -1219,29 +1219,29 @@ public class AdminController {
 		mv.setViewName("/admin/fq/fqList");
 		return mv;
 	}
-	
-	// 자주묻는질문 검색기능
-		@RequestMapping(value = "/fq", method = RequestMethod.GET)
-		 public ModelAndView fqSearch(HttpServletRequest request) throws Exception {
-			 ModelAndView mav = new ModelAndView("/admin/fq/fqList");
 
-			 Map<String, Object> insertMap = new HashMap<String, Object>();
-			 
-			 String keyword = request.getParameter("keyword");
-			 String type = request.getParameter("type");
-			 String title = request.getParameter("title");
-			 String step = request.getParameter("step");
-			 
-			 insertMap.put("keyword", keyword);
-			 insertMap.put("type", type);
-			 insertMap.put("title", title);
-			 insertMap.put("step", step);
-			 
-			 List<Map<String, Object>> resultMap = adminService.fqSearching(insertMap);
-			 
-			 mav.addObject("list",resultMap);
-			 return mav; 
-		 }
+	// 자주묻는질문 검색기능
+	@RequestMapping(value = "/fq", method = RequestMethod.GET)
+	public ModelAndView fqSearch(HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView("/admin/fq/fqList");
+
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		String keyword = request.getParameter("keyword");
+		String type = request.getParameter("type");
+		String title = request.getParameter("title");
+		String step = request.getParameter("step");
+
+		insertMap.put("keyword", keyword);
+		insertMap.put("type", type);
+		insertMap.put("title", title);
+		insertMap.put("step", step);
+
+		List<Map<String, Object>> resultMap = adminService.fqSearching(insertMap);
+
+		mav.addObject("list", resultMap);
+		return mav;
+	}
 
 	// 자주묻는 질문 자세히보기
 	@RequestMapping("/fqdetail/{fqNum}")
@@ -1316,7 +1316,5 @@ public class AdminController {
 		mav.setViewName("/admin/fq/fqList");
 		return mav;
 	}
-	
-	
 
 }
