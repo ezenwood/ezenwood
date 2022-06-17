@@ -42,7 +42,7 @@ input[type="text"],
 input[type="password"]{padding:0 10px;outline:none;font-size:12px;}
 input[type="checkbox"]{width:13px;height:13px;vertical-align:top;}
 input[type="image"]{vertical-align:top;border:none;cursor:pointer;}
-input[type="button"]{border:none;background:none;cursor:pointer;}
+input[type="button"]{cursor:pointer;}
 input[type="submit"]{cursor:pointer;vertical-align:top;font-size:100%;}
 
 
@@ -379,9 +379,10 @@ span.form_element{display:inline-block;}
 
 /* 이전, 다음 버튼 */
 .btn_member_prev{width:150px; height:45px; margin:35px 0 0 0; color:#3e3d3c; font-size:14px; border:1px solid #cccccc; background:#ffffff; cursor:pointer;}
-.btn_member_prev:hover{color:#333333; border:1px solid #bbbbb;}
+.btn_member_prev:hover{color:#333333; border:1px solid #bbbb;}
 .btn_member_next{width:150px;height:45px;margin:35px 0 0 0;color:#ffffff;font-size:14px;border:1px solid #323437;background:#323437;cursor:pointer;font-weight: bold;}
 .btn_member_next:hover{border:1px solid #46484c; background:#46484c;}
+.btn_member_zipsearch{width:80px;height:30px;margin:0 0 0 10px;color:#46484c;font-size:5px;border:1px solid #323437;background:#ffffff;cursor:pointer;font-weight: bold;}
 /* 로그인, 확인 버튼 */
 .btn_member_ok,
 .btn_member_login{width:150px; height:45px; margin:35px 0 0 0; color:#ffffff; font-size:14px; border:1px solid #323437; background:#323437; cursor:pointer;}
