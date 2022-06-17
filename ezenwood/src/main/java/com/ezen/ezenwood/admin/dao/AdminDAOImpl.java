@@ -92,7 +92,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public int adminOrderUpdate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) update("orders.adminOrderUpdate", map);
 	}
 
 	@Override

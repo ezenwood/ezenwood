@@ -15,6 +15,29 @@ public class GoodsDAOImpl extends AbstractDAO implements GoodsDAO {
 	
 	
 	
+	
+	
+	
+	
+	
+	@Override
+	public int reviewDelete(Map<String, Object> insertMap) {
+		// TODO Auto-generated method stub
+		return (int) update("review.reviewDelete", insertMap);
+	}
+
+
+
+
+	@Override
+	public int qnaDelete(Map<String, Object> insertMap) {
+		// TODO Auto-generated method stub
+		return (int) update("qna.qnaDelete", insertMap);
+	}
+
+
+
+
 	@Override
 	public String getGoodsTitle(String GOODS_NUM) {
 		// TODO Auto-generated method stub

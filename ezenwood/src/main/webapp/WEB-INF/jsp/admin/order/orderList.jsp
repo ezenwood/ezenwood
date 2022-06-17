@@ -158,7 +158,7 @@ function fn_search(pageNo) {
 								
 									<c:forEach items="${orderListMap }" var="orderMap" >
 									<tr class="gradeA even" role="row">
-										<td style="text-align:center;vertical-align:middle;">${orderMap.ORDERS_NUM }</td>										
+										<td style="text-align:center;vertical-align:middle;"><a href="/ezenwood/admin/order/${orderMap.ORDERS_NUM }">${orderMap.ORDERS_NUM }</a></td>										
 										<td style="text-align:center;vertical-align:middle;">${orderMap.ORDERS_TRACK }</td>
 										<td style="text-align:center;vertical-align:middle;"><a href="/ezenwood/goods?idx=${orderMap.ORDERS_GOODS_NUM }">${orderMap.GOODS_TITLE}</a></td>
 										
