@@ -21,7 +21,15 @@ public interface AdminDAO {
 	//member List 검색 조건문 만들기 아이디랑, 이름 , 탈퇴
 	public List<Map<String,Object>> adminMemberList(Map<String,Object> map);
 	
+	public List<Map<String, Object>> memberListByName(Map<String, Object> map);
+	
+	public List<Map<String, Object>> memberListById(Map<String, Object> map);
+	
 	public List<Map<String,Object>> adminDelMemberList(Map<String,Object> map);
+	
+	public List<Map<String, Object>> delmemberListByName(Map<String, Object> map);
+	
+	public List<Map<String, Object>> delmemberListById(Map<String, Object> map);
 	
 	public Map<String,Object> adminMemberDetail(Map<String,Object> map);
 	
@@ -125,6 +133,10 @@ public interface AdminDAO {
 	public int adminAboutUpdate(Map<String,Object> map);
 	
 	public int adminAboutInsert(Map<String,Object> map);
+
+	
+
+	
 
 	
 	

@@ -166,11 +166,36 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.adminMemberList(map);
 	}
 
+	@Override
+	public List<Map<String, Object>> MemberListByName(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminDAO.memberListByName(map);
+	}
+	@Override
+	public List<Map<String, Object>> MemberListById(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminDAO.memberListById(map);
+	}
+	
+	
 	public List<Map<String, Object>> adminDelMemberList(Map<String, Object> map) throws Exception {
 
 		return adminDAO.adminDelMemberList(map);
 
 	}
+	
+
+	@Override
+	public List<Map<String, Object>> DelMemberListByName(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminDAO.delmemberListByName(map);
+	}
+	@Override
+	public List<Map<String, Object>> DelMemberListById(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminDAO.delmemberListById(map);
+	}
+	
 
 	@Override
 	public Map<String, Object> adminMemberDetail(Map<String, Object> map) throws Exception {

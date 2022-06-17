@@ -8,15 +8,62 @@
 <html lang="ko">
 <head>
 <script type="text/javascript">
-    var ddd = document.location.href;
-    var idx = ddd.lastIndexOf("&");
-    
-    var sss = ddd.substring(0,idx+1);
-    
-    function fn_search(pageNo){
-    	location.href = sss+"p="+pageNo;
-    }    
-    </script>
+
+
+var ddd = document.location.href;
+
+var idx = ddd.lastIndexOf("=");
+
+var sss = ddd.substring(idx+1);
+
+
+function fn_search(pageNo) {
+
+	var form = document.createElement("form");
+	
+	form.setAttribute("method","get");
+	
+	form.setAttribute("action","/ezenwood/admin/delmemberList");
+	
+	
+	var input_pageNum = document.createElement("input");
+	
+	input_pageNum.setAttribute("type", "hidden");
+	input_pageNum.setAttribute("name", "PageNum");
+	input_pageNum.setAttribute("value", pageNo);
+	
+	form.appendChild(input_pageNum); 
+	
+	if(ddd.indexOf("searchOption")!=-1){
+		var searchOptionNum = ddd.substring(ddd.indexOf("searchOption")+13,ddd.indexOf("searchOption")+14);
+		var searchKeywordValue = ddd.substring(ddd.lastIndexOf("=")+1);
+		
+		var input_searchOptionNum = document.createElement("input");
+		var input_searchKeywordValue = document.createElement("input");
+		
+		input_searchOptionNum.setAttribute("type", "hidden");
+		input_searchOptionNum.setAttribute("name", "searchOption");
+		input_searchOptionNum.setAttribute("value", searchOptionNum);
+		
+		input_searchKeywordValue.setAttribute("type", "hidden");
+		input_searchKeywordValue.setAttribute("name", "searchKeyword");
+		input_searchKeywordValue.setAttribute("value", searchKeywordValue);
+		
+		form.appendChild(input_searchOptionNum); 
+		form.appendChild(input_searchKeywordValue); 
+	}
+	
+	
+	
+	
+	document.body.appendChild(form);
+	
+	form.submit();
+
+	
+}
+
+</script>
     <meta charset="UTF-8">
     <title>이젠 우드 - 관리자 페이지</title>
     <link href="/ezenwood/css/bootstrapadmin.min.css" type="text/css" rel="stylesheet">
@@ -94,13 +141,13 @@
 					<div class="row">
 							<div style="text-align:center;">
 								<div id="dataTables-example_filter" class="dataTables_filter">
-									<form action="">
-									<select class="form-control" name="searchNum" id="searchNum">
+									<form action="/ezenwood/admin/delmemberList">
+									<select class="form-control" name="searchOption" id="searchNum">
 										
-										<option value="0">ID</option>
-										<option value="1">이름</option>
+										<option value="1">ID</option>
+										<option value="2">이름</option>
 									</select>
-										<input class="form-control" type="text" name="isSearch" id="isSearch">
+									<input class="form-control" type="text" name="searchKeyword" id="isSearch"/>
 										<span>
 										<button type="submit" class="btn btn-default">검색</button>
 										</span>
@@ -109,6 +156,7 @@
 							</div>
 							
 					</div>
+					
 					<div class="content-center">
 					<div class="pagination">
 											<div class="pagination">

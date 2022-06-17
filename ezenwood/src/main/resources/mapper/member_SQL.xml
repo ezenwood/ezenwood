@@ -153,14 +153,18 @@ SELECT	MEMBER_PW
                 WHERE MEMBER_DEL_GB = 'N'
    ]]>
 <include refid="common.pagingPost"></include>
+<choose>
+<when test='searchOption=="1"'>
+and MEMBER_ID = #{searchKeyword}
+</when>
+</choose>
 	</select>
 
-
-	<!-- 회원 id로 검색 -->
-	<select resultType="hashmap" parameterType="hashmap"
-		id="searchmemberid">
-   <![CDATA[
-                 SELECT  ROW_NUMBER() OVER (ORDER BY MEMBER_NUM DESC) RNUM,
+	<!-- 회원리스트 아이디검색 -->
+	<select id="MemberListById" resultType="hashmap" parameterType="hashmap">
+	<include refid="common.pagingPre"></include>
+<![CDATA[
+		 SELECT  ROW_NUMBER() OVER (ORDER BY MEMBER_NUM DESC) RNUM,
                         MEMBER_NUM,
                         MEMBER_ID,
                         MEMBER_NAME,
@@ -172,16 +176,16 @@ SELECT	MEMBER_PW
         		MEMBER_JOINDATE,
          		MEMBER_DEL_GB
                 FROM MEMBER
-                WHERE MEMBER_ID like '%'||#{isSearch}||'%'
-   ]]>
+                WHERE MEMBER_DEL_GB = 'N' AND MEMBER_ID = #{searchKeyword}
+]]>
+<include refid="common.pagingPost"></include>
 	</select>
-
-
-	<!-- 회원 이름으로 검색 -->
-	<select resultType="hashmap" parameterType="hashmap"
-		id="searchmembername">
-   <![CDATA[
-                 SELECT  ROW_NUMBER() OVER (ORDER BY MEMBER_NUM DESC) RNUM,
+	
+<!-- 회원리스트 이름검색 -->
+	<select id="MemberListByName" resultType="hashmap" parameterType="hashmap">
+	<include refid="common.pagingPre"></include>
+<![CDATA[
+		 SELECT  ROW_NUMBER() OVER (ORDER BY MEMBER_NUM DESC) RNUM,
                         MEMBER_NUM,
                         MEMBER_ID,
                         MEMBER_NAME,
@@ -193,14 +197,14 @@ SELECT	MEMBER_PW
         		MEMBER_JOINDATE,
          		MEMBER_DEL_GB
                 FROM MEMBER
-                WHERE MEMBER_NAME like '%'||#{isSearch}||'%'
-   ]]>
+                WHERE MEMBER_DEL_GB = 'N' AND MEMBER_NAME = #{searchKeyword}
+]]>
+<include refid="common.pagingPost"></include>
 	</select>
-
 
 	<!-- 탈퇴 회원 전체 목록 -->
 	<select resultType="hashmap" parameterType="hashmap"
-		id="selectMemberList">
+		id="selectDelMemberList">
 		<include refid="common.pagingPre"></include>
    <![CDATA[
                  SELECT  ROW_NUMBER() OVER (ORDER BY MEMBER_NUM DESC) RNUM,
@@ -217,9 +221,54 @@ SELECT	MEMBER_PW
                 FROM MEMBER
                 WHERE MEMBER_DEL_GB = 'Y' 
    ]]>
+<choose>
+<when test='searchOption=="1"'>
+and MEMBER_ID = #{searchKeyword}
+</when>
+</choose>
    <include refid="common.pagingPost"></include>
 	</select>
-
+<!-- 탈퇴리스트 아이디검색 -->
+	<select id="DelMemberListById" resultType="hashmap" parameterType="hashmap">
+	<include refid="common.pagingPre"></include>
+<![CDATA[
+		 SELECT  ROW_NUMBER() OVER (ORDER BY MEMBER_NUM DESC) RNUM,
+                        MEMBER_NUM,
+                        MEMBER_ID,
+                        MEMBER_NAME,
+                        MEMBER_PHONE,
+                        MEMBER_EMAIL,
+                        MEMBER_ADD1,
+                        MEMBER_ADD2,
+         		MEMBER_ADD3,
+        		MEMBER_JOINDATE,
+         		MEMBER_DEL_GB
+                FROM MEMBER
+                WHERE MEMBER_DEL_GB = 'Y' AND MEMBER_ID = #{searchKeyword}
+]]>
+<include refid="common.pagingPost"></include>
+	</select>
+	
+<!-- 탈퇴리스트 이름검색 -->
+	<select id="DelMemberListByName" resultType="hashmap" parameterType="hashmap">
+	<include refid="common.pagingPre"></include>
+<![CDATA[
+		 SELECT  ROW_NUMBER() OVER (ORDER BY MEMBER_NUM DESC) RNUM,
+                        MEMBER_NUM,
+                        MEMBER_ID,
+                        MEMBER_NAME,
+                        MEMBER_PHONE,
+                        MEMBER_EMAIL,
+                        MEMBER_ADD1,
+                        MEMBER_ADD2,
+         		MEMBER_ADD3,
+        		MEMBER_JOINDATE,
+         		MEMBER_DEL_GB
+                FROM MEMBER
+                WHERE MEMBER_DEL_GB = 'Y' AND MEMBER_NAME = #{searchKeyword}
+]]>
+<include refid="common.pagingPost"></include>
+	</select>
 
 	<!-- 회원 정보 상세 보기 -->
 	<select id="selectOneByMemberNumAdmin" resultType="hashmap" parameterType="hashmap">
@@ -239,6 +288,7 @@ SELECT	MEMBER_PW
         	MEMBER_ID = #{MEMBER_ID},
         	MEMBER_PW = #{MEMBER_PW},
         	MEMBER_NAME = #{MEMBER_NAME},
+        	MEMBER_DEL_GB= #{MEMBER_DEL_GB},
         	MEMBER_PHONE = #{MEMBER_PHONE},
         	MEMBER_EMAIL = #{MEMBER_EMAIL},
         	MEMBER_ZIP = #{MEMBER_ZIP},
@@ -271,8 +321,6 @@ SELECT	MEMBER_PW
 		SELECT MEMBER_ID FROM MEMBER WHERE MEMBER_NUM = (SELECT ONETOONE_MEMBER_NUM FROM ONETOONE WHERE ONETOONE_NUM = #{ONETOONE_NUM})
 ]]>
 	</select>
-
-
 
 
 </mapper>
