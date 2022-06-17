@@ -554,7 +554,7 @@ public class AdminController {
 	// 주문 수정하기
 
 	@RequestMapping(value = "/order/{ORDERS_NUM}" , method = RequestMethod.POST)
-	public String orderUpdate(@PathVariable String ORDERS_NUM, CommandMap commandMap) {
+	public String orderUpdate(@PathVariable String ORDERS_NUM, CommandMap commandMap) throws Exception {
 		
 		Map<String,Object> insertMap = commandMap.getMap();
 		insertMap.put("ORDERS_NUM", ORDERS_NUM);
@@ -620,6 +620,31 @@ public class AdminController {
 		mv.setViewName("admin/notice/noticeList");
 		return mv;
 	}
+	
+	
+	// 공지사항 검색기능 
+	  
+		 @RequestMapping(value = "/notice", method = RequestMethod.GET)
+		 public ModelAndView noticeSearch(HttpServletRequest request) throws Exception {
+			 ModelAndView mav = new ModelAndView("/admin/notice/noticeList");
+
+			 Map<String, Object> insertMap = new HashMap<String, Object>();
+			 
+			 String keyword = request.getParameter("keyword");
+			 String type = request.getParameter("type");
+			 String title = request.getParameter("title");
+			 String step = request.getParameter("step");
+			 
+			 insertMap.put("keyword", keyword);
+			 insertMap.put("type", type);
+			 insertMap.put("title", title);
+			 insertMap.put("step", step);
+			 
+			 List<Map<String, Object>> resultMap = adminService.noticeSearching(insertMap);
+			 
+			 mav.addObject("list",resultMap);
+			 return mav; 
+		 }
 
 	// 공지사항 자세히 보기
 	@RequestMapping(value = "/noticedetail/{ntNum}")
@@ -735,6 +760,29 @@ public class AdminController {
 		mav.setViewName("admin/qna/qnaList");
 		return mav;
 	}
+	
+	// 큐엔에이 검색기능
+	@RequestMapping(value = "/qna", method = RequestMethod.GET)
+	 public ModelAndView qnaSearch(HttpServletRequest request) throws Exception {
+		 ModelAndView mav = new ModelAndView("/admin/qna/qnaList");
+		 
+		 Map<String, Object> insertMap = new HashMap<String, Object>();
+		 
+		 String keyword = request.getParameter("keyword");
+		 String type = request.getParameter("type");
+		 String title = request.getParameter("title");
+		 String writer = request.getParameter("writer");
+		 
+		 insertMap.put("keyword", keyword);
+		 insertMap.put("type", type);
+		 insertMap.put("title", title);
+		 insertMap.put("writer", writer);
+		 
+		 List<Map<String, Object>> resultMap = adminService.qnaSearching(insertMap);
+		 
+		 mav.addObject("list",resultMap);
+		 return mav; 
+	 }
 
 	// 큐엔에이 디테일보기
 
@@ -891,6 +939,30 @@ public class AdminController {
 		mav.setViewName("admin/review/reviewList");
 		return mav;
 	}
+	
+	 // 리뷰문의 검색기능 
+	  
+	 @RequestMapping(value = "/review", method = RequestMethod.GET)
+	 public ModelAndView reivewSearch(HttpServletRequest request) throws Exception {
+		 ModelAndView mav = new ModelAndView("/admin/review/reviewList");
+
+		 Map<String, Object> insertMap = new HashMap<String, Object>();
+		 
+		 String keyword = request.getParameter("keyword");
+		 String type = request.getParameter("type");
+		 String title = request.getParameter("title");
+		 String writer = request.getParameter("writer");
+		 
+		 insertMap.put("keyword", keyword);
+		 insertMap.put("type", type);
+		 insertMap.put("title", title);
+		 insertMap.put("writer", writer);
+		 
+		 List<Map<String, Object>> resultMap = adminService.reviewSearching(insertMap);
+		 
+		 mav.addObject("list",resultMap);
+		 return mav; 
+	 }
 
 	// 리뷰 디테일 보기
 	@RequestMapping(value = "/reviewdetail/{RVNum}")
@@ -970,7 +1042,7 @@ public class AdminController {
 	}
 	
 	
-	  // 일대일문의 검색기능 (update)
+	  // 일대일문의 검색기능 
 	  
 	 @RequestMapping(value = "/oto", method = RequestMethod.GET)
 	 public ModelAndView otoSearch(HttpServletRequest request) throws Exception {
@@ -983,14 +1055,12 @@ public class AdminController {
 		 String title = request.getParameter("title");
 		 String writer = request.getParameter("writer");
 		 
-		 
 		 insertMap.put("keyword", keyword);
 		 insertMap.put("type", type);
 		 insertMap.put("title", title);
 		 insertMap.put("writer", writer);
 		 
 		 List<Map<String, Object>> resultMap = adminService.otoSearching(insertMap);
-		 
 		 
 		 mav.addObject("list",resultMap);
 		 return mav; 
@@ -1122,6 +1192,29 @@ public class AdminController {
 		mv.setViewName("/admin/fq/fqList");
 		return mv;
 	}
+	
+	// 자주묻는질문 검색기능
+		@RequestMapping(value = "/fq", method = RequestMethod.GET)
+		 public ModelAndView fqSearch(HttpServletRequest request) throws Exception {
+			 ModelAndView mav = new ModelAndView("/admin/fq/fqList");
+
+			 Map<String, Object> insertMap = new HashMap<String, Object>();
+			 
+			 String keyword = request.getParameter("keyword");
+			 String type = request.getParameter("type");
+			 String title = request.getParameter("title");
+			 String step = request.getParameter("step");
+			 
+			 insertMap.put("keyword", keyword);
+			 insertMap.put("type", type);
+			 insertMap.put("title", title);
+			 insertMap.put("step", step);
+			 
+			 List<Map<String, Object>> resultMap = adminService.fqSearching(insertMap);
+			 
+			 mav.addObject("list",resultMap);
+			 return mav; 
+		 }
 
 	// 자주묻는 질문 자세히보기
 	@RequestMapping("/fqdetail/{fqNum}")
@@ -1196,5 +1289,7 @@ public class AdminController {
 		mav.setViewName("/admin/fq/fqList");
 		return mav;
 	}
+	
+	
 
 }

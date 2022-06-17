@@ -280,6 +280,12 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return adminDAO.adminNoticeDelete(map);
 	}
+	
+	@Override
+	public List<Map<String, Object>> noticeSearching(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.noticeSearching(map);
+	}
 
 	// Qna
 
@@ -342,6 +348,12 @@ public class AdminServiceImpl implements AdminService {
 
 		return checknum;
 	}
+	
+	@Override
+	public List<Map<String, Object>> qnaSearching(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.qnaSearching(map);
+	}
 
 	// review
 
@@ -389,6 +401,12 @@ public class AdminServiceImpl implements AdminService {
 	public int adminReviewDelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return adminDAO.adminReviewDelete(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> reviewSearching(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.reviewSearching(map);
 	}
 
 	// oto
@@ -484,6 +502,12 @@ public class AdminServiceImpl implements AdminService {
 	public int adminFQInsert(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return adminDAO.adminFQInsert(map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> fqSearching(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.fqSearching(map);
 	}
 
 	// about

@@ -104,6 +104,27 @@
 									</table>
 								</div>
 							</div>
+							<div class="pagination">
+								<div class="pagination">
+
+									<div class="insu" style="margin: 0 auto; text-align: center;">
+										<c:if test="${not empty paginationInfo}">
+											<ui:pagination paginationInfo="${paginationInfo}" type="text"
+												jsFunction="fn_search" />
+										</c:if>
+									</div>
+								</div>
+							</div>
+							<div style="align: center;">
+								<form id="searchForm" action="${contextPath}/admin/qna" method="get">
+									<select name="type">
+										<option value="">검색어</option>
+										<option value="title">제목</option>
+										<option value="writer">작성자</option>
+									</select> <input type="text" name="keyword"/> <input
+										type="submit" value="검색" />
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>

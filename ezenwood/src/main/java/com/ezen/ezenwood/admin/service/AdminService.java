@@ -60,6 +60,8 @@ public interface AdminService {
 	public int adminNoticeDelete(Map<String, Object> map) throws Exception;
 
 	public int adminNoticeInsert(Map<String, Object> map) throws Exception;
+	
+	public List<Map<String, Object>> noticeSearching(Map<String, Object> map) throws Exception;
 
 	//
 
@@ -75,6 +77,8 @@ public interface AdminService {
 	public int adminQNAUpdate(Map<String, Object> map) throws Exception;
 
 	public int adminQNADelete(Map<String, Object> map) throws Exception;
+	
+	public List<Map<String, Object>> qnaSearching(Map<String, Object> map) throws Exception;
 
 	//
 	// Review
@@ -83,6 +87,8 @@ public interface AdminService {
 	public Map<String, Object> adminReviewDetail(Map<String, Object> map) throws Exception;
 
 	public int adminReviewDelete(Map<String, Object> map) throws Exception;
+	
+	public List<Map<String, Object>> reviewSearching(Map<String, Object> map) throws Exception;
 
 	//
 
@@ -114,6 +120,8 @@ public interface AdminService {
 	public int adminFQDelete(Map<String, Object> map) throws Exception;
 
 	public int adminFQInsert(Map<String, Object> map) throws Exception;
+	
+	public List<Map<String, Object>> fqSearching(Map<String, Object> map) throws Exception;
 
 	//
 

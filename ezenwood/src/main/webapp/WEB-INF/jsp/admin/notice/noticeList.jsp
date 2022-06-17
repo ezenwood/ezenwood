@@ -135,12 +135,25 @@
 												</div>
 											</div>
 										</div>
+										<div style="align: center;">
+											<form id="searchForm" action="${contextPath}/admin/notice"
+												method="get">
+												<select name="type">
+													<option value="">검색어</option>
+													<option value="title">제목</option>
+													<option value="step">중요도</option>
+												</select> <input type="text" name="keyword" /> <input type="submit"
+													value="검색" />
+											</form>
+										</div>
 									</div>
+
 									<div class="row">
 										<div style="text-align: right;">
 											<span>
 												<button type="submit" class="btn btn-default"
-													style="margin-right: 15px;"onclick="location.href='${contextPath}/admin/notice/write'">쓰기</button>
+													style="margin-right: 15px;"
+													onclick="location.href='${contextPath}/admin/notice/write'">쓰기</button>
 											</span>
 
 										</div>
