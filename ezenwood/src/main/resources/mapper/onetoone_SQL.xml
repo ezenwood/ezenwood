@@ -328,9 +328,8 @@ AND ONETOONE_TYPE = 'Q'
 	AND (ONETOONE_TITLE LIKE '%'||#{keyword}||'%')
 </if>
 <if test = "type=='writer'">
-	AND (ONETOONE_MEMBER_NUM LIKE (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = '%'||#{keyword}||'%'))
+	AND (ONETOONE_MEMBER_NUM LIKE (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{keyword}))
 </if>
-
 </select>
 
 </mapper>

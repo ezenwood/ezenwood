@@ -59,6 +59,8 @@ public interface AdminDAO {
 	public int adminNoticeDelete(Map<String, Object> map);
 
 	public int adminNoticeInsert(Map<String, Object> map);
+	
+	public List<Map<String, Object>> noticeSearching(Map<String, Object> map);
 
 	//
 
@@ -78,6 +80,8 @@ public interface AdminDAO {
 	public int adminQNAcheck(int QNA_NUM);
 
 	public int adminQNAcheckQ(int QNA_NUM);
+	
+	public List<Map<String, Object>> qnaSearching(Map<String, Object> map);
 
 	//
 
@@ -86,6 +90,8 @@ public interface AdminDAO {
 	public Map<String, Object> adminReviewDetail(Map<String, Object> map);
 
 	public int adminReviewDelete(Map<String, Object> map);
+	
+	public List<Map<String, Object>> reviewSearching(Map<String, Object> map);
 
 	//
 
@@ -124,6 +130,8 @@ public interface AdminDAO {
 
 	public int adminFQInsert(Map<String, Object> map);
 
+	public List<Map<String, Object>> fqSearching(Map<String, Object> map);
+	
 	//
 
 	public Map<String, Object> adminAboutDetail(Map<String, Object> map);

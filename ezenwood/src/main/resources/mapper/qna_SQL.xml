@@ -26,11 +26,42 @@ WHERE QNA_DEL_GB = 'N'AND QNA_TYPE = 'Q'
 		<include refid="common.pagingPost"></include>
 	</select>
 
-<update id="qnaDelete" parameterType="hashmap"> 
+	<select id="qnasearch" parameterType="hashmap"
+		resultType="hashmap">
 
-update qna set QNA_DEL_GB = 'Y' where QNA_NUM =#{QNA_NUM} and QNA_WRITER=#{MEMBER_NUM}
+		SELECT
+		QNA_NUM,
+		QNA_TITLE,
+		QNA_WRITER,
+		QNA_RE_GB,
+		QNA_CONTENT,
+		QNA_PARENT,
+		QNA_TYPE,
+		QNA_SECREATE,
+		QNA_DATE,
+		QNA_DEL_GB
+		FROM QNA
+		WHERE QNA_DEL_GB = 'N'
+		AND QNA_TYPE = 'Q'
 
-</update>
+		<if test="type=='title'">
+			AND (QNA_TITLE LIKE '%'||#{keyword}||'%')
+		</if>
+		<if test="type=='writer'">
+			AND (QNA_WRITER LIKE (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID
+			= #{keyword}))
+		</if>
+
+	</select>
+
+	<update id="qnaDelete" parameterType="hashmap">
+
+		update qna
+		set QNA_DEL_GB = 'Y'
+		where QNA_NUM =#{QNA_NUM}
+		and QNA_WRITER=#{MEMBER_NUM}
+
+	</update>
 
 	<select id="selectQNAList" parameterType="hashmap"
 		resultType="hashmap">
@@ -91,9 +122,9 @@ AND QNA_DEL_GB = 'N' and QNA_NUM=#{QNA_NUM}
 ]]>
 
 	</select>
-	
-	
-<select id="selectQNAForDetailinsu" parameterType="hashmap"
+
+
+	<select id="selectQNAForDetailinsu" parameterType="hashmap"
 		resultType="hashmap">
 		<include refid="common.pagingPre"></include>
 <![CDATA[
@@ -110,9 +141,9 @@ from qna
 where qna_type = 'Q'
 AND QNA_DEL_GB = 'N' and QNA_PARENT=#{GOODS_NUM} 
 ]]>
-<include refid="common.pagingPost"></include>
+		<include refid="common.pagingPost"></include>
 	</select>
-	
+
 
 
 	<select id="selectQNADetailForClient" parameterType="hashmap"
@@ -244,7 +275,7 @@ qna_secreat = 'n'
 
 ]]>
 	</update>
-	
+
 	<select id="selectSecret" parameterType="String"
 		resultType="String">
 	<![CDATA[
@@ -311,21 +342,21 @@ INSERT INTO QNA(
 ]]>
 	</insert>
 
-<update id="adminQNAcheck" parameterType="String">
+	<update id="adminQNAcheck" parameterType="String">
 <![CDATA[
 UPDATE QNA 
 SET QNA_RE_GB = 'Y' 
 WHERE QNA_NUM = #{QNA_NUM}
 ]]>
-</update>
+	</update>
 
-<update id="adminQNAcheckQ" parameterType="String">
+	<update id="adminQNAcheckQ" parameterType="String">
 <![CDATA[
 UPDATE QNA 
 SET QNA_RE_GB = 'N' 
 WHERE QNA_NUM = #{QNA_NUM}
 ]]>
-</update>
+	</update>
 
 	<!-- 관리자QNA수정 -->
 	<update id="updateAdminQna" parameterType="hashmap">

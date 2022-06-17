@@ -30,6 +30,26 @@ WHERE REVIEW_DEL_GB = 'N'
 ]]>
 		<include refid="common.pagingPost"></include>
 	</select>
+	
+	
+	<select id="reviewsearch" parameterType="hashmap" resultType="hashmap">
+	SELECT 
+	ROW_NUMBER() OVER (ORDER BY REVIEW_NUM DESC) RNUM,
+	REVIEW_NUM,
+	REVIEW_TITLE,
+	REVIEW_WRITER,
+	REVIEW_DATE ,
+	REVIEW_CONTENT,
+	REVIEW_PARENT
+FROM REVIEW
+WHERE REVIEW_DEL_GB = 'N'
+<if test = "type=='title'">
+	AND (REVIEW_TITLE LIKE '%'||#{keyword}||'%')
+</if>
+<if test = "type=='writer'">
+	AND (REVIEW_WRITER LIKE (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{keyword}))
+</if>
+	</select>
 
 	<select id="selectReviewList" resultType="hashmap"
 		parameterType="hashmap">

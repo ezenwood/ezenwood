@@ -19,6 +19,23 @@ WHERE notice_deL_gb='N'
 <include refid="common.pagingPost"/> 
 </select>
 
+<select id="noticesearch" parameterType="hashmap" resultType="hashmap" >
+SELECT 
+	notice_step,
+	notice_num,
+	notice_title,
+	notice_date,
+	notice_content
+FROM notice
+WHERE notice_deL_gb='N'
+<if test = "type=='title'">
+	AND (NOTICE_TITLE LIKE '%'||#{keyword}||'%')
+</if>
+<if test = "type=='step'">
+	AND (NOTICE_STEP LIKE #{keyword})
+</if>
+</select>
+
 <!--관리자 공지사항 list -->
 <select id="noticeListAdmin" parameterType="hashmap" resultType="hashmap">
 <include refid="common.pagingPre"/>

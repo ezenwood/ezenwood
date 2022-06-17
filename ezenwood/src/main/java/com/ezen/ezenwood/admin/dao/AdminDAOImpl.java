@@ -160,6 +160,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		// TODO Auto-generated method stub
 		return (int) update("notice.noticedelete", map);
 	}
+	
+	@Override
+	public List<Map<String, Object>> noticeSearching(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("notice.noticesearch", map);
+	}
 
 	// 큐엔에이 QNA
 
@@ -210,6 +215,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		// TODO Auto-generated method stub
 		return (int) update("qna.adminQNAcheckQ", QNA_NUM);
 	}
+	
+	@Override
+	public List<Map<String, Object>> qnaSearching(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("qna.qnasearch", map);
+	}
 
 	// 리뷰 review
 
@@ -229,6 +239,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	public int adminReviewDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return (int) update("review.admindeleteReview", map);
+	}
+	
+	@Override
+	public List<Map<String, Object>> reviewSearching(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("review.reviewsearch", map);
 	}
 
 	// 일대일 문의 OneToOne
@@ -326,7 +341,12 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		// TODO Auto-generated method stub
 		return (int) insert("frequestion.frequestionInsert", map);
 	}
+	
+	@Override
+	public List<Map<String, Object>> fqSearching(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("frequestion.fqsearch", map);
 
+	}
 	// 회사소개 글 about
 
 	@Override
