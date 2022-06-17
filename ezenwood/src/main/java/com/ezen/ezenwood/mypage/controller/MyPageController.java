@@ -63,6 +63,9 @@ public class MyPageController {
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
+		
+		commandMap.get("MEMBER_ID");
+		commandMap.get("MEMBER_PW");
 		Map<String, Object> result = mypageService.memberInfo(commandMap.getMap());
 
 		if (result == null) {
@@ -95,11 +98,18 @@ public class MyPageController {
 	// 회원 수정 폼
 	@RequestMapping(value = "/update", method = RequestMethod.GET)
 	public String mypageModifyForm(HttpServletRequest request,Model model) throws Exception {
+		
 		HttpSession session = request.getSession();
 		String memberpw = (String)session.getAttribute("MEMBER_PW");
+		String memberid = (String)session.getAttribute("MEMBER_ID");
+		
 		Map<String, Object> insertMap = new HashMap<String, Object>();
+		
+		insertMap.put("MEMBER_ID", memberid);
 		insertMap.put("MEMBER_PW", memberpw);
+		
 		Map<String, Object> result = mypageService.memberInfo(insertMap);
+		
 		model.addAttribute("memberMap", result);
 		return "mypage/update";
 	}
