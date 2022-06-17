@@ -26,7 +26,11 @@ WHERE QNA_DEL_GB = 'N'AND QNA_TYPE = 'Q'
 		<include refid="common.pagingPost"></include>
 	</select>
 
+<update id="qnaDelete" parameterType="hashmap"> 
 
+update qna set QNA_DEL_GB = 'Y' where QNA_NUM =#{QNA_NUM} and QNA_WRITER=#{MEMBER_NUM}
+
+</update>
 
 	<select id="selectQNAList" parameterType="hashmap"
 		resultType="hashmap">

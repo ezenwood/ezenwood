@@ -38,7 +38,7 @@ public interface AdminService {
 		
 		public Map<String,Object> adminOrderDetail(Map<String,Object> map) throws Exception;
 		
-		public int adminOrderUpdate(Map<String,Object> map) throws Exception;
+		public int adminOrderUpdate(Map<String,Object> map) ;
 		
 		public int adminOrderDelete(Map<String,Object> map) throws Exception;
 		

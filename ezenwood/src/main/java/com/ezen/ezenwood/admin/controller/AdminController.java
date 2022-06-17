@@ -373,7 +373,7 @@ public class AdminController {
 
 	// 주문 디테일 보기
 
-	@RequestMapping(value = "/order/{ORDERS_NUM}")
+	@RequestMapping(value = "/order/{ORDERS_NUM}" , method = RequestMethod.GET)
 	public String orderDetail(@PathVariable String ORDERS_NUM, Model model) throws Exception {
 		
 		Map<String, Object> insertMap = new HashMap<String, Object>();
@@ -392,9 +392,25 @@ public class AdminController {
 
 	// 주문 수정하기
 
-	@RequestMapping(value = "/order/update")
-	public String orderUpdate() throws Exception {
-		return "admin/order/orderModify";
+	@RequestMapping(value = "/order/{ORDERS_NUM}" , method = RequestMethod.POST)
+	public String orderUpdate(@PathVariable String ORDERS_NUM, CommandMap commandMap) {
+		
+		Map<String,Object> insertMap = commandMap.getMap();
+		insertMap.put("ORDERS_NUM", ORDERS_NUM);
+		
+		
+		for(String a : insertMap.keySet()) {
+			System.out.println("key: "+a+" value: "+insertMap.get(a));
+		}
+		
+		
+		int checkNum = adminService.adminOrderUpdate(insertMap);
+		
+		
+		
+		
+		
+		return "redirect:/admin/order";
 	}
 
 	// 주문 삭제하기
