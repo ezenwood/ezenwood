@@ -88,7 +88,7 @@
 														<a href="/ezenwood/admin/otoDetail/${oto.ONETOONE_NUM}">${oto.ONETOONE_TITLE}</a>
 													</td>
 
-													<td style="text-align: center; vertical-align: middle;">${oto.ONETOONE_MEMBER_NUM}</td>
+													<td style="text-align: center; vertical-align: middle;">${oto.MEMBER_NAME}</td>
 													<td style="text-align: center; vertical-align: middle;">${oto.ONETOONE_RE_GB}</td>
 													<td style="text-align: center; vertical-align: middle;">${oto.ONETOONE_DATE}</td>
 												</tr>

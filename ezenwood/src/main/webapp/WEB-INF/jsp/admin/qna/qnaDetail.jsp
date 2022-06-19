@@ -68,7 +68,7 @@
 								<tr>
 									<!-- 작성자 -->
 									<th>작성자</th>
-									<td><strong> ${QQNAMap.QNA_WRITER} </strong></td>
+									<td><strong> ${QQNAMap.MEMBER_NAME} </strong></td>
 									<td style="width: 118px;"><strong>작성일</strong></td>
 									<td><fmt:formatDate value="${QQNAMap.QNA_DATE}"
 											pattern="yyyy.MM.dd" /></td>
@@ -109,7 +109,7 @@
 								<tr>
 									<!-- 작성자 -->
 									<th>작성자</th>
-									<td><strong> ${AQNAMap.QNA_WRITER} </strong></td>
+									<td><strong> ${AQNAMap.MEMBER_NAME} </strong></td>
 									<td style="width: 118px;"><strong>작성일</strong></td>
 									<td><fmt:formatDate value="${AQNAMap.QNA_DATE}"
 											pattern="yyyy.MM.dd" /></td>

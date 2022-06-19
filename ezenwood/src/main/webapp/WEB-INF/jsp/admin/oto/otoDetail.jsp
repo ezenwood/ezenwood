@@ -35,7 +35,7 @@
 							<!-- 작성자 -->
 							<th>작성자</th>
 							<td style="width: 218px;"><strong>
-									${QOTOMap.ONETOONE_MEMBER_NUM} </strong></td>
+									${QOTOMap.MEMBER_NAME} </strong></td>
 							<td style="width: 120px;"><strong>작성일</strong></td>
 							<td><fmt:formatDate value="${QOTOMap.ONETOONE_DATE}"
 									pattern="yyyy.MM.dd" /></td>
@@ -80,7 +80,7 @@
 						<tr>
 							<!-- 작성자 -->
 							<th>작성자</th>
-							<td style="width: 218px;"><strong> admin </strong></td>
+							<td style="width: 218px;"><strong>${AOTOMap.MEMBER_NAME}</strong></td>
 							<td style="width: 120px;"><strong>작성일</strong></td>
 							<td><fmt:formatDate value="${AOTOMap.ONETOONE_DATE}"
 									pattern="yyyy.MM.dd" /></td>
