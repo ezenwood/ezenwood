@@ -8,7 +8,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
@@ -86,7 +87,8 @@ function insu(goodsNum){
 														<td class="title"><a href="/ezenwood/goods/review/${reviewMap.REVIEW_NUM }" name="title">${reviewMap.REVIEW_TITLE }</a>
 															
 														</td>
-														<td>${reviewMap.REVIEW_WRITER }</td>
+														<%-- <td>${reviewMap.REVIEW_WRITER }</td> --%>
+														<td>${MEMBER_NAME}</td>
 														<td>${reviewMap.REVIEW_NUM }</td>
 													</tr>
 												</c:forEach>

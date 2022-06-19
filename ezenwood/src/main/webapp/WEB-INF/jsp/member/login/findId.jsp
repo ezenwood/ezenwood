@@ -5,11 +5,30 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>IdFind</title>
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/member.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+
+<style>
+.btn_member_white:hover {
+    color: #333333;
+    border: 1px solid #bbbbbb;
+}
+.btn_member_white {
+    width: 150px;
+    height: 45px;
+    color: #3e3d3c;
+    font-weight: bold;
+    font-size: 13px;
+    border: 1px solid #cccccc;
+    background: #fff;
+    cursor: pointer;
+}
+
+</style>
 </head>
 <body>
 	<%@include file="/include/header.jsp"%>
@@ -46,7 +65,9 @@
 													placeholder="이름"> <input type="text" id="member_email"
 													name="MEMBER_EMAIL" placeholder="가입메일주소">
 											</div>
-											<input type="submit" value="아이디 찾기" onclick="${contextPath}/member/idfind">
+											<input type="submit" value="아이디 찾기" onclick="${contextPath}/member/idfind"
+											style="border: 1px solid #4f4e4d; background: #4f4e4d; float: right; width: 158px; height: 91px; 
+											margin: 15px 0 0 0; color: #ffffff; font-size: 15px; font-weight: bold;">
 										</div>
 									</div>
 									<!-- //find_id_sec -->

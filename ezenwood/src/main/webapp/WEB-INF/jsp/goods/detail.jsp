@@ -96,7 +96,8 @@
 	
 	
 </script>
-<title>Insert title here</title>
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/goods_detail.css" type="text/css"
 	rel="stylesheet">
@@ -502,7 +503,8 @@
 											<td style="width: 70%"><a
 												href="goods/review/${reviewMap.REVIEW_NUM }">${reviewMap.REVIEW_TITLE }</a>
 											</td>
-											<td style="width: 10%">${reviewMap.REVIEW_WRITER }</td>
+										 	<%-- <td style="width: 10%">${reviewMap.REVIEW_WRITER }</td> --%>
+										 	<td style="width: 10%">${MEMBER_NAME}</td>
 											<td style="width: 20%"><fmt:formatDate
 													value="${reviewMap.REVIEW_DATE }" dateStyle="medium" /></td>
 
@@ -546,7 +548,8 @@
 												<td style="width: 70%"><a
 													href="goods/qna/${QNAMap.QNA_NUM }">${QNAMap.QNA_TITLE }</a>
 												</td>
-												<td style="width: 10%">${QNAMap.QNA_WRITER }</td>
+												<%-- <td style="width: 10%">${QNAMap.QNA_WRITER }</td> --%>
+												<td style="width: 10%">${MEMBER_NAME}</td>
 												<td style="width: 20%"><fmt:formatDate
 														value="${QNAMap.QNA_DATE }" dateStyle="medium" /></td>
 
