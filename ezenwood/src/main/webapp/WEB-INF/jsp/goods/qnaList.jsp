@@ -81,7 +81,7 @@
                                                                 
                                                             </td>
                                                             <%-- <td>${row.QNA_WRITER }</td> --%>
-                                                            <td>${MEMBER_NAME }</td>
+                                                            <td>${row.MEMBER_NAME }</td>
                                                             <td><c:choose> <c:when test="${row.QNA_RE_GB =='Y'}">답변 완료</c:when><c:otherwise>답변 대기</c:otherwise> </c:choose>  </td>
                                                         </tr>
                                                     </c:forEach>

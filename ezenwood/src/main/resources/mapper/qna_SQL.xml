@@ -103,17 +103,19 @@ WHERE QNA_DEL_GB = 'N'AND QNA_TYPE = 'Q'
 		resultType="hashmap">
 		<include refid="common.pagingPre"></include>
 <![CDATA[
+
 SELECT 
 ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
+MEMBER_NAME,
 QNA_TITLE, 
 QNA_WRITER, 
 QNA_RE_GB, 
 QNA_DATE, 
 QNA_NUM  
-	FROM 
-QNA
-	WHERE  
-QNA_DEL_GB = 'N' and QNA_TYPE= 'Q' and QNA_PARENT = #{QNA_PARENT}
+FROM QNA INNER JOIN MEMBER 
+ON QNA_WRITER = MEMBER_NUM
+WHERE QNA_DEL_GB = 'N' and QNA_TYPE= 'Q' and QNA_PARENT = #{QNA_PARENT}
+
 ]]>
 		<include refid="common.pagingPost"></include>
 	</select>
@@ -185,7 +187,8 @@ AND QNA_DEL_GB = 'N' and QNA_PARENT=#{GOODS_NUM}
 	<select id="selectQNADetailForClient" parameterType="hashmap"
 		resultType="hashmap">
 <![CDATA[
-select 
+SELECT 
+MEMBER_NAME,
 QNA_NUM,
 QNA_TITLE,
 QNA_WRITER,
@@ -194,8 +197,10 @@ QNA_SECREATE,
 QNA_DATE,
 QNA_CONTENT,
 QNA_PARENT
-from qna
- where QNA_DEL_GB = 'N' and QNA_NUM=#{QNA_NUM}   
+FROM QNA INNER JOIN MEMBER 
+ON QNA_WRITER = MEMBER_NUM 
+WHERE QNA_DEL_GB = 'N' 
+AND QNA_NUM= #{QNA_NUM}   
 
 
 ]]>

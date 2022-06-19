@@ -34,8 +34,7 @@
 
                                <div class="board_view_info">
                                    <span class="view_info_ipdp">
-                                       <%-- <strong>${reviewMap.REVIEW_WRITER } </strong> --%>
-                                       <strong>${MEMBER_NAME} </strong>
+                                       <strong>${reviewMap.MEMBER_NAME} </strong>
                                    </span>
                                    <span class="view_info_day">
                                       <em><fmt:formatDate value="${reviewMap.REVIEW_DATE }" type="both" dateStyle="medium" timeStyle="medium" /></em>

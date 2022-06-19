@@ -70,7 +70,7 @@
                                                     <tr>
                                                         <th scope="row">작성자</th>
                                                         <%-- <td> ${QNAMap.QNA_WRITER } </td> --%>
-                                                        <td>${MEMBER_NAME}</td>
+                                                        <td>${QNAMap.MEMBER_NAME}</td>
                                                     </tr>
                                                      <tr>
                                                         <th scope="row">작성일</th>
