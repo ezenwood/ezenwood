@@ -43,21 +43,23 @@
 
 			<div class="panel-body">
 				<div class="panel-body">
+					<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 					<div class="dataTable_wrapper">
 						<div id="dataTables-example_wrapper"
 							class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 							<div class="row" style="margin-bottom: 5px;">
 								<div class="col-sm-6">
-									<a href="/ezenwood/admin/qnaList.#"><button type="button"
-											class="btn btn-outline btn-default">전체</button></a> <select
-										class="form-control" name="select"
-										onchange="window.open(value,'_self');">
-										<option value="">--카테고리--</option>
-										<option
-											value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=0">답변대기중</option>
-										<option
-											value="/ezenwood/admin/goods?searchNum=2&amp;isSearch=1">답변완료</option>
-									</select>
+									<a href="${contextPath}/admin/oto/1"><button type="button"
+											class="btn btn-outline btn-default">전체</button></a>
+									<form id="searchForm" action="${contextPath}/admin/otocategory"
+										method="get">
+										<select name="category">
+											<option value="">--카테고리--</option>
+											<option value="wating">답변대기중</option>
+											<option value="success">답변완료</option>
+										</select> <input type="submit" class="btn btn-outline btn-default"
+											value="선택" />
+									</form>
 								</div>
 							</div>
 
@@ -83,7 +85,8 @@
 													<td style="text-align: center; vertical-align: middle;">${oto.ONETOONE_NUM}</td>
 
 													<td style="text-align: center; vertical-align: middle;">
-													<a href="/ezenwood/admin/otoDetail/${oto.ONETOONE_NUM}">${oto.ONETOONE_TITLE}</a></td>
+														<a href="/ezenwood/admin/otoDetail/${oto.ONETOONE_NUM}">${oto.ONETOONE_TITLE}</a>
+													</td>
 
 													<td style="text-align: center; vertical-align: middle;">${oto.ONETOONE_MEMBER_NUM}</td>
 													<td style="text-align: center; vertical-align: middle;">${oto.ONETOONE_RE_GB}</td>
@@ -101,9 +104,6 @@
 									</table>
 								</div>
 							</div>
-
-
-
 							<div class="pagination">
 								<div class="pagination">
 
@@ -115,6 +115,17 @@
 									</div>
 								</div>
 							</div>
+							<div style="align: center;">
+								<form id="searchForm" action="${contextPath}/admin/oto"
+									method="get">
+									<select name="type">
+										<option value="">검색어</option>
+										<option value="title">제목</option>
+										<option value="writer">작성자</option>
+									</select> <input type="text" name="keyword" /> <input type="submit"
+										value="검색" />
+								</form>
+							</div>
 						</div>
 					</div>
 				</div>
@@ -123,6 +134,5 @@
 		</div>
 	</div>
 
-	</div>
 </body>
 </html>

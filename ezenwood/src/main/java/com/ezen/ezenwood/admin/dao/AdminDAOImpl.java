@@ -42,15 +42,38 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	}
 
 	// 회원 관리 member
-
 	@Override
 	public List<Map<String, Object>> adminMemberList(Map<String, Object> map) {
 		return (List<Map<String, Object>>) selectList("member.selectMemberListAdmin", map);
 	}
 
 	@Override
+	public List<Map<String, Object>> memberListByName(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return selectList("member.MemberListByName", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> memberListById(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return selectList("member.MemberListById", map);
+	}
+
+	@Override
 	public List<Map<String, Object>> adminDelMemberList(Map<String, Object> map) {
-		return (List<Map<String, Object>>) selectList("member.selectMemberList", map);
+		return (List<Map<String, Object>>) selectList("member.selectDelMemberList", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> delmemberListByName(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return selectList("member.DelMemberListByName", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> delmemberListById(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return selectList("member.DelMemberListById", map);
 	}
 
 	@Override
@@ -71,6 +94,10 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
+	public Map<String, Object> adminMemberReturn(Map<String, Object> insertMap) {
+		// TODO Auto-generated method stub
+		return (Map<String, Object>) selectOne("member.updateMemberADMIN", insertMap);
+	}
 	// 주문 관리 order
 
 	@Override
@@ -88,7 +115,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public int adminOrderUpdate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return (int) update("orders.adminOrderUpdate", map);
 	}
 
 	@Override
@@ -97,8 +124,6 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return 0;
 	}
 
-	
-	
 	// 공지사항 notice
 
 	@Override
@@ -134,6 +159,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	public int adminNoticeDelete(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return (int) update("notice.noticedelete", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> noticeSearching(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("notice.noticesearch", map);
 	}
 
 	// 큐엔에이 QNA
@@ -173,17 +203,30 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		// TODO Auto-generated method stub
 		return (int) update("qna.deleteAdminQna", map);
 	}
-	
+
 	@Override
 	public int adminQNAcheck(int QNA_NUM) {
 		// TODO Auto-generated method stub
 		return (int) update("qna.adminQNAcheck", QNA_NUM);
 	}
-	
-	
+
+	@Override
+	public int adminQNAcheckQ(int QNA_NUM) {
+		// TODO Auto-generated method stub
+		return (int) update("qna.adminQNAcheckQ", QNA_NUM);
+	}
+
+	@Override
+	public List<Map<String, Object>> qnaSearching(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("qna.qnasearch", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> qnaCategory(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("qna.qnacategory", map);
+	}
 
 	// 리뷰 review
-
 
 	@Override
 	public List<Map<String, Object>> adminReviewList(Map<String, Object> map) {
@@ -203,6 +246,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return (int) update("review.admindeleteReview", map);
 	}
 
+	@Override
+	public List<Map<String, Object>> reviewSearching(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("review.reviewsearch", map);
+	}
+
 	// 일대일 문의 OneToOne
 
 	@Override
@@ -214,7 +262,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public Map<String, Object> adminOTODetailQ(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return (Map<String, Object>) selectOne("onetoone.selectClientDetail", map);
+		return (Map<String, Object>) selectOne("onetoone.selectClientDetailQ", map);
 	}
 
 	@Override
@@ -226,9 +274,9 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	@Override
 	public String adminOTODetailB(String ONETOONE_NUM) {
 		// TODO Auto-generated method stub
-		return (String) selectOne("member.otoid",ONETOONE_NUM);
+		return (String) selectOne("member.otoid", ONETOONE_NUM);
 	}
-	
+
 	@Override
 	public int adminOTOUpdate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
@@ -242,14 +290,37 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 	}
 
 	@Override
+	public int adminOTODeleteAll(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (int) update("onetoone.deleteAdminAll", map);
+	}
+
+	@Override
 	public int adminOTOInsert(Map<String, Object> map) {
 		// TODO Auto-generated method stub
 		return (int) insert("onetoone.insertAdmin", map);
 	}
-	
-	 public int adminOTOcheck(int ONETOONE_NUM) {
+
+	@Override
+	public int adminOTOcheck(int ONETOONE_NUM) {
 		return (int) update("onetoone.OTOcheck", ONETOONE_NUM);
 	}
+
+	@Override
+	public int adminOTOcheckQ(int ONETOONE_NUM) {
+		return (int) update("onetoone.OTOcheckQ", ONETOONE_NUM);
+	}
+
+	@Override
+	public List<Map<String, Object>> otoSearching(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("onetoone.otosearching", map);
+	}
+
+	@Override
+	public List<Map<String, Object>> otoCategory(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("onetoone.otocategory", map);
+	}
+
 	// 자주묻는질문 fq
 
 	@Override
@@ -282,6 +353,11 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return (int) insert("frequestion.frequestionInsert", map);
 	}
 
+	@Override
+	public List<Map<String, Object>> fqSearching(Map<String, Object> map) {
+		return (List<Map<String, Object>>) selectList("frequestion.fqsearch", map);
+
+	}
 	// 회사소개 글 about
 
 	@Override

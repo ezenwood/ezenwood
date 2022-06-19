@@ -78,7 +78,7 @@
 									<dl>
 										<dt>아이디</dt>
 										<dd>
-											<strong>${MEMBER_ID}</strong>
+											<strong><input type="hidden" name="MEMBER_ID" value="${MEMBER_ID}">${MEMBER_ID}</strong>
 										</dd>
 									</dl>
 									<dl>

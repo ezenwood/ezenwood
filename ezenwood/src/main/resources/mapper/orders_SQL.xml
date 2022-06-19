@@ -154,6 +154,7 @@ select
     ORDERS_RADD2,
     ORDERS_RADD3,
     ORDERS_TCOST,
+    ORDERS_STATUS ,
     DELIVERY_STATUES 
 from goods, orders, member, delivery 
 where ORDERS_GOODS_NUM = GOODS_NUM and ORDERS_MEMBER_NUM=MEMBER_NUM and ORDERS_STATUS=DELIVERY_NUM and ORDERS_NUM =#{ORDERS_NUM}
@@ -162,6 +163,12 @@ where ORDERS_GOODS_NUM = GOODS_NUM and ORDERS_MEMBER_NUM=MEMBER_NUM and ORDERS_S
 
 ]]>
 </select>
+
+
+<update id="adminOrderUpdate" parameterType="hashmap">
+
+update orders set orders_status = #{ORDERS_STATUS}, ORDERS_TRACK = #{ORDERS_TRACK} where ORDERS_NUM = #{ORDERS_NUM}
+</update>
 
 
 

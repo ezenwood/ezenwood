@@ -32,6 +32,22 @@ public class MyPageServiceImpl implements MyPageService {
 	@Resource(name = "GoodsDAO")
 	GoodsDAOImpl goodsDAO;
 	
+	//메인 주문 진행 사항
+	@Override
+	public List<Map<String, Object>> orderStatus(Map<String,Object> map) throws Exception {
+//		int d;
+//		int a;
+//		int c;
+//		int q;
+//		int e;
+//		int t;
+//		Map
+//		for(Map<String,Object> a : ) {
+//			a.get("ORDERS_STATUS")
+//		}
+		return mypageDAO.orderStatus(map);
+	}
+	
 	@Override
 	public Map<String, Object> memberInfo(Map<String, Object> map) throws Exception {
 		return mypageDAO.memberInfo(map);

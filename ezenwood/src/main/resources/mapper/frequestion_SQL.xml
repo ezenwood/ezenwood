@@ -21,6 +21,25 @@ question_deL_gb='N'
 <include refid="common.pagingPost"/> 
 </select>
 
+<select id="fqsearch" parameterType="hashmap" resultType="hashmap">
+SELECT 
+question_step,
+question_num,
+question_title,
+question_date,
+question_content
+FROM
+question
+where
+question_deL_gb='N'
+<if test = "type=='title'">
+	AND (QUESTION_TITLE LIKE '%'||#{keyword}||'%')
+</if>
+<if test = "type=='step'">
+	AND (QUESTION_STEP LIKE  #{keyword})
+</if>
+
+</select>
 
 
 <!-- 관리자 list 

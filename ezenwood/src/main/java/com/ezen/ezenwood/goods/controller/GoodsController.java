@@ -80,6 +80,49 @@ public class GoodsController {
 		return mav;
 	}
 
+	@RequestMapping("/goods/review/delete")
+	public String reviewDelete(CommandMap commandMap, HttpServletRequest request) {
+		Map<String, Object> insertMap = commandMap.getMap();
+		String MEMBER_NUM = (String) request.getSession().getAttribute("MEMBER_NUM");
+		
+		if(MEMBER_NUM==null||MEMBER_NUM.equals("")||MEMBER_NUM.isEmpty()) {
+			//
+		}else {
+			insertMap.put("MEMBER_NUM", MEMBER_NUM);
+			
+			int checkNum = goodsService.reviewDelete(insertMap);
+		}
+		
+		return "redirect:/goods/review?GOODS_NUM="+commandMap.get("GOODS_NUM")+"&p=1";
+	}
+	
+	
+	
+	@RequestMapping("/goods/qna/delete")
+	public String qnaDelete(CommandMap commandMap, HttpServletRequest request) {
+		Map<String, Object> insertMap = commandMap.getMap();
+		String MEMBER_NUM = (String) request.getSession().getAttribute("MEMBER_NUM");
+		
+		
+		
+		if(MEMBER_NUM==null||MEMBER_NUM.equals("")||MEMBER_NUM.isEmpty()) {
+			//
+		}else {
+			insertMap.put("MEMBER_NUM", MEMBER_NUM);
+			
+			int checkNum = goodsService.qnaDelete(insertMap);
+		}
+		
+		
+		
+		
+		
+		return "redirect:/goods/qna?GOODS_NUM="+commandMap.get("GOODS_NUM")+"&p=1";
+		
+	}
+	
+	
+	
 	@RequestMapping("/goods")
 	public ModelAndView goodsDetail(HttpServletRequest request) {
 		ModelAndView mav = new ModelAndView();

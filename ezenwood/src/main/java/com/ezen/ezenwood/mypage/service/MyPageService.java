@@ -5,6 +5,9 @@ import java.util.Map;
 
 public interface MyPageService {
 	
+	//메인 주문 진행 사항
+	public List<Map<String, Object>> orderStatus(Map<String,Object> map) throws Exception;
+	
 	//member
 	//내정보 가져오기
 	public Map<String,Object> memberInfo(Map<String,Object> map) throws Exception;
@@ -40,6 +43,8 @@ public interface MyPageService {
 	//1대1문의(OneToOne)
 	//otoList
 	public List<Map<String,Object>> memberOTOList(Map<String,Object> map) throws Exception;
+
+	
 
 	
 }

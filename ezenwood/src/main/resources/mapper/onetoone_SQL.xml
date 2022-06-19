@@ -2,10 +2,11 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="onetoone">
-	
-<!-- 관리자OTO리스트 -->
-<select id="selectAdminoto" parameterType="hashmap" resultType="hashmap">
-<include refid="common.pagingPre"/>
+
+	<!-- 관리자OTO리스트 -->
+	<select id="selectAdminoto" parameterType="hashmap"
+		resultType="hashmap">
+		<include refid="common.pagingPre" />
 <![CDATA[
 
 SELECT ROW_NUMBER() OVER (order by ONETOONE_NUM desc)RNUM,
@@ -23,11 +24,12 @@ WHERE ONETOONE_DEL_GB = 'N'
 AND ONETOONE_TYPE = 'Q'
 
 ]]>
-<include refid="common.pagingPost"/> 
-</select>
+		<include refid="common.pagingPost" />
+	</select>
 
-<!-- 관리자 OTO상세페이지 -->
-<select id="selectAdminDetail" parameterType="hashmap" resultType="hashmap">
+	<!-- 관리자 OTO상세페이지 -->
+	<select id="selectAdminDetail" parameterType="hashmap"
+		resultType="hashmap">
 <![CDATA[
 
 select 
@@ -42,10 +44,30 @@ AND ONETOONE_PARENT = #{ONETOONE_NUM}
 AND ONETOONE_MEMBER_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID})
 
 ]]>
-</select>
+	</select>
 
-<!-- 관리자OTO검색 -->
-<select id="selectAdminSearch" parameterType="hashmap" resultType="hashmap">
+	<!-- 관리자 OTO상세페이지 -->
+	<select id="selectAdminDetailA" parameterType="hashmap"
+		resultType="hashmap">
+<![CDATA[
+
+select 
+ONETOONE_NUM,
+ONETOONE_TITLE,
+ONETOONE_MEMBER_NUM,
+ONETOONE_CONTENT,
+ONETOONE_DATE
+from ONETOONE
+where QNA_TYPE = 'A' 
+AND ONETOONE_DEL_GB = 'N'
+AND ONETOONE_PARENT = #{ONETOONE_NUM}
+
+]]>
+	</select>
+
+	<!-- 관리자OTO검색 -->
+	<select id="selectAdminSearch" parameterType="hashmap"
+		resultType="hashmap">
 <![CDATA[
 
 select
@@ -60,11 +82,12 @@ OR onetoone_TITLE LIKE '%'\\#{onetoone_TITLE}\\'%'
 
 
 ]]>
-</select>
+	</select>
 
-<!-- 고객OTO본인꺼만 확인 -->
-<select id="selectClientMine" parameterType="hashmap" resultType="hashmap">
-<include refid="common.pagingPre"></include>
+	<!-- 고객OTO본인꺼만 확인 -->
+	<select id="selectClientMine" parameterType="hashmap"
+		resultType="hashmap">
+		<include refid="common.pagingPre"></include>
 <![CDATA[
 
 select 
@@ -79,11 +102,32 @@ from ONETOONE
 where ONETOONE_MEMBER_NUM =(select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBER_ID})
 and ONETOONE_DEL_GB = 'N'
 ]]>
-<include refid="common.pagingPost"></include>
-</select>
+		<include refid="common.pagingPost"></include>
+	</select>
 
-<!-- 고객 상세페이지 -->
-<select id="selectClientDetail" parameterType="hashmap" resultType="hashmap">
+	<!-- 고객 상세페이지 -->
+	<select id="selectClientDetail" parameterType="hashmap"
+		resultType="hashmap">
+<![CDATA[
+
+select 
+ONETOONE_NUM,
+ONETOONE_TITLE,
+MEMBER_NAME,
+ONETOONE_MEMBER_NUM,
+ONETOONE_CONTENT,
+ONETOONE_DATE
+from ONETOONE inner join member on MEMBER.MEMBER_NUM = ONETOONE.ONETOONE_MEMBER_NUM
+where 
+ONETOONE_DEL_GB = 'N'
+AND
+ONETOONE_MEMBER_NUM =
+(SELECT ONETOONE_MEMBER_NUM FROM ONETOONE WHERE ONETOONE_NUM = #{ONETOONE_NUM}) AND ONETOONE_NUM = #{ONETOONE_NUM}
+]]>
+	</select>
+
+	<select id="selectClientDetailQ" parameterType="hashmap"
+		resultType="hashmap">
 <![CDATA[
 
 select 
@@ -100,15 +144,16 @@ AND
 ONETOONE_MEMBER_NUM =
 (SELECT MEMBER_NUM 
 FROM MEMBER
-WHERE MEMBER_ID = #{MEMBER_ID}) AND ONETOONE_NUM = #{ONETOONE_NUM}
+WHERE MEMBER_NUM = (SELECT ONETOONE_MEMBER_NUM FROM ONETOONE WHERE ONETOONE_NUM = #{ONETOONE_NUM})) AND ONETOONE_NUM = #{ONETOONE_NUM}
 ]]>
-</select>
-
-<!-- 고객 OTO 작성 -->
-<insert id="insertClient" parameterType="hashmap" useGeneratedKeys="true" keyProperty="SONETOONE_NUM">
-<selectKey order="BEFORE" keyProperty="SONETOONE_NUM" resultType="string" >
-select seq_onetoone_num.nextval from dual
-</selectKey>
+	</select>
+	<!-- 고객 OTO 작성 -->
+	<insert id="insertClient" parameterType="hashmap"
+		useGeneratedKeys="true" keyProperty="SONETOONE_NUM">
+		<selectKey order="BEFORE" keyProperty="SONETOONE_NUM"
+			resultType="string">
+			select seq_onetoone_num.nextval from dual
+		</selectKey>
 <![CDATA[
 
 INSERT INTO ONETOONE(
@@ -121,7 +166,7 @@ INSERT INTO ONETOONE(
     ONETOONE_TYPE)
     VALUES(
     #{SONETOONE_NUM},
-    (SELECT MEMBER_NUM FROM MEMBER),
+    (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}),
     #{ONETOONE_TITLE},
     #{ONETOONE_CONTENT},
     sysdate,
@@ -129,11 +174,11 @@ INSERT INTO ONETOONE(
     'Q')
 
 ]]>
-</insert>
+	</insert>
 
 
-<!-- 관리자 OTO 작성 -->
-<insert id="insertAdmin" parameterType="hashmap">
+	<!-- 관리자 OTO 작성 -->
+	<insert id="insertAdmin" parameterType="hashmap">
 <![CDATA[
 
 INSERT INTO ONETOONE(
@@ -158,20 +203,31 @@ INSERT INTO ONETOONE(
     #{ONETOONE_NUM})
 
 ]]>
-</insert>
+	</insert>
 
-<!--  관리자 OTO답변 확인 -->
-<update id="OTOcheck" parameterType="String">
+	<!-- 관리자 OTO답변 확인 -->
+	<update id="OTOcheck" parameterType="String">
 <![CDATA[
 UPDATE ONETOONE 
 SET ONETOONE_RE_GB = 'Y' 
 WHERE ONETOONE_NUM = #{ONETOONE_NUM}
 ]]>
-</update>
+	</update>
 
 
-<!-- 관리자/고객 OTO수정 -->
-<update id="updateAdmin" parameterType="hashmap">
+	<!-- 관리자 OTO답변 확인 -->
+	<update id="OTOcheckQ" parameterType="Int">
+<![CDATA[
+UPDATE ONETOONE 
+SET ONETOONE_RE_GB = 'N' 
+WHERE ONETOONE_NUM = #{ONETOONE_NUM}
+]]>
+	</update>
+
+
+
+	<!-- 관리자/고객 OTO수정 -->
+	<update id="updateAdmin" parameterType="hashmap">
 <![CDATA[
 
 	UPDATE ONETOONE
@@ -181,26 +237,40 @@ ONETOONE_CONTENT = #{ONETOONE_CONTENT}
 WHERE ONETOONE_MEMBER_NUM = (SELECT MEMBER_NUM FROM MEMBER)
 
 ]]>
-</update>
+	</update>
 
 
-<!-- 관리자/ 고객 OTO삭제 -->
-<update id="deleteAdmin" parameterType="hashmap">
+	<!-- 관리자/ 고객 OTO 답변 삭제 -->
+	<update id="deleteAdmin" parameterType="hashmap">
 <![CDATA[
 
 UPDATE ONETOONE
 SET ONETOONE_DEL_GB = 'Y'
-WHERE ONETOONE_MEMBER_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}) AND ONETOONE_NUM = #{ONETOONE_NUM}
+WHERE ONETOONE_MEMBER_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}) 
+AND ONETOONE_PARENT = #{ONETOONE_NUM}
 
 
 ]]>
-</update>
+	</update>
+
+	<!-- 관리자/ 고객 OTO 문의/답변 삭제 -->
+	<update id="deleteAdminAll" parameterType="hashmap">
+<![CDATA[
+
+UPDATE ONETOONE
+SET ONETOONE_DEL_GB = 'Y'
+WHERE ONETOONE_NUM = #{ONETOONE_NUM}
+
+
+]]>
+	</update>
 
 
 
-<!--0607 추가함 OTO 리스트 보기  -->
-<select id="selectOTOList" parameterType="hashmap" resultType="hashmap">
-<include refid="common.pagingPre"></include>
+	<!--0607 추가함 OTO 리스트 보기 -->
+	<select id="selectOTOList" parameterType="hashmap"
+		resultType="hashmap">
+		<include refid="common.pagingPre"></include>
 <![CDATA[
 SELECT 
 ROW_NUMBER() OVER (ORDER BY ONETOONE_NUM DESC) RNUM,
@@ -216,11 +286,12 @@ ONETOONE inner join member on MEMBER_NUM = ONETOONE_MEMBER_NUM
 	WHERE  
 ONETOONE_DEL_GB = 'N' and ONETOONE_TYPE= 'Q'
 ]]>
-<include refid="common.pagingPost"></include>
-</select>
+		<include refid="common.pagingPost"></include>
+	</select>
 
-<!--0607 추가함 OTO 답변  -->
-<select id="AnswerForOTODetail" resultType="hashmap" parameterType="hashmap">
+	<!--0607 추가함 OTO 답변 -->
+	<select id="AnswerForOTODetail" resultType="hashmap"
+		parameterType="hashmap">
 <![CDATA[
 select 
 ONETOONE_NUM,
@@ -234,16 +305,75 @@ from ONETOONE
 where ONETOONE_TYPE = 'A'
 AND ONETOONE_DEL_GB = 'N' and ONETOONE_PARENT=#{ONETOONE_NUM} 
 ]]>
-</select>
+	</select>
 
-<!--0613 추가함 OTO 작성 GET  -->
-<select id="insertOTOGET" resultType="hashmap" parameterType="hashmap">
+	<!--0613 추가함 OTO 작성 GET -->
+	<select id="insertOTOGET" resultType="hashmap"
+		parameterType="hashmap">
 <![CDATA[
 select 
 MEMBER_NAME
 from MEMBER
 WHERE MEMBER_ID = #{MEMBER_ID}
 ]]>
-</select>
+	</select>
+
+	<select id="otosearching" resultType="hashmap"
+		parameterType="hashmap">
+
+		SELECT
+		ONETOONE_NUM,
+		ONETOONE_CONTENT,
+		ONETOONE_DEL_GB,
+		ONETOONE_DATE,
+		ONETOONE_TYPE,
+		ONETOONE_PARENT,
+		ONETOONE_TITLE,
+		ONETOONE_MEMBER_NUM,
+		ONETOONE_RE_GB
+		FROM ONETOONE
+		WHERE ONETOONE_DEL_GB = 'N'
+		AND
+		ONETOONE_TYPE = 'Q'
+
+		<if test="type=='title'">
+			AND (ONETOONE_TITLE LIKE '%'||#{keyword}||'%')
+		</if>
+		<if test="type=='writer'">
+			AND (ONETOONE_MEMBER_NUM LIKE (SELECT MEMBER_NUM FROM
+			MEMBER WHERE
+			MEMBER_ID = #{keyword}))
+		</if>
+	</select>
+
+	<select id="otocategory" parameterType="hashmap"
+		resultType="hashmap">
+		SELECT
+		ONETOONE_NUM,
+		ONETOONE_CONTENT,
+		ONETOONE_DEL_GB,
+		ONETOONE_DATE,
+		ONETOONE_TYPE,
+		ONETOONE_PARENT,
+		ONETOONE_TITLE,
+		ONETOONE_MEMBER_NUM,
+		ONETOONE_RE_GB
+		FROM ONETOONE
+		WHERE ONETOONE_DEL_GB = 'N'
+		AND
+		ONETOONE_TYPE = 'Q'
+
+		<choose>
+			<when test='category=="wating"'>
+				AND ONETOONE_RE_GB = 'N'
+			</when>
+
+			<when test='category=="success"'>
+				AND ONETOONE_RE_GB = 'Y'
+			</when>
+			<otherwise></otherwise>
+		</choose>
+
+	</select>
 
 </mapper>

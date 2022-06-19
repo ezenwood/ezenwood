@@ -9,6 +9,11 @@ import com.ezen.common.AbstractDAO;
 
 @Repository("MyPageDAO")
 public class MyPageDAOImle extends AbstractDAO implements MyPageDAO{
+	
+	@Override
+	public List<Map<String, Object>> orderStatus(Map<String,Object> map) {
+	return (List<Map<String, Object>>) selectList("order.", map);
+}
 
 	@Override
 	public Map<String, Object> memberInfo(Map<String, Object> map) {

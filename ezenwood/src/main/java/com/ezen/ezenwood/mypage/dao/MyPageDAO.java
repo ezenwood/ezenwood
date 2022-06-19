@@ -5,6 +5,9 @@ import java.util.Map;
 
 public interface MyPageDAO {
 	
+	//메인 주문 진행 사항
+	public List<Map<String, Object>> orderStatus(Map<String,Object> map);
+	
 	//member
 	//내정보 가져오기
 	public Map<String,Object> memberInfo(Map<String,Object> map);
@@ -18,6 +21,7 @@ public interface MyPageDAO {
 	//주문(order)
 	//orderList
 	public List<Map<String,Object>> orderList(Map<String,Object> map);
+	
 	
 	//orderlistcount
 	public int ordercount();

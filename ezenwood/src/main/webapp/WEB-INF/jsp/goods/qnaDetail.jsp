@@ -28,19 +28,19 @@
 
                         <div class="board_zone_cont">
                             <div class="board_zone_view">
-                                <div class="board_view_tit">
-                                    <h3>${QNAMap.QNA_TITLE }</h3>
-                                </div>
+                                
 
 
                                 <div class="xans-element- xans-board xans-board-product-4 xans-board-product xans-board-4 ec-base-box typeProduct ">
-                                    <p class="thumbnail"><a href="#">
+                                    <p class="thumbnail"><a href="/ezenwood/goods?idx=${QNAMap.GoodsMap.GOODS_NUM }">
                                     <img src="/ezenwood/resource/image/${QNAMap.GOODS_SUBIMAGE }" alt=""></a></p>
                                     <div class="information">
                                         
-                                        <h3><a href="#">${QNAMap.GoodsMap.GOODS_TITLE }</a></h3>
-                                        <p class="price">${QNAMap.GoodsMap.GOODS_PRICE }원<span id="sPrdTaxText"></span></p>
-                                        <p class="button"><a href="/ezenwood/goods?idx=${QNAMap.GoodsMap.GOODS_NUM }" class="btnEm" target="_blank">상품 상세보기</a></p>
+
+                                        <h3><a href="/ezenwood/goods?idx=${QNAMap.GoodsMap.GOODS_NUM }">${QNAMap.GoodsMap.GOODS_TITLE }</a></h3>
+                                        <p class="price">${QNAMap.GoodsMap.GOODS_PRICE }<span id="sPrdTaxText"></span></p>
+                                        <p class="button"><a href="/ezenwood/goods?idx=${QNAMap.GoodsMap.GOODS_NUM }" class="btnEm" title="새창으로 이동">상품 상세보기</a></p>
+
                                     </div>
                                 </div>
 
@@ -72,13 +72,13 @@
                                                         <%-- <td> ${QNAMap.QNA_WRITER } </td> --%>
                                                         <td>${MEMBER_NAME}</td>
                                                     </tr>
+                                                     <tr>
+                                                        <th scope="row">작성일</th>
+                                                        <td><span class="txtNum"><fmt:formatDate value="${QNAMap.QNA_DATE }" type="both" dateStyle="medium" timeStyle="medium" /> </span></td>
+                                                    </tr>
                                                     <tr>
                                                         <td colspan="2">
-                                                            <ul class="etcArea">
-                                                                <li class="">
-                                                                    <strong>작성일</strong> <span class="txtNum"><fmt:formatDate value="${QNAMap.QNA_DATE }" type="both" dateStyle="medium" timeStyle="medium" /> </span>
-                                                                </li>
-                                                            </ul>
+                                                           
                                                             <div class="detail">
                                                                 <div class="fr-view fr-view-article">
                                                                 <c:if test="${QNAMap.QNA_IMAGE != null }">
@@ -89,26 +89,18 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-                                                    <tr class="attach displaynone">
-                                                        <th scope="row">첨부파일</th>
-                                                        <td></td>
-                                                    </tr>
-                                                    <tr class=" displaynone">
-                                                        <th scope="row">비밀번호</th>
-                                                        <td><input id="password" name="password" fw-filter="" fw-label="비밀번호" fw-msg="" onkeydown="if (event.keyCode == 13 || event.which == 13) { return false; }" value="" type="password"> <span class="ec-base-help txtInfo">삭제하려면 비밀번호를 입력하세요.</span>
-                                                        </td>
-                                                    </tr>
+                                                   
                                                 </tbody>
                                             </table>
                                         </div>
                                         <div class="ec-base-button ">
                                             <span class="gLeft">
                                                 
-                                                <a href="#" class="btnNormalFix sizeS">목록</a>
+                                                <a href="/ezenwood/goods/qna?GOODS_NUM=${QNAMap.GoodsMap.GOODS_NUM  }&p=1" class="btnNormalFix sizeS">목록</a>
                                             </span>
                                             <span class="gRight">
-                                                <a href="#none" onclick="BOARD_READ.article_delete('BoardDelForm','#');" class="btnNormalFix sizeS ">삭제</a>
-                                                <a href="#" class="btnEmFix sizeS ">수정</a>
+                                                <a href="#" onclick="qnaDelete()" class="btnNormalFix sizeS ">삭제</a>
+                                               <!--  <a href="/ezenwood/goods/qna/update?QNA_NUM=${QNAMap.QNA_NUM }" class="btnEmFix sizeS ">수정</a> -->
                                                
                                             </span>
                                         </div>
@@ -184,4 +176,16 @@
     </div>
 <%@include file ="/include/footer.jsp" %>
 </body>
+<script type="text/javascript">
+function qnaDelete() {
+	if(!confirm("정말로 삭제하시겠습니까?")){
+		//삭제안함
+		return false;
+	}else{
+		
+		location.href="/ezenwood/goods/qna/delete?QNA_NUM=${QNAMap.QNA_NUM }&GOODS_NUM=${QNAMap.GoodsMap.GOODS_NUM}";
+	}
+	
+}
+</script>
 </html>

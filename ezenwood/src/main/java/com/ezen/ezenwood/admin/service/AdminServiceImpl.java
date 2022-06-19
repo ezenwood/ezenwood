@@ -159,11 +159,21 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	// member
-
 	@Override
 	public List<Map<String, Object>> adminMemberList(Map<String, Object> map) throws Exception {
-
 		return adminDAO.adminMemberList(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> MemberListByName(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminDAO.memberListByName(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> MemberListById(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminDAO.memberListById(map);
 	}
 
 	public List<Map<String, Object>> adminDelMemberList(Map<String, Object> map) throws Exception {
@@ -173,8 +183,19 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public Map<String, Object> adminMemberDetail(Map<String, Object> map) throws Exception {
+	public List<Map<String, Object>> DelMemberListByName(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminDAO.delmemberListByName(map);
+	}
 
+	@Override
+	public List<Map<String, Object>> DelMemberListById(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return adminDAO.delmemberListById(map);
+	}
+
+	@Override
+	public Map<String, Object> adminMemberDetail(Map<String, Object> map) throws Exception {
 		return adminDAO.adminMemberDetail(map);
 	}
 
@@ -188,6 +209,12 @@ public class AdminServiceImpl implements AdminService {
 	public int adminMemberDelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return 0;
+	}
+
+	@Override
+	public Map<String, Object> adminMemberReturn(Map<String, Object> insertMap) {
+		// TODO Auto-generated method stub
+		return adminDAO.adminMemberReturn(insertMap);
 	}
 
 	// order
@@ -205,9 +232,9 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int adminOrderUpdate(Map<String, Object> map) throws Exception {
+	public int adminOrderUpdate(Map<String, Object> map) {
 		// TODO Auto-generated method stub
-		return 0;
+		return adminDAO.adminOrderUpdate(map);
 	}
 
 	@Override
@@ -215,10 +242,6 @@ public class AdminServiceImpl implements AdminService {
 		// TODO Auto-generated method stub
 		return 0;
 	}
-	
-	
-	
-	
 
 	// notice
 
@@ -258,6 +281,12 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.adminNoticeDelete(map);
 	}
 
+	@Override
+	public List<Map<String, Object>> noticeSearching(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.noticeSearching(map);
+	}
+
 	// Qna
 
 	@Override
@@ -290,14 +319,14 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminQNAInsert(Map<String, Object> map) throws Exception {
-		// 
+		//
 		int cheknum = adminDAO.adminQNAInsert(map);
-		
-		if(cheknum == 1) {
+
+		if (cheknum == 1) {
 			int QNANUM = (int) map.get("QNA_NUM");
 			adminDAO.adminQNAcheck(QNANUM);
 		}
-		
+
 		return cheknum;
 	}
 
@@ -310,7 +339,26 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public int adminQNADelete(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		return adminDAO.adminQNADelete(map);
+		int checknum = adminDAO.adminQNADelete(map);
+
+		if (checknum == 1) {
+			int QNANUM = (int) map.get("QNA_NUM");
+			adminDAO.adminQNAcheckQ(QNANUM);
+		}
+
+		return checknum;
+	}
+
+	@Override
+	public List<Map<String, Object>> qnaSearching(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.qnaSearching(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> qnaCategory(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.qnaCategory(map);
 	}
 
 	// review
@@ -361,6 +409,12 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.adminReviewDelete(map);
 	}
 
+	@Override
+	public List<Map<String, Object>> reviewSearching(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.reviewSearching(map);
+	}
+
 	// oto
 
 	@Override
@@ -395,13 +449,33 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminOTODelete(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return adminDAO.adminOTODelete(map);
+		int checknum = adminDAO.adminOTODelete(map);
+
+		if (checknum == 1) {
+
+			int OTONUM = (int) map.get("ONETOONE_NUM");
+			adminDAO.adminOTOcheckQ(OTONUM);
+		}
+
+		return checknum;
+	}
+
+	@Override
+	public int adminOTODeleteAll(Map<String, Object> map) throws Exception {
+		int checknum = adminDAO.adminOTODeleteAll(map);
+
+		if (checknum == 1) {
+
+			int OTONUM = (int) map.get("ONETOONE_NUM");
+			adminDAO.adminOTOcheckQ(OTONUM);
+		}
+
+		return checknum;
 	}
 
 	@Override
 	public int adminOTOInsert(Map<String, Object> map) throws Exception {
-		
+
 		int checknum = adminDAO.adminOTOInsert(map);
 		if (checknum == 1) {
 			int OTONUM = (int) map.get("ONETOONE_NUM");
@@ -412,8 +486,15 @@ public class AdminServiceImpl implements AdminService {
 	}
 
 	@Override
-	public int adminOTOcheck(int ONETOONE_NUM) throws Exception {
-		return adminDAO.adminOTOcheck(ONETOONE_NUM);
+	public List<Map<String, Object>> otoSearching(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.otoSearching(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> otoCategory(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.otoCategory(map);
 	}
 
 	// fq(자주묻는질문)
@@ -446,6 +527,12 @@ public class AdminServiceImpl implements AdminService {
 	public int adminFQInsert(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
 		return adminDAO.adminFQInsert(map);
+	}
+
+	@Override
+	public List<Map<String, Object>> fqSearching(Map<String, Object> map) throws Exception {
+		// TODO Auto-generated method stub
+		return adminDAO.fqSearching(map);
 	}
 
 	// about
