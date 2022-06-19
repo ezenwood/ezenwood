@@ -732,7 +732,7 @@ public class AdminController {
 		return mav;
 	}
 
-	// 큐엔에이 검색기능
+	// 큐엔에이 카테고리
 
 	@RequestMapping(value = "/qnacategory", method = RequestMethod.GET)
 	public ModelAndView qnaCategory(HttpServletRequest request) throws Exception {

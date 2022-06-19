@@ -351,14 +351,34 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public List<Map<String, Object>> qnaSearching(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return adminDAO.qnaSearching(map);
+		List<Map<String, Object>> listMap = adminDAO.qnaSearching(map);
+
+		for (Map<String, Object> goodsmap : listMap) {
+
+			String GOODS_TITLE = ((BigDecimal) goodsmap.get("QNA_PARENT")).toString();
+
+			String goods = goodsDAO.getGoodsTitle(GOODS_TITLE);
+			goodsmap.put("GOODS_TITLE", goods);
+		}
+
+		return listMap;
+		
 	}
 
 	@Override
 	public List<Map<String, Object>> qnaCategory(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return adminDAO.qnaCategory(map);
+		List<Map<String, Object>> listMap = adminDAO.qnaCategory(map);
+
+		for (Map<String, Object> goodsmap : listMap) {
+
+			String GOODS_TITLE = ((BigDecimal) goodsmap.get("QNA_PARENT")).toString();
+
+			String goods = goodsDAO.getGoodsTitle(GOODS_TITLE);
+			goodsmap.put("GOODS_TITLE", goods);
+		}
+
+		return listMap;
+
 	}
 
 	// review
@@ -488,12 +508,16 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Map<String, Object>> otoSearching(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
+		
+		
 		return adminDAO.otoSearching(map);
 	}
 
 	@Override
 	public List<Map<String, Object>> otoCategory(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
+		
+		
 		return adminDAO.otoCategory(map);
 	}
 

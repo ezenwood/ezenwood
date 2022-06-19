@@ -35,7 +35,7 @@
 							<!-- 작성자 -->
 							<th>작성자</th>
 							<td style="width: 218px;"><strong>
-									${RVMap.REVIEW_WRITER} </strong></td>
+									${RVMap.MEMBER_NAME} </strong></td>
 							<td style="width: 120px;"><strong>작성일</strong></td>
 							<td><fmt:formatDate value="${RVMap.REVIEW_DATE}"
 									pattern="yyyy.MM.dd" /></td>

@@ -89,7 +89,7 @@
 
 													<td style="text-align: center; vertical-align: middle;"><a
 														href="/ezenwood/admin/qnadetail/${qna.QNA_NUM}">${qna.QNA_TITLE}</a></td>
-													<td style="text-align: center; vertical-align: middle;">${qna.QNA_WRITER}</td>
+													<td style="text-align: center; vertical-align: middle;">${qna.MEMBER_NAME}</td>
 													<td style="text-align: center; vertical-align: middle;">${qna.QNA_RE_GB}</td>
 													<td style="text-align: center; vertical-align: middle;">${qna.QNA_DATE}</td>
 												</tr>

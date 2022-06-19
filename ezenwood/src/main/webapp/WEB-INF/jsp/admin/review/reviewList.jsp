@@ -78,7 +78,7 @@
 												<td>${rv.GOODS_TITLE}</td>
 												<td><a
 													href="/ezenwood/admin/reviewdetail/${rv.REVIEW_NUM}">${rv.REVIEW_TITLE}</a></td>
-												<td>${rv.REVIEW_WRITER}</td><!-- MEMBERID로 받아야함 -->
+												<td>${rv.MEMBER_NAME}</td><!-- MEMBERID로 받아야함 -->
 												<td>${rv.REVIEW_DATE}</td>
 												<!--  등록된 상품이 없을때 -->
 												<c:if test="${fn:length(fq) le 0}">
