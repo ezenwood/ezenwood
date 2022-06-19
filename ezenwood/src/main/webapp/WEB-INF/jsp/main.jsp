@@ -4,8 +4,8 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title> 이젠우드</title>
-
+    <title> 이젠 우드</title>
+	<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 </head>
 <body>
    
@@ -28,7 +28,7 @@
 </style>
 
 <div class="img1" style="width:100%;text-align:center;">
-<img src="/ezenwood/resource/image/pet1.jpg" alt="MAIN" title="MAIN"></div>
+<img src="/ezenwood/resource/image/gaemsung.jpg" alt="MAIN" title="MAIN"></div>
 
 <div class="line1"></div>
 

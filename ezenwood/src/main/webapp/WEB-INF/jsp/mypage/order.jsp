@@ -7,6 +7,7 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link rel="stylesheet" href="/ezenwood/css/mypage.css">
 <link rel="stylesheet" href="/ezenwood/css/layout.css">
 <link rel="stylesheet" href="/ezenwood/css/member.css">
@@ -25,7 +26,7 @@
 	}
 </script>
 
-<title>order2</title>
+<title>이젠 우드</title>
 </head>
 <body>
 	<%@include file="/include/header.jsp"%>
@@ -63,17 +64,13 @@
 
 						<!-- 주문상품 리스트-->
 
-						<div class="mypage_table_type">
-							<table>
+						<div class="board_list_qa" align="center">
+							<table class="board_list_table" style="width:100%">
 								<colgroup>
-									<col style="width: 14%">
-									<!-- 날짜/주문번호 -->
-									<col>
-									<!--상품명/옵션 -->
-									<col style="width: 14%">
-									<!-- 상품금액/수량-->
-									<col style="width: 14%">
-									<!--주문상태 -->
+									<col style="width: 15%">
+								<col style="width: 15%">
+								<col style="width: 15%">
+								<col style="width: 15%">
 									
 									<!--확인/리뷰 -->
 								</colgroup>

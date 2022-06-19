@@ -9,12 +9,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-    <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
-     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
+<link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
     
     <script type="text/javascript">
     var ddd = document.location.href;
@@ -79,7 +80,8 @@
                                                                 <a href="/ezenwood/goods/qna/${row.QNA_NUM }" name="title">${row.QNA_TITLE }</a>
                                                                 
                                                             </td>
-                                                            <td>${row.QNA_WRITER }</td>
+                                                            <%-- <td>${row.QNA_WRITER }</td> --%>
+                                                            <td>${MEMBER_NAME }</td>
                                                             <td><c:choose> <c:when test="${row.QNA_RE_GB =='Y'}">답변 완료</c:when><c:otherwise>답변 대기</c:otherwise> </c:choose>  </td>
                                                         </tr>
                                                     </c:forEach>
@@ -108,7 +110,7 @@
                         </div>
 
                     </div>
-                    <script type="text/javascript" src="js/sister_js/gd_board_list.js" charset="utf-8"></script>
+                    
                 </div>
                 
             </div>

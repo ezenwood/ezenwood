@@ -5,7 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-
+	<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
     <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/member.css" type="text/css" rel="stylesheet">
@@ -393,6 +393,7 @@
                                                           <input type="text" id="id" name="MEMBER_ID" ><input
 				type="button" value="아이디 중복확인" onclick="idCheck()" style="font-size: 12px; line-height: 1.5; color: #333; margin: 0 0 0 5px; padding: 5px 10px 5px 10px; border: 1px solid #989898;"><br><red style="color:red;">${errorMap.vaild_MEMBER_ID }</red>
                                                       </div>
+                                                     <div id="id_info" class="text_pass">영문 소문자 8~20자</div>
                                                   </td> 
                                                </tr>
                                                <tr class>
@@ -403,6 +404,7 @@
                                                 <div class="member_warning prior_half_pass">
                                                     <input type="password" name="MEMBER_PW" id="password1"><br><red style="color:red;">${errorMap.vaild_MEMBER_PW }</red>
                                                 </div>
+                                                <div id="pw_info" class="text_pass">영문 대소문자/숫자/특수문자 모두 포함해서 8~20자</div>
                                                   </td>
                                                </tr>
                                                

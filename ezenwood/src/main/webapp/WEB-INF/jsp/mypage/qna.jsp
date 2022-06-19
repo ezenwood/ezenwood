@@ -17,13 +17,14 @@
 	}
 </script>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link rel="stylesheet" href="/ezenwood/css/mypage.css">
 <link rel="stylesheet" href="/ezenwood/css/layout.css">
 <link rel="stylesheet" href="/ezenwood/css/member.css">
 <link rel="stylesheet" href="/ezenwood/css/reset.css">
 <link rel="stylesheet" href="/ezenwood/css/board.css">
 <link rel="stylesheet" href="/ezenwood/css/common.css">
-<title>qna2</title>
+<title>이젠 우드</title>
 </head>
 <body>
 	<%@include file="/include/header.jsp"%>
@@ -33,7 +34,7 @@
 			<div class="location_wrap">
 				<div class="location_cont">
 					<em> <a href="/ezenwood/main" class="local_home">Home</a>
-						&gt;마이페이지&gt;게시글 관리&gt;Q&A
+						&gt;마이페이지&gt;Q&A
 					</em>
 				</div>
 			</div>
@@ -55,12 +56,9 @@
 
 
 					<!-- qna 리스트-->
-					<div class="mypage_lately_info"></div>
-					<div class="mypage_table_type">
-						<table>
+					<div class="board_list_qa" align="center">
+						<table class="board_list_table" style="width:100%">
 							<colgroup>
-								<col style="width: 15%">
-								<col style="width: 15%">
 								<col style="width: 15%">
 								<col style="width: 15%">
 								<col style="width: 15%">
@@ -70,7 +68,6 @@
 							<thead>
 								<tr>
 									<th>문의날짜</th>
-									<th>카테고리</th>
 									<th>제목</th>
 									<th>작성자</th>
 									<th>문의상태</th>
@@ -80,10 +77,14 @@
 								<tbody>
 									<tr>
 										<td>${qna.QNA_DATE}</td>
-										<td>몰랑</td>
-										<td><a href="#">${qna.QNA_TITLE} </a></td>
-										<td>${qna.QNA_WRITER}</td>
-										<td>${qna.QNA_RE_GB}</td>
+										
+										<td><a href="/ezenwood/goods/qna/${qna.QNA_NUM}">${qna.QNA_TITLE} </a></td>
+										<td>${MEMBER_NAME}</td>
+										<%-- <td>${qna.QNA_RE_GB}</td> --%>
+										<td align="center"><c:choose>
+												<c:when test="${qna.QNA_RE_GB == 'Y'}">답변 완료</c:when>
+												<c:otherwise>답변 대기</c:otherwise>
+											</c:choose></td>
 									</tr>
 								</tbody>
 							</c:forEach>

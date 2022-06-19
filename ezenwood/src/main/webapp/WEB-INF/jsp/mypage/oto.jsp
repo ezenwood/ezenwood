@@ -19,13 +19,14 @@
 </script>
 
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link rel="stylesheet" href="/ezenwood/css/mypage.css">
 <link rel="stylesheet" href="/ezenwood/css/layout.css">
 <link rel="stylesheet" href="/ezenwood/css/member.css">
 <link rel="stylesheet" href="/ezenwood/css/reset.css">
 <link rel="stylesheet" href="/ezenwood/css/board.css">
 <link rel="stylesheet" href="/ezenwood/css/common.css">
-<title>oto2</title>
+<title>이젠 우드</title>
 </head>
 <body>
 	<%@include file="/include/header.jsp"%>
@@ -35,7 +36,7 @@
 			<div class="location_wrap">
 				<div class="location_cont">
 					<em> <a href="/ezenwood/main" class="local_home">Home</a>
-						&gt;마이페이지&gt;게시판 관리&gt;1:1문의
+						&gt;마이페이지&gt;1:1문의
 					</em>
 				</div>
 			</div>
@@ -56,8 +57,8 @@
 
 
 					<!-- oto 리스트-->
-					<div class="mypage_table_type">
-						<table>
+					<div class="board_list_qa" align="center">
+						<table class="board_list_table" style="width:100%">
 							<colgroup>
 								<col style="width: 15%">
 								<col style="width: 15%">
@@ -77,9 +78,13 @@
 								<tbody>
 									<tr>
 										<td>${oto.ONETOONE_DATE}</td>
-										<td><a href="#"> ${oto.ONETOONE_TITLE} </a></td>
-										<td>${oto.ONETOONE_MEMBER_NUM}</td>
-										<td>${oto.ONETOONE_RE_GB}</td>
+										<td><a href="/ezenwood/board/oto/otoBoard/${oto.ONETOONE_NUM}"> ${oto.ONETOONE_TITLE} </a></td>
+										<td>${MEMBER_NAME}</td>
+										<%-- <td>${oto.ONETOONE_RE_GB}</td> --%>
+										<td align="center"><c:choose>
+												<c:when test="${oto.ONETOONE_RE_GB == 'Y'}">답변 완료</c:when>
+												<c:otherwise>답변 대기</c:otherwise>
+											</c:choose></td>
 									</tr>
 								</tbody>
 							</c:forEach>

@@ -6,12 +6,13 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-    <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
-     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
+<link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
     
 </head>
 <body>
@@ -32,7 +33,8 @@
                                </div>
                                <div class="board_view_info">
                                    <span class="view_info_ipdp">
-                                       <strong>${reviewMap.REVIEW_WRITER } </strong>
+                                       <%-- <strong>${reviewMap.REVIEW_WRITER } </strong> --%>
+                                       <strong>${MEMBER_NAME} </strong>
                                    </span>
                                    <span class="view_info_day">
                                       <em><fmt:formatDate value="${reviewMap.REVIEW_DATE }" type="both" dateStyle="medium" timeStyle="medium" /></em>
@@ -49,13 +51,15 @@
                                     <div class="view_goods_select">
                                         <div class="view_goods_select_item">
                                             <span class="view_select_item_img">
-                                                <a href="상품 주소" target="_blank">
+                                                <a href="/ezenwood/goods?idx=${reviewMap.goodsMap.GOODS_NUM }" target="_blank">
                                                     <img src="/ezenwood/resource/image/${GOODS_SUBIMAGE }">
                                                 </a>
                                             </span>
                                             <span class="view_select_item_info">
-                                                <em>${reviewMap.goodsMap.GOODS_TITLE }</em>
-                                                <strong>${reviewMap.goodsMap.GOODS_PRICE }</strong>
+                                               <a href="/ezenwood/goods?idx=${reviewMap.goodsMap.GOODS_NUM }" target="_blank"> 
+                                               <em>${reviewMap.goodsMap.GOODS_TITLE }</em>
+                                               </a>
+                                                <strong>${reviewMap.goodsMap.GOODS_PRICE }원</strong>
                                             </span>
                                         </div>
                                         <!--//view_goods_select_item-->

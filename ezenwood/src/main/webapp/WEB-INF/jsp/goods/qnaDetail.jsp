@@ -6,13 +6,14 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
-    <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/qnaDetail.css" type="text/css" rel="stylesheet">
-    <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
+<link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/qnaDetail.css" type="text/css" rel="stylesheet">
+<link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
 </head>
 <body>
 <%@include file ="/include/header.jsp" %>
@@ -38,8 +39,8 @@
                                     <div class="information">
                                         
                                         <h3><a href="#">${QNAMap.GoodsMap.GOODS_TITLE }</a></h3>
-                                        <p class="price">${QNAMap.GoodsMap.GOODS_PRICE }<span id="sPrdTaxText"></span></p>
-                                        <p class="button"><a href="#" class="btnEm" title="새창으로 이동">상품 상세보기</a></p>
+                                        <p class="price">${QNAMap.GoodsMap.GOODS_PRICE }원<span id="sPrdTaxText"></span></p>
+                                        <p class="button"><a href="/ezenwood/goods?idx=${QNAMap.GoodsMap.GOODS_NUM }" class="btnEm" target="_blank">상품 상세보기</a></p>
                                     </div>
                                 </div>
 
@@ -68,7 +69,8 @@
                                                     </tr>
                                                     <tr>
                                                         <th scope="row">작성자</th>
-                                                        <td> ${QNAMap.QNA_WRITER } </td>
+                                                        <%-- <td> ${QNAMap.QNA_WRITER } </td> --%>
+                                                        <td>${MEMBER_NAME}</td>
                                                     </tr>
                                                     <tr>
                                                         <td colspan="2">

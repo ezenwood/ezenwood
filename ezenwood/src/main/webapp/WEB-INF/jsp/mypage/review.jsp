@@ -18,13 +18,14 @@
 	}
 </script>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link rel="stylesheet" href="/ezenwood/css/mypage.css">
 <link rel="stylesheet" href="/ezenwood/css/layout.css">
 <link rel="stylesheet" href="/ezenwood/css/member.css">
 <link rel="stylesheet" href="/ezenwood/css/reset.css">
 <link rel="stylesheet" href="/ezenwood/css/board.css">
 <link rel="stylesheet" href="/ezenwood/css/common.css">
-<title>review2</title>
+<title>이젠 우드</title>
 </head>
 
 <body>
@@ -35,7 +36,7 @@
 			<div class="location_wrap">
 				<div class="location_cont">
 					<em> <a href="/ezenwood/main" class="local_home">Home</a>
-						&gt;마이페이지&gt;게시판 관리&gt;리뷰
+						&gt;마이페이지&gt;리뷰
 					</em>
 				</div>
 			</div>
@@ -58,8 +59,8 @@
 					<c:set var="contextPath" value="${pageContext.request.contextPath}" />
 
 					<!-- review 리스트-->
-					<div class="mypage_table_type">
-						<table>
+					<div class="board_list_qa" align="center">
+						<table class="board_list_table" style="width:100%">
 							<colgroup>
 								<col style="width: 6%">
 								<col style="width: 25%">
@@ -95,12 +96,12 @@
 
 										<td class="board_tit">
 											<!-- 제목--> <a
-											href='${contextPath}/board/review/${review.REVIEW_NUM}'>
+											href="/ezenwood/goods/review/${review.REVIEW_NUM}">
 												<strong>${review.REVIEW_TITLE}</strong>
 										</a>
 										</td>
 										<td>${review.REVIEW_DATE}</td>
-										<td>${review.REVIEW_WRITER}</td>
+										<td>${MEMBER_NAME}</td>
 
 									</tr>
 
