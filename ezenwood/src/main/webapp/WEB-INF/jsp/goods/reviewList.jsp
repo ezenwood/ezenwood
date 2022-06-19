@@ -87,8 +87,7 @@ function insu(goodsNum){
 														<td class="title"><a href="/ezenwood/goods/review/${reviewMap.REVIEW_NUM }" name="title">${reviewMap.REVIEW_TITLE }</a>
 															
 														</td>
-														<%-- <td>${reviewMap.REVIEW_WRITER }</td> --%>
-														<td>${MEMBER_NAME}</td>
+														<td>${reviewMap.MEMBER_NAME}</td>
 														<td>${reviewMap.REVIEW_NUM }</td>
 													</tr>
 												</c:forEach>

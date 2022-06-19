@@ -89,8 +89,8 @@
 										style="height: 10px">
 										<td>${review.REVIEW_NUM}</td>
 										<td>
-												<img src="/ezenwood/resource/image/${review.GOODS_SUBIMAGE}" width="400"
-												height="600" alt="상품 이름" title="상품 이름" class="middle">
+												<img src="/ezenwood/resource/image/${review.GOODS_SUBIMAGE}" width="200"
+												height="300" alt="상품 이름" title="상품 이름" class="middle">
 										</td>
 										<td>${review.GOODS_TITLE}</td>
 
