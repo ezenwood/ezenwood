@@ -734,8 +734,8 @@ public class AdminController {
 
 	// 큐엔에이 카테고리
 
-	@RequestMapping(value = "/qnacategory", method = RequestMethod.GET)
-	public ModelAndView qnaCategory(HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/qnacategory/{pageNum}", method = RequestMethod.GET)
+	public ModelAndView qnaCategory(@PathVariable int pageNum, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView("/admin/qna/qnaList");
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
@@ -747,16 +747,43 @@ public class AdminController {
 		insertMap.put("category", category);
 		insertMap.put("wating", wating);
 		insertMap.put("success", success);
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
 
-		List<Map<String, Object>> resultMap = adminService.qnaCategory(insertMap);
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
 
-		mav.addObject("list", resultMap);
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+		List<Map<String, Object>> list = adminService.qnaCategory(insertMap);
+			
+		mav.addObject("list", list);
+
+		int totalCount = 0;
+
+		if (list.isEmpty()) {
+
+		} else {
+
+			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mav.addObject("paginationInfo", paginationInfo);
+
+		}
+
+		mav.setViewName("admin/qna/qnaList");
+		
 		return mav;
 	}
 
 	// 큐엔에이 검색기능
-	@RequestMapping(value = "/qna", method = RequestMethod.GET)
-	public ModelAndView qnaSearch(HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/qnaa/{pageNum}", method = RequestMethod.GET)
+	public ModelAndView qnaSearch(@PathVariable int pageNum, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView("/admin/qna/qnaList");
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
@@ -770,10 +797,37 @@ public class AdminController {
 		insertMap.put("type", type);
 		insertMap.put("title", title);
 		insertMap.put("writer", writer);
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
 
-		List<Map<String, Object>> resultMap = adminService.qnaSearching(insertMap);
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
 
-		mav.addObject("list", resultMap);
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+		List<Map<String, Object>> list = adminService.qnaSearching(insertMap);
+		
+		mav.addObject("list", list);
+
+		int totalCount = 0;
+
+		if (list.isEmpty()) {
+
+		} else {
+
+			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mav.addObject("paginationInfo", paginationInfo);
+
+		}
+
+		mav.setViewName("admin/qna/qnaList");
+		
 		return mav;
 	}
 
@@ -932,12 +986,25 @@ public class AdminController {
 
 	// 리뷰문의 검색기능
 
-	@RequestMapping(value = "/review", method = RequestMethod.GET)
-	public ModelAndView reivewSearch(HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/revieww/{pageNum}", method = RequestMethod.GET)
+	public ModelAndView reivewSearch(@PathVariable int pageNum, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView("/admin/review/reviewList");
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
+
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+
+		
 		String keyword = request.getParameter("keyword");
 		String type = request.getParameter("type");
 		String title = request.getParameter("title");
@@ -948,9 +1015,25 @@ public class AdminController {
 		insertMap.put("title", title);
 		insertMap.put("writer", writer);
 
-		List<Map<String, Object>> resultMap = adminService.reviewSearching(insertMap);
+		List<Map<String, Object>> list = adminService.reviewSearching(insertMap);
 
-		mav.addObject("list", resultMap);
+		mav.addObject("list", list);
+
+		int totalCount = 0;
+
+		if (list.isEmpty()) {
+
+		} else {
+
+			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mav.addObject("paginationInfo", paginationInfo);
+
+		}
+
+		mav.setViewName("admin/review/reviewList");
+
+
 		return mav;
 	}
 
@@ -1033,11 +1116,13 @@ public class AdminController {
 
 	// 일대일문의 검색기능
 
-	@RequestMapping(value = "/otocategory", method = RequestMethod.GET)
-	public ModelAndView otoCategory(HttpServletRequest request) throws Exception {
+	@RequestMapping(value = "/otocategory/{pageNum}", method = RequestMethod.GET)
+	public ModelAndView otoCategory(@PathVariable int pageNum, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView("/admin/oto/otoList");
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
 
 		String category = request.getParameter("category");
 		String wating = request.getParameter("wating");
@@ -1046,20 +1131,56 @@ public class AdminController {
 		insertMap.put("category", category);
 		insertMap.put("wating", wating);
 		insertMap.put("success", success);
+		
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
 
-		List<Map<String, Object>> resultMap = adminService.otoCategory(insertMap);
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
 
-		mav.addObject("list", resultMap);
+		List<Map<String, Object>> list = adminService.otoCategory(insertMap);
+		mav.addObject("list", list);
+
+		int totalCount = 0;
+
+		if (list.isEmpty()) {
+
+		} else {
+			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mav.addObject("paginationInfo", paginationInfo);
+
+		}
+
+		mav.setViewName("/admin/oto/otoList");
+		//
+
 		return mav;
 	}
 
 	// 일대일문의 검색기능
 
-	@RequestMapping(value = "/oto", method = RequestMethod.GET)
-	public ModelAndView otoSearch(HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView("/admin/oto/otoList");
+	@RequestMapping(value = "/otoo/{pageNum}", method = RequestMethod.GET)
+	public ModelAndView otoSearch(@PathVariable int pageNum, HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
+		
+		PaginationInfo paginationInfo = new PaginationInfo();
+
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
+
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
 
 		String keyword = request.getParameter("keyword");
 		String type = request.getParameter("type");
@@ -1071,9 +1192,24 @@ public class AdminController {
 		insertMap.put("title", title);
 		insertMap.put("writer", writer);
 
-		List<Map<String, Object>> resultMap = adminService.otoSearching(insertMap);
+		List<Map<String, Object>> list = adminService.otoSearching(insertMap);
+		
 
-		mav.addObject("list", resultMap);
+		int totalCount = 0;
+
+		if (list.isEmpty()) {
+
+		} else {
+			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+			paginationInfo.setTotalRecordCount(totalCount);
+			mav.addObject("paginationInfo", paginationInfo);
+
+		}
+
+		mav.setViewName("/admin/oto/otoList");
+		//
+
+		mav.addObject("list", list);
 		return mav;
 	}
 

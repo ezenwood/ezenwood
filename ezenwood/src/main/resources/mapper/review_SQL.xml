@@ -35,6 +35,7 @@ WHERE REVIEW_DEL_GB = 'N'
 	
 	
 	<select id="reviewsearch" parameterType="hashmap" resultType="hashmap">
+	<include refid="common.pagingPre"></include>
 	SELECT 
 	ROW_NUMBER() OVER (ORDER BY REVIEW_NUM DESC) RNUM,
 	MEMBER_NAME,
@@ -53,6 +54,7 @@ WHERE REVIEW_DEL_GB = 'N'
 <if test = "type=='writer'">
 	AND (REVIEW_WRITER LIKE (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{keyword}))
 </if>
+<include refid="common.pagingPost"></include>
 	</select>
 
 	<select id="selectReviewList" resultType="hashmap"

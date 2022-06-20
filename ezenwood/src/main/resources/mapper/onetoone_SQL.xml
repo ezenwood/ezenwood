@@ -324,8 +324,9 @@ WHERE MEMBER_ID = #{MEMBER_ID}
 
 	<select id="otosearching" resultType="hashmap"
 		parameterType="hashmap">
-
+<include refid="common.pagingPre"></include>
 		SELECT
+		ROW_NUMBER() OVER (ORDER BY ONETOONE_NUM DESC) RNUM,
 		MEMBER_NAME,
 		ONETOONE_NUM,
 		ONETOONE_CONTENT,
@@ -350,11 +351,14 @@ WHERE MEMBER_ID = #{MEMBER_ID}
 			MEMBER WHERE
 			MEMBER_ID = #{keyword}))
 		</if>
+		<include refid="common.pagingPost"></include>
 	</select>
 
 	<select id="otocategory" parameterType="hashmap"
 		resultType="hashmap">
+		<include refid="common.pagingPre"></include>
 		SELECT
+		ROW_NUMBER() OVER (ORDER BY ONETOONE_NUM DESC) RNUM,
 		MEMBER_NAME,
 		ONETOONE_NUM,
 		ONETOONE_CONTENT,
@@ -381,7 +385,7 @@ WHERE MEMBER_ID = #{MEMBER_ID}
 			</when>
 			<otherwise></otherwise>
 		</choose>
-
+<include refid="common.pagingPost"></include>
 	</select>
 
 </mapper>
