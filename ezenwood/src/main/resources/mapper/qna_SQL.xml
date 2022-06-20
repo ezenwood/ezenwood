@@ -30,8 +30,9 @@ WHERE QNA_DEL_GB = 'N'AND QNA_TYPE = 'Q'
 
 	<select id="qnasearch" parameterType="hashmap"
 		resultType="hashmap">
-
+<include refid="common.pagingPre"></include>
 		SELECT
+		ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
 		MEMBER_NAME,
 		QNA_NUM,
 		QNA_TITLE,
@@ -56,13 +57,15 @@ WHERE QNA_DEL_GB = 'N'AND QNA_TYPE = 'Q'
 			MEMBER_ID
 			= #{keyword}))
 		</if>
-
+<include refid="common.pagingPost"></include>
 	</select>
 
 
 	<select id="qnacategory" parameterType="hashmap"
 		resultType="hashmap">
+		<include refid="common.pagingPre"></include>
 		SELECT
+		ROW_NUMBER() OVER (ORDER BY QNA_NUM DESC) RNUM,
 		MEMBER_NAME,
 		QNA_NUM,
 		QNA_TITLE,
@@ -90,7 +93,7 @@ WHERE QNA_DEL_GB = 'N'AND QNA_TYPE = 'Q'
 			</when>
 			<otherwise></otherwise>
 		</choose>
-
+<include refid="common.pagingPost"></include>
 	</select>
 
 
