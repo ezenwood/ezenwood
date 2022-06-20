@@ -102,7 +102,7 @@
 									</div>
 								</div>
 								<div style="align: center;">
-								<form id="searchForm" action="${contextPath}/admin/review" method="get">
+								<form id="searchForm" action="${contextPath}/admin/revieww/1" method="get">
 									<select name="type">
 										<option value="">검색어</option>
 										<option value="title">제목</option>

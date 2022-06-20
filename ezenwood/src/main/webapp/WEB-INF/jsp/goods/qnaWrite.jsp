@@ -85,6 +85,7 @@
                                                         </div>
                                                         </div>
                                                     </td>
+
                                                 </tr>
                                             </tbody>
                                         </table>
@@ -117,21 +118,12 @@
                         var cfgEditorFl = 'y';
                         var bdId = 'goodsqa';
                         var bdSno = '';
+                       
                         gd_select_email_domain('writerEmail');
+                      
                     </script>
-                    <script type="text/javascript" src="js/sister_js/gd_board_write.js" charset="utf-8"></script>
-                    <script type="text/template" class="template">
-                        <div class="file_upload_sec">
-		<label for="attach<%//=idx%>">
-			<input type="text" class="file_text" title="파일 첨부하기" readonly="readonly">
-		</label>
-		<div class="btn_upload_box">
-			<button type="button" class="btn_upload" title="찾아보기"><em>찾아보기</em></button>
-			<input type="file" id="attach<%//=idx%>" name="upfiles[]" class="file" title="찾아보기"/>
-			<span class="btn_gray_list"><button type="button" class="btn_gray_big" onclick="gd_remove_upload(this)"><span>- 삭제</span></button></span>
-		</div>
-	</div>
-</script>
+              
+             
                     <div id="addGoodsLayer" class="dn"></div>
                     <div id="addOrderLayer" class="dn"></div>
 

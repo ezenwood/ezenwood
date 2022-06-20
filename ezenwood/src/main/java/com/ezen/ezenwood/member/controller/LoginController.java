@@ -2,6 +2,7 @@ package com.ezen.ezenwood.member.controller;
 
 import java.io.PrintWriter;
 import java.math.BigDecimal;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -10,7 +11,9 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.apache.commons.collections.map.HashedMap;
 import org.apache.log4j.Logger;
+import org.hamcrest.core.IsEqual;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -144,8 +147,14 @@ public class LoginController {
 
 		Map<String, Object> map = loginService.findPw(commandMap.getMap());
 
-		if (commandMap.get("MEMBER_ID") != "MEMBER_ID") {
-			mav.setViewName("member/login/findPw");
+		if (commandMap.get("MEMBER_ID") == "" || commandMap.get("MEMBER_EMAIL") == "")  {
+			
+			if(map != null) {
+				if(!(commandMap.get("MEMBER_ID").equals(map.get("MEMBER_ID"))) 
+						|| !(commandMap.get("MEMBER_EMAIL").equals(map.get("MEMBER_EMAIL")))) {
+					mav.setViewName("member/login/findPw");//jsp 적기
+				}
+			}
 		} else {
 			mav.addObject("MEMBER_PW", map.get("MEMBER_PW"));
 			mav.setViewName("member/login/resultPw");

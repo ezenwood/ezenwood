@@ -46,25 +46,27 @@
 							<div class="mypage_zone_tit">
 								<h3>진행 중인 주문</h3>
 							</div>
+							
 							<div class="mypage_order_info_cont">
 								<ol>
-									<li class><b>입금대기</b> <strong style="color: black">0</strong>
+									<li class><b>입금대기</b> <strong style="color: black">${map.A}</strong>
 									</li>
-									<li class><b>결제완료</b> <strong style="color: black">0</strong>
+									<li class><b>결제완료</b> <strong style="color: black">${map.B}</strong>
 									</li>
-									<li class><b>상품준비중</b> <strong style="color: black">0</strong>
+									<li class><b>상품준비중</b> <strong style="color: black">${map.C}</strong>
 									</li>
-									<li class><b>배송 중</b> <strong style="color: black">0</strong>
+									<li class><b>배송 중</b> <strong style="color: black">${map.D}</strong>
 									</li>
-									<li class><b>배송 완료</b> <strong style="color: black">0</strong>
+									<li class><b>배송 완료</b> <strong style="color: black">${map.E}</strong>
 									</li>
 								</ol>
 								<div class="order_case_list">
 									<ul>
-										<li style="color: black"><b>취소</b> <strong>0건</strong></li>
+										<li style="color: black"><b>취소</b> <strong>${map.F}</strong></li>
 									</ul>
 								</div>
 							</div>
+							
 							<!--mypage_orer_info_cont -->
 						</div>
 						<!-- mypage_order_info -->

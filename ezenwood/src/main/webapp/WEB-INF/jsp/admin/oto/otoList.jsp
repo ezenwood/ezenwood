@@ -51,7 +51,7 @@
 								<div class="col-sm-6">
 									<a href="${contextPath}/admin/oto/1"><button type="button"
 											class="btn btn-outline btn-default">전체</button></a>
-									<form id="searchForm" action="${contextPath}/admin/otocategory"
+									<form id="searchForm" action="${contextPath}/admin/otocategory/1"
 										method="get">
 										<select name="category">
 											<option value="">--카테고리--</option>
@@ -116,7 +116,7 @@
 								</div>
 							</div>
 							<div style="align: center;">
-								<form id="searchForm" action="${contextPath}/admin/oto"
+								<form id="searchForm" action="${contextPath}/admin/otoo/1"
 									method="get">
 									<select name="type">
 										<option value="">검색어</option>

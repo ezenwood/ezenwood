@@ -63,6 +63,7 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
+
                                                     <th scope="row">첨부파일</th>
                                                     <td id="uploadBox">
                                                         <div class="file_upload_sec">
@@ -77,6 +78,7 @@
                                                                </div>
                                                         </div>
                                                         </div>
+
                                                     </td>
                                                 </tr>
                                             </tbody>
