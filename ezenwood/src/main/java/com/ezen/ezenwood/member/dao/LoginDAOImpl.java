@@ -28,6 +28,14 @@ public class LoginDAOImpl extends AbstractDAO implements LoginDAO {
 	public Map<String, Object> findPw(Map<String, Object> map) throws Exception {
 		return (Map<String, Object>) selectOne("member.selectPw", map);
 	}
+
+	@Override
+	public Map<String, Object> selectid(String MEMBER_ID) throws Exception {
+		
+		return (Map<String,Object>) selectOne("member.selectmemberid", MEMBER_ID);
+	}
+	
+	
 	
 	
 }

@@ -35,6 +35,12 @@ public class LoginServiceImpl implements LoginService {
 		// TODO Auto-generated method stub
 		return loginDAO.findPw(map);
 	}
+
+	@Override
+	public Map<String, Object> selectid(String MEMBER_ID) throws Exception {
+		// TODO Auto-generated method stub
+		return loginDAO.selectid(MEMBER_ID);
+	}
 	
 	
 
