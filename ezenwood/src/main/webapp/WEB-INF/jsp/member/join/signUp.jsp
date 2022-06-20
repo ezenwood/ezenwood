@@ -5,6 +5,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+<title>이젠 우드</title>
 	<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
     <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
@@ -469,7 +470,7 @@
                                        </table>
                                    </div>
                                    <div class="btn_center_box" style="text-align: center;">
-                                       <input type="button" value="취소" style="width: 150px; height: 45px; color: #3e3d3c; font-weight: bold; font-size: 13px; border: 1px solid #cccccc; background: #fff; cursor: pointer;">
+                                       <input type="button" onclick="javascript:history.back();" value="취소" style="width: 150px; height: 45px; color: #3e3d3c; font-weight: bold; font-size: 13px; border: 1px solid #cccccc; background: #fff; cursor: pointer;">
                                        &nbsp;&nbsp;<input type="submit" value="회원가입" onsubmit="memberCheck()"  style="width: 150px; height: 45px; margin: 0; color: #ffffff; font-size: 14px; border: 1px solid #323437; background: #323437; cursor: pointer; font-weight: bold;">
                                    </div>
                                    

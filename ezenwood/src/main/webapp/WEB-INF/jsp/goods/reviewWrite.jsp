@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이젠 우드</title>
+	<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
     <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
@@ -62,19 +63,22 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                     <th scope="row">이미지파일</th>
-													<td id="uploadBox">
-														<div class="file_upload_sec">
-															<div
-																style="overflow: hidden; width: 100%; margin: 5px 0 10px 0;">
-																
-																<div class="btn_upload_box">
-																	<input type="file" name="REVIEW_IMAGE">
-																	</div>
-																</div>
-															</div>
-														</div>
-													</td>
+
+                                                    <th scope="row">첨부파일</th>
+                                                    <td id="uploadBox">
+                                                        <div class="file_upload_sec">
+                                                           <div style="overflow: hidden; width: 100%; margin: 5px 0 10px 0;">
+                                                            <input type="file" id="mainfile" name="mainImage" size="30" onchange="preview2()" />
+                                                            <div class="btn_upload_box">
+                                                               <div style="overflow: hidden; position: relative; float: left; width: 150px; padding: 0 0 0 6px;">
+    
+                                                                
+                                                                
+                                                            </div>
+                                                               </div>
+                                                        </div>
+                                                        </div>
+
                                                     </td>
                                                 </tr>
                                             </tbody>
@@ -103,26 +107,6 @@
                     </div>
                     <!--//board_zone_sec-->
 
-                    <script type="text/javascript">
-                        var cfgUploadFl = 'y';
-                        var cfgEditorFl = 'y';
-                        var bdId = 'goodsqa';
-                        var bdSno = '';
-                        gd_select_email_domain('writerEmail');
-                    </script>
-                    <script type="text/javascript" src="js/sister_js/gd_board_write.js" charset="utf-8"></script>
-                    <script type="text/template" class="template">
-                        <div class="file_upload_sec">
-		<label for="attach">
-			<input type="text" class="file_text" title="파일 첨부하기" readonly="readonly">
-		</label>
-		<div class="btn_upload_box">
-			<button type="button" class="btn_upload" title="찾아보기"><em>찾아보기</em></button>
-			<input type="file" id="attach" name="upfiles[]" class="file" title="찾아보기"/>
-			<span class="btn_gray_list"><button type="button" class="btn_gray_big" onclick="gd_remove_upload(this)"><span>- 삭제</span></button></span>
-		</div>
-	</div>
-</script>
                     <div id="addGoodsLayer" class="dn"></div>
                     <div id="addOrderLayer" class="dn"></div>
 

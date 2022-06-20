@@ -186,7 +186,7 @@ function count(type) {
 														style="font-size: 12px; color: #000000; font-weight: bold;">판매가</span></span>
 													<span class="con"><span
 														style="font-size: 12px; color: #000000; font-weight: bold;"><strong
-															id="span_product_price_text">${GOODS_MAP.GOODS_PRICE }</strong></span></span>
+															id="span_product_price_text">${GOODS_MAP.GOODS_PRICE }&nbsp;won</strong></span></span>
 												</li>
 
 												<li class=" quantity_css xans-record-"><span
@@ -216,23 +216,6 @@ function count(type) {
 									<tbody
 										class="xans-element- xans-product xans-product-option xans-record-">
 										<tr>
-											<th scope="row">OPTION</th>
-											<td><select option_product_no="503"
-												option_select_element="ec-option-select-finder"
-												option_sort_no="1" option_type="T" item_listing_type="C"
-												option_title="DESIGN" product_type="product_option"
-												product_option_area="product_option_503_0" name="option1"
-												id="product_option_id1" class="ProductOption0"
-												option_style="select" required="true">
-													<option value="*" selected="" link_image="">- [필수]
-														옵션을 선택해 주세요 -</option>
-													<option value="**" disabled="" link_image="">-------------------</option>
-													<optgroup label="Option">
-														<option value="P00000TJ000B">Oak</option>
-														<option value="P00000TJ000C">Dark Brown</option>
-													</optgroup>
-											</select>
-												<p class="value"></p></td>
 										</tr>
 									</tbody>
 									<tbody>
@@ -369,9 +352,9 @@ function count(type) {
 								<li class="selected"><a href="#prdDetail">상품상세정보</a></li>
 								<li><a href="#prdInfo">상품구매안내</a></li>
 								<li><a href="#prdReview" class="wwwreview">상품후기 <span
-										class="count">0</span></a></li>
+										class="count">${reviewListMap[0].TOTAL_COUNT }</span></a></li>
 								<li><a href="#prdQnA" class="wwwqna">상품Q&amp;A <span
-										class="count">0</span></a></li>
+										class="count">${QNAListMap[0].TOTAL_COUNT }</span></a></li>
 							</ul>
 						</div>
 
@@ -412,9 +395,9 @@ function count(type) {
 								<li><a href="#prdDetail">상품상세정보</a></li>
 								<li class="selected"><a href="#prdInfo">상품구매안내</a></li>
 								<li><a href="#prdReview" class="wwwreview">상품후기 <span
-										class="count">0</span></a></li>
+										class="count">${reviewListMap[0].TOTAL_COUNT }</span></a></li>
 								<li><a href="#prdQnA" class="wwwqna">상품Q&amp;A <span
-										class="count">0</span></a></li>
+										class="count">${QNAListMap[0].TOTAL_COUNT }</span></a></li>
 							</ul>
 						</div>
 
@@ -492,9 +475,9 @@ function count(type) {
 									<li><a href="#prdDetail">상품상세정보</a></li>
 									<li><a href="#prdInfo">상품구매안내</a></li>
 									<li class="selected"><a href="#prdReview"
-										class="wwwreview">상품후기 <span class="count">0</span></a></li>
+										class="wwwreview">상품후기 <span class="count">${reviewListMap[0].TOTAL_COUNT }</span></a></li>
 									<li><a href="#prdQnA" class="wwwqna">상품Q&amp;A <span
-											class="count">0</span></a></li>
+											class="count">${QNAListMap[0].TOTAL_COUNT }</span></a></li>
 								</ul>
 							</div>
 
@@ -517,7 +500,7 @@ function count(type) {
 												href="goods/review/${reviewMap.REVIEW_NUM }">${reviewMap.REVIEW_TITLE }</a>
 											</td>
 										 	<%-- <td style="width: 10%">${reviewMap.REVIEW_WRITER }</td> --%>
-										 	<td style="width: 10%">${MEMBER_NAME}</td>
+										 	<td style="width: 10%">${reviewMap.MEMBER_NAME}</td>
 											<td style="width: 20%"><fmt:formatDate
 													value="${reviewMap.REVIEW_DATE }" dateStyle="medium" /></td>
 
@@ -535,9 +518,9 @@ function count(type) {
 										<li><a href="#">상품상세정보</a></li>
 										<li><a href="#">상품구매안내</a></li>
 										<li><a href="#" class="wwwreview">상품후기 <span
-												class="count">0</span></a></li>
+												class="count">${reviewListMap[0].TOTAL_COUNT }</span></a></li>
 										<li class="selected"><a href="#prdQnA" class="wwwqna">상품Q&amp;A
-												<span class="count">0</span>
+												<span class="count">${QNAListMap[0].TOTAL_COUNT }</span>
 										</a></li>
 									</ul>
 								</div>
@@ -562,7 +545,7 @@ function count(type) {
 													href="goods/qna/${QNAMap.QNA_NUM }">${QNAMap.QNA_TITLE }</a>
 												</td>
 												<%-- <td style="width: 10%">${QNAMap.QNA_WRITER }</td> --%>
-												<td style="width: 10%">${MEMBER_NAME}</td>
+												<td style="width: 10%">${QNAMap.MEMBER_NAME}</td>
 												<td style="width: 20%"><fmt:formatDate
 														value="${QNAMap.QNA_DATE }" dateStyle="medium" /></td>
 

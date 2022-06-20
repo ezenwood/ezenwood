@@ -42,17 +42,6 @@
                                </div>
                                 <!--//board_view_info-->
 
-                                <div class="board_view_attach">
-                                    <strong>작성자</strong>
-                                    <span class="attach_list">
-                                        ${reviewMap.REVIEW_WRITER }
-                                    </span>
-                                </div> <div class="board_view_attach">
-                                    <strong>작성일</strong>
-                                    <span class="attach_list">
-                                        <fmt:formatDate value="${reviewMap.REVIEW_DATE }" type="both" dateStyle="medium" timeStyle="medium" />
-                                    </span>
-                                </div>
                                 <!--//board_view_info-->
                                 
                                 <div class="board_view_content">
@@ -67,7 +56,7 @@
                                                <a href="/ezenwood/goods?idx=${reviewMap.goodsMap.GOODS_NUM }" target="_blank"> 
                                                <em>${reviewMap.goodsMap.GOODS_TITLE }</em>
                                                </a>
-                                                <strong>${reviewMap.goodsMap.GOODS_PRICE }원</strong>
+                                                <strong>${reviewMap.goodsMap.GOODS_PRICE }&nbsp;won</strong>
                                             </span>
                                         </div>
                                         <!--//view_goods_select_item-->

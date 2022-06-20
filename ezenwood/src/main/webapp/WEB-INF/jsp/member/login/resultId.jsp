@@ -5,7 +5,8 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>IdFindResult</title>
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/member.css" type="text/css" rel="stylesheet">

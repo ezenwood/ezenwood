@@ -4,6 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
  <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
@@ -83,7 +84,7 @@
     }
 </script>
    
-    <title>결제 페이지</title>
+    <title>이젠 우드</title>
     <style>
         *{
             margin: 0;

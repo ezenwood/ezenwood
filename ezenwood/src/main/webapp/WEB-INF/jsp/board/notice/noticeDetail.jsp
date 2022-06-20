@@ -7,6 +7,7 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
  <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">

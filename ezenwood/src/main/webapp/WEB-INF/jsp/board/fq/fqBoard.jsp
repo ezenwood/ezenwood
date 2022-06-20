@@ -8,7 +8,8 @@
 
 <head>
 <meta charset="UTF-8">
-<title>noticeList</title>
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
@@ -52,7 +53,7 @@
 													<tr data-sno="130" data-auth="c" style="height: 10px">
 														<td>${row.QUESTION_NUM }</td>
 														<td class="board_tit"><details>
-																<summary>${row.QUESTION_TITLE}</summary>
+																<summary><strong>${row.QUESTION_TITLE}</strong></summary>
 																${row.QUESTION_CONTENT}
 															</details></td>
 														<td><fmt:formatDate value="${row.QUESTION_DATE}"

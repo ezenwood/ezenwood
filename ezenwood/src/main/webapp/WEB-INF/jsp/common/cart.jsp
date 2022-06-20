@@ -4,7 +4,8 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title> 이젠우드</title>
+    <title> 이젠 우드</title>
+     <link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
      <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
@@ -301,7 +302,7 @@ function doubleSubmitCheck(){
             </form>
 
             <div class="btn_left_box">
-                <a href="http://localhost:9001/ezenwood/main" class="shop_go_link"><em>&lt; 쇼핑 계속하기</em></a>
+                <a href="/ezenwood/main" class="shop_go_link"><em>&lt; 쇼핑 계속하기</em></a>
             </div>
 
             <div class="price_sum">

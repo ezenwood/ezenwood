@@ -6,7 +6,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
@@ -68,7 +69,7 @@
 														</div>
 
 														<div class="item_money_box">
-															<strong class="item_price"> <span>${goodsMap.GOODS_PRICE }</span>
+															<strong class="item_price"> <span>${goodsMap.GOODS_PRICE }&nbsp;won</span>
 															</strong>
 														</div>
 

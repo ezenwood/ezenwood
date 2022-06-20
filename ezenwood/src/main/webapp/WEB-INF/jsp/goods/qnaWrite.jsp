@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
@@ -48,12 +49,7 @@
                                                     <th scope="row">상품 이름</th>
                                                     <td>${GOODS_TITLE }</td>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row">휴대폰</th>
-                                                    <td>
-                                                        <input type="text" id="time" class="write_title" name="writerMobile" value placeholder="- 없이 입력하세요" autocomplete="off">
-                                                    </td>
-                                                </tr>
+                                               
                                                 <tr>
                                                     <th scope="row">제목</th>
                                                     <td>
@@ -72,19 +68,24 @@
                                                     </td>
                                                 </tr>
                                                 <tr>
-                                                   <th scope="row">이미지파일</th>
-													<td id="uploadBox">
-														<div class="file_upload_sec">
-															<div
-																style="overflow: hidden; width: 100%; margin: 5px 0 10px 0;">
-																
-																<div class="btn_upload_box">
-																	<input type="file" name="QNA_IMAGE">
-																	</div>
-																</div>
-															</div>
-														</div>
-													</td>
+                                                    <th scope="row">첨부파일</th>
+                                                    <td id="uploadBox">
+                                                        <div class="file_upload_sec">
+                                                           <div style="overflow: hidden; width: 100%; margin: 5px 0 10px 0;">
+                                                            <label for="attach1">
+                                                                <input type="file" id="mainfile" name="mainImage" size="30" onchange="preview2()" />
+                                                            </label>
+                                                            <div class="btn_upload_box">
+                                                               <div style="overflow: hidden; position: relative; float: left; width: 150px; padding: 0 0 0 6px;">
+                                                                
+                                                                
+
+                                                            </div>
+                                                               </div>
+                                                        </div>
+                                                        </div>
+                                                    </td>
+
                                                 </tr>
                                             </tbody>
                                         </table>

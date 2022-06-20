@@ -4,7 +4,8 @@
 <html lang="ko">
 <head>
 <meta charset="UTF-8">
-<title>PwFindResult</title>
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/member.css" type="text/css" rel="stylesheet">
@@ -39,7 +40,7 @@
 									<div class="find_pw_sec">
 										<div class="find_complete_box">
 											<p>
-												고갱님의 비밀번호는 <br>
+												고객님의 비밀번호는 <br>
 												<strong>${MEMBER_PW}</strong> 입니다.
 											</p>
 										</div>

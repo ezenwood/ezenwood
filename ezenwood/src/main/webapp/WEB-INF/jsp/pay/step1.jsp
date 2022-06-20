@@ -6,11 +6,12 @@
 
 <head>
     <meta charset="UTF-8">
+    <link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
     <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/order.css" type="text/css" rel="stylesheet">
-    <title>주문서 작성</title>
+    <title>이젠 우드</title>
 
 </head>
 
@@ -69,7 +70,6 @@
                                                <c:forEach items="${payListMap }" var="payMap" >
                                                 <tr class="order-goods-layout" data-goodsno="상품번호">
                                                     <td class="td_left">
-                                                        이미지
                                                         <div class="pick_add_cont">
                                                             <span class="pick_add_img">
                                                                 <a href="/ezenwood/goods?idx=${payMap.GOODS_NUM }">
@@ -83,17 +83,7 @@
                                                             </div>
                                                         </div>
                                                         <!--//pick_add_cont-->
-                                                        <div class="pick_add_list">
-                                                            <div class="pick_add_cont">
-                                                                <div class="pick_option_box">
-                                                                    <em><b>사이즈</b>
-                                                                        :&nbsp;사이즈
-                                                                    </em>
-                                                                </div>
-                                                            </div>
-                                                            <!--//pick_add_cont-->
-                                                        </div>
-                                                        <!--//pick_add_list-->
+                                                        
                                                     </td>
                                                     <td class="td_order_amount">
                                                         <div class="order_goods_num">
@@ -124,7 +114,7 @@
                                 </div>
                                 <!--//cart_cont_list-->
                                 <div class="btn_left_box">
-                                    <a href="#" class="shop_go_link">
+                                    <a href="javascript:history.back();" class="shop_go_link">
                                         <em>
                                             << 장바구니 가기 </em>
                                     </a>

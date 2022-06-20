@@ -6,6 +6,7 @@
 
 <head>
 <meta charset="UTF-8">
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
@@ -54,9 +55,9 @@ function deleteConfirm(){
 
 						<div class="board_zone_cont">
 							<div class="board_zone_view">
-								<div class="board_view_tit">
+								<!-- <div class="board_view_tit">
 									<h3>제목</h3>
-								</div>
+								</div> -->
 
 								<form id="BoardDelForm" name="" action="#" method="post"
 									target="_self" enctype="multipart/form-data">
@@ -89,12 +90,16 @@ function deleteConfirm(){
 														<th scope="row">작성자</th>
 														<td>${OTOMap.MEMBER_NAME}</td>
 													</tr>
+													
 													<tr>
-														<td colspan="2">
-															<ul class="etcArea">
-																<li class=""><strong>작성일</strong> 
-																<span class="txtNum"><fmt:formatDate value="${OTOMap.ONETOONE_DATE}" type="both" dateStyle="medium" timeStyle="medium"/></span></li>
-															</ul>
+														<th scope="row">작성일</th>
+														<td><span class="txtNum"><fmt:formatDate
+																	value="${OTOMap.ONETOONE_DATE}" type="both"
+																	dateStyle="medium" timeStyle="medium" /> </span></td>
+													</tr>
+													
+													<tr>
+													<td>								
 															<div class="detail">
 																<div class="fr-view fr-view-article">
 																	<!--<c:if test="${OTOMap.OTO_IMAGE != null}">
