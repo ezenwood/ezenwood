@@ -50,8 +50,7 @@
 												찾기</button>
 										</div>
 										<div class="btn_center_box">
-											<input type="submit" value="다음" class="btn_member_white"
-												onclick="${contextPath}/member/pwfind">
+											<input type="submit" value="다음" class="btn_member_white">
 
 										</div>
 									</div>
