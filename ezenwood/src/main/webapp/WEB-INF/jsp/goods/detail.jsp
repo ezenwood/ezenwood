@@ -92,10 +92,30 @@
 
 	});
 	
-	
-	
+		
 	
 </script>
+
+<script type="text/javascript">
+function count(type) {
+	const resultElement =
+	document.getElementById('option_box1_quantity');
+	
+	let number = resultElement.value;
+
+	if(type== 'plus'){
+		number = parseInt(number) +1;
+	}else if(type == 'minus'){
+		number = parseInt(number) -1;
+	}
+	
+	resultElement.value = number;
+}
+
+
+</script>
+
+
 <title>이젠 우드</title>
 <link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
@@ -168,6 +188,7 @@
 														style="font-size: 12px; color: #000000; font-weight: bold;"><strong
 															id="span_product_price_text">${GOODS_MAP.GOODS_PRICE }</strong></span></span>
 												</li>
+
 												<li class=" quantity_css xans-record-"><span
 													class="title"><span
 														style="font-size: 12px; color: #555555;">수량</span></span> <span
@@ -176,7 +197,7 @@
 															id="NewProductQuantityDummy"><span
 																class="quantity"><img
 																	src="/ezenwood/resource/image/btn_basketUp.gif"
-																	class="QuantityUp" alt="수량증가"><img
+																	 class="QuantityUp" alt="수량증가"><img
 																	src="/ezenwood/resource/image/btn_basketDown.gif"
 																	class="QuantityDown" alt="수량감소"></span></span></span></span></li>
 											</ul>
@@ -250,7 +271,8 @@
 													<td>${GOODS_MAP.GOODS_TITLE }</td>
 													<td><span class="quantity"> <a href="#none"><img
 																src="/ezenwood/resource/image/btn_basketUp.gif"
-																alt="수량증가" class="QuantityUp up"></a> <a href="#none"><img
+																alt="수량증가" class="QuantityUp up"></a> 
+																<a href="#none"><img
 																src="/ezenwood/resource/image/btn_basketDown.gif"
 																alt="수량감소" class="QuantityDown down"></a>
 													</span></td>
@@ -266,24 +288,20 @@
 
 														<p class="product">${GOODS_MAP.GOODS_TITLE }</p>
 													</td>
-													<td><span class="quantity" style="width: 65px;"><input
-															type="hidden" name="ORDERS_GOODS_NUM"
-															value="${GOODS_MAP.GOODS_NUM }"> <input
-															type="text" id="option_box1_quantity"
-															name="ORDERS_AMOUNT"
-															class="quantity_opt eProductQuantityClass" value="1"
-															product-no="503"><a href="#none"
-															class="up eProductQuantityUpClass"
-															data-target="option_box1_up"><img
-																src="/ezenwood/resource/image/btn_basketUp.gif"
-																id="option_box1_up" class="option_box_up" alt="수량증가"></a>
-															<a href="#none" class="down eProductQuantityDownClass"
-															data-target="option_box1_down"> <img
-																src="/ezenwood/resource/image/btn_basketDown.gif"
-																id="option_box1_down" class="option_box_down" alt="수량감소"></a>
-													</span> <a href="#none" class="delete"><img
-															src="/ezenwood/resource/image/btn_scroll_list_del.png"
-															alt="삭제" id="option_box1_del" class="option_box_del"></a>
+													<td><span class="quantity" style="width: 65px;">
+													<input type="hidden" name="ORDERS_GOODS_NUM"
+															value="${GOODS_MAP.GOODS_NUM }"> 	
+													<input type="text" id="option_box1_quantity"
+															name="ORDERS_AMOUNT" class="quantity_opt eProductQuantityClass" value="1"
+															product-no="503">
+															<a href="#none" class="up eProductQuantityUpClass" data-target="option_box1_up">
+													<img src="/ezenwood/resource/image/btn_basketUp.gif" id="option_box1_up" class="option_box_up" alt="수량증가" onclick='count("plus")'></a>
+														<a href="#none" class="down eProductQuantityDownClass" data-target="option_box1_down"> 
+													<img src="/ezenwood/resource/image/btn_basketDown.gif" id="option_box1_down" onclick='count("minus")' class="option_box_down" alt="수량감소"></a>
+													</span> 
+													<a href="#none" class="delete">
+													<img src="/ezenwood/resource/image/btn_scroll_list_del.png"
+														 alt="삭제" id="option_box1_del" class="option_box_del" onclick='count("reset")'></a>
 													</td>
 													<td class="right"><span id="option_box1_price">
 
@@ -293,11 +311,6 @@
 
 													</span></td>
 												</tr>
-
-
-
-
-
 											</tbody>
 											<!-- //참고 -->
 										</table>
@@ -307,20 +320,20 @@
 
 							<div id="totalPrice" class="totalPrice">
 								<strong>TOTAL</strong> : <span class="total"><strong><em>0</em></strong>
+							
 									(0개)</span>
 							</div>
-
+							
 							<!-- 참고 : 뉴상품관리 전용 변수가 포함되어 있습니다. 뉴상품관리 이외의 곳에서 사용하면 일부 변수가 정상동작하지 않을 수 있습니다. -->
 							<div class="xans-element- xans-product xans-product-action ">
 								<div class="ec-base-button">
 									<a href="#none" class="first dj-btn-1  wwwbuy"
 										onclick="product_submit(1, '#', this)" id="buyinsu" >buy now</a> <a
-										href="#none" id="cartButton" class="dj-btn-1-2  wwwcart"
+										href="/ezenwood/cart" id="cartButton" class="dj-btn-1-2  wwwcart"
 										onclick="product_submit(2, '#', this)">add cart</a> <span
 										class="dj-btn-1-2 displaynone wwwsoldout">SOLD OUT</span>
 
 								</div>
-
 
 
 							</div>
