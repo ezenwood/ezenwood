@@ -3,7 +3,7 @@ package com.ezen.ezenwood.mypage.controller;
 import java.io.PrintWriter;
 
 import java.math.BigDecimal;
-
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -37,15 +37,30 @@ public class MyPageController {
 
 	// 마이페이지 메인
 	@RequestMapping("/main")
-	public String myPage(HttpServletRequest request) throws Exception {
+	public ModelAndView myPage(HttpServletRequest request) throws Exception {
+		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
 		String memberID = (String) session.getAttribute("MEMBER_ID");
+		String membernum = (String) session.getAttribute("MEMBER_NUM");
+		//System.out.println(membernum);
 		session.getAttribute("MEMBER_PW");
 		if (memberID == null) {
-			return "main";
+			
+			mav.setViewName("main");
+			return mav;
 		}
-		return "mypage/main";
+		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		
+		insertMap.put("MEMBER_NUM",membernum);
+		
+		Map<String,Object> resultMap = mypageService.orderStatus(insertMap);
+		
+		mav.addObject("map",resultMap);
+		mav.setViewName("mypage/main");
+		return mav;
 	}
+	
 
 	// 회원 수정 비밀번호 입력 폼
 	@RequestMapping(value = "/pwch", method = RequestMethod.GET)

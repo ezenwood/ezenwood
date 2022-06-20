@@ -11,8 +11,8 @@ import com.ezen.common.AbstractDAO;
 public class MyPageDAOImle extends AbstractDAO implements MyPageDAO{
 	
 	@Override
-	public List<Map<String, Object>> orderStatus(Map<String,Object> map) {
-	return (List<Map<String, Object>>) selectList("order.", map);
+	public Map<String,Object> orderStatus(Map<String,Object> map) {
+	return (Map<String,Object>) selectOne("orders.orderStatus", map);
 }
 
 	@Override
