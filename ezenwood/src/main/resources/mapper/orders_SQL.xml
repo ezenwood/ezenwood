@@ -318,8 +318,18 @@ where
 ]]>
 	</update>
 
+<!-- 마이페이지 주문상태 -->
+<select id="orderStatus" parameterType="hashmap" resultType="hashmap">
 
+select count(case when orders_status=1 then 1 end) a,
+count(case when orders_status=2 then 1 end) b,
+count(case when orders_status=3 then 1 end) c,
+count(case when orders_status=4 then 1 end) d,
+count(case when orders_status=5 then 1 end) e,
+count(case when orders_status=6 then 1 end) f
+from orders where orders_member_num =#{MEMBER_NUM}
 
+</select>
 
 
 	<!-- Admin -->
