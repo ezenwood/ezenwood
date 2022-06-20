@@ -4,7 +4,8 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>이젠 우드</title>
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/layout.css" type="text/css" rel="stylesheet">
     <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
@@ -48,12 +49,7 @@
                                                     <th scope="row">상품 이름</th>
                                                     <td>${GOODS_TITLE }</td>
                                                 </tr>
-                                                <tr>
-                                                    <th scope="row">휴대폰</th>
-                                                    <td>
-                                                        <input type="text" id="time" class="write_title" name="writerMobile" value placeholder="- 없이 입력하세요" autocomplete="off">
-                                                    </td>
-                                                </tr>
+                                               
                                                 <tr>
                                                     <th scope="row">제목</th>
                                                     <td>
@@ -77,20 +73,13 @@
                                                         <div class="file_upload_sec">
                                                            <div style="overflow: hidden; width: 100%; margin: 5px 0 10px 0;">
                                                             <label for="attach1">
-                                                                <input type="text" class="file_text" title="파일 첨부하기" readonly="readonly" style="float: left; width: 230px;">
+                                                                <input type="file" id="mainfile" name="mainImage" size="30" onchange="preview2()" />
                                                             </label>
                                                             <div class="btn_upload_box">
                                                                <div style="overflow: hidden; position: relative; float: left; width: 150px; padding: 0 0 0 6px;">
-                                                                <button type="button" class="btn_upload" title="찾아보기" style="width: 70px; height: 30px; color: #fff; border: 1px solid #979797; background: #979797; text-align: center;">
-                                                                    <em>찾아보기</em>
-                                                                    
-                                                                </button>
-                                                                <input type="file" id="attach1" name="upfiles[]" class="file" title="찾아보기" style="position: absolute; top: 0; right: 76px; height: 31px; cursor: pointer; opacity: 0;">
-                                                                <span class="btn_gray_list">
-                                                                    <button type="button" id="addUploadBtn" class="btn_gray_big" style="width: 62px;">
-                                                                        <span>+추가</span>
-                                                                    </button>
-                                                                </span>
+                                                                
+                                                                
+
                                                             </div>
                                                                </div>
                                                         </div>

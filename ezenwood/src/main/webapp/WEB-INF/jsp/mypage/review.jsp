@@ -89,14 +89,17 @@
 										style="height: 10px">
 										<td>${review.REVIEW_NUM}</td>
 										<td>
+										 
 												<img src="/ezenwood/resource/image/${review.GOODS_SUBIMAGE}" width="200"
 												height="300" alt="상품 이름" title="상품 이름" class="middle">
+									
+												
 										</td>
 										<td>${review.GOODS_TITLE}</td>
 
 										<td class="board_tit">
-											<!-- 제목--> <a
-											href="/ezenwood/goods/review/${review.REVIEW_NUM}">
+											<!-- 제목--> 
+											<a href="/ezenwood/goods/review/${review.REVIEW_NUM}">
 												<strong>${review.REVIEW_TITLE}</strong>
 										</a>
 										</td>
