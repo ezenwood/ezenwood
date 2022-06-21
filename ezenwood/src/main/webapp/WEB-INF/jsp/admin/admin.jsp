@@ -4,7 +4,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-
+<link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
 <link rel="stylesheet" href="/ezenwood/css/mypage.css">
 <link rel="stylesheet" href="/ezenwood/css/admin_layout.css">
 <link rel="stylesheet" href="/ezenwood/css/member.css">
@@ -12,7 +12,7 @@
 <link rel="stylesheet" href="/ezenwood/css/board.css">
 <link rel="stylesheet" href="/ezenwood/css/common.css">
 
-<title>order2</title>
+<title>이젠 우드</title>
 
 <style type="text/css">
 .paging {
@@ -115,8 +115,8 @@
 												<h4 class="timeline-title">상품관리</h4>
 											</div>
 											<div class="timeline-body">
-												<p>상품목록 이동 - 상품리스트를 볼 수있습니다</p>
-												<p>상품등록 이동 - 바로상품등록 할 수있습니다</p>
+												<p><a href="/ezenwood/admin/goods">상품목록 이동 - 상품리스트를 볼 수있습니다</a></p>
+												<p><a href="/ezenwood/admin/goods/write">상품등록 이동 - 바로상품등록 할 수있습니다</a></p>
 											</div>
 										</div>
 									</li>
@@ -126,8 +126,8 @@
 												<h4 class="timeline-title">회원관리</h4>
 											</div>
 											<div class="timeline-body">
-												<p><a href="/ezenwood/admin/memberList/1">회원목록 이동 - 회원목록을 볼수 있습니다</a></p>
-												<p><a href="/ezenwood/admin/delmemberList/1">탈퇴회원목록 이동 - 탈퇴회원목록을 볼수 있습니다</a></p>
+												<p><a href="/ezenwood/admin/memberList">회원목록 이동 - 회원목록을 볼수 있습니다</a></p>
+												<p><a href="/ezenwood/admin/delmemberList">탈퇴회원목록 이동 - 탈퇴회원목록을 볼수 있습니다</a></p>
 											</div>
 										</div>
 									</li>
@@ -138,7 +138,7 @@
 												<h4 class="timeline-title">주문관리</h4>
 											</div>
 											<div class="timeline-body">
-												<p>주문목록 - 주문목록 확인및 관리</p>
+												<p><a href="/ezenwood/admin/order">주문목록 - 주문목록 확인및 관리</a></p>
 											</div>
 										</div>
 									</li>
