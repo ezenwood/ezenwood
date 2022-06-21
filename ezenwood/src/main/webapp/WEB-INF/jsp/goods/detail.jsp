@@ -352,9 +352,19 @@ function count(type) {
 								<li class="selected"><a href="#prdDetail">상품상세정보</a></li>
 								<li><a href="#prdInfo">상품구매안내</a></li>
 								<li><a href="#prdReview" class="wwwreview">상품후기 <span
-										class="count">${reviewListMap[0].TOTAL_COUNT }</span></a></li>
-								<li><a href="#prdQnA" class="wwwqna">상품Q&amp;A <span
-										class="count">${QNAListMap[0].TOTAL_COUNT }</span></a></li>
+										class="count">
+									
+										${reviewListMap[0].TOTAL_COUNT }
+
+										<c:if test="${reviewListMap[0].TOTAL_COUNT == null}">0</c:if>
+										
+										</span></a></li>
+								<li><a href="#prdQnA" class="wwwqna">상품Q&amp;A 
+								<span class="count">${QNAListMap[0].TOTAL_COUNT }
+
+										<c:if test="${QNAListMap[0].TOTAL_COUNT == null}">0</c:if>
+										
+										</span></a></li>
 							</ul>
 						</div>
 
@@ -395,9 +405,15 @@ function count(type) {
 								<li><a href="#prdDetail">상품상세정보</a></li>
 								<li class="selected"><a href="#prdInfo">상품구매안내</a></li>
 								<li><a href="#prdReview" class="wwwreview">상품후기 <span
-										class="count">${reviewListMap[0].TOTAL_COUNT }</span></a></li>
+										class="count">${reviewListMap[0].TOTAL_COUNT }
+										<c:if test="${reviewListMap[0].TOTAL_COUNT == null }">0</c:if>
+										</span>
+										
+										</span></a></li>
 								<li><a href="#prdQnA" class="wwwqna">상품Q&amp;A <span
-										class="count">${QNAListMap[0].TOTAL_COUNT }</span></a></li>
+										class="count">${QNAListMap[0].TOTAL_COUNT }
+										<c:if test="${QNAListMap[0].TOTAL_COUNT == null }">0</c:if>
+										</span></a></li>
 							</ul>
 						</div>
 
@@ -475,9 +491,14 @@ function count(type) {
 									<li><a href="#prdDetail">상품상세정보</a></li>
 									<li><a href="#prdInfo">상품구매안내</a></li>
 									<li class="selected"><a href="#prdReview"
-										class="wwwreview">상품후기 <span class="count">${reviewListMap[0].TOTAL_COUNT }</span></a></li>
+										class="wwwreview">상품후기 <span class="count">${reviewListMap[0].TOTAL_COUNT }
+										<c:if test="${reviewListMap[0].TOTAL_COUNT == null}">0</c:if>
+										
+										</span></a></li>
 									<li><a href="#prdQnA" class="wwwqna">상품Q&amp;A <span
-											class="count">${QNAListMap[0].TOTAL_COUNT }</span></a></li>
+											class="count">${QNAListMap[0].TOTAL_COUNT }
+										<c:if test="${QNAListMap[0].TOTAL_COUNT == null}">0</c:if>
+											</span></a></li>
 								</ul>
 							</div>
 
@@ -518,9 +539,13 @@ function count(type) {
 										<li><a href="#">상품상세정보</a></li>
 										<li><a href="#">상품구매안내</a></li>
 										<li><a href="#" class="wwwreview">상품후기 <span
-												class="count">${reviewListMap[0].TOTAL_COUNT }</span></a></li>
+												class="count">${reviewListMap[0].TOTAL_COUNT }
+												<c:if test="${reviewListMap[0].TOTAL_COUNT == null }">0</c:if>
+												</span></a></li>
 										<li class="selected"><a href="#prdQnA" class="wwwqna">상품Q&amp;A
-												<span class="count">${QNAListMap[0].TOTAL_COUNT }</span>
+												<span class="count">${QNAListMap[0].TOTAL_COUNT }
+												<c:if test="${QNAListMap[0].TOTAL_COUNT == null }">0</c:if>
+												</span>
 										</a></li>
 									</ul>
 								</div>
