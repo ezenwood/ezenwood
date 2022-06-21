@@ -29,6 +29,15 @@ public class MyPageDAOImle extends AbstractDAO implements MyPageDAO{
 	public int memberDelete(Map<String, Object> map) {
 		return (int) update("member.deleteMember", map);
 	}
+	
+	
+	
+
+	@Override
+	public int orderCancle(Map<String, Object> map) {
+		// TODO Auto-generated method stub
+		return (int) update("orders.orderCancle", map);
+	}
 
 	@Override
 	public List<Map<String, Object>> orderList(Map<String, Object> map) {

@@ -23,6 +23,9 @@ public interface MyPageDAO {
 	public List<Map<String,Object>> orderList(Map<String,Object> map);
 	
 	
+	public int orderCancle(Map<String,Object> map);
+	
+	
 	//orderlistcount
 	public int ordercount();
 	
