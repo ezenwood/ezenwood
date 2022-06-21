@@ -2,7 +2,7 @@
     pageEncoding="UTF-8"%>
 
 <!DOCTYPE html>
-<html lang="ko">
+<html>
 <head>
     <meta charset="UTF-8">
 <title>Admin_header</title>
@@ -28,19 +28,27 @@
                     <ul class="nav in" id="side-menu">
                         
                         <li>
-                            <a href="/ezenwood/admin" style="background: #e7e7e7;border-bottom: 1px solid #F8F8F8;" class="active"><i class="fa fa-dashboard fa-fw"></i>관리자홈</a>
+                        
+                        <a href="/ezenwood/admin" style="background: #e7e7e7;border-bottom: 1px solid #F8F8F8;" class="active"><i class="fa fa-dashboard fa-fw"></i>관리자홈</a>
+                        
                         </li>
 						<li>
-                            <a href="/ezenwood/main" style="background: #e7e7e7;border-bottom: 1px solid #F8F8F8;"><i class="fa fa-dashboard fa-fw"></i>쇼핑몰로 이동</a>
+						
+						 <a href="/ezenwood/main" style="background: #e7e7e7;border-bottom: 1px solid #F8F8F8;"><i class="fa fa-dashboard fa-fw"></i>쇼핑몰로 이동</a>
+						
                         </li>
 						<li class="active">
                             <a href="#" style="background: #e7e7e7;"><i class="fa fa-bar-chart-o fa-fw"></i>상품관리<span class="fa arrow">▼</span></a>
 							 <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/ezenwood/admin/goods">- 상품목록</a>
+                                
+                                <a href="/ezenwood/admin/goods">-상품목록</a>
+                                
                                 </li>
                                 <li>
-                                    <a href="/ezenwood/admin/goods/write">- 상품등록</a>
+                                
+                                <a href="/ezenwood/admin/goods/write">-상품등록 </a>
+                                  
                                 </li>
                             </ul>
                         </li>
@@ -48,10 +56,14 @@
                             <a href="#" style="background: #e7e7e7;"><i class="fa fa-dashboard fa-fw"></i>회원관리<span class="fa arrow">▼</span></a>
                              <ul class="nav nav-second-level">
                                 <li>
-                                    <a href="/ezenwood/admin/memberList">- 회원목록</a>
+                                
+                                 <a href="/ezenwood/admin/memberList">- 회원목록</a>
+                                
                                 </li>
                                 <li>
-                                    <a href="/ezenwood/admin/delmemberList">- 탈퇴회원목록</a>
+                                
+                                 <a href="/ezenwood/admin/delmemberList">- 탈퇴회원목록</a>
+                                
                                 </li>
                             </ul>
                             <!-- //nav-second-level -->
