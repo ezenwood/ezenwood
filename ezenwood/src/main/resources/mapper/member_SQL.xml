@@ -329,7 +329,7 @@ SELECT	MEMBER_PW
 	</select>
 	
 	<select id="selectmemberid" parameterType="hashmap" resultType="string">
-	SELECT MEMBER_ID
+	SELECT MEMBER_ID, MEMBER_PW
 	FROM MEMBER 
 	
 	

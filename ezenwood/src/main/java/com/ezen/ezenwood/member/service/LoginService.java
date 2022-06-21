@@ -11,6 +11,8 @@ public interface LoginService {
 
 	public Map<String, Object> findPw(Map<String, Object> map) throws Exception;
 	
-	public Map<String, Object> selectid(String MEMBER_ID) throws Exception;
+	public String selectid() throws Exception;
+
+
 
 }

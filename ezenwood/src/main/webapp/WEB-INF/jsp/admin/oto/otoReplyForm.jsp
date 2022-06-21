@@ -86,8 +86,7 @@
 			<br> <br>
 			<!-- 취소 작성완료 버튼 -->
 			<div class="menu-wrap" style="text-align: center">
-				<input type="submit" value="작성완료" class="btn btn-primary"
-					onclick="${contextPath}/admin/oto/writer/${OTONum}/${OTOSE}"> <input
+				<input type="submit" value="작성완료" class="btn btn-primary"> <input
 					type="button" value="목록" class="btn btn-primary"
 					onclick="location.href='${contextPath}/admin/oto/1'">
 

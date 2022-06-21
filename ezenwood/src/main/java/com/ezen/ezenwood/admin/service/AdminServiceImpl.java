@@ -38,6 +38,8 @@ public class AdminServiceImpl implements AdminService {
 	@Resource(name = "GoodsDAO")
 	GoodsDAOImpl goodsDAO;
 
+	ImageSaver imageSaver = new ImageSaver();
+
 	// goods
 
 	@Override
@@ -265,8 +267,22 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public int adminNoticeInsert(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return adminDAO.adminNoticeInsert(map);
+
+		int checkNum = adminDAO.adminNoticeInsert(map);
+
+		if (checkNum == 1) {
+			map.put("IMAGE_TABLENAMES_TABLENAME", "NOTICE");
+			map.put("IMAGE_PARENT", map.get("NOTICE_NUM"));
+
+			ImageSaver imageSaver = new ImageSaver();
+
+			imageSaver.insertNotice(map);
+
+			imageDAO.insertImage(map);
+
+		}
+
+		return checkNum;
 	}
 
 	@Override
@@ -362,7 +378,7 @@ public class AdminServiceImpl implements AdminService {
 		}
 
 		return listMap;
-		
+
 	}
 
 	@Override
@@ -508,16 +524,14 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public List<Map<String, Object>> otoSearching(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		
-		
+
 		return adminDAO.otoSearching(map);
 	}
 
 	@Override
 	public List<Map<String, Object>> otoCategory(Map<String, Object> map) throws Exception {
 		// TODO Auto-generated method stub
-		
-		
+
 		return adminDAO.otoCategory(map);
 	}
 
