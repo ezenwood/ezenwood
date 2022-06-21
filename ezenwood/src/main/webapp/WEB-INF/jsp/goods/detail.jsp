@@ -108,6 +108,17 @@ function count(type) {
 	}else if(type == 'minus'){
 		number = parseInt(number) -1;
 	}
+	if(number<=0){
+		number=1;
+	}
+	
+	var total = document.getElementById('totalinsu');
+	var price = document.getElementById('totalpriceinsu');
+	
+	var priceEach = ${GOODS_MAP.GOODS_PRICE };
+	
+	price.innerText = number * priceEach;
+	total.innerText= number;
 	
 	if(number<=0){
 		number=1;
@@ -312,8 +323,10 @@ function count(type) {
 							<!-- //참고 -->
 
 							<div id="totalPrice" class="totalPrice">
+
 							<strong>TOTAL</strong> : <span class="total"><strong><em id="totalpriceinsu">${GOODS_MAP.GOODS_PRICE }</em></strong>
 									 (<span id="totalinsu">1</span>개)</span> 
+
 							</div>
 							
 							<!-- 참고 : 뉴상품관리 전용 변수가 포함되어 있습니다. 뉴상품관리 이외의 곳에서 사용하면 일부 변수가 정상동작하지 않을 수 있습니다. -->
@@ -344,9 +357,6 @@ function count(type) {
 				<div
 					class="xans-element- xans-product xans-product-detail set_prd_all "></div>
 				<!--// 추가구성상품 -->
-
-
-
 
 
 
