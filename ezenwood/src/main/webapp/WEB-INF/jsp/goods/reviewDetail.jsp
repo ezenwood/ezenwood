@@ -49,7 +49,7 @@
                                         <div class="view_goods_select_item">
                                             <span class="view_select_item_img">
                                                 <a href="/ezenwood/goods?idx=${reviewMap.goodsMap.GOODS_NUM }" target="_blank">
-                                                    <img src="/ezenwood/resource/image/${GOODS_SUBIMAGE }">
+                                                    <img src="/ezenwood/resource/image/${reviewMap.GOODS_SUBIMAGE }">
                                                 </a>
                                             </span>
                                             <span class="view_select_item_info">
