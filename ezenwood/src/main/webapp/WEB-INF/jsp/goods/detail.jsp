@@ -120,6 +120,18 @@ function count(type) {
 	price.innerText = number * priceEach;
 	total.innerText= number;
 	
+	if(number<=0){
+		number=1;
+	}
+	
+	var total = document.getElementById('totalinsu');
+	var price = document.getElementById('totalpriceinsu');
+	
+	var priceEach = ${GOODS_MAP.GOODS_PRICE};
+	
+	price.innerText = number * priceEach;
+	total.innerText = number;
+	
 	resultElement.value = number;
 }
 
@@ -294,7 +306,6 @@ function count(type) {
 													<img src="/ezenwood/resource/image/btn_basketDown.gif" id="option_box1_down" onclick='count("minus")' class="option_box_down" alt="수량감소"></a>
 													</span> 
 													
-													
 													</td>
 													<td class="right"><span id="option_box1_price">
 
@@ -312,9 +323,10 @@ function count(type) {
 							<!-- //참고 -->
 
 							<div id="totalPrice" class="totalPrice">
-								<strong>TOTAL</strong> : <span class="total"><strong><em id="totalpriceinsu">${GOODS_MAP.GOODS_PRICE }</em></strong>
-							
-									(<span id="totalinsu">1</span>개)</span>
+
+							<strong>TOTAL</strong> : <span class="total"><strong><em id="totalpriceinsu">${GOODS_MAP.GOODS_PRICE }</em></strong>
+									 (<span id="totalinsu">1</span>개)</span> 
+
 							</div>
 							
 							<!-- 참고 : 뉴상품관리 전용 변수가 포함되어 있습니다. 뉴상품관리 이외의 곳에서 사용하면 일부 변수가 정상동작하지 않을 수 있습니다. -->
@@ -345,9 +357,6 @@ function count(type) {
 				<div
 					class="xans-element- xans-product xans-product-detail set_prd_all "></div>
 				<!--// 추가구성상품 -->
-
-
-
 
 
 

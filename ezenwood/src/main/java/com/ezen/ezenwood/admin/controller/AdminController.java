@@ -404,7 +404,7 @@ public class AdminController {
 		insertMap.put("MEMBER_ID", MEMBER_ID);
 		insertMap.put("request", request);
 		int checkNum = adminService.adminMemberUpdate(insertMap);
-		return "redirect:/admin/memberList/1";
+		return "redirect:/admin/memberList";
 
 	}
 
@@ -416,7 +416,8 @@ public class AdminController {
 		insertMap.put("MEMBER_ID", MEMBER_ID);
 		Map<String, Object> resultMap = this.adminService.adminMemberReturn(insertMap);
 		mav.addObject("MemReMap", resultMap);
-		mav.setViewName("admin/member/DelmemberList");
+		mav.setViewName("redirect:/admin/delmemberList");
+		
 		return mav;
 	}
 
