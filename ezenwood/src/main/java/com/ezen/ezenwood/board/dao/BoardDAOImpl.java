@@ -35,7 +35,7 @@ public class BoardDAOImpl extends AbstractDAO implements BoardDAO{
   	@Override
 	public Map<String, Object> OTODelete(Map<String, Object> insertMap) {
 		// TODO Auto-generated method stub
-		return (Map<String, Object>) selectOne("onetoone.deleteAdmin", insertMap);		
+		return (Map<String, Object>) selectOne("onetoone.deletetOTO", insertMap);		
 
 	}
 
