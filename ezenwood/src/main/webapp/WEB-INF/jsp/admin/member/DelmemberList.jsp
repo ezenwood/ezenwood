@@ -83,7 +83,10 @@
 
 									<div class="dataTables_info" id="dataTables-example_info"
 										role="status" aria-live="polite" style="text-align: right;">탈퇴
-										회원수 : ${TOTAL_COUNT}</div>
+										회원수 : ${TOTAL_COUNT}
+										<c:if test="${TOTAL_COUNT == null}">0</c:if>
+										
+										</div>
 
 
 								</div>
