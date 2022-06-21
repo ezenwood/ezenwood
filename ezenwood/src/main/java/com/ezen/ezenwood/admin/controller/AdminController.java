@@ -417,7 +417,7 @@ public class AdminController {
 		Map<String, Object> resultMap = this.adminService.adminMemberReturn(insertMap);
 		mav.addObject("MemReMap", resultMap);
 		mav.setViewName("redirect:/admin/delmemberList");
-		
+
 		return mav;
 	}
 
@@ -748,7 +748,7 @@ public class AdminController {
 		insertMap.put("category", category);
 		insertMap.put("wating", wating);
 		insertMap.put("success", success);
-		
+
 		PaginationInfo paginationInfo = new PaginationInfo();
 
 		// 현재 페이지 번호
@@ -762,7 +762,7 @@ public class AdminController {
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 
 		List<Map<String, Object>> list = adminService.qnaCategory(insertMap);
-			
+
 		mav.addObject("list", list);
 
 		int totalCount = 0;
@@ -778,7 +778,7 @@ public class AdminController {
 		}
 
 		mav.setViewName("admin/qna/qnaList");
-		
+
 		return mav;
 	}
 
@@ -798,7 +798,7 @@ public class AdminController {
 		insertMap.put("type", type);
 		insertMap.put("title", title);
 		insertMap.put("writer", writer);
-		
+
 		PaginationInfo paginationInfo = new PaginationInfo();
 
 		// 현재 페이지 번호
@@ -812,7 +812,7 @@ public class AdminController {
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 
 		List<Map<String, Object>> list = adminService.qnaSearching(insertMap);
-		
+
 		mav.addObject("list", list);
 
 		int totalCount = 0;
@@ -828,7 +828,7 @@ public class AdminController {
 		}
 
 		mav.setViewName("admin/qna/qnaList");
-		
+
 		return mav;
 	}
 
@@ -882,11 +882,25 @@ public class AdminController {
 		commandMap.put("MEMBER_ID", MEMBER_ID);
 		commandMap.put("QNA_SECREATE", QNA_SECREATE);
 		commandMap.put("QNA_NUM", QNA_NUM);
+		
 
-		int insert = adminService.adminQNAInsert(commandMap.getMap());
+		if (commandMap.get("QNA_TITLE").equals("") || commandMap.get("QNA_CONTENT").equals("")) {
+			//넘어오는 값이 없을 때 
+			mav.setViewName("/admin/qna/qnaReplyForm");
+		}else {
 
-		mav.addObject(insert);
-		mav.setViewName("redirect:/admin/qna/1");
+			int insert = adminService.adminQNAInsert(commandMap.getMap());
+
+			if (insert == 1) {
+				// 답변등록 되었을 때
+				mav.addObject(insert);
+				mav.setViewName("redirect:/admin/qna/1");
+			} else {
+				// 답변등록 안되었을 떄
+				mav.setViewName("/admin/qna/qnaReplyForm");
+			}
+			
+		}
 		return mav;
 	}
 
@@ -915,12 +929,26 @@ public class AdminController {
 
 		commandMap.put("MEMBER_ID", MEMBER_ID);
 		commandMap.put("QNA_NUM", QNA_NUM);
+		
+		
+		if (commandMap.get("QNA_TITLE").equals("") || commandMap.get("QNA_CONTENT").equals("")) {
+			//넘어오는 값이 없을 때 
+			mav.setViewName("/admin/qna/qnaModify");
+		}else {
 
-		int resultMap = adminService.adminQNAUpdate(commandMap.getMap());
+			int resultMap = adminService.adminQNAUpdate(commandMap.getMap());
 
-		mav.addObject(resultMap);
+			if (resultMap == 1) {
+				// 답변등록 되었을 때
+				mav.addObject(resultMap);
+				mav.setViewName("redirect:/admin/qnadetail/{qnaNum}");
+			} else {
+				// 답변등록 안되었을 떄
+				mav.setViewName("/admin/qna/qnaModify");
+			}
+			
+		}
 
-		mav.setViewName("redirect:/admin/qnadetail/{qnaNum}");
 		return mav;
 	}
 
@@ -1005,7 +1033,6 @@ public class AdminController {
 		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 
-		
 		String keyword = request.getParameter("keyword");
 		String type = request.getParameter("type");
 		String title = request.getParameter("title");
@@ -1033,7 +1060,6 @@ public class AdminController {
 		}
 
 		mav.setViewName("admin/review/reviewList");
-
 
 		return mav;
 	}
@@ -1122,7 +1148,7 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView("/admin/oto/otoList");
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
-		
+
 		PaginationInfo paginationInfo = new PaginationInfo();
 
 		String category = request.getParameter("category");
@@ -1132,7 +1158,7 @@ public class AdminController {
 		insertMap.put("category", category);
 		insertMap.put("wating", wating);
 		insertMap.put("success", success);
-		
+
 		// 현재 페이지 번호
 		paginationInfo.setCurrentPageNo(pageNum);
 		// 한 페이지에 게시되는 게시물 건수
@@ -1170,7 +1196,7 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
-		
+
 		PaginationInfo paginationInfo = new PaginationInfo();
 
 		// 현재 페이지 번호
@@ -1194,7 +1220,6 @@ public class AdminController {
 		insertMap.put("writer", writer);
 
 		List<Map<String, Object>> list = adminService.otoSearching(insertMap);
-		
 
 		int totalCount = 0;
 
@@ -1263,26 +1288,46 @@ public class AdminController {
 
 		commandMap.put("ONETOONE_NUM", ONETOONE_NUM);
 
-		int insert = adminService.adminOTOInsert(commandMap.getMap());
+		
+		if (commandMap.get("ONETOONE_TITLE").equals("") || commandMap.get("ONETOONE_CONTENT").equals("")) {
+			//넘어오는 값이 없을 때 
+			mav.setViewName("/admin/oto/otoReplyForm");
+		}else {
 
-		mav.addObject(insert);
-		mav.setViewName("redirect:/admin/oto/1");
+			int insert = adminService.adminOTOInsert(commandMap.getMap());
+
+			if (insert == 1) {
+				// 답변등록 되었을 때
+				mav.addObject(insert);
+				mav.setViewName("redirect:/admin/oto/1");
+			} else {
+				// 답변등록 안되었을 떄
+				mav.setViewName("/admin/oto/otoReplyForm");
+			}
+			
+		}
+		
+
 		return mav;
 	}
 
 	// 일대일 문의 답변 삭제하기 (delete)
 
 	@RequestMapping(value = "/oto/del/{otoNum}", method = RequestMethod.GET)
-	public ModelAndView otoReplyDelete(@PathVariable String otoNum) throws Exception {
+	public ModelAndView otoReplyDelete(@PathVariable String otoNum, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 
+		HttpSession session = request.getSession();
+		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
+		
 		String ONETOONE_NUM = otoNum;
-		String MEMBER_ID = adminService.adminOTODetailB(ONETOONE_NUM);
-		insertMap.put("MEMBER_ID", MEMBER_ID);
+		
 
 		int ONETOONE_NUMa = Integer.valueOf(ONETOONE_NUM);
+		
+		insertMap.put("MEMBER_ID", MEMBER_ID);
 		insertMap.put("ONETOONE_NUM", ONETOONE_NUMa);
 		int resultMap = adminService.adminOTODelete(insertMap);
 
@@ -1429,11 +1474,18 @@ public class AdminController {
 
 	// 자주묻는질문 쓰기 post
 	@RequestMapping(value = "/fqwrite", method = RequestMethod.POST)
-	public String fqWrite(CommandMap commandMap) throws Exception {
+	public String fqWrite(CommandMap commandMap) throws Exception {		
+		
+		if (commandMap.get("QUESTION_TITLE").equals("") || commandMap.get("QUESTION_CONTENT").equals("") || commandMap.get("QUESTION_STEP").equals("")) {
+			//넘어오는 값이 없을 때 
+			return("/admin/fq/fqWriteForm");
+			
+		}else {
 
-		int resultMap = adminService.adminFQInsert(commandMap.getMap());
-
-		return "redirect:/admin/fqlist/1";
+			int resultMap = adminService.adminFQInsert(commandMap.getMap());
+			
+			return("redirect:/admin/fqlist/1");		
+		}
 
 	}
 

@@ -49,7 +49,7 @@
 							class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 							<div class="row" style="margin-bottom: 5px;">
 								<div class="col-sm-6">
-									<a href="/ezenwood/admin/qnaList"><button type="button"
+									<a href="/ezenwood/admin/qna/1"><button type="button"
 											class="btn btn-outline btn-default">전체</button></a>
 									<form id="searchForm" action="${contextPath}/admin/qnacategory/1"
 										method="get">

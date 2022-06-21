@@ -24,7 +24,7 @@
 				<div class="panel-heading">공지사항 등록페이지입니다.</div>
 				<div class="panel-body">
 					<c:set var="contextPath" value="${pageContext.request.contextPath}" />
-					<form action="${contextPath}/admin/notice/write" method="post">
+					<form action="${contextPath}/admin/notice/write" enctype="multipart/form-data" method="post">
 						<table>
 							<tr>
 								<td><input type="hidden" name="NOTICE_NUM"
@@ -50,8 +50,7 @@
 						</table>
 
 						<div class="form-group">
-							<label>상품이미지</label> <input type="file" name="file[0]" size="30"
-								value="tablename" />
+							<label>상품이미지</label> <input type="file" name="noticeImage" size="30"/>
 							<p class="help-block">이미지 입니다 400x600 사이즈 권장합니다</p>
 						</div>
 

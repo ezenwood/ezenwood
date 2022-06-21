@@ -48,7 +48,7 @@
 									<!-- //find_id_sec -->
 									<div class="btn_member_sec">
 										<ul>
-											<li><button type="button" id="btnJoinMember"
+											<li><button type="button" id="btnJoinMember" style="width:100px; margin:auto; display:block "
 											class="btn_member_join" onclick="location.href='/ezenwood/member/signin'">로그인하기</button></li>
 										</ul>
 									</div>
