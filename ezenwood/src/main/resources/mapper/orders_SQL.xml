@@ -36,6 +36,16 @@ INSERT INTO ORDERS VALUES(
 )]]>
 
 	</insert>
+	
+	
+	<update id="orderCancle"  parameterType="hashmap" >
+	
+	UPDATE ORDERS 
+	SET ORDERS_STATUS = 6 
+	WHERE ORDERS_NUM = #{ORDERS_NUM}
+	AND ORDERS_MEMBER_NUM = #{MEMBER_NUM}
+	
+	</update>
 
 
 <select id="orderListinsu" parameterType="hashmap" resultType="hashmap" >
@@ -196,11 +206,12 @@ select
     ORDERS_RADD3,
     ORDERS_TRACK,
     ORDERS_DMEMO,
+    DELIVERY_STATUES,
     ORDERS_PAY
 from 
-	orders 
+	orders, delivery
 where 
-	ORDERS_MEMBER_NUM = (select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBER_ID})
+	orders_status = delivery_num   and  ORDERS_MEMBER_NUM = (select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBER_ID})
 	
 ]]>
 		<include refid="common.pagingPost"></include>

@@ -1,5 +1,6 @@
 package com.ezen.ezenwood.mypage.controller;
 
+import java.io.IOException;
 import java.io.PrintWriter;
 
 import java.math.BigDecimal;
@@ -22,6 +23,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.common.CommandMap;
+import com.ezen.ezenwood.mypage.dao.MyPageDAOImle;
 import com.ezen.ezenwood.mypage.service.MyPageService;
 
 import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
@@ -34,6 +36,10 @@ public class MyPageController {
 
 	@Resource(name = "MyPageService")
 	private MyPageService mypageService;
+	
+	@Resource(name = "MyPageDAO")
+	MyPageDAOImle mypageDAO;
+	
 
 	// 마이페이지 메인
 	@RequestMapping("/main")
@@ -250,6 +256,43 @@ public class MyPageController {
 		mav.setViewName("/mypage/cancel");
 		return mav;
 	}
+	
+	
+	@RequestMapping(value = "/orders/cancle", method = RequestMethod.GET)
+	public String orderCancle(HttpServletRequest request, HttpServletResponse response) throws IOException {
+		
+		String ORDERS_NUM = request.getParameter("ordersnum");
+		String MEMBER_NUM = (String) request.getSession().getAttribute("MEMBER_NUM");
+		
+		
+		if(ORDERS_NUM == null || ORDERS_NUM.equals("") || ORDERS_NUM.isEmpty() || MEMBER_NUM == null || MEMBER_NUM.equals("") || MEMBER_NUM.isEmpty()) {
+			//처리안함
+			
+		}else {
+			Map<String, Object> insertMap = new HashMap<String, Object>();
+			insertMap.put("ORDERS_NUM",ORDERS_NUM);
+			insertMap.put("MEMBER_NUM",MEMBER_NUM);
+			
+			int checkNum = mypageDAO.orderCancle(insertMap);
+			
+			if(checkNum == 1) {
+				// 지워졌음
+				
+			
+			}else {
+				//안지워졌음
+				
+				
+			}
+			
+		}
+		return "redirect:/mypage/order/1";
+		
+	}
+	
+	
+	
+	
 
 	// 리뷰리스트 폼
 	@RequestMapping(value = "/review/{pageNum}", method = RequestMethod.GET)

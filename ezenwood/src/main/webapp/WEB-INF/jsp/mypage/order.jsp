@@ -99,7 +99,16 @@
 												<P>${order.ORDERS_PRICE}&nbsp;/&nbsp;${order.ORDERS_AMOUNT}</P>
 											</td>
 											<td>
-												<P>${order.ORDERS_STATUS}</P>
+												<P>${order.DELIVERY_STATUES}
+												<c:choose>
+													<c:when test='${order.ORDERS_STATUS == "1"}'>
+													<a href="#" style="color:blue; " onclick="cancle(${order.ORDERS_NUM})">(주문 취소)</a>
+													</c:when>
+													<c:when test='${order.ORDERS_STATUS == "2"}'>
+													<a href="#" style="color:blue; " onclick="cancle(${order.ORDERS_NUM})">(주문 취소)</a>
+													</c:when>
+												</c:choose>
+												</P>
 											</td>
 
 											
@@ -130,4 +139,43 @@
 	</div>
 	<%@include file="/include/footer.jsp"%>
 </body>
+
+
+
+<script type="text/javascript">
+	
+	function cancle(num){ 
+		
+		if(!confirm('주문 취소 하시겠습니까?')){
+			//주문 취소 안할 때 
+			
+			return;
+		}else {
+			//주문 취소 할 때 
+		}
+		
+		var form = document.createElement("form");
+		
+		form.setAttribute("method","get");
+		
+		form.setAttribute("action","/ezenwood/mypage/orders/cancle");
+		
+		
+		
+		var input_pageNum = document.createElement("input");
+		
+		input_pageNum.setAttribute("type", "hidden");
+		input_pageNum.setAttribute("name", "ordersnum");
+		input_pageNum.setAttribute("value", num);
+		
+		form.appendChild(input_pageNum); 
+		
+		document.body.appendChild(form);
+		
+		form.submit();
+		
+	}
+
+</script>
+
 </html>
