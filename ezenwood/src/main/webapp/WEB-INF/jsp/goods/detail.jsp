@@ -108,6 +108,17 @@ function count(type) {
 	}else if(type == 'minus'){
 		number = parseInt(number) -1;
 	}
+	if(number<=0){
+		number=1;
+	}
+	
+	var total = document.getElementById('totalinsu');
+	var price = document.getElementById('totalpriceinsu');
+	
+	var priceEach = ${GOODS_MAP.GOODS_PRICE };
+	
+	price.innerText = number * priceEach;
+	total.innerText= number;
 	
 	resultElement.value = number;
 }
@@ -282,9 +293,8 @@ function count(type) {
 														<a href="#none" class="down eProductQuantityDownClass" data-target="option_box1_down"> 
 													<img src="/ezenwood/resource/image/btn_basketDown.gif" id="option_box1_down" onclick='count("minus")' class="option_box_down" alt="수량감소"></a>
 													</span> 
-													<a href="#none" class="delete">
-													<img src="/ezenwood/resource/image/btn_scroll_list_del.png"
-														 alt="삭제" id="option_box1_del" class="option_box_del" onclick='count("reset")'></a>
+													
+													
 													</td>
 													<td class="right"><span id="option_box1_price">
 
@@ -302,9 +312,9 @@ function count(type) {
 							<!-- //참고 -->
 
 							<div id="totalPrice" class="totalPrice">
-								<strong>TOTAL</strong> : <span class="total"><strong><em>0</em></strong>
+								<strong>TOTAL</strong> : <span class="total"><strong><em id="totalpriceinsu">${GOODS_MAP.GOODS_PRICE }</em></strong>
 							
-									(0개)</span>
+									(<span id="totalinsu">1</span>개)</span>
 							</div>
 							
 							<!-- 참고 : 뉴상품관리 전용 변수가 포함되어 있습니다. 뉴상품관리 이외의 곳에서 사용하면 일부 변수가 정상동작하지 않을 수 있습니다. -->
