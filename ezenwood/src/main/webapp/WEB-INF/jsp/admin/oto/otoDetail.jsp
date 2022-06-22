@@ -51,7 +51,7 @@
 						<tr>
 							<th>이미지</th>
 							<td style="padding: 0px !important;"><img
-								src="/ezenwood/resource/image/pet1.jpg" /></td>
+								src="/ezenwood/resource/image/${QOTOMap.ONETOONE_IMAGE}" /></td>
 						</tr>
 
 					</tbody>
@@ -93,11 +93,7 @@
 							<td colspan=3 height=250 style="padding: 0px !important;"><br />${AOTOMap.ONETOONE_CONTENT}
 							</td>
 						</tr>
-						<tr>
-							<th>이미지</th>
-							<td style="padding: 0px !important;"><img
-								src="/ezenwood/resource/image/pet1.jpg" /></td>
-						</tr>
+
 
 					</tbody>
 
@@ -112,7 +108,7 @@
 			onclick="location.href='${contextPath}/admin/oto/writer/${QOTOMap.ONETOONE_NUM}'">답변</button>
 		<button type="reset" class="btn btn-default"
 			onclick="location.href='${contextPath}/admin/oto/1'">작성취소</button>
-			<button type="button" class="btn btn-success"
+		<button type="button" class="btn btn-success"
 			onclick="location.href='${contextPath}/admin/oto/dell/${QOTOMap.ONETOONE_NUM}'">문의/답변삭제</button>
 		<button type="button" class="btn btn-success"
 			onclick="location.href='${contextPath}/admin/oto/del/${QOTOMap.ONETOONE_NUM}'">답변삭제</button>

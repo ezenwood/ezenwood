@@ -95,7 +95,7 @@ public class LoginController {
 
 	// findIdForm
 	@RequestMapping(value = "/member/idfind", method = RequestMethod.GET)
-	public ModelAndView findIdForm(CommandMap commandMap) throws Exception {
+	public ModelAndView findIdForm() throws Exception {
 		ModelAndView mv = new ModelAndView("member/login/findId");
 		return mv;
 	}
@@ -131,7 +131,7 @@ public class LoginController {
 
 	// findPwForm
 	@RequestMapping(value = "/member/pwfind", method = RequestMethod.GET)
-	public ModelAndView findPwForm(CommandMap commandMap) throws Exception {
+	public ModelAndView findPwForm() throws Exception {
 		ModelAndView mav = new ModelAndView("/member/login/findPw");
 		return mav;
 	}
