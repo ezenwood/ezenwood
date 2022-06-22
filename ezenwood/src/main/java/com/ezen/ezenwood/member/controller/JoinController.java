@@ -55,7 +55,7 @@ public class JoinController {
 		if(checkNum==1) {
 			return "redirect:/member/success";
 		}else {
-			//model.addAttribute("signup", "fail");
+			model.addAttribute("signup", "fail");
 			return "member/join/signUp";
 		}
 		

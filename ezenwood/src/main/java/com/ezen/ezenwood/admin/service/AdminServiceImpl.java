@@ -462,7 +462,15 @@ public class AdminServiceImpl implements AdminService {
 	@Override
 	public Map<String, Object> adminOTODetailQ(Map<String, Object> map) throws Exception {
 
-		return adminDAO.adminOTODetailQ(map);
+		
+		Map<String, Object> insertMap = adminDAO.adminOTODetailQ(map);
+		
+		insertMap.put("IMAGE_TABLENAMES_TABLENAME", "ONETOONE");
+		insertMap.put("IMAGE_PARENT", insertMap.get("ONETOONE_NUM"));
+		String ONETOONE_IMAGE = imageDAO.selectImage(insertMap);
+		insertMap.put("ONETOONE_IMAGE", ONETOONE_IMAGE);
+		
+		return insertMap;
 	}
 
 	@Override
