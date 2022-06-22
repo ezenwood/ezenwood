@@ -30,10 +30,12 @@ public class BoardController {
 
 	//OTO
 	@RequestMapping({"/board/oto"})
-	  public ModelAndView OTOList() {
+	  public ModelAndView OTOList(HttpServletRequest request) {
 	    ModelAndView mav = new ModelAndView();
-	 
+	    HttpSession session = request.getSession();
+	    String membernum = (String)session.getAttribute("MEMBER_NUM");
 	    Map<String, Object> insertMap = new HashMap<String, Object>();
+	    insertMap.put("MEMBER_NUM", membernum);
 	    insertMap.put("START", "1");
 	    insertMap.put("END", "15");
 	    
@@ -84,7 +86,7 @@ public class BoardController {
 	@RequestMapping(value = "/board/oto/otoWrite", method = RequestMethod.GET)
 	public ModelAndView otoWriteForm(HttpServletRequest request) {
 		 ModelAndView mav = new ModelAndView();
-		 HttpSession session = request.getSession();
+		 HttpSession session = request.getSession(); 
 		String writer = (String) session.getAttribute("MEMBER_ID");
 		String name = (String) session.getAttribute("MEMBER_NAME");
 		
