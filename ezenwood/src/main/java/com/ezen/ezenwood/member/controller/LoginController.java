@@ -46,20 +46,20 @@ public class LoginController {
 	public ModelAndView login(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mav = new ModelAndView("main");
-		
+
 		Map<String, Object> result = loginService.login(commandMap.getMap());
-		
-		if(result.isEmpty()) {
-			//login fail
-			
+
+		if (result == null || result.isEmpty()) {
+
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('로그인실패 Try Again'); location.href='" + request.getContextPath()
 					+ "/main';</script>");
 			out.flush();
-		}else {
-			// login success
+
+		} else {
+
 			HttpSession session = request.getSession();
 			session.setAttribute("MEMBER_ID", result.get("MEMBER_ID"));
 			session.setAttribute("MEMBER_PW", result.get("MEMBER_PW"));
@@ -73,13 +73,6 @@ public class LoginController {
 			out.flush();
 		}
 
-		
-
-		
-
-		
-
-		
 		return mav;
 	}
 
@@ -109,28 +102,30 @@ public class LoginController {
 
 	// findIdForm기능
 	@RequestMapping(value = "/member/idfind", method = RequestMethod.POST)
-	public ModelAndView findId(CommandMap commandMap) throws Exception {
+	public ModelAndView findId(CommandMap commandMap, HttpServletResponse response) throws Exception {
 
 		ModelAndView mav = new ModelAndView();
-		
+
 		//
 		Map<String, Object> map = loginService.findId(commandMap.getMap());
-		System.out.println("aaaaa : " +commandMap.get("MEMBER_NAME"));
-		//System.out.println("bbbb : " +map.get("MEMBER_NAME"));
-		System.out.println(commandMap.get("MEMBER_EMAIL"));
-		//System.out.println(map.get("MEMBER_EMAIL"));
-		if (commandMap.get("MEMBER_NAME") == "" || commandMap.get("MEMBER_EMAIL") == "") {
-			
-			if(map != null) {
-				if(!(commandMap.get("MEMBER_NAME").equals(map.get("MEMBER_NAME"))) 
-						|| !(commandMap.get("MEMBER_EMAIL").equals(map.get("MEMBER_EMAIL")))) {
-					mav.setViewName("member/login/findId");//jsp 적기
-				}
-			}
+
+		if (map == null || map.isEmpty()) {
+
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=utf-8");
+
+			PrintWriter out = response.getWriter();
+
+			out.println("<script>alert('아이디와 이메일을 입력해주세요.'); </script>");
+			out.flush();
+
+			mav.setViewName("member/login/findId");
 		} else {
+
 			mav.addObject("MEMBER_ID", map.get("MEMBER_ID"));
 			mav.setViewName("member/login/resultId");
 		}
+
 		return mav;
 	}
 
@@ -142,23 +137,28 @@ public class LoginController {
 	}
 
 	@RequestMapping(value = "/member/pwfind", method = RequestMethod.POST)
-	public ModelAndView findPw(CommandMap commandMap) throws Exception {
+	public ModelAndView findPw(CommandMap commandMap, HttpServletResponse response) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
 		Map<String, Object> map = loginService.findPw(commandMap.getMap());
 
-		if (commandMap.get("MEMBER_ID") == "" || commandMap.get("MEMBER_EMAIL") == "")  {
-			
-			if(map != null) {
-				if(!(commandMap.get("MEMBER_ID").equals(map.get("MEMBER_ID"))) 
-						|| !(commandMap.get("MEMBER_EMAIL").equals(map.get("MEMBER_EMAIL")))) {
-					mav.setViewName("member/login/findPw");//jsp 적기
-				}
-			}
+		if (map == null || map.isEmpty()) {
+
+			response.setCharacterEncoding("UTF-8");
+			response.setContentType("text/html; charset=utf-8");
+
+			PrintWriter out = response.getWriter();
+
+			out.println("<script>alert('아이디와 이메일을 입력해주세요.'); </script>");
+			out.flush();
+
+			mav.setViewName("member/login/findPw");
 		} else {
+
 			mav.addObject("MEMBER_PW", map.get("MEMBER_PW"));
 			mav.setViewName("member/login/resultPw");
 		}
+
 		return mav;
 	}
 

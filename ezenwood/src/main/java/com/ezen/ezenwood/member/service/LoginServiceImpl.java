@@ -37,9 +37,9 @@ public class LoginServiceImpl implements LoginService {
 	}
 
 	@Override
-	public Map<String, Object> selectid(String MEMBER_ID) throws Exception {
+	public String selectid() throws Exception {
 		// TODO Auto-generated method stub
-		return loginDAO.selectid(MEMBER_ID);
+		return loginDAO.selectid();
 	}
 	
 	

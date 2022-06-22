@@ -30,9 +30,9 @@ public class LoginDAOImpl extends AbstractDAO implements LoginDAO {
 	}
 
 	@Override
-	public Map<String, Object> selectid(String MEMBER_ID) throws Exception {
+	public String selectid() throws Exception {
 		
-		return (Map<String,Object>) selectOne("member.selectmemberid", MEMBER_ID);
+		return (String)("member.selectmemberid");
 	}
 	
 	

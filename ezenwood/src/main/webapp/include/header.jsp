@@ -96,7 +96,8 @@
 
 						<ul class="top_member_box">
 							<c:choose>
-								<c:when test="${MEMBER_ID == null }">
+								
+								<c:when test="${MEMBER_NUM == null }">
 									<li><a href="/ezenwood/member/signin">LOGIN</a></li>
 									<li><a href="/ezenwood/member/signup">SIGN UP</a></li>
 								</c:when>
