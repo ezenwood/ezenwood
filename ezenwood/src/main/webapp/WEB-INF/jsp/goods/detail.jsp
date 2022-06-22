@@ -525,9 +525,10 @@ function count(type) {
 								<div class="ec-base-button typeBorder">
 									<span>
 										<h3>REVIEW</h3>
-									</span> <span class="gRight"> <a
+									</span> <span class="gRight"> <c:if test="${MEMBER_ID !=null}">
+									 <a
 										href="/ezenwood/goods/review/write?GOODS_NUM=${GOODS_MAP.GOODS_NUM }"
-										class="dj-btn-2">WRITE</a> <a
+										class="dj-btn-2">WRITE</a></c:if> <a
 										href="/ezenwood/goods/review?GOODS_NUM=${GOODS_MAP.GOODS_NUM }&p=1"
 										class="dj-btn-2">LIST</a>
 									</span>
@@ -574,9 +575,9 @@ function count(type) {
 									<div class="ec-base-button typeBorder">
 										<span>
 											<h3>Q &amp; A</h3>
-										</span> <span class="gRight"> <a
+										</span> <span class="gRight"><c:if test="${MEMBER_ID !=null}"> <a
 											href="/ezenwood/goods/qna/write?GOODS_NUM=${GOODS_MAP.GOODS_NUM }"
-											class="dj-btn-2">WRITE</a> <a
+											class="dj-btn-2">WRITE</a></c:if> <a
 											href="/ezenwood/goods/qna?GOODS_NUM=${GOODS_MAP.GOODS_NUM }&p=1"
 											class="dj-btn-2">LIST</a>
 										</span>

@@ -103,9 +103,9 @@
                             </div>
 
                             <div class="btn_right_box">
-                                <button type="button" class="btn_write" onclick="insu(${GOODS_NUM})">
+                            <c:if test="${MEMBER_ID !=null}">    <button type="button" class="btn_write" onclick="insu(${GOODS_NUM})">
                                     문의하기
-                                </button>
+                                </button></c:if>
                             </div>
                         </div>
 
