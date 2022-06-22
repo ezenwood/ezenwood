@@ -668,8 +668,12 @@ public class AdminController {
 
 	// 공지사항 쓰기 (insert) (POST)
 	@RequestMapping(value = "/notice/write", method = RequestMethod.POST)
-	public String noticeWrite(CommandMap commandMap) throws Exception {
+	public String noticeWrite(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
+		Map<String, Object> insertMap = commandMap.getMap();
+		
+		insertMap.put("request", request);
+		
 		int resultMap = adminService.adminNoticeInsert(commandMap.getMap());
 
 		return "redirect:/admin/notice/1";

@@ -56,6 +56,9 @@
                                     </div>
                                     <!--//seem_cont-->
                                 </div>
+                                <div class="board_view_content" style="border-bottom: 1px solid #dbdbdb;">
+                                	<img alt="" src="/ezenwood/resource/image/${NTMap.NOTICE_IMAGE}">
+                                </div>
                                
                                  
                                 
