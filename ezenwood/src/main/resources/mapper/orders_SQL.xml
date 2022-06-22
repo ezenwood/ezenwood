@@ -216,6 +216,44 @@ where
 ]]>
 		<include refid="common.pagingPost"></include>
 	</select>
+	
+		<select id="selectAllNo6" parameterType="hashmap" resultType="hashmap">
+		<include refid="common.pagingPre"></include>
+<![CDATA[
+select
+    ROW_NUMBER() OVER (ORDER BY ORDERS_NUM DESC) RNUM,
+    ORDERS_NUM,
+    ORDERS_GOODS_NUM,
+    ORDERS_AMOUNT,
+    ORDERS_MEMBER_NUM,
+    ORDERS_GOODS_OPTION,
+    ORDERS_RECEIVER,
+    ORDERS_PHONE,
+    ORDERS_STATUS,
+    TO_CHAR(ORDERS_DATE,'YYYY-MM-DD') ADATE,
+    ORDERS_PRICE,
+    ORDERS_DCOST,
+    ORDERS_TCOST,
+    ORDERS_ZIPCODE,
+    ORDERS_RADD1,
+    ORDERS_RADD2,
+    ORDERS_RADD3,
+    ORDERS_TRACK,
+    ORDERS_DMEMO,
+    DELIVERY_STATUES,
+    ORDERS_PAY
+from 
+	orders, delivery
+where 
+	orders_status = delivery_num 
+and 
+	ORDERS_MEMBER_NUM = (select MEMBER_NUM from MEMBER where MEMBER_ID = #{MEMBER_ID})
+and 
+	orders_status != '6'
+	
+]]>
+		<include refid="common.pagingPost"></include>
+	</select>
 
 <select id="selectorders" parameterType="hashmap">
 <![CDATA[
@@ -290,7 +328,7 @@ FROM
 	ORDERS 
 WHERE
 	ORDERS_MEMBER_NUM = (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}) and
-	ORDERS_STATUS = '주문 취소'
+	ORDERS_STATUS = '6'
 	
 ]]>
 <include refid="common.pagingPost"></include>

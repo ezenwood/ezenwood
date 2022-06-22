@@ -41,7 +41,7 @@ public class MyPageDAOImle extends AbstractDAO implements MyPageDAO{
 
 	@Override
 	public List<Map<String, Object>> orderList(Map<String, Object> map) {
-		return (List<Map<String, Object>>) selectList("orders.selectAll", map);
+		return (List<Map<String, Object>>) selectList("orders.selectAllNo6", map);
 	}
 
 	@Override
