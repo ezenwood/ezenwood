@@ -261,8 +261,18 @@ public class AdminServiceImpl implements AdminService {
 
 	@Override
 	public Map<String, Object> adminNoticeDetail(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-		return adminDAO.adminNoticeDetail(map);
+		
+		Map<String, Object> insertMap = adminDAO.adminNoticeDetail(map);
+		
+		
+		map.put("IMAGE_TABLENAMES_TABLENAME", "NOTICE");
+		map.put("IMAGE_PARENT",insertMap.get("NOTICE_NUM"));
+		String NOTICE_IMAGE = imageDAO.selectImage(map);
+		
+		
+		insertMap.put("NOTICE_IMAGE", NOTICE_IMAGE);
+		
+		return insertMap;
 	}
 
 	@Override

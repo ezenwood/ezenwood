@@ -66,11 +66,14 @@ WHERE NOTICE_DEL_GB='N' AND NOTICE_NUM=#{NOTICE_NUM}
 </select>
 
 <!--관리자 공지사항 등록 --> 
-<insert id="insertNotice" parameterType="hashmap">
+<insert id="insertNotice" parameterType="hashmap" useGeneratedKeys="true" keyProperty="NOTICE_NUM">
+<selectKey order="BEFORE" keyProperty="NOTICE_NUM" resultType="string">
+select SEQ_NOTICE_NUM.nextval from dual
+</selectKey>
 <![CDATA[
 INSERT INTO NOTICE 
 VALUES(
-SEQ_NOTICE_NUM.nextval,
+#{NOTICE_NUM},
 #{NOTICE_TITLE},
 #{NOTICE_STEP},
 #{NOTICE_CONTENT},
