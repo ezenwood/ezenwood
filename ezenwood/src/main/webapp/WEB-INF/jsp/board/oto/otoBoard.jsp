@@ -13,6 +13,12 @@
 <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
+<script type="text/javascript">
+$(document).ready(function() {
+	
+});
+
+</script>
 </head>
 <body>
 	<%@include file="/include/header.jsp"%>
@@ -77,12 +83,16 @@
 								</div>
 							</div>
 							<!-- //board_zone_list -->
-							<div class="btn_right_box">
+							
+                                <c:if test="${MEMBER_NUM != null }"> 
+                                <div class="btn_right_box">
                                 <button type="button" class="btn_write" onclick="location.href='http://localhost:9001/ezenwood/board/oto/otoWrite'">
                                     문의하기
                                 </button>
-                            </div>
+                                 </div>
                             
+                                </c:if>
+                           
 						</div>
 						<!-- //sub_content -->
 					</div>

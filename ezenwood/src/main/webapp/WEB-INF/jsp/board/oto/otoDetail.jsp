@@ -112,7 +112,8 @@ function deleteConfirm(){
 													</tr>
 													<tr class="attach displaynone">
 														<th scope="row">이미지파일</th>
-														<td><img src="/ezenwood/resource/image/${OTOMap.otoImage}" alt="Missing Image"></td>
+														<td><img src="/ezenwood/resource/image/${OTOMap.otoImage}" alt="Missing Image" width="300px"
+															height="300px"></td>
 													</tr>
 												
 												</tbody>
@@ -122,10 +123,13 @@ function deleteConfirm(){
 											<span class="gLeft"> <a href="/ezenwood/board/oto"
 												class="btnNormalFix sizeS">목록</a>
 												
-											</span> <span class="gRight">  
+											</span> 
+											 <c:if test="${MEMBER_NUM != null }"> 
+											<span class="gRight">  
 												<a href="javascript:void(0);" class="btnEmFix sizeS" onclick="deleteConfirm();">삭제</a>
-
+											
 											</span>
+											</c:if>
 										</div>
 									</div>
 								</form>
@@ -140,11 +144,7 @@ function deleteConfirm(){
 												<div class="commentTop">
 													<strong class="name"> 이젠 우드</strong> 
 													<span class="date">${OTOMap.Answer.ONETOONE_DATE}</span>
-												</div> <!--<span class="button">
-                                                    <a href="javascript:;" class="btnNormal displaynone" onclick="BOARD_COMMENT.comment_update('163363','144433',this);">수정</a>
-                                                    <a href="javascript:;" class="btnNormal displaynone" onclick="BOARD_COMMENT.comment_delete('/board/product/comment_del.html?board_no=6&amp;no=163363&amp;comment_no=144433&amp;page=&amp;return_url=/board/product/read.html');"><i class="icoDelete"></i> 삭제</a>
-                                                    <a href="javascript:;" onclick="" class="btnNormal displaynone">댓글 <img src="//img.echosting.cafe24.com/skin/base/common/btn_icon_reply.gif" alt=""></a>
-                                                </span>-->
+												</div> 
 												<div class="comment">
 
 													<span id="comment_contents144433">${OTOMap.Answer.ONETOONE_CONTENT}</span>
@@ -154,55 +154,8 @@ function deleteConfirm(){
 
 									</div>
 
-									<form id="commentForm" name="" action="#" method="post"
-										target="_self" enctype="multipart/form-data"
-										style="display: none;">
-										<input id="board_no" name="board_no" value="#" type="hidden">
-										<input id="no" name="no" value="#" type="hidden"> <input
-											id="#" name="comment_no" value="" type="hidden"> <input
-											id="member_id" name="member_id" value="" type="hidden">
-										<div
-											class="xans-element- xans-board xans-board-commentform-4 xans-board-commentform xans-board-4 ">
-											<fieldset>
-												<legend>댓글 수정</legend>
-												<p>
-													비밀번호 : <input id="comment_password" name="comment_password"
-														fw-filter="isFill" fw-label="댓글비밀번호" fw-msg="" value=""
-														type="password"> <span class="secret displaynone"><label>비밀댓글</label></span>
-												</p>
-												<div class="view">
-													<textarea id="comment_modify" name="comment_modify"
-														fw-filter="isFill" fw-label="댓글내용" fw-msg=""></textarea>
-													<span class="submit"> <a href="#none"
-														class="btnEm sizeL"
-														onclick="BOARD_COMMENT.comment_update_ok('commentForm');">수정</a>
-														<a href="#none" class="btnNormal sizeL"
-														onclick="BOARD_COMMENT.comment_cancel_ok('commentForm');">취소</a>
-													</span>
-												</div>
-												<p class="displaynone">/ byte</p>
-											</fieldset>
-										</div>
-									</form>
-									<form id="commentSecretForm" name="" action="#" method="post"
-										target="_self" enctype="multipart/form-data"
-										style="display: none;">
-										<input id="board_no" name="board_no" value="#" type="hidden">
-										<input id="comment_no" name="comment_no" value=""
-											type="hidden"> <input id="pass_check"
-											name="pass_check" value="F" type="hidden">
-										<div
-											class="xans-element- xans-board xans-board-commentformsecret-1002 xans-board-commentformsecret xans-board-1002 ">
-											<p>
-												비밀번호 : <input id="secure_password" name="secure_password"
-													fw-filter="isFill" fw-label="댓글비밀번호" fw-msg="" value=""
-													type="password"> <a href="#none" class="btnNormal"
-													onclick="BOARD_COMMENT.show_secret_comment('commentSecretForm');">확인</a>
-												<a href="#none" class="btnNormal"
-													onclick="BOARD_COMMENT.hide_secret_comment_form('commentSecretForm');">취소</a>
-											</p>
-										</div>
-									</form>
+									
+									
 
 								</div>
 

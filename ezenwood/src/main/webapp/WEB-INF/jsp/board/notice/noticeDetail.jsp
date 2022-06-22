@@ -57,7 +57,8 @@
                                         </div>
                                         <tr class="attach displaynone">
 														<th scope="row">이미지파일</th>
-														<td><img src="/ezenwood/resource/image/${noticeMap.NOTICE_IMAGE}" alt="Missing Image"></td>
+														<td><img src="/ezenwood/resource/image/${noticeMap.NOTICE_IMAGE}" alt="Missing Image" width="300px"
+															height="300px"></td>
                                     </div>
                                     <!--//seem_cont-->
                                 </div>

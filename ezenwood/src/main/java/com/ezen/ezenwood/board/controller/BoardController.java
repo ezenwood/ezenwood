@@ -66,6 +66,51 @@ public class BoardController {
 		return mav;
 	}
 
+
+	//OTO
+	@RequestMapping({"/board/oto"})
+	  public ModelAndView OTOList(HttpServletRequest request) {
+      
+	    ModelAndView mav = new ModelAndView();
+	    HttpSession session = request.getSession();
+      
+	    String membernum = (String)session.getAttribute("MEMBER_NUM");
+      
+	    Map<String, Object> insertMap = new HashMap<String, Object>();
+      
+	    insertMap.put("MEMBER_NUM", membernum);
+	    insertMap.put("START", "1");
+	    insertMap.put("END", "15");
+	    
+	    List<Map<String, Object>> OTOListMap = this.boardService.OTOList(insertMap);
+      
+	    mav.addObject("OTOListMap", OTOListMap);
+	    mav.setViewName("board/oto/otoBoard");
+      
+	    return mav;
+	  }
+
+	 @RequestMapping({"/board/oto/otoBoard/{otonum}"})
+	  public ModelAndView OTODetail(@PathVariable String otonum, HttpServletRequest request) {
+      
+	    ModelAndView mav = new ModelAndView();
+	    HttpSession session = request.getSession();
+      
+	    String memberid = (String)session.getAttribute("MEMBER_ID");
+      
+	    Map<String, Object> insertMap = new HashMap<String, Object>();
+      
+	    insertMap.put("MEMBER_ID", memberid);
+	    insertMap.put("ONETOONE_NUM", otonum);
+      
+	    Map<String, Object> resultMap = this.boardService.getOTODetail(insertMap);
+      
+	    mav.addObject("OTOMap", resultMap);
+	    mav.setViewName("board/oto/otoDetail");
+      
+	    return mav;
+	  }
+
 	// 1:1 문의 삭제
 	@RequestMapping({ "/board/oto/otoBoardDel/{otonum}" })
 	public ModelAndView OTODelete(@PathVariable String otonum, HttpServletRequest request) {
@@ -93,6 +138,7 @@ public class BoardController {
 
 	@RequestMapping(value = "/board/oto/otoWrite", method = RequestMethod.GET)
 	public ModelAndView otoWriteForm(HttpServletRequest request) {
+
 		
 		ModelAndView mav = new ModelAndView();
 		
