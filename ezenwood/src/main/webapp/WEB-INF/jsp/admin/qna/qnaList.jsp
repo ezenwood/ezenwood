@@ -15,8 +15,24 @@
 	var sss = ddd.substring(0, idx + 1);
 
 	function fn_search(pageNo) {
-
-		location.href = sss + pageNo;
+		
+		var category = '${category}';
+		var keyword = '${keyword}';
+		var type = '${type}';
+		
+		if ( keyword == "" || keyword == null || category == "" || category == null ) {
+			
+			location.href = sss + pageNo;
+			
+			if(keyword != "" || category != "" ){
+				
+				location.href = sss + pageNo+ '?' + "type="+type+"&keyword="+keyword;
+				
+				location.href = sss + pageNo+ '?' + "category="+category;
+			}
+		}
+		
+		
 	}
 </script>
 <meta charset="UTF-8">
@@ -51,7 +67,7 @@
 								<div class="col-sm-6">
 									<a href="/ezenwood/admin/qna/1"><button type="button"
 											class="btn btn-outline btn-default">전체</button></a>
-									<form id="searchForm" action="${contextPath}/admin/qnacategory/1"
+									<form id="searchForm" action="${contextPath}/admin/qna/1"
 										method="get">
 										<select name="category">
 											<option value="">--카테고리--</option>
@@ -117,7 +133,7 @@
 								</div>
 							</div>
 							<div style="align: center;">
-								<form id="searchForm" action="${contextPath}/admin/qnaa/1"
+								<form id="searchForm" action="${contextPath}/admin/qna/1"
 									method="get">
 									<select name="type">
 										<option value="">검색어</option>

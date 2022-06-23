@@ -79,8 +79,6 @@ public interface AdminService {
 	public int adminQNADelete(Map<String, Object> map) throws Exception;
 	
 	public List<Map<String, Object>> qnaSearching(Map<String, Object> map) throws Exception;
-	
-	public List<Map<String, Object>> qnaCategory(Map<String, Object> map) throws Exception;
 
 	//
 	// Review

@@ -391,21 +391,6 @@ public class AdminServiceImpl implements AdminService {
 
 	}
 
-	@Override
-	public List<Map<String, Object>> qnaCategory(Map<String, Object> map) throws Exception {
-		List<Map<String, Object>> listMap = adminDAO.qnaCategory(map);
-
-		for (Map<String, Object> goodsmap : listMap) {
-
-			String GOODS_TITLE = ((BigDecimal) goodsmap.get("QNA_PARENT")).toString();
-
-			String goods = goodsDAO.getGoodsTitle(GOODS_TITLE);
-			goodsmap.put("GOODS_TITLE", goods);
-		}
-
-		return listMap;
-
-	}
 
 	// review
 

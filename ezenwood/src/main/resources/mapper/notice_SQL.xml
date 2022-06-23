@@ -20,7 +20,9 @@ WHERE notice_deL_gb='N'
 </select>
 
 <select id="noticesearch" parameterType="hashmap" resultType="hashmap" >
+<include refid="common.pagingPre"/>
 SELECT 
+ROW_NUMBER() OVER (order by notice_step desc)RNUM,
 	notice_step,
 	notice_num,
 	notice_title,
@@ -34,6 +36,7 @@ WHERE notice_deL_gb='N'
 <if test = "type=='step'">
 	AND (NOTICE_STEP LIKE #{keyword})
 </if>
+<include refid="common.pagingPost"/> 
 </select>
 
 <!--관리자 공지사항 list -->

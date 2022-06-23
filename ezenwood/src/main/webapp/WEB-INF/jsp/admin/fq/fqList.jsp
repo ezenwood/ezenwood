@@ -18,7 +18,17 @@
 	var sss = ddd.substring(0, idx + 1);
 
 	function fn_search(pageNo) {
-		location.href = sss + pageNo;
+
+		var type = '${map.type}';
+
+		var keyword = '${map.keyword}';
+
+		if (type == '' || type == null) {
+			location.href = sss + pageNo;
+		} else {
+			location.href = sss + pageNo + '?' + "type=" + type + "&keyword="
+					+ keyword;
+		}
 	}
 </script>
 
@@ -109,15 +119,16 @@
 												<c:forEach items="${list}" var="fq">
 													<tr class="gradeA even" role="row">
 														<td>${fq.QUESTION_NUM}</td>
-														<td><a href="/ezenwood/admin/fqdetail/${fq.QUESTION_NUM }">${fq.QUESTION_TITLE}</a></td>
+														<td><a
+															href="/ezenwood/admin/fqdetail/${fq.QUESTION_NUM }">${fq.QUESTION_TITLE}</a></td>
 														<td>${fq.QUESTION_DATE}</td>
 														<td>${fq.QUESTION_STEP}</td>
 														<!--  등록된 상품이 없을때 -->
-														 <c:if test="${fn:length(fq) le 0}">
+														<c:if test="${fn:length(fq) le 0}">
 															<tr>
 																<td colspan="9" style="text-align: center;"></td>
 															</tr>
-														</c:if> 
+														</c:if>
 													</tr>
 												</c:forEach>
 											</tbody>
@@ -127,9 +138,10 @@
 								<div class="row">
 									<div style="text-align: right;">
 										<span>
-										
+
 											<button type="submit" class="btn btn-default"
-												style="margin-right: 15px;"onclick="location.href='${contextPath}/admin/fqwrite'" >쓰기</button>
+												style="margin-right: 15px;"
+												onclick="location.href='${contextPath}/admin/fqwrite'">쓰기</button>
 										</span>
 
 									</div>
@@ -148,21 +160,21 @@
 												jsFunction="fn_search" />
 										</c:if>
 									</div>
-									
-									
+
+
 								</div>
 							</div>
-<div style="align: center;">
-											<form id="searchForm" action="${contextPath}/admin/fq"
-												method="get">
-												<select name="type">
-													<option value="">검색어</option>
-													<option value="title">제목</option>
-													<option value="step">중요도</option>
-												</select> <input type="text" name="keyword" /> <input type="submit"
-													value="검색" />
-											</form>
-										</div>
+							<div style="align: center;">
+								<form id="searchForm" action="${contextPath}/admin/fqlist/1"
+									method="get">
+									<select name="type">
+										<option value="">검색어</option>
+										<option value="title">제목</option>
+										<option value="step">중요도</option>
+									</select> <input type="text" name="keyword" /> <input type="submit"
+										value="검색" />
+								</form>
+							</div>
 						</div>
 					</div>
 					<!-- /.table-responsive -->

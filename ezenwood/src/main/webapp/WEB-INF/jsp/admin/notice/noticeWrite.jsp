@@ -36,9 +36,9 @@
 
 							<tr>
 
-								<td><input type="text" style="width: 500px; height: 500px"
-									name="NOTICE_CONTENT" placeholder="내용을 입력해주세요"
-									value="${NOTICE_CONTENT}"></td>
+								<td><textarea rows="10" cols="100" name="NOTICE_CONTENT" placeholder="내용을 입력해주세요" id="${NOTICE_CONTENT}">
+								</textarea>
+								</td>
 							</tr>
 
 							<tr>
