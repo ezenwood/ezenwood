@@ -85,10 +85,14 @@ where GOODS_CATEGORY = 'bed'
 where GOODS_CATEGORY = 'chest'
 
 </when>
-<otherwise>
+<when test='category=="6"'>
+where GOODS_CATEGORY like '%'
+</when>
 
-</otherwise>
 </choose>
+<if test='searchType=="1"'>
+and GOODS_TITLE like '%'||#{keyWord}||'%'
+</if>
 
 <include refid="common.pagingPost"></include>
 

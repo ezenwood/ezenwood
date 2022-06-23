@@ -46,12 +46,21 @@ public class AdminController {
 
 		String category = request.getParameter("isSearch");
 		String currentPageNum = request.getParameter("searchNum");
+		
+		String searchType = request.getParameter("searchType");
+		String keyWord = request.getParameter("keyWord");
+		if(keyWord==null|keyWord==""||keyWord.isEmpty()) {
+			
+		}else {
+		insertMap.put("keyWord", keyWord);
+		insertMap.put("searchType", searchType);
+		}
 
-		if (category == null) {
+		if (category == null||category==""||category.isEmpty()) {
 			category = "6";
 
 		}
-		if (currentPageNum == null) {
+		if (currentPageNum == null||currentPageNum==""||currentPageNum.isEmpty()) {
 			currentPageNum = "1";
 		}
 
@@ -72,11 +81,20 @@ public class AdminController {
 		if (result.isEmpty()) {
 
 		} else {
+			if(keyWord==null|keyWord==""||keyWord.isEmpty()) {
+				
+			}else {
+				model.addAttribute("keyWord", keyWord);
+				model.addAttribute("searchType", searchType);
+			}
+			
+			model.addAttribute("isSearch", category);
+			model.addAttribute("searchNum", currentPageNum);
 
 			paginationInfo.setTotalRecordCount(((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
 
 			model.addAttribute("TOTAL_COUNT", ((BigDecimal) result.get(0).get("TOTAL_COUNT")).intValue());
-
+			
 			model.addAttribute("paginationInfo", paginationInfo);
 		}
 

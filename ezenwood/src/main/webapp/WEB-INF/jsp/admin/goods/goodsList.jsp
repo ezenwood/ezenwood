@@ -6,7 +6,8 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
 <script type="text/javascript">
 
 var ddd = document.location.href;
@@ -14,6 +15,7 @@ var ddd = document.location.href;
 var idx = ddd.lastIndexOf("=");
 
 var sss = ddd.substring(idx+1);
+
 
 
 
@@ -27,7 +29,10 @@ function fn_search(pageNo) {
 		searchType=sss;
 		}
 	
+	var searchType2 = '${searchType}';
+	var keyWord = '${keyWord}';
 	
+	var searchType = '${isSearch}';
 	
 	var form = document.createElement("form");
 	
@@ -46,6 +51,27 @@ function fn_search(pageNo) {
 	input_searchType.setAttribute("type", "hidden");
 	input_searchType.setAttribute("name", "isSearch");
 	input_searchType.setAttribute("value", searchType);
+	
+	if(searchType2==''||searchType2==null){
+		
+	}else{
+		
+		var input_keyWord = document.createElement("input");
+		var input_searchType2 = document.createElement("input");
+		
+		input_searchType2.setAttribute("type", "hidden");
+		input_searchType2.setAttribute("name", "searchType");
+		input_searchType2.setAttribute("value", searchType2);
+		
+		input_keyWord.setAttribute("type", "hidden");
+		input_keyWord.setAttribute("name", "keyWord");
+		input_keyWord.setAttribute("value", keyWord);
+		
+		
+		
+		form.appendChild(input_keyWord); 
+		form.appendChild(input_searchType2); 
+	}
 	
 	form.appendChild(input_pageNum); 
 	form.appendChild(input_searchType); 
@@ -83,14 +109,15 @@ function fn_search(pageNo) {
 				<div id="dataTables-example_wrapper" class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						<div class="col-sm-6">
-							<a href="/pet/admin/goodsadminList.dog?searchNum=0&amp;isSearch="><button type="button" class="btn btn-outline btn-default">전체</button></a>
-							<select class="form-control" name="select" onchange="window.open(value,'_self');">
+							<a href="/ezenwood/admin/goods?searchNum=1&amp;isSearch=6"><button type="button" class="btn btn-outline btn-default">전체</button></a>
+							<select class="form-control" name="select" id="selectTag" onchange="window.open(value,'_self');">
 								<option value="">--카테고리--</option>
 								<option value="/ezenwood/admin/goods?searchNum=1&amp;isSearch=1">TABLE</option>
 								<option value="/ezenwood/admin/goods?searchNum=1&amp;isSearch=2">CHAIR</option>
 								<option value="/ezenwood/admin/goods?searchNum=1&amp;isSearch=3">SOFA</option>
 								<option value="/ezenwood/admin/goods?searchNum=1&amp;isSearch=4">BED</option>
 								<option value="/ezenwood/admin/goods?searchNum=1&amp;isSearch=5">CHEST</option>
+								<option value="/ezenwood/admin/goods?searchNum=1&amp;isSearch=6">전체</option>
 							</select>						
 						</div>
 						<div class="col-sm-6" style="text-align:right;">
@@ -146,11 +173,14 @@ function fn_search(pageNo) {
 					<div class="row">
 							<div style="text-align:center;">
 								<div id="dataTables-example_filter" class="dataTables_filter">
-									<form action="">
-									<select class="form-control" name="searchNum" id="searchNum">
-										<option value="0">상품 제목</option>
+									<form>
+									<input type="hidden" name="searchNum" value="${searchNum }">
+									<input type="hidden" name="isSearch" value="${isSearch }">
+								
+									<select class="form-control" name="searchType" id="searchNum">
+										<option value="1">상품 제목</option>
 									</select>
-										<input class="form-control" type="text" name="isSearch" id="isSearch">
+										<input class="form-control" type="text" name="keyWord" id="isSearch">
 										<span>
 										<button type="submit" class="btn btn-default">검색</button>
 										</span>
