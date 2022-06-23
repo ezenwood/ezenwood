@@ -83,8 +83,6 @@ public interface AdminDAO {
 
 	public List<Map<String, Object>> qnaSearching(Map<String, Object> map);
 
-	public List<Map<String, Object>> qnaCategory(Map<String, Object> map);
-
 	//
 
 	public List<Map<String, Object>> adminReviewList(Map<String, Object> map);

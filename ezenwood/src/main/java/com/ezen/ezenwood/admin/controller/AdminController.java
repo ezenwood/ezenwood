@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ezen.common.CommandMap;
 import com.ezen.ezenwood.admin.service.AdminService;
@@ -557,12 +558,18 @@ public class AdminController {
 	// notice
 	// 공지사항 리스트보기
 	@RequestMapping(value = "/notice/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView adminNoticeList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
-			throws Exception {
+	public ModelAndView adminNoticeList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request,
+			RedirectAttributes redirectAttributes) throws Exception {
 
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
+
+		String keyword = request.getParameter("keyword");
+		String type = request.getParameter("type");
+
+		insertMap.put("keyword", keyword);
+		insertMap.put("type", type);
 
 		PaginationInfo paginationInfo = new PaginationInfo();
 
@@ -576,45 +583,50 @@ public class AdminController {
 		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
 
-		List<Map<String, Object>> list = adminService.adminNoticeList(insertMap);
-		mv.addObject("list", list);
+		if (keyword == null || type == null) {
+			List<Map<String, Object>> list = adminService.adminNoticeList(insertMap);
+			mav.addObject("list", list);
 
-		int totalCount = 0;
+			int totalCount = 0;
 
-		if (list.isEmpty()) {
+			if (list.isEmpty()) {
 
+			} else {
+				totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+				paginationInfo.setTotalRecordCount(totalCount);
+				mav.addObject("paginationInfo", paginationInfo);
+
+			}
+
+			mav.setViewName("admin/notice/noticeList");
 		} else {
-			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mv.addObject("paginationInfo", paginationInfo);
+			List<Map<String, Object>> resultMap = adminService.noticeSearching(insertMap);
 
+			Map<String, Object> map = new HashMap<String, Object>();
+
+			map.put("type", type);
+			map.put("keyword", keyword);
+
+			mav.addObject("map", map);
+			mav.addObject("list", resultMap);
+
+			int totalCount = 0;
+
+			if (resultMap.isEmpty()) {
+
+			} else {
+				totalCount = ((BigDecimal) resultMap.get(0).get("TOTAL_COUNT")).intValue();
+				paginationInfo.setTotalRecordCount(totalCount);
+				mav.addObject("paginationInfo", paginationInfo);
+
+			}
+
+//			redirectAttributes.addFlashAttribute("pageNum", pageNum);
+//			redirectAttributes.addFlashAttribute("title", title);
+//			redirectAttributes.addFlashAttribute("keyword", keyword);
+
+			mav.setViewName("admin/notice/noticeList");
 		}
-
-		mv.setViewName("admin/notice/noticeList");
-		return mv;
-	}
-
-	// 공지사항 검색기능
-
-	@RequestMapping(value = "/notice", method = RequestMethod.GET)
-	public ModelAndView noticeSearch(HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView("/admin/notice/noticeList");
-
-		Map<String, Object> insertMap = new HashMap<String, Object>();
-
-		String keyword = request.getParameter("keyword");
-		String type = request.getParameter("type");
-		String title = request.getParameter("title");
-		String step = request.getParameter("step");
-
-		insertMap.put("keyword", keyword);
-		insertMap.put("type", type);
-		insertMap.put("title", title);
-		insertMap.put("step", step);
-
-		List<Map<String, Object>> resultMap = adminService.noticeSearching(insertMap);
-
-		mav.addObject("list", resultMap);
 		return mav;
 	}
 
@@ -671,9 +683,9 @@ public class AdminController {
 	public String noticeWrite(CommandMap commandMap, HttpServletRequest request) throws Exception {
 
 		Map<String, Object> insertMap = commandMap.getMap();
-		
+
 		insertMap.put("request", request);
-		
+
 		int resultMap = adminService.adminNoticeInsert(commandMap.getMap());
 
 		return "redirect:/admin/notice/1";
@@ -698,143 +710,87 @@ public class AdminController {
 	}
 
 	// QNA
-	// 큐엔에이 리스트 보기
-	@RequestMapping(value = "/qna/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView qnaList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
-			throws Exception {
-		ModelAndView mav = new ModelAndView();
+		// 큐엔에이 리스트 보기
+		@RequestMapping(value = "/qna/{pageNum}", method = RequestMethod.GET)
+		public ModelAndView qnaList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+				throws Exception {
+			ModelAndView mav = new ModelAndView();
 
-		Map<String, Object> insertMap = new HashMap<String, Object>();
+			Map<String, Object> insertMap = new HashMap<String, Object>();
+			
+			Map<String, Object> searchMap = new HashMap<String, Object>();
+			
+			String category = request.getParameter("category");
+			String keyword = request.getParameter("keyword");
+			String type = request.getParameter("type");
+			
+			
+			System.out.println(category +"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
-		PaginationInfo paginationInfo = new PaginationInfo();
+			insertMap.put("category", category);
+			insertMap.put("keyword", keyword);
+			insertMap.put("type", type);
 
-		// 현재 페이지 번호
-		paginationInfo.setCurrentPageNo(pageNum);
-		// 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setRecordCountPerPage(9);
-		// 페이징 리스트의 사이즈
-		paginationInfo.setPageSize(5);
+			PaginationInfo paginationInfo = new PaginationInfo();
 
-		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
+			// 현재 페이지 번호
+			paginationInfo.setCurrentPageNo(pageNum);
+			// 한 페이지에 게시되는 게시물 건수
+			paginationInfo.setRecordCountPerPage(9);
+			// 페이징 리스트의 사이즈
+			paginationInfo.setPageSize(5);
 
-		List<Map<String, Object>> list = adminService.adminQNAList(insertMap);
-		mav.addObject("list", list);
+			insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+			insertMap.put("END", paginationInfo.getLastRecordIndex());
 
-		int totalCount = 0;
+			
+			if((category == null || category.equals("") ||category.isEmpty()) && (keyword == null ||keyword.equals("") || keyword.isEmpty()) ) {
+				List<Map<String, Object>> list = adminService.adminQNAList(insertMap);
+				mav.addObject("list", list);
 
-		if (list.isEmpty()) {
+				int totalCount = 0;
 
-		} else {
+				if (list.isEmpty()) {
 
-			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo", paginationInfo);
+				} else {
 
+					totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+					paginationInfo.setTotalRecordCount(totalCount);
+					mav.addObject("paginationInfo", paginationInfo);
+
+				}
+
+				mav.setViewName("admin/qna/qnaList");
+			}else {
+				
+				List<Map<String, Object>> list = adminService.qnaSearching(insertMap);
+
+				searchMap.put("category", category);
+				searchMap.put("type", type);
+				searchMap.put("keyword", keyword);
+				
+				mav.addObject("search", searchMap);
+				mav.addObject("list", list);
+
+				int totalCount = 0;
+
+				if (list.isEmpty()) {
+
+				} else {
+
+					totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+					paginationInfo.setTotalRecordCount(totalCount);
+					mav.addObject("paginationInfo", paginationInfo);
+
+				}
+
+				mav.setViewName("admin/qna/qnaList");
+				
+			}
+			
+			
+			return mav;
 		}
-
-		mav.setViewName("admin/qna/qnaList");
-		return mav;
-	}
-
-	// 큐엔에이 카테고리
-
-	@RequestMapping(value = "/qnacategory/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView qnaCategory(@PathVariable int pageNum, HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView("/admin/qna/qnaList");
-
-		Map<String, Object> insertMap = new HashMap<String, Object>();
-
-		String category = request.getParameter("category");
-		String wating = request.getParameter("wating");
-		String success = request.getParameter("success");
-
-		insertMap.put("category", category);
-		insertMap.put("wating", wating);
-		insertMap.put("success", success);
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		// 현재 페이지 번호
-		paginationInfo.setCurrentPageNo(pageNum);
-		// 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setRecordCountPerPage(9);
-		// 페이징 리스트의 사이즈
-		paginationInfo.setPageSize(5);
-
-		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
-
-		List<Map<String, Object>> list = adminService.qnaCategory(insertMap);
-
-		mav.addObject("list", list);
-
-		int totalCount = 0;
-
-		if (list.isEmpty()) {
-
-		} else {
-
-			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo", paginationInfo);
-
-		}
-
-		mav.setViewName("admin/qna/qnaList");
-
-		return mav;
-	}
-
-	// 큐엔에이 검색기능
-	@RequestMapping(value = "/qnaa/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView qnaSearch(@PathVariable int pageNum, HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView("/admin/qna/qnaList");
-
-		Map<String, Object> insertMap = new HashMap<String, Object>();
-
-		String keyword = request.getParameter("keyword");
-		String type = request.getParameter("type");
-		String title = request.getParameter("title");
-		String writer = request.getParameter("writer");
-
-		insertMap.put("keyword", keyword);
-		insertMap.put("type", type);
-		insertMap.put("title", title);
-		insertMap.put("writer", writer);
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		// 현재 페이지 번호
-		paginationInfo.setCurrentPageNo(pageNum);
-		// 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setRecordCountPerPage(9);
-		// 페이징 리스트의 사이즈
-		paginationInfo.setPageSize(5);
-
-		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
-
-		List<Map<String, Object>> list = adminService.qnaSearching(insertMap);
-
-		mav.addObject("list", list);
-
-		int totalCount = 0;
-
-		if (list.isEmpty()) {
-
-		} else {
-
-			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo", paginationInfo);
-
-		}
-
-		mav.setViewName("admin/qna/qnaList");
-
-		return mav;
-	}
 
 	// 큐엔에이 디테일보기
 
@@ -886,12 +842,11 @@ public class AdminController {
 		commandMap.put("MEMBER_ID", MEMBER_ID);
 		commandMap.put("QNA_SECREATE", QNA_SECREATE);
 		commandMap.put("QNA_NUM", QNA_NUM);
-		
 
 		if (commandMap.get("QNA_TITLE").equals("") || commandMap.get("QNA_CONTENT").equals("")) {
-			//넘어오는 값이 없을 때 
+			// 넘어오는 값이 없을 때
 			mav.setViewName("/admin/qna/qnaReplyForm");
-		}else {
+		} else {
 
 			int insert = adminService.adminQNAInsert(commandMap.getMap());
 
@@ -903,7 +858,7 @@ public class AdminController {
 				// 답변등록 안되었을 떄
 				mav.setViewName("/admin/qna/qnaReplyForm");
 			}
-			
+
 		}
 		return mav;
 	}
@@ -933,12 +888,11 @@ public class AdminController {
 
 		commandMap.put("MEMBER_ID", MEMBER_ID);
 		commandMap.put("QNA_NUM", QNA_NUM);
-		
-		
+
 		if (commandMap.get("QNA_TITLE").equals("") || commandMap.get("QNA_CONTENT").equals("")) {
-			//넘어오는 값이 없을 때 
+			// 넘어오는 값이 없을 때
 			mav.setViewName("/admin/qna/qnaModify");
-		}else {
+		} else {
 
 			int resultMap = adminService.adminQNAUpdate(commandMap.getMap());
 
@@ -950,7 +904,7 @@ public class AdminController {
 				// 답변등록 안되었을 떄
 				mav.setViewName("/admin/qna/qnaModify");
 			}
-			
+
 		}
 
 		return mav;
@@ -985,88 +939,70 @@ public class AdminController {
 		ModelAndView mav = new ModelAndView();
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		// 현재 페이지 번호
-		paginationInfo.setCurrentPageNo(pageNum);
-		// 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setRecordCountPerPage(9);
-		// 페이징 리스트의 사이즈
-		paginationInfo.setPageSize(5);
-
-		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
-
-		List<Map<String, Object>> list = adminService.adminReviewList(insertMap);
-		mav.addObject("list", list);
-
-		int totalCount = 0;
-
-		if (list.isEmpty()) {
-
-		} else {
-
-			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo", paginationInfo);
-
-		}
-
-		mav.setViewName("admin/review/reviewList");
-		return mav;
-	}
-
-	// 리뷰문의 검색기능
-
-	@RequestMapping(value = "/revieww/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView reivewSearch(@PathVariable int pageNum, HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView("/admin/review/reviewList");
-
-		Map<String, Object> insertMap = new HashMap<String, Object>();
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		// 현재 페이지 번호
-		paginationInfo.setCurrentPageNo(pageNum);
-		// 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setRecordCountPerPage(9);
-		// 페이징 리스트의 사이즈
-		paginationInfo.setPageSize(5);
-
-		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
-
+		
 		String keyword = request.getParameter("keyword");
 		String type = request.getParameter("type");
-		String title = request.getParameter("title");
-		String writer = request.getParameter("writer");
-
+		
 		insertMap.put("keyword", keyword);
 		insertMap.put("type", type);
-		insertMap.put("title", title);
-		insertMap.put("writer", writer);
 
-		List<Map<String, Object>> list = adminService.reviewSearching(insertMap);
+		PaginationInfo paginationInfo = new PaginationInfo();
 
-		mav.addObject("list", list);
+		// 현재 페이지 번호
+		paginationInfo.setCurrentPageNo(pageNum);
+		// 한 페이지에 게시되는 게시물 건수
+		paginationInfo.setRecordCountPerPage(9);
+		// 페이징 리스트의 사이즈
+		paginationInfo.setPageSize(5);
 
-		int totalCount = 0;
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
+		
+		if(keyword == null || keyword.isEmpty() || keyword.equals("") || type == null || type.isEmpty() || type.equals("")) {
+			
+			List<Map<String, Object>> list = adminService.adminReviewList(insertMap);
+			mav.addObject("list", list);
 
-		if (list.isEmpty()) {
+			int totalCount = 0;
 
-		} else {
+			if (list.isEmpty()) {
 
-			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo", paginationInfo);
+			} else {
 
+				totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+				paginationInfo.setTotalRecordCount(totalCount);
+				mav.addObject("paginationInfo", paginationInfo);
+
+			}
+
+			mav.setViewName("admin/review/reviewList");
+		}else {
+			
+			List<Map<String, Object>> list = adminService.reviewSearching(insertMap);
+			
+			mav.addObject("list", list);
+			mav.addObject("keyword",keyword);
+			mav.addObject("type",type);
+			
+			int totalCount = 0;
+
+			if (list.isEmpty()) {
+
+			} else {
+
+				totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+				paginationInfo.setTotalRecordCount(totalCount);
+				mav.addObject("paginationInfo", paginationInfo);
+
+			}
+
+			mav.setViewName("admin/review/reviewList");
+			
 		}
-
-		mav.setViewName("admin/review/reviewList");
 
 		return mav;
 	}
+
 
 	// 리뷰 디테일 보기
 	@RequestMapping(value = "/reviewdetail/{RVNum}")
@@ -1292,11 +1228,10 @@ public class AdminController {
 
 		commandMap.put("ONETOONE_NUM", ONETOONE_NUM);
 
-		
 		if (commandMap.get("ONETOONE_TITLE").equals("") || commandMap.get("ONETOONE_CONTENT").equals("")) {
-			//넘어오는 값이 없을 때 
+			// 넘어오는 값이 없을 때
 			mav.setViewName("/admin/oto/otoReplyForm");
-		}else {
+		} else {
 
 			int insert = adminService.adminOTOInsert(commandMap.getMap());
 
@@ -1308,9 +1243,8 @@ public class AdminController {
 				// 답변등록 안되었을 떄
 				mav.setViewName("/admin/oto/otoReplyForm");
 			}
-			
+
 		}
-		
 
 		return mav;
 	}
@@ -1325,12 +1259,11 @@ public class AdminController {
 
 		HttpSession session = request.getSession();
 		String MEMBER_ID = (String) session.getAttribute("MEMBER_ID");
-		
+
 		String ONETOONE_NUM = otoNum;
-		
 
 		int ONETOONE_NUMa = Integer.valueOf(ONETOONE_NUM);
-		
+
 		insertMap.put("MEMBER_ID", MEMBER_ID);
 		insertMap.put("ONETOONE_NUM", ONETOONE_NUMa);
 		int resultMap = adminService.adminOTODelete(insertMap);
@@ -1373,9 +1306,12 @@ public class AdminController {
 	public ModelAndView fqList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
 			throws Exception {
 
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mav = new ModelAndView();
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
+		
+		String keyword = request.getParameter("keyword");
+		String type = request.getParameter("type");
 
 		PaginationInfo paginationInfo = new PaginationInfo();
 		// 현재 페이지 번호
@@ -1387,47 +1323,53 @@ public class AdminController {
 
 		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
+		
+		if(keyword == null || keyword.isEmpty() || keyword.equals("") || type == null || type.isEmpty() || type.equals("")) {
+			// keyword 나 type 에 값이 안들어왔을 때 >> 검색을 하지 않았을 때 
+			
+			List<Map<String, Object>> list = adminService.adminFQList(insertMap);
+			mav.addObject("list", list);
 
-		List<Map<String, Object>> list = adminService.adminFQList(insertMap);
-		mv.addObject("list", list);
+			int totalCount = 0;
 
-		int totalCount = 0;
+			if (list.isEmpty()) {
 
-		if (list.isEmpty()) {
+			} else {
+				totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+				paginationInfo.setTotalRecordCount(totalCount);
+				mav.addObject("paginationInfo", paginationInfo);
 
-		} else {
-			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mv.addObject("paginationInfo", paginationInfo);
+			}
 
+			mav.setViewName("/admin/fq/fqList");
+			
+		}else {
+			// keyword 나 type 에 값이 들어왔을 때 >> 검색을 했을 때 
+			
+			List<Map<String, Object>> resultMap = adminService.fqSearching(insertMap);
+			
+			
+			mav.addObject("keyword",keyword);
+			mav.addObject("type",type);
+			
+			int totalCount = 0;
+
+			if (resultMap.isEmpty()) {
+
+			} else {
+				totalCount = ((BigDecimal) resultMap.get(0).get("TOTAL_COUNT")).intValue();
+				paginationInfo.setTotalRecordCount(totalCount);
+				mav.addObject("paginationInfo", paginationInfo);
+
+			}
+
+			mav.addObject("list", resultMap);
+			mav.setViewName("/admin/fq/fqList");
 		}
 
-		mv.setViewName("/admin/fq/fqList");
-		return mv;
-	}
-
-	// 자주묻는질문 검색기능
-	@RequestMapping(value = "/fq", method = RequestMethod.GET)
-	public ModelAndView fqSearch(HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView("/admin/fq/fqList");
-
-		Map<String, Object> insertMap = new HashMap<String, Object>();
-
-		String keyword = request.getParameter("keyword");
-		String type = request.getParameter("type");
-		String title = request.getParameter("title");
-		String step = request.getParameter("step");
-
-		insertMap.put("keyword", keyword);
-		insertMap.put("type", type);
-		insertMap.put("title", title);
-		insertMap.put("step", step);
-
-		List<Map<String, Object>> resultMap = adminService.fqSearching(insertMap);
-
-		mav.addObject("list", resultMap);
 		return mav;
 	}
+
 
 	// 자주묻는 질문 자세히보기
 	@RequestMapping("/fqdetail/{fqNum}")
@@ -1478,17 +1420,18 @@ public class AdminController {
 
 	// 자주묻는질문 쓰기 post
 	@RequestMapping(value = "/fqwrite", method = RequestMethod.POST)
-	public String fqWrite(CommandMap commandMap) throws Exception {		
-		
-		if (commandMap.get("QUESTION_TITLE").equals("") || commandMap.get("QUESTION_CONTENT").equals("") || commandMap.get("QUESTION_STEP").equals("")) {
-			//넘어오는 값이 없을 때 
-			return("/admin/fq/fqWriteForm");
-			
-		}else {
+	public String fqWrite(CommandMap commandMap) throws Exception {
+
+		if (commandMap.get("QUESTION_TITLE").equals("") || commandMap.get("QUESTION_CONTENT").equals("")
+				|| commandMap.get("QUESTION_STEP").equals("")) {
+			// 넘어오는 값이 없을 때
+			return ("/admin/fq/fqWriteForm");
+
+		} else {
 
 			int resultMap = adminService.adminFQInsert(commandMap.getMap());
-			
-			return("redirect:/admin/fqlist/1");		
+
+			return ("redirect:/admin/fqlist/1");
 		}
 
 	}

@@ -15,9 +15,19 @@
 	var sss = ddd.substring(0, idx + 1);
 
 	function fn_search(pageNo) {
+		
+		var type = '${map.type}';
+		
+		var keyword = '${map.keyword}';
 
-		location.href = sss + pageNo;
-	}
+		if (type == '' || type == null) {
+			location.href = sss + pageNo ;
+		}else {
+			location.href = sss + pageNo + '?' + "type="+type+"&keyword="+keyword;
+		}
+		
+		
+}
 </script>
 <meta charset="UTF-8">
 <title>noticeList</title>
@@ -136,7 +146,7 @@
 											</div>
 										</div>
 										<div style="align: center;">
-											<form id="searchForm" action="${contextPath}/admin/notice"
+											<form id="searchForm" action="${contextPath}/admin/notice/1"
 												method="get">
 												<select name="type">
 													<option value="">검색어</option>

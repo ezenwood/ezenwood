@@ -221,10 +221,6 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return (List<Map<String, Object>>) selectList("qna.qnasearch", map);
 	}
 
-	@Override
-	public List<Map<String, Object>> qnaCategory(Map<String, Object> map) {
-		return (List<Map<String, Object>>) selectList("qna.qnacategory", map);
-	}
 
 	// 리뷰 review
 

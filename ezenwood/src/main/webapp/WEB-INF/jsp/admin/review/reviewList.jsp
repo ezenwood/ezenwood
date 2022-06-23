@@ -15,7 +15,17 @@
 	var sss = ddd.substring(0, idx + 1);
 
 	function fn_search(pageNo) {
-		location.href = sss + pageNo;
+
+		var type = '${map.type}';
+
+		var keyword = '${map.keyword}';
+
+		if (type == '' || type == null) {
+			location.href = sss + pageNo;
+		} else {
+			location.href = sss + pageNo + '?' + "type=" + type + "&keyword="
+					+ keyword;
+		}
 	}
 </script>
 <meta charset="UTF-8">
@@ -78,7 +88,8 @@
 												<td>${rv.GOODS_TITLE}</td>
 												<td><a
 													href="/ezenwood/admin/reviewdetail/${rv.REVIEW_NUM}">${rv.REVIEW_TITLE}</a></td>
-												<td>${rv.MEMBER_NAME}</td><!-- MEMBERID로 받아야함 -->
+												<td>${rv.MEMBER_NAME}</td>
+												<!-- MEMBERID로 받아야함 -->
 												<td>${rv.REVIEW_DATE}</td>
 												<!--  등록된 상품이 없을때 -->
 												<c:if test="${fn:length(fq) le 0}">
@@ -102,15 +113,16 @@
 									</div>
 								</div>
 								<div style="align: center;">
-								<form id="searchForm" action="${contextPath}/admin/revieww/1" method="get">
-									<select name="type">
-										<option value="">검색어</option>
-										<option value="title">제목</option>
-										<option value="writer">작성자</option>
-									</select> <input type="text" name="keyword"/> <input
-										type="submit" value="검색" />
-								</form>
-							</div>
+									<form id="searchForm" action="${contextPath}/admin/revieww/1"
+										method="get">
+										<select name="type">
+											<option value="">검색어</option>
+											<option value="title">제목</option>
+											<option value="writer">작성자</option>
+										</select> <input type="text" name="keyword" /> <input type="submit"
+											value="검색" />
+									</form>
+								</div>
 							</div>
 						</div>
 					</div>
