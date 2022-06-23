@@ -15,11 +15,12 @@
         function test() {
             var pw1 = document.getElementById('password1').value;
             var pw2 = document.getElementById('password2').value;
-
-            if (pw1.length < 6) {
-                alert('비밀번호를 6글자 이상입력해주세요')
-                return false
-            }
+            var reg = new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*#?&]).{8,20}$");
+            if(!reg.test(pw1)){
+				  alert("비밀번호는 영문, 숫자, 특수문자 조합으로 8~20자리로 입력해 주세요.");
+				  return false;
+			  }
+            
             if (pw1 != pw2) {
                 alert("비밀번호가 일치 하지 않습니다");
                 return false;
@@ -27,6 +28,7 @@
                 alert("비밀번호가 일치합니다");
                 return true;
             }
+            
         }
         function selectAll(selectAll){
     		const checkboxes = document.getElementsByName('a');
@@ -34,6 +36,7 @@
     			checkbox.checked = selectAll.checked;
     		})
     	}
+        
     </script>
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <meta charset="UTF-8">
@@ -91,7 +94,7 @@
                         
 
                       
-                      <form method="post">
+                      <form method="post" onsubmit="return memberCheck()">
                            
                             <h3>약관동의</h3>
                             <div class="join_agreement_cont">
@@ -355,7 +358,7 @@
                                
                                 </div>
                                </div>
-                                </form>
+                                
                         </div>
                                
                     </div>
@@ -373,7 +376,7 @@
                                    </div>
                                    <!--//member_tit-->
                                    <div class="member_cont">
-                                <form id="formJoin" name="formJoin" action="#" method="post" novalidate="novalidate">
+                             
                                    <!--회원가입 / 정보 기본정보-->
                                    <h3>기본정보</h3>
                                   
@@ -391,7 +394,7 @@
                                                   </th>
                                                   <td>
                                                       <div class="member_warning">
-                                                          <input type="text" id="id" name="MEMBER_ID" ><input
+                                                          <input type="text" id="id" onkeypress="idc()" onkeydown="idc()" onkeyup="idc()" onchange="idc()" name="MEMBER_ID" ><input
 				type="button" value="아이디 중복확인" onclick="idCheck()" style="font-size: 12px; line-height: 1.5; color: #333; margin: 0 0 0 5px; padding: 5px 10px 5px 10px; border: 1px solid #989898;"><br><red style="color:red;">${errorMap.vaild_MEMBER_ID }</red>
                                                       </div>
                                                      <div id="id_info" class="text_pass">영문 소문자 8~20자</div>
@@ -426,7 +429,7 @@
                                                    </th>
                                                    <td>
                                                        <div class="member_warning">
-                                                           <input type="text" name="MEMBER_NAME"><br><red style="color:red;">${errorMap.vaild_MEMBER_NAME }</red>
+                                                           <input type="text" id="name" name="MEMBER_NAME"><br><red style="color:red;">${errorMap.vaild_MEMBER_NAME }</red>
                                                        </div>
                                                    </td>
                                                </tr>
@@ -437,7 +440,7 @@
                                                    <td>
                                                        <div class="member_warning">
                                                            
-                                    <input type="text" placeholder="ex)01012345678" name="MEMBER_PHONE"><br><red style="color:red;">${errorMap.vaild_MEMBER_PHONE }</red>
+                                    <input type="text" placeholder="ex)01012345678" id="phone" name="MEMBER_PHONE"><br><red style="color:red;">${errorMap.vaild_MEMBER_PHONE }</red>
                                                        </div>
                                                    </td>
                                                </tr>
@@ -447,7 +450,7 @@
                                                    </th>
                                                    <td class="member_email">
                                                        <div class="member_warning prior_wrong">
-                                                           <input type="text" name="MEMBER_EMAIL" ><br><red style="color:red;">${errorMap.vaild_MEMBER_EMAIL }</red>
+                                                           <input type="text" id="email" name="MEMBER_EMAIL" ><br><red style="color:red;">${errorMap.vaild_MEMBER_EMAIL }</red>
                                                        </div>
                                                    </td>
                                                </tr>
@@ -471,7 +474,7 @@
                                    </div>
                                    <div class="btn_center_box" style="text-align: center;">
                                        <input type="button" onclick="javascript:history.back();" value="취소" style="width: 150px; height: 45px; color: #3e3d3c; font-weight: bold; font-size: 13px; border: 1px solid #cccccc; background: #fff; cursor: pointer;">
-                                       &nbsp;&nbsp;<input type="submit" value="회원가입" onsubmit="memberCheck()"  style="width: 150px; height: 45px; margin: 0; color: #ffffff; font-size: 14px; border: 1px solid #323437; background: #323437; cursor: pointer; font-weight: bold;">
+                                       &nbsp;&nbsp;<input type="submit" value="회원가입"   style="width: 150px; height: 45px; margin: 0; color: #ffffff; font-size: 14px; border: 1px solid #323437; background: #323437; cursor: pointer; font-weight: bold;">
                                    </div>
                                    
                                 </form>
@@ -492,8 +495,115 @@
 </body>
 <script	src="//t1.daumcdn.net/mapjsapi/bundle/postcode/prod/postcode.v2.js"></script>
 			<script>
+			function spaceCut(str){
+				return str.replace(" ","");
+			}
 			
+			function idc() {
+				id = document.getElementById("id").value;
+				id2 = id.toLowerCase();
+				document.getElementById("id").value = id2;
+			}
 			
+			function memberCheck(){
+				checkbox1 = document.getElementById("termsAgree1");
+				  checkbox2 = document.getElementById("termsAgree2");
+
+				  
+				  var reg = new RegExp("^(?=.*[a-zA-Z])(?=.*[0-9])(?=.*[@$!%*#?&]).{8,20}$");
+				  if(checkbox1.checked || checkbox1.checked ){
+				    //checked
+				  }else{
+				    alert("약관에 동의해주셔야합니다.")
+				    return false;
+				  }
+				  
+				  id = document.getElementById("id").value;
+				  id =spaceCut(id);
+				  
+				  pw1 = document.getElementById("password1").value;
+				  pw2 = document.getElementById("password2").value;
+				 
+				  name = document.getElementById("name").value;
+				  phone = document.getElementById("phone").value;
+				  email =document.getElementById("email").value;
+				  
+				  zipcode =document.getElementById("sample4_postcode").value;
+				  add1=document.getElementById("sample4_roadAddress").value;
+				  add2=document.getElementById("sample4_detailAddress").value;
+				  
+				  if(id==""||id==null){
+					  alert("아이디는 필수항목입니다.");
+					  return false;
+				  }else{
+					  if(id.length>20|| id.length<8){
+						  alert("아이디의 길이가 짧거나 깁니다.");
+						  return false;
+					  }
+				  }
+				  
+				  if(pw1==""||pw1==null){
+						alert("비밀번호는 필수항목입니다.");
+						  return false;
+					} 
+				  
+				  
+				  if(pw1==pw2){
+					  //
+				  }else{
+					  alert("비밀번호가 일치하지 않습니다");
+					  return false;
+				  }
+				  
+				  if(!reg.test(pw1)){
+					  alert("비밀번호는 영문, 숫자, 특수문자 조합으로 8~20자리로 입력해 주세요.");
+					  return false;
+				  }
+				  
+				if(name==""||name==null){
+					alert("이름은 필수항목입니다.");
+					  return false;
+				}  
+			
+				if(phone==""||phone==null){
+					alert("전화번호는 필수항목입니다.");
+					  return false;
+				}  
+				  
+				var reg2 = new RegExp("^[0-9]{11,11}$");
+				if(!reg2.test(phone)){
+					alert("전화번호는 11자리 번호만 입력해 주세요");
+					  return false;
+				}
+				
+				if(email==""||email==null){
+					alert("이메일은 필수항목입니다.");
+					  return false;
+				}
+				
+				var reg3 = new RegExp("([\\w-\\.]+)@((?:[\\w]+\\.)+)([a-zA-Z]{2,4})");
+				if(!reg.test(email)){
+					alert("올바른 이메일 형식이 아닙니다.");
+					  return false;
+				}
+				
+				if(zipcode==""||zipcode==null){
+					alert("우편번호는 필수항목입니다.");
+					  return false;
+				}
+				if(add1==""||add1==null){
+					alert("도로명주소는 필수항목입니다.");
+					  return false;
+				}
+				if(add2==""||add2==null){
+					alert("상세주소는 필수항목입니다.");
+					  return false;
+				}
+				  
+				  
+				
+				
+			}
 			
 			
 			
@@ -543,7 +653,21 @@
     
     <!-- 아이디 중복확인 체크 -->
 	function idCheck(){
+		
+		
 		var id = document.getElementById("id").value;
+		
+		if(id.length>20||id.length<8){
+			alert("아이디의 길이는 8~20글자 이어야합니다.");
+			return;
+		}
+		var reg9 = new RegExp("^[a-z0-9]+$");
+		if(!reg9.test(id)){
+			alert("아이디의 형식은 소문자와 숫자로 이루어져야합니다");
+			return;
+		}
+		
+		
 		
 		$.get("idcheck?id="+id, function(data, status){
 			if(data==0){

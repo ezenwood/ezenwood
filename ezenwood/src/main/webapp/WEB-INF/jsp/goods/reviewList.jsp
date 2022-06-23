@@ -109,8 +109,8 @@ function insu(goodsNum){
 						</div>
 
 						<div class="btn_right_box">
-							<button type="button" class="btn_write"
-								onclick="insu(${GOODS_NUM})">작성하기</button>
+						<c:if test="${MEMBER_ID !=null}">	<button type="button" class="btn_write"
+								onclick="insu(${GOODS_NUM})">작성하기</button></c:if>
 						</div>
 					</div>
 
