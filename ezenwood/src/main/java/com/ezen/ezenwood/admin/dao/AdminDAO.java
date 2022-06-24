@@ -114,8 +114,6 @@ public interface AdminDAO {
 
 	public List<Map<String, Object>> otoSearching(Map<String, Object> map);
 
-	public List<Map<String, Object>> otoCategory(Map<String, Object> map);
-
 	public int adminOTOcheck(int ONETOONE_NUM);
 
 	public int adminOTOcheckQ(int ONETOONE_NUM);

@@ -14,9 +14,25 @@
 
 	var sss = ddd.substring(0, idx + 1);
 
-	function fn_search(pageNo) {
-
-		location.href = sss + pageNo;
+function fn_search(pageNo) {
+		
+		var category = '${search.category}';
+		var keyword = '${search.keyword}';
+		var type = '${search.type}';
+		
+		if(category != "" || category != null && type == ""){
+			
+			location.href = sss + pageNo+ '?' + "category="+category;
+			
+		}else if(type != "" && keyword != "") {
+			
+			location.href = sss + pageNo+ '?' + "type="+type+"&keyword="+keyword;
+			
+		} else {
+			
+			location.href = sss + pageNo;
+		}
+		
 	}
 </script>
 <meta charset="UTF-8">
@@ -51,7 +67,7 @@
 								<div class="col-sm-6">
 									<a href="${contextPath}/admin/oto/1"><button type="button"
 											class="btn btn-outline btn-default">전체</button></a>
-									<form id="searchForm" action="${contextPath}/admin/otocategory/1"
+									<form id="searchForm" action="${contextPath}/admin/oto/1"
 										method="get">
 										<select name="category">
 											<option value="">--카테고리--</option>
@@ -116,7 +132,7 @@
 								</div>
 							</div>
 							<div style="align: center;">
-								<form id="searchForm" action="${contextPath}/admin/otoo/1"
+								<form id="searchForm" action="${contextPath}/admin/oto/1"
 									method="get">
 									<select name="type">
 										<option value="">검색어</option>

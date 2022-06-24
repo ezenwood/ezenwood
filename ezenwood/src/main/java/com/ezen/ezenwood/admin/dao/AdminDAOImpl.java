@@ -312,10 +312,7 @@ public class AdminDAOImpl extends AbstractDAO implements AdminDAO {
 		return (List<Map<String, Object>>) selectList("onetoone.otosearching", map);
 	}
 
-	@Override
-	public List<Map<String, Object>> otoCategory(Map<String, Object> map) {
-		return (List<Map<String, Object>>) selectList("onetoone.otocategory", map);
-	}
+
 
 	// 자주묻는질문 fq
 

@@ -742,8 +742,6 @@ public class AdminController {
 			String keyword = request.getParameter("keyword");
 			String type = request.getParameter("type");
 			
-			
-			System.out.println(category +"@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@");
 
 			insertMap.put("category", category);
 			insertMap.put("keyword", keyword);
@@ -1065,95 +1063,19 @@ public class AdminController {
 	public ModelAndView otoList(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
 			throws Exception {
 
-		ModelAndView mv = new ModelAndView();
-
-		Map<String, Object> insertMap = new HashMap<String, Object>();
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		// 현재 페이지 번호
-		paginationInfo.setCurrentPageNo(pageNum);
-		// 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setRecordCountPerPage(9);
-		// 페이징 리스트의 사이즈
-		paginationInfo.setPageSize(5);
-
-		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
-
-		List<Map<String, Object>> list = adminService.adminOTOList(insertMap);
-		mv.addObject("list", list);
-
-		int totalCount = 0;
-
-		if (list.isEmpty()) {
-
-		} else {
-			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mv.addObject("paginationInfo", paginationInfo);
-
-		}
-
-		mv.setViewName("/admin/oto/otoList");
-		return mv;
-	}
-
-	// 일대일문의 검색기능
-
-	@RequestMapping(value = "/otocategory/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView otoCategory(@PathVariable int pageNum, HttpServletRequest request) throws Exception {
-		ModelAndView mav = new ModelAndView("/admin/oto/otoList");
-
-		Map<String, Object> insertMap = new HashMap<String, Object>();
-
-		PaginationInfo paginationInfo = new PaginationInfo();
-
-		String category = request.getParameter("category");
-		String wating = request.getParameter("wating");
-		String success = request.getParameter("success");
-
-		insertMap.put("category", category);
-		insertMap.put("wating", wating);
-		insertMap.put("success", success);
-
-		// 현재 페이지 번호
-		paginationInfo.setCurrentPageNo(pageNum);
-		// 한 페이지에 게시되는 게시물 건수
-		paginationInfo.setRecordCountPerPage(9);
-		// 페이징 리스트의 사이즈
-		paginationInfo.setPageSize(5);
-
-		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
-		insertMap.put("END", paginationInfo.getLastRecordIndex());
-
-		List<Map<String, Object>> list = adminService.otoCategory(insertMap);
-		mav.addObject("list", list);
-
-		int totalCount = 0;
-
-		if (list.isEmpty()) {
-
-		} else {
-			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo", paginationInfo);
-
-		}
-
-		mav.setViewName("/admin/oto/otoList");
-		//
-
-		return mav;
-	}
-
-	// 일대일문의 검색기능
-
-	@RequestMapping(value = "/otoo/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView otoSearch(@PathVariable int pageNum, HttpServletRequest request) throws Exception {
 		ModelAndView mav = new ModelAndView();
 
 		Map<String, Object> insertMap = new HashMap<String, Object>();
+		
+		Map<String, Object> searchMap = new HashMap<String, Object>();
+		
+		String category = request.getParameter("category");
+		String keyword = request.getParameter("keyword");
+		String type = request.getParameter("type");
+		
+		insertMap.put("category", category);
+		insertMap.put("type", type);
+		insertMap.put("keyword", keyword);
 
 		PaginationInfo paginationInfo = new PaginationInfo();
 
@@ -1166,36 +1088,54 @@ public class AdminController {
 
 		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
 		insertMap.put("END", paginationInfo.getLastRecordIndex());
+		
+		if((category == null || category.equals("") ||category.isEmpty()) && (keyword == null ||keyword.equals("") || keyword.isEmpty()) ) {
+			List<Map<String, Object>> list = adminService.adminOTOList(insertMap);
+			mav.addObject("list", list);
 
-		String keyword = request.getParameter("keyword");
-		String type = request.getParameter("type");
-		String title = request.getParameter("title");
-		String writer = request.getParameter("writer");
+			int totalCount = 0;
 
-		insertMap.put("keyword", keyword);
-		insertMap.put("type", type);
-		insertMap.put("title", title);
-		insertMap.put("writer", writer);
+			if (list.isEmpty()) {
 
-		List<Map<String, Object>> list = adminService.otoSearching(insertMap);
+			} else {
 
-		int totalCount = 0;
+				totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+				paginationInfo.setTotalRecordCount(totalCount);
+				mav.addObject("paginationInfo", paginationInfo);
 
-		if (list.isEmpty()) {
+			}
 
-		} else {
-			totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
-			paginationInfo.setTotalRecordCount(totalCount);
-			mav.addObject("paginationInfo", paginationInfo);
+			mav.setViewName("/admin/oto/otoList");
+		}else {
+			
+			List<Map<String, Object>> list =  adminService.otoSearching(insertMap);
 
+			searchMap.put("category", category);
+			searchMap.put("type", type);
+			searchMap.put("keyword", keyword);
+			
+			mav.addObject("search", searchMap);
+			mav.addObject("list", list);
+
+			int totalCount = 0;
+
+			if (list.isEmpty()) {
+
+			} else {
+
+				totalCount = ((BigDecimal) list.get(0).get("TOTAL_COUNT")).intValue();
+				paginationInfo.setTotalRecordCount(totalCount);
+				mav.addObject("paginationInfo", paginationInfo);
+
+			}
+
+			mav.setViewName("/admin/oto/otoList");
+			
 		}
-
-		mav.setViewName("/admin/oto/otoList");
-		//
-
-		mav.addObject("list", list);
 		return mav;
+
 	}
+
 
 	// 일대일 문의 디테일 보기
 

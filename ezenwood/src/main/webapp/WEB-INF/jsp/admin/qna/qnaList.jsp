@@ -16,22 +16,22 @@
 
 	function fn_search(pageNo) {
 		
-		var category = '${category}';
-		var keyword = '${keyword}';
-		var type = '${type}';
+		var category = '${search.category}';
+		var keyword = '${search.keyword}';
+		var type = '${search.type}';
 		
-		if ( keyword == "" || keyword == null || category == "" || category == null ) {
+		if(category != "" || category != null && type == ""){
+			
+			location.href = sss + pageNo+ '?' + "category="+category;
+			
+		}else if(type != "" && keyword != "") {
+			
+			location.href = sss + pageNo+ '?' + "type="+type+"&keyword="+keyword;
+			
+		} else {
 			
 			location.href = sss + pageNo;
-			
-			if(keyword != "" || category != "" ){
-				
-				location.href = sss + pageNo+ '?' + "type="+type+"&keyword="+keyword;
-				
-				location.href = sss + pageNo+ '?' + "category="+category;
-			}
 		}
-		
 		
 	}
 </script>

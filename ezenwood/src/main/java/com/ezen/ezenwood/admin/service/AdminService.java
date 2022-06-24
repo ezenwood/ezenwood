@@ -110,8 +110,6 @@ public interface AdminService {
     public int adminOTODeleteAll(Map<String,Object> map) throws Exception;
 
 	public List<Map<String, Object>> otoSearching(Map<String, Object> map) throws Exception;
-	
-	public List<Map<String, Object>> otoCategory(Map<String, Object> map) throws Exception;
 
 	// 자주묻는질문
 
