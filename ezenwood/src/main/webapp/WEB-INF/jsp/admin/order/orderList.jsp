@@ -19,13 +19,6 @@ var sss = ddd.substring(idx+1);
 
 function fn_search(pageNo) {
 	
-	var searchType ='7';
-	
-	if(sss!=null){
-		if(sss.length<3)
-		searchType=sss;
-		}
-	
 	
 	
 	var form = document.createElement("form");
@@ -37,6 +30,15 @@ function fn_search(pageNo) {
 	
 	var input_pageNum = document.createElement("input");
 	var input_searchType = document.createElement("input");
+	var input_searchOption = document.createElement("input");
+	var input_searchKeyword = document.createElement("input");
+	
+	
+	
+	var searchType ='${pagingMap.searchType}'
+	var searchOption = '${pagingMap.searchOption}'
+	var searchKeyword = '${pagingMap.searchKeyword}'
+	
 	
 	input_pageNum.setAttribute("type", "hidden");
 	input_pageNum.setAttribute("name", "PageNum");
@@ -46,27 +48,24 @@ function fn_search(pageNo) {
 	input_searchType.setAttribute("name", "searchType");
 	input_searchType.setAttribute("value", searchType);
 	
+	if(searchOption==0||searchKeyword==''||searchKeyword==null){
+		
+	}else{
+		input_searchOption.setAttribute("type", "hidden");
+		input_searchOption.setAttribute("name", "searchOption");
+		input_searchOption.setAttribute("value", searchOption);
+		input_searchKeyword.setAttribute("type", "hidden");
+		input_searchKeyword.setAttribute("name", "searchKeyword");
+		input_searchKeyword.setAttribute("value", searchKeyword);
+		form.appendChild(input_searchKeyword); 
+		form.appendChild(input_searchOption); 
+	}
+	
+	
 	form.appendChild(input_pageNum); 
 	form.appendChild(input_searchType); 
 	
-	if(ddd.indexOf("searchOption")!=-1){
-		var searchOptionNum = ddd.substring(ddd.indexOf("searchOption")+13,ddd.indexOf("searchOption")+14);
-		var searchKeywordValue = ddd.substring(ddd.lastIndexOf("=")+1);
-		
-		var input_searchOptionNum = document.createElement("input");
-		var input_searchKeywordValue = document.createElement("input");
-		
-		input_searchOptionNum.setAttribute("type", "hidden");
-		input_searchOptionNum.setAttribute("name", "searchOption");
-		input_searchOptionNum.setAttribute("value", searchOptionNum);
-		
-		input_searchKeywordValue.setAttribute("type", "hidden");
-		input_searchKeywordValue.setAttribute("name", "searchKeyword");
-		input_searchKeywordValue.setAttribute("value", searchKeywordValue);
-		
-		form.appendChild(input_searchOptionNum); 
-		form.appendChild(input_searchKeywordValue); 
-	}
+	
 	
 	
 	
@@ -119,7 +118,7 @@ function fn_search(pageNo) {
 					class="dataTables_wrapper form-inline dt-bootstrap no-footer">
 					<div class="row" style="margin-bottom:5px;">
 						<div class="col-sm-6">
-							<a href="/ezenwood/admin/orderList?searchNum=0&isSearch="><button type="button" class="btn btn-outline btn-default">전체</button></a>
+							<a href="/ezenwood/admin/order?PageNum=1&searchType=7"><button type="button" class="btn btn-outline btn-default">전체</button></a>
 							<select class="form-control" name="select" onchange="window.open(value,'_self');">
 								<option value ="">--주문상태--</option>
 								<option value ="/ezenwood/admin/order?PageNum=1&searchType=1">결제대기 중</option>
@@ -194,6 +193,7 @@ function fn_search(pageNo) {
 							<div style="text-align:center;">
 								<div id="dataTables-example_filter" class="dataTables_filter">
 									<form action="/ezenwood/admin/order">
+									<input type="hidden" name="searchType" value="${pagingMap.searchType}">
 									<select class="form-control" name="searchOption" id="searchNum">
 										<option value="1">ID</option>
 										<option value="2">주문 번호</option>

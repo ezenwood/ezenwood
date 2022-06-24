@@ -61,6 +61,12 @@ public class CommonController {
 		map.put("MEMBER_ID", request.getSession().getAttribute("MEMBER_ID"));
 		map.put("BASKET_GOODS_OPTION", "dsadsa");
 		
+		String MEMBER_NUM = (String) request.getSession().getAttribute("MEMBER_NUM");
+		if(MEMBER_NUM==null||MEMBER_NUM.equals("")||MEMBER_NUM.isEmpty()) {
+			response.getWriter().print(0);
+			return;
+		}
+		
 		int checkNum = commonService.insertCart(map);
 		
 		

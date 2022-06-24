@@ -241,13 +241,13 @@
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">받으실 분</th>
-                <td><input type="text" id="dname" name="ORDER_RECEIVER" placeholder="이름을 입력해주세요"></td>
+                <td><input type="text" required="required" id="dname" name="ORDER_RECEIVER" placeholder="이름을 입력해주세요"></td>
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">받으실 곳</th>
-                <td><input type="text" name="ORDER_RZIPCODE" id="sample4_postcode" placeholder="우편번호"> <button type="button" value="우편번호 검색" onclick="sample4_execDaumPostcode()" class="postbox">우편번호 검색</button><br>
-                    <input type="text" name="ORDER_RADD1" id="sample4_roadAddress" placeholder="도로명주소"><input type="text" id="sample4_jibunAddress" placeholder="지번주소"><br>
-                    <input type="text" name="ORDER_RADD2"  id="sample4_detailAddress" placeholder="상세주소"><input type="text" id="sample4_extraAddress" name="ORDER_RADD3" placeholder="참고사항"></td>
+                <td><input type="text" required="required" name="ORDER_RZIPCODE" id="sample4_postcode" placeholder="우편번호"> <button type="button" value="우편번호 검색" onclick="sample4_execDaumPostcode()" class="postbox">우편번호 검색</button><br>
+                    <input type="text" required="required" name="ORDER_RADD1" id="sample4_roadAddress" placeholder="도로명주소"><input type="text" id="sample4_jibunAddress" placeholder="지번주소"><br>
+                    <input type="text" required="required" name="ORDER_RADD2"  id="sample4_detailAddress" placeholder="상세주소"><input type="text" id="sample4_extraAddress" name="ORDER_RADD3" placeholder="참고사항"></td>
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">휴대폰 번호</th>

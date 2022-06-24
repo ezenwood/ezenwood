@@ -1,5 +1,7 @@
 package com.ezen.ezenwood.goods.controller;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
@@ -7,6 +9,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -244,13 +247,41 @@ public class GoodsController {
 	}
 
 	@RequestMapping("/goods/qna/{qnanoumdomodmsa}")
-	public ModelAndView qnaDetail(@PathVariable("qnanoumdomodmsa") int qnanum) {
+	public ModelAndView qnaDetail(@PathVariable("qnanoumdomodmsa") int qnanum, HttpServletRequest request,HttpServletResponse response) throws IOException {
 		ModelAndView mav = new ModelAndView();
 
+		
+		String MEMBER_NUM = (String) request.getSession().getAttribute("MEMBER_NUM");
+		
+		
+		
 		Map<String, Object> insertMap = new HashMap<String, Object>();
 		insertMap.put("QNA_NUM", qnanum);
 
 		Map<String, Object> resultMap = goodsService.getQNADetail(insertMap);
+		
+		if(resultMap.get("QNA_SECREATE").equals("Y")) {
+			String writer =  String.valueOf(((BigDecimal) resultMap.get("QNA_WRITER")).intValue());
+			if(MEMBER_NUM==null||MEMBER_NUM.equals("")||MEMBER_NUM.isEmpty()) {
+				// x
+				response.setCharacterEncoding("UTF-8");
+				response.setContentType("text/html; charset=utf-8");
+				PrintWriter out = response.getWriter();
+				out.println("<script>alert('권한이 없습니다'); history.back();</script>");
+				out.flush();
+			}else {
+				if(writer.equals(MEMBER_NUM)) {
+					//o
+				}else {
+					//x
+					response.setCharacterEncoding("UTF-8");
+					response.setContentType("text/html; charset=utf-8");
+					PrintWriter out = response.getWriter();
+					out.println("<script>alert('권한이 없습니다'); history.back();</script>");
+					out.flush();
+				}
+			}
+		}
 
 		mav.addObject("QNAMap", resultMap);
 

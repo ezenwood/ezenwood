@@ -1,3 +1,4 @@
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
     <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -5,6 +6,12 @@
 <html>
 
 <head>
+<% String MEMBER_ID =(String)session.getAttribute("MEMBER_ID");
+
+	if(MEMBER_ID==null||MEMBER_ID.equals("")||MEMBER_ID.isEmpty()){
+		out.print("<script> alert('회원만 주문할 수 있습니다.'); history.back();</script>); ");
+	}
+%>
     <meta charset="UTF-8">
     <link rel="shortcut icon" href="/ezenwood/resource/image/letter-e (1).png" type=”image/x-icon” />
     <link href="/ezenwood/css/reset.css" type="text/css" rel="stylesheet">
@@ -114,7 +121,7 @@
                                 </div>
                                 <!--//cart_cont_list-->
                                 <div class="btn_left_box">
-                                    <a href="javascript:history.back();" class="shop_go_link">
+                                    <a href="/ezenwood/cart;" class="shop_go_link">
                                         <em>
                                             << 장바구니 가기 </em>
                                     </a>
