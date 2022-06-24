@@ -586,9 +586,21 @@ function count(type) {
 										<c:forEach items="${QNAListMap }" var="QNAMap"
 											varStatus="status">
 											<tr>
-												<td style="width: 70%"><a
-													href="goods/qna/${QNAMap.QNA_NUM }">${QNAMap.QNA_TITLE }</a>
-												</td>
+												<td style="width: 70%"><c:if test='${QNAMap.QNA_SECREATE =="Y" }'>
+												<img alt="비밀글" src="/ezenwood/resource/image/secret.png">
+												</c:if><c:choose>
+												<c:when test='${QNAMap.QNA_SECREATE =="Y" && QNAMap.QNA_WRITER == MEMBER_NUM}'>
+												<a href="/ezenwood/goods/qna/${QNAMap.QNA_NUM }"
+																			name="title">${QNAMap.QNA_TITLE }</a>
+												</c:when>
+												<c:when test='${QNAMap.QNA_SECREATE =="Y" && QNAMap.QNA_WRITER != MEMBER_NUM}'>
+												${QNAMap.QNA_TITLE }
+												</c:when>
+												<c:otherwise>
+												<a href="/ezenwood/goods/qna/${QNAMap.QNA_NUM }"
+																			name="title">${QNAMap.QNA_TITLE }</a>
+												</c:otherwise>
+												</c:choose></td>
 												<%-- <td style="width: 10%">${QNAMap.QNA_WRITER }</td> --%>
 												<td style="width: 10%">${QNAMap.MEMBER_NAME}</td>
 												<td style="width: 20%"><fmt:formatDate
