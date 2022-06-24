@@ -29,22 +29,47 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public int insertOTO(Map<String, Object> insertMap, HttpServletRequest request) throws Exception{
 
-		int checkNum = boardDAO.insertOTO(insertMap);
+//		int checkNum = boardDAO.insertOTO(insertMap);
+//		
+//		if(checkNum==1) {
+//			insertMap.put("IMAGE_TABLENAMES_TABLENAME", "ONETOONE");
+//			insertMap.put("IMAGE_PARENT", insertMap.get("SONETOONE_NUM"));
+//			
+//			ImageSaver imageSaver = new ImageSaver();
+//			
+//			imageSaver.insertOTO(insertMap);
+//			
+//			imageDAO.insertImage(insertMap);
+//			
+//		}
+//
+//		return checkNum;
 		
-		if(checkNum==1) {
+		
+		boardDAO.insertOTO(insertMap);
+		
+		try {
 			insertMap.put("IMAGE_TABLENAMES_TABLENAME", "ONETOONE");
-			insertMap.put("IMAGE_PARENT", insertMap.get("SONETOONE_NUM"));
-			
-			ImageSaver imageSaver = new ImageSaver();
-			
-			imageSaver.insertOTO(insertMap);
-			
+			insertMap.put("IMAGE_PARENT", insertMap.get("ONETOONE_NUM"));
+			Map<String,Object> returnMap = imageSaver.saveImageFile(insertMap, request);
+			if(returnMap.get("IMAGE_ORG")==null) {
+				
+			}else {
 			imageDAO.insertImage(insertMap);
-			
-		}
-
-		return checkNum;
+			}
+		} catch (Exception e) {
+			// image store fail
+			e.printStackTrace();
+		
+		
+		return 0;
 	}
+		return 1;
+	}
+	
+	
+	
+	
 	@Override
 	public Map<String, Object> getinsertOTOGET(Map<String, Object> insertMap) {
 		
