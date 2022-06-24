@@ -80,9 +80,11 @@
 				contentType : "application/json",
 				success : function(data) {
 					if (data == 1) {
-						alert("장바구니 추가 성공");
+						if(confirm("장바구니에 추가되었습니다. \r\n 이동하시겠습니까?")){
+							location.href = "/ezenwood/cart";
+						}
 					} else {
-						alert("fail");
+						alert("장바구니 추가 실패 회원만 이용할 수 있습니다.");
 					}
 				}
 
@@ -333,9 +335,9 @@ function count(type) {
 							<div class="xans-element- xans-product xans-product-action ">
 								<div class="ec-base-button">
 									<a href="#none" class="first dj-btn-1  wwwbuy"
-										onclick="product_submit(1, '#', this)" id="buyinsu" >buy now</a> <a
-										href="/ezenwood/cart" id="cartButton" class="dj-btn-1-2  wwwcart"
-										onclick="product_submit(2, '#', this)">add cart</a> <span
+										 id="buyinsu" >buy now</a> <a
+										href="#" id="cartButton" class="dj-btn-1-2  wwwcart"
+										>add cart</a> <span
 										class="dj-btn-1-2 displaynone wwwsoldout">SOLD OUT</span>
 
 								</div>

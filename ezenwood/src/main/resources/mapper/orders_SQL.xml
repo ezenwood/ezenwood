@@ -106,7 +106,10 @@ and ORDERS_STATUS = 5
 and ORDERS_STATUS = 6
 </when>
 <when test='searchOption=="1"'>
-and MEMBER_ID = #{searchKeyword}
+and MEMBER_ID like '%'||#{searchKeyword}||'%'
+</when>
+<when test='searchOption=="2"'> 
+and ORDERS_NUM = #{searchKeyword}
 </when>
 </choose>
 
