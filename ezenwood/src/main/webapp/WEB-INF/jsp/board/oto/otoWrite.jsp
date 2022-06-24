@@ -12,7 +12,16 @@
 <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
 
 
-<script>
+<script type="text/javascript">
+var gfv_count = 1;
+$(document).ready(function(){
+
+	$("#addFile").on("click", function(e){ //파일 추가 버튼
+		e.preventDefault();
+		fn_addFile();
+	});
+});
+
 function formCheck() {
 	var form = document.writeForm;
 	if(form.ONETOONE_TITLE.value=="") {
@@ -28,6 +37,19 @@ function formCheck() {
 	
 	form.submit();
 }
+
+function fn_addFile(){
+	var str = "<p><input type='file' name='otoImage"+(gfv_count++)+"'><a href='#this' class='btn' name='delete'>삭제</a></p>";
+	$("#fileDiv").append(str);
+	$("a[name='delete']").on("click", function(e){ //삭제 버튼
+		e.preventDefault();
+		fn_deleteFile($(this));
+	});
+}
+function fn_deleteFile(obj){
+	obj.parent().remove();
+}
+
 
 </script>
 
@@ -86,8 +108,10 @@ function formCheck() {
 																style="overflow: hidden; width: 100%; margin: 5px 0 10px 0;">
 																
 																<div class="btn_upload_box">
-																	<input type="file" name="otoImage" accept="image/jpg, image/jpeg, image/png">
+																	<input type="file" name="otoImage" accept="image/jpg, image/jpeg, image/png" >
 																	<div>jpg, jpeg, png 파일만 선택 가능합니다.</div>
+																	
+																	<a href="#this" class="btn" id="addFile">파일 추가</a>
 																	
 																	</div>
 																</div>
@@ -110,6 +134,8 @@ function formCheck() {
 										<button type="button" class="btn_write_ok" onclick="formCheck()">
 											<strong>저장</strong>
 										</button>
+									
+										
 									</div>
 								</div>
 

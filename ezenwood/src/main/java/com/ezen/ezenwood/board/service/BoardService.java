@@ -3,6 +3,9 @@ package com.ezen.ezenwood.board.service;
 import java.util.List;
 import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+
+import org.springframework.web.multipart.MultipartFile;
 
 public interface BoardService {
 	
@@ -24,7 +27,6 @@ public interface BoardService {
 	public List<Map<String, Object>> NoticeList(Map<String, Object> insertMap);
 	public Map<String, Object> getNoticeDetail(Map<String, Object> insertMap);
 	public Map<String, Object> getinsertOTOGET(Map<String, Object> insertMap);
-		
 
 
 }

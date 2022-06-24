@@ -1,11 +1,14 @@
 package com.ezen.ezenwood.board.controller;
 
+import java.io.PrintWriter;
+import java.math.BigDecimal;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
@@ -13,10 +16,13 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.common.CommandMap;
 import com.ezen.ezenwood.board.service.BoardService;
+
+import egovframework.rte.ptl.mvc.tags.ui.pagination.PaginationInfo;
 
 @Controller
 
@@ -26,23 +32,44 @@ public class BoardController {
 	BoardService boardService;
 
 	//OTO
-	@RequestMapping({"/board/oto"})
-	  public ModelAndView OTOList(HttpServletRequest request) {
+	@RequestMapping("/board/oto/{otonum}")
+	  public ModelAndView OTOList(HttpServletRequest request,@PathVariable int otonum ) {
       
 	    ModelAndView mav = new ModelAndView();
 	    HttpSession session = request.getSession();
+	    String currentPageNum = request.getParameter("searchNum");
       
+	    if (currentPageNum == null||currentPageNum==""||currentPageNum.isEmpty()) {
+			currentPageNum = "1";
+		}
+	    
+	    PaginationInfo paginationInfo = new PaginationInfo();
+		
+		//현재 페이지 설정
+		paginationInfo.setCurrentPageNo(otonum);
+		
+		// 한 페이지에 보여줄 게시물 갯수
+		paginationInfo.setRecordCountPerPage(10);
+		
+		// 페이징 갯수 1~5페이지
+		paginationInfo.setPageSize(5);
+		
 	    String membernum = (String)session.getAttribute("MEMBER_NUM");
       
 	    Map<String, Object> insertMap = new HashMap<String, Object>();
       
 	    insertMap.put("MEMBER_NUM", membernum);
-	    insertMap.put("START", "1");
-	    insertMap.put("END", "15");
+		insertMap.put("START", paginationInfo.getFirstRecordIndex() + 1);
+		insertMap.put("END", paginationInfo.getLastRecordIndex());
 	    
 	    List<Map<String, Object>> OTOListMap = this.boardService.OTOList(insertMap);
       
 	    mav.addObject("OTOListMap", OTOListMap);
+	    int totalCount = 0;
+	    totalCount = ((BigDecimal) OTOListMap.get(0).get("TOTAL_COUNT")).intValue();
+		// 총 개수 
+		paginationInfo.setTotalRecordCount(totalCount);
+	    mav.addObject("paginationInfo", paginationInfo);
 	    mav.setViewName("board/oto/otoBoard");
       
 	    return mav;
@@ -56,6 +83,7 @@ public class BoardController {
       
 	    String memberid = (String)session.getAttribute("MEMBER_ID");
       
+	    
 	    Map<String, Object> insertMap = new HashMap<String, Object>();
       
 	    insertMap.put("MEMBER_ID", memberid);
@@ -119,7 +147,7 @@ public class BoardController {
 	}
 
 	@RequestMapping(value = "/board/oto/otoWrite", method = RequestMethod.POST)
-	public String otoWrite(CommandMap commandmap, HttpServletRequest request) throws Exception {
+	public String otoWrite(CommandMap commandmap, HttpServletRequest request,HttpServletResponse response, MultipartFile file) throws Exception {
 		
 		Map<String, Object> insertMap = commandmap.getMap();
 		
@@ -130,7 +158,15 @@ public class BoardController {
 		insertMap.put("MEMBER_ID", MEMBER_ID);
 		insertMap.put("request", request);
 		
-		boardService.insertOTO(insertMap, request);
+		int result =boardService.insertOTO(insertMap, request);
+		if( result==1) {
+			
+		}else {
+			PrintWriter out = response.getWriter();
+			out.println("<script>alert('작성실패 제목과 내용을 모두 적어주세요.'); location.href='" + request.getContextPath()
+					+ "/board/oto';</script>");
+			out.flush();
+		}
 		
 		return "redirect:/board/oto?idx=";
 		
