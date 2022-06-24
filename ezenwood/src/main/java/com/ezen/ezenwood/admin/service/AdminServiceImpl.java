@@ -531,12 +531,7 @@ public class AdminServiceImpl implements AdminService {
 		return adminDAO.otoSearching(map);
 	}
 
-	@Override
-	public List<Map<String, Object>> otoCategory(Map<String, Object> map) throws Exception {
-		// TODO Auto-generated method stub
-
-		return adminDAO.otoCategory(map);
-	}
+	
 
 	// fq(자주묻는질문)
 
