@@ -120,7 +120,7 @@ function deleteConfirm(){
 											</table>
 										</div>
 										<div class="ec-base-button ">
-											<span class="gLeft"> <a href="/ezenwood/board/oto"
+											<span class="gLeft"> <a href="/ezenwood/board/oto/1"
 												class="btnNormalFix sizeS">목록</a>
 												
 											</span> 

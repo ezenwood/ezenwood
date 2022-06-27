@@ -11,16 +11,11 @@
 <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
 
-
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  
 <script type="text/javascript">
-var gfv_count = 1;
-$(document).ready(function(){
-
-	$("#addFile").on("click", function(e){ //파일 추가 버튼
-		e.preventDefault();
-		fn_addFile();
-	});
-});
 
 function formCheck() {
 	var form = document.writeForm;
@@ -37,19 +32,6 @@ function formCheck() {
 	
 	form.submit();
 }
-
-function fn_addFile(){
-	var str = "<p><input type='file' name='otoImage"+(gfv_count++)+"'><a href='#this' class='btn' name='delete'>삭제</a></p>";
-	$("#fileDiv").append(str);
-	$("a[name='delete']").on("click", function(e){ //삭제 버튼
-		e.preventDefault();
-		fn_deleteFile($(this));
-	});
-}
-function fn_deleteFile(obj){
-	obj.parent().remove();
-}
-
 
 </script>
 
@@ -69,13 +51,13 @@ function fn_deleteFile(obj){
 							<form name="writeForm" id="frmWrite" method="post"
 								enctype="multipart/form-data" class="frmWrite"
 								novalidate="novalidate">
-								<input type="hidden" name="MEMBER_NAME" value=""> 
+<!-- 								<input type="hidden" name="MEMBER_NAME" value=""> 
 								<input type="hidden" name="bdId" value="oto"> 
 								<input type="hidden" name="bdId" value="oto"> 
 								<input type="hidden" name="bdId" value="oto"> 
 								<input type="hidden" name="sno" value> 
 								<input type="hidden" name="mode" value="write"> 
-								<input type="hidden" name="returnUrl" value="bdId=goodsqa">
+								<input type="hidden" name="returnUrl" value="bdId=goodsqa"> -->
 								<div class="board_zone_write">
 									<div class="board_write_box">
 										<table class="board_write_table">
@@ -107,14 +89,25 @@ function fn_deleteFile(obj){
 															<div
 																style="overflow: hidden; width: 100%; margin: 5px 0 10px 0;">
 																
-																<div class="btn_upload_box">
+<!-- 																<div class="btn_upload_box">
+																	<p>
 																	<input type="file" name="otoImage" accept="image/jpg, image/jpeg, image/png" >
-																	<div>jpg, jpeg, png 파일만 선택 가능합니다.</div>
-																	
-																	<a href="#this" class="btn" id="addFile">파일 추가</a>
-																	
-																	</div>
+																	</p>
+																</div> -->
+
+																<div id="fileDiv">
+																	<a href="#this" class="btn" id="addFile">파일
+																	추가</a>
+																	<p>
+																		<input type="file" id="file" name="otoImage" accept="image/jpg, image/jpeg, image/png"> 
+																		<a href="#this" class="btn" id="delete" name="delete">삭제</a>
+																	</p>
+
 																</div>
+
+																<br />
+															 <span style="font-size:10px; color: gray;">jpg, jpeg, png 파일만 선택 가능합니다.</span>
+															</div>
 															</div>
 														</div>
 													</td>
@@ -128,7 +121,7 @@ function fn_deleteFile(obj){
 								<div class="btn_center_box">
 									<div style="text-align: center">
 										<button type="button" class="btn_before"
-											onclick="location.href='http://localhost:9001/ezenwood/board/oto'">
+											onclick="location.href='http://localhost:9001/ezenwood/board/oto/1'">
 											<strong>이전</strong>
 										</button>
 										<button type="button" class="btn_write_ok" onclick="formCheck()">
@@ -150,5 +143,35 @@ function fn_deleteFile(obj){
 		</div>
 	</div>
 	<%@include file="/include/footer.jsp"%>
+	<script type="text/javascript">
+		var gfv_count = 1;
+	
+		$(document.writeForm).ready(function(){
+
+			$("#addFile").on("click", function(e){ //파일 추가 버튼
+				e.preventDefault();
+				fn_addFile();
+			});
+			
+			$("a[name='delete']").on("click", function(e){ //삭제 버튼
+				e.preventDefault();
+				fn_deleteFile($(this));
+			});
+		});
+		
+		function fn_addFile(){
+			var str = "<p><input type='file' name='otoImage"+(gfv_count++)+"' accept='image/jpg, image/jpeg, image/png'><a href='#this' class='btn' name='delete'>삭제</a></p>";
+			$("#fileDiv").append(str);
+			$("a[name='delete']").on("click", function(e){ //삭제 버튼
+				e.preventDefault();
+				fn_deleteFile($(this));
+			});
+		}
+		
+		function fn_deleteFile(obj){
+			obj.parent().remove();
+		}
+	</script>
+
 </body>
 </html>

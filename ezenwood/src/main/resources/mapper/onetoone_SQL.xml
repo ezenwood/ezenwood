@@ -151,13 +151,14 @@ FROM MEMBER
 WHERE MEMBER_NUM = (SELECT ONETOONE_MEMBER_NUM FROM ONETOONE WHERE ONETOONE_NUM = #{ONETOONE_NUM})) AND ONETOONE_NUM = #{ONETOONE_NUM}
 ]]>
 	</select>
+	
 	<!-- 고객 OTO 작성 -->
-	<insert id="insertClient" parameterType="hashmap"
-		useGeneratedKeys="true" keyProperty="SONETOONE_NUM">
-		<selectKey order="BEFORE" keyProperty="SONETOONE_NUM"
-			resultType="string">
-			select seq_onetoone_num.nextval from dual
-		</selectKey>
+   <insert id="insertClient" parameterType="hashmap"
+      useGeneratedKeys="true" keyProperty="ONETOONE_NUM">
+      <selectKey order="BEFORE" keyProperty="ONETOONE_NUM"
+         resultType="string">
+         select seq_onetoone_num.nextval from dual
+      </selectKey>
 <![CDATA[
 
 INSERT INTO ONETOONE(
@@ -169,7 +170,7 @@ INSERT INTO ONETOONE(
     ONETOONE_DEL_GB,
     ONETOONE_TYPE)
     VALUES(
-    #{SONETOONE_NUM},
+    #{ONETOONE_NUM},
     (SELECT MEMBER_NUM FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID}),
     #{ONETOONE_TITLE},
     #{ONETOONE_CONTENT},
@@ -178,7 +179,7 @@ INSERT INTO ONETOONE(
     'Q')
 
 ]]>
-	</insert>
+   </insert>
 
 
 	<!-- 관리자 OTO 작성 -->
