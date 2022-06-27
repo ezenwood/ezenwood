@@ -14,9 +14,16 @@
 <link href="/ezenwood/css/common.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
 <script type="text/javascript">
-$(document).ready(function() {
+var ddd = document.location.href;
+
+var idx = ddd.lastIndexOf("/");
+
+var sss = ddd.substring(0, idx + 1);
+
+function fn_search(pageNo) {
+		location.href = sss + pageNo;
 	
-});
+}
 
 </script>
 </head>
@@ -94,10 +101,21 @@ $(document).ready(function() {
                                 </c:if>
                            
 						</div>
+				
+
+									<div class="insu" style="margin: 0 auto; text-align: center;">
+										<c:if test="${not empty paginationInfo}">
+											<ui:pagination paginationInfo="${paginationInfo}" type="text"
+												jsFunction="fn_search" />
+										</c:if>
+									</div>
+							
 						<!-- //sub_content -->
 					</div>
+					
 					<!-- //본문 끝 contents -->
 				</div>
+				
 			</div>
 		</div>
 	</div>

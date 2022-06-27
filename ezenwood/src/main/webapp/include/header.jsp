@@ -81,7 +81,7 @@
 									class="dropbtn">BOARD</a>
 									<ul class="depth1, dropdown-content">
 										<li><a href="/ezenwood/board/notice">NOTICE</a></li>
-										<li><a href="/ezenwood/board/oto">1:1 문의</a></li>
+										<li><a href="/ezenwood/board/oto/1">1:1 문의</a></li>
 										<li><a href="/ezenwood/board/fq">자주 묻는 질문</a></li>
 									</ul></li>
 

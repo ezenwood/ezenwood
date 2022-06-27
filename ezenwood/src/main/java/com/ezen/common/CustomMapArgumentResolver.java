@@ -27,7 +27,7 @@ public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
 		Enumeration<?> enumeration = request.getParameterNames();
 		
 		String key = null;
-		String[] values = null;
+		String[] values = null; //같은 값이 올때 처리하기 위해서 배열로 저장
 		while(enumeration.hasMoreElements()){
 			key = (String) enumeration.nextElement();
 			values = request.getParameterValues(key);
@@ -42,3 +42,4 @@ public class CustomMapArgumentResolver implements HandlerMethodArgumentResolver{
 	}
 
 }
+//commandmap파라미터들을 받아서 처리 (<태그 방지함)&gt

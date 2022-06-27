@@ -102,9 +102,7 @@ function deleteConfirm(){
 													<td>								
 															<div class="detail">
 																<div class="fr-view fr-view-article">
-																	<!--<c:if test="${OTOMap.OTO_IMAGE != null}">
-																	/<img alt="/ezenwood/resource/image/${OTOMap.OTO_IMAGE}">
-																	</c:if>-->
+																
 																	<br>${OTOMap.ONETOONE_CONTENT}
 																</div>
 															</div>
@@ -112,8 +110,10 @@ function deleteConfirm(){
 													</tr>
 													<tr class="attach displaynone">
 														<th scope="row">이미지파일</th>
-														<td><img src="/ezenwood/resource/image/${OTOMap.otoImage}" alt="Missing Image" width="300px"
-															height="300px"></td>
+														<td><c:if test="${OTOMap.otoImage != null}">
+																	<img src="/ezenwood/resource/image/${OTOMap.otoImage}" width="300px"
+															height="300px">
+																	</c:if></td>
 													</tr>
 												
 												</tbody>
@@ -124,7 +124,7 @@ function deleteConfirm(){
 												class="btnNormalFix sizeS">목록</a>
 												
 											</span> 
-											 <c:if test="${MEMBER_NUM != null }"> 
+											 <c:if test="${MEMBER_NUM==OTOMap.ONETOONE_MEMBER_NUM}"> 
 											<span class="gRight">  
 												<a href="javascript:void(0);" class="btnEmFix sizeS" onclick="deleteConfirm();">삭제</a>
 											
