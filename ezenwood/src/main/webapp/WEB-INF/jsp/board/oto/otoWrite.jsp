@@ -11,10 +11,9 @@
 <link href="/ezenwood/css/board.css" type="text/css" rel="stylesheet">
 <link href="/ezenwood/css/button.css" type="text/css" rel="stylesheet">
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-  
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
 <script type="text/javascript">
 
 function formCheck() {
@@ -146,7 +145,7 @@ function formCheck() {
 	<script type="text/javascript">
 		var gfv_count = 1;
 	
-		$(document.writeForm).ready(function(){
+		$(document).ready(function(){
 
 			$("#addFile").on("click", function(e){ //파일 추가 버튼
 				e.preventDefault();
