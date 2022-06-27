@@ -1,6 +1,5 @@
 package com.ezen.ezenwood.member.service;
 
-import java.util.List;
 import java.util.Map;
 
 import javax.annotation.Resource;
@@ -40,6 +39,12 @@ public class LoginServiceImpl implements LoginService {
 	public String selectid() throws Exception {
 		// TODO Auto-generated method stub
 		return loginDAO.selectid();
+	}
+
+	@Override
+	public int emailcheck(String MEMBER_NUM) {
+		// TODO Auto-generated method stub
+		return loginDAO.emailcheck(MEMBER_NUM);
 	}
 	
 	

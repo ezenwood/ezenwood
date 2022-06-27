@@ -13,4 +13,5 @@ public interface LoginDAO {
 	
 	public String selectid() throws Exception;
 
+	public int emailcheck(String MEMBER_NUM);
 }

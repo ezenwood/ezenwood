@@ -34,6 +34,12 @@ public class LoginDAOImpl extends AbstractDAO implements LoginDAO {
 		
 		return (String)("member.selectmemberid");
 	}
+
+	@Override
+	public int emailcheck(String MEMBER_NUM) {
+		// TODO Auto-generated method stub
+		return (int) update("member.emailcheck", MEMBER_NUM);
+	}
 	
 	
 	
