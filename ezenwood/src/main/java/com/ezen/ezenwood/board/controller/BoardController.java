@@ -168,7 +168,7 @@ public class BoardController {
 			out.flush();
 		}
 		
-		return "redirect:/board/oto?idx=";
+		return "redirect:/board/oto/1";
 		
 	}
 
