@@ -220,7 +220,7 @@
 																placeholder="도로명주소" name="MEMBER_ADD1"
 																name="MEMBER_ADD1" value="${memberMap.MEMBER_ADD1}">
 																<input type="text" id="sample4_jibunAddress"
-																placeholder="지번주소" name="" value=""> <span
+																placeholder="지번주소" name="MEMBER_ADD4" value="${memberMap.MEMBER_ADD4}"> <span
 																id="guide" style="color: #999; display: none"></span> <br>
 																<input type="text" id="sample4_detailAddress"
 																placeholder="상세주소" name="MEMBER_ADD2"
