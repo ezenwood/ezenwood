@@ -6,12 +6,25 @@
 	<!-- 고객 -->
 
 	<!-- 로그인 -->
+	
+	<update id="emailcheck" parameterType="String">
+	<![CDATA[
+	update MEMBER set MEMBER_EMAIL_CHECK='Y' where MEMBER_NUM = #{MEMBER_NUM}
+	
+	]]>
+	</update>
+	
+	
+	
+	
 	<select id="selectId" parameterType="hashmap"
 		resultType="hashmap">
 <![CDATA[
 	SELECT MEMBER_NUM,MEMBER_NAME, 
 	MEMBER_ID,
-	MEMBER_PW, 
+	MEMBER_PW,
+	MEMBER_EMAIL_CHECK, 
+	MEMBER_EMAIL,
 	MEMBER_DEL_GB 
 	FROM MEMBER WHERE MEMBER_ID = #{MEMBER_ID} AND MEMBER_DEL_GB = 'N' and MEMBER_PW = #{MEMBER_PW}
 ]]>
