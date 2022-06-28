@@ -48,9 +48,8 @@ public class MyPageController {
 		HttpSession session = request.getSession();
 		String memberID = (String) session.getAttribute("MEMBER_ID");
 		String membernum = (String) session.getAttribute("MEMBER_NUM");
-		//System.out.println(membernum);
-		session.getAttribute("MEMBER_PW");
-		if (memberID == null) {
+	
+		if (memberID == null|| memberID.equals("")||memberID.isEmpty()) {
 			
 			mav.setViewName("main");
 			return mav;
@@ -70,11 +69,8 @@ public class MyPageController {
 
 	// 회원 수정 비밀번호 입력 폼
 	@RequestMapping(value = "/pwch", method = RequestMethod.GET)
-	public String mypagePwChForm(HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		session.getAttribute("MEMBER_ID");
-		session.getAttribute("MEMBER_PW");
-
+	public String mypagePwChForm() throws Exception {
+		
 		return "mypage/pwch";
 	}
 
@@ -83,57 +79,28 @@ public class MyPageController {
 	public ModelAndView mypagePwCh(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response)
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
-		HttpSession session = request.getSession();
 		
-		commandMap.get("MEMBER_ID");
-		commandMap.get("MEMBER_PW");
+		
 		Map<String, Object> result = mypageService.memberInfo(commandMap.getMap());
 
-		if (result == null) {
+		if (result == null || result.isEmpty()) {
 			response.setCharacterEncoding("UTF-8");
 			response.setContentType("text/html; charset=utf-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('비밀번호가 일치하지않습니다. Cheking your Password'); location.href='"
 					+ request.getContextPath() + "/mypage/pwch';</script>");
 			out.flush();
-		} else {
-			if (result.get("MEMBER_PW").equals(commandMap.get("MEMBER_PW"))) { // 비밀번호가 같다면
-				session.setAttribute("MEMBER_ID", result.get("MEMBER_ID"));
-				session.setAttribute("MEMBER_PW", result.get("MEMBER_PW"));
-			}
-
+			
+			return mav;
+			
 		}
-
-		session.setAttribute("session", mav);
-		response.setCharacterEncoding("UTF-8");
-		response.setContentType("text/html; charset=utf-8");
-
-		PrintWriter out = response.getWriter();
-		out.println(
-				"<script>alert('로그인 성공!'); location.href='" + request.getContextPath() + "/mypage/update';</script>");
-
-		out.flush();
+		
+		mav.setViewName("mypage/update");
+		mav.addObject("memberMap", result);
 		return mav;
 	}
 
-	// 회원 수정 폼
-	@RequestMapping(value = "/update", method = RequestMethod.GET)
-	public String mypageModifyForm(HttpServletRequest request,Model model) throws Exception {
-		
-		HttpSession session = request.getSession();
-		String memberpw = (String)session.getAttribute("MEMBER_PW");
-		String memberid = (String)session.getAttribute("MEMBER_ID");
-		
-		Map<String, Object> insertMap = new HashMap<String, Object>();
-		
-		insertMap.put("MEMBER_ID", memberid);
-		insertMap.put("MEMBER_PW", memberpw);
-		
-		Map<String, Object> result = mypageService.memberInfo(insertMap);
-		
-		model.addAttribute("memberMap", result);
-		return "mypage/update";
-	}
+	
 
 	// 회원 수정
 	@RequestMapping(value = "/update", method = RequestMethod.POST)
@@ -142,38 +109,40 @@ public class MyPageController {
 		ModelAndView mav = new ModelAndView();
 		int memberInfo = mypageService.memberUpdate(commandMap.getMap());
 
-		mav.addObject(memberInfo);
+		if(memberInfo==1) {
+			//success
+		}else {
+			//fail
+		}
 
-		mav.setViewName("/mypage/main");
+		mav.setViewName("redirect:/mypage/main");
 		return mav;
 	}
 
-	// 회원 탈퇴 폼
-	@RequestMapping(value = "/del", method = RequestMethod.GET)
-	public String myPageDelForm(HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		session.getAttribute("MEMBER_ID");
-		return "mypage/del";
-	}
+	
 
 	// 회원 탈퇴 폼
 	@RequestMapping(value = "/del", method = RequestMethod.POST)
-	public ModelAndView myPageDel(CommandMap commandMap, HttpServletRequest request, HttpServletResponse response)
+	public ModelAndView myPageDel( HttpServletRequest request)
 			throws Exception {
 		HttpSession session = request.getSession();
 		ModelAndView mav = new ModelAndView();
-		int memberInfo = mypageService.memberDelete(commandMap.getMap());
+		
+		Map<String, Object> insertMap = new HashMap<String, Object>();
+		
+		insertMap.put("MEMBER_ID", session.getAttribute("MEMBER_ID"));
+		int memberInfo = mypageService.memberDelete(insertMap);
 
-		mav.addObject(memberInfo);
+		
 
 		session.invalidate();
-		mav.setViewName("/main");
+		mav.setViewName("redirect:/main");
 		return mav;
 	}
 
 	// 주문조회 & 배송조회 리스트
 	@RequestMapping(value = "/order/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView orderChkListForm(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+	public ModelAndView orderChkListForm(@PathVariable int pageNum, HttpServletRequest request)
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
@@ -217,7 +186,7 @@ public class MyPageController {
 
 	// 취소내역 폼
 	@RequestMapping(value = "/cancel/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView myPageCancelForm(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+	public ModelAndView myPageCancelForm(@PathVariable int pageNum, HttpServletRequest request)
 			throws Exception {
 		ModelAndView mav = new ModelAndView();
 		HttpSession session = request.getSession();
@@ -296,7 +265,7 @@ public class MyPageController {
 
 	// 리뷰리스트 폼
 	@RequestMapping(value = "/review/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView myPageReviewForm(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+	public ModelAndView myPageReviewForm(@PathVariable int pageNum,  HttpServletRequest request)
 			throws Exception {
 
 		ModelAndView mv = new ModelAndView();
@@ -339,7 +308,7 @@ public class MyPageController {
 
 	// 큐엔에이리스트 폼
 	@RequestMapping(value = "/qna/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView myPageQNAForm(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+	public ModelAndView myPageQNAForm(@PathVariable int pageNum, HttpServletRequest request)
 			throws Exception {
 
 		ModelAndView mv = new ModelAndView();
@@ -382,7 +351,7 @@ public class MyPageController {
 
 	// 1대1문의리스트 폼
 	@RequestMapping(value = "/oto/{pageNum}", method = RequestMethod.GET)
-	public ModelAndView myPageOtOForm(@PathVariable int pageNum, CommandMap commandMap, HttpServletRequest request)
+	public ModelAndView myPageOtOForm(@PathVariable int pageNum, HttpServletRequest request)
 			throws Exception {
 
 		ModelAndView mv = new ModelAndView();
@@ -407,7 +376,6 @@ public class MyPageController {
 
 		List<Map<String, Object>> list = mypageService.memberOTOList(insertMap);
 		mv.addObject("list", list);
-
 		int totalCount = 0;
 
 		if (list.isEmpty()) {
