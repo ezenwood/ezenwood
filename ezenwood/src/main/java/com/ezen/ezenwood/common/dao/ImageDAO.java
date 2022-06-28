@@ -1,5 +1,6 @@
 package com.ezen.ezenwood.common.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.springframework.stereotype.Repository;
@@ -20,6 +21,11 @@ public class ImageDAO extends AbstractDAO {
 		
 		return (String) selectOne("image.selectImage", insertMap);
 	}
+	
+	public List<Map<String,Object>> selectImages(Map<String, Object> insertMap){
+		return selectList("image.selectImages",insertMap);
+	}
+	
 
 	
 	public int updateGoods(Map<String, Object> insertMap) {

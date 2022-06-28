@@ -2,7 +2,10 @@ package com.ezen.common;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Map;
 import java.util.UUID;
 
@@ -93,24 +96,42 @@ public class ImageSaver {
 		return map;
 	}
 
-	public Map<String, Object> insertOTO(Map<String, Object> map) throws IllegalStateException, IOException {
+	public List<Map<String,Object>> insertOTO(Map<String, Object> map) throws IllegalStateException, IOException {
 
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest) map.get("request");
 
-		MultipartFile otoImageFile = multipartHttpServletRequest.getFile("otoImage");
+		Iterator<String> iterator = multipartHttpServletRequest.getFileNames();
+		
+		MultipartFile otoImageFile = null;
+		
+		List<Map<String,Object>> list = new ArrayList<Map<String,Object>>();
+		
+		
+		while(iterator.hasNext()) {
+			
+					
+			String otoImageORG = null;
+			String otoImageExtension = null;
+			String otoImageSTD = null;
+			otoImageFile = multipartHttpServletRequest.getFile(iterator.next());
+			if(!otoImageFile.isEmpty()) {
+				Map<String,Object> mapa  = new HashMap<String, Object>();
+				 otoImageORG = 	otoImageFile.getOriginalFilename();
+				otoImageExtension = otoImageORG.substring(otoImageORG.lastIndexOf("."));
+				otoImageSTD = UUID.randomUUID().toString().replace("-", "") + otoImageExtension;
+				mapa.put("IMAGE_STD", otoImageSTD);
+				
+				mapa.put("IMAGE_ORG", otoImageORG);
+				File otoImage = new File(filePath + otoImageSTD);
+				otoImageFile.transferTo(otoImage);
+				list.add(mapa);
+				
+			}
+			
+		}
 
-		String otoImageORG = otoImageFile.getOriginalFilename();
-		String otoImageExtension = otoImageORG.substring(otoImageORG.lastIndexOf("."));
-		String otoImageSTD = UUID.randomUUID().toString().replace("-", "") + otoImageExtension;
-
-		File otoImage = new File(filePath + otoImageSTD);
-
-		otoImageFile.transferTo(otoImage);
-
-		map.put("parent", map.get("SONETOONE_NUM"));
-		map.put("IMAGE_ORG", otoImageORG);
-		map.put("IMAGE_STD", otoImageSTD);
-		return map;
+			
+		return list;
 	}
 
 	public void updateGoods(Map<String, Object> insertMap) throws IllegalStateException, IOException {
@@ -190,5 +211,6 @@ public class ImageSaver {
 		map.put("IMAGE_STD", noticeImageSTD);
 		return map;
 	}
+	
 
 }

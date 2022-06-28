@@ -1,6 +1,6 @@
 package com.ezen.ezenwood.member.controller;
 
-import java.io.PrintWriter;
+import java.io.PrintWriter; 
 import java.math.BigDecimal;
 import java.util.Date;
 import java.util.HashMap;
@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.common.CommandMap;
-import com.ezen.ezenwood.member.EmailDTO;
+/*import com.ezen.ezenwood.member.EmailDTO;*/
 import com.ezen.ezenwood.member.service.LoginService;
 
 @Controller
@@ -42,32 +42,24 @@ public class LoginController {
 	   private JavaMailSenderImpl mailSender;
 	
 	
-	private Map<String, EmailDTO> emailMap = new HashMap<String,EmailDTO>();
-	
-	
-	@RequestMapping(value="/emailcheck",method=RequestMethod.GET)
-	public String emailcheck(HttpServletRequest request) {
-		String code = request.getParameter("code");
-		EmailDTO  emaildto =    emailMap.get(code);
-		
-		if(emaildto==null) {
-			
-		}else {
-			Date date = new Date();
-			if(date.getTime()-emaildto.getTime()<600000) {
-				int checkNum =  loginService.emailcheck(emaildto.getMemberNum());
-				if(checkNum == 1) {//인증완료
-					
-				}
-				emailMap.remove(code);
-			}else {
-				emailMap.remove(code);
-			}
-		}
-		
-		return "redirect:/main";
-	}
-	
+		/*
+		 * private Map<String, EmailDTO> emailMap = new HashMap<String,EmailDTO>();
+		 * 
+		 * 
+		 * @RequestMapping(value="/emailcheck",method=RequestMethod.GET) public String
+		 * emailcheck(HttpServletRequest request) { String code =
+		 * request.getParameter("code"); EmailDTO emaildto = emailMap.get(code);
+		 * 
+		 * if(emaildto==null) {
+		 * 
+		 * }else { Date date = new Date(); if(date.getTime()-emaildto.getTime()<600000)
+		 * { int checkNum = loginService.emailcheck(emaildto.getMemberNum());
+		 * if(checkNum == 1) {//인증완료
+		 * 
+		 * } emailMap.remove(code); }else { emailMap.remove(code); } }
+		 * 
+		 * return "redirect:/main"; }
+		 */
 
 	// loginForm
 	@RequestMapping(value = "/member/signin")
@@ -101,20 +93,17 @@ public class LoginController {
 
 		} else {
 			
-			if(result.get("MEMBER_EMAIL_CHECK").equals("N")) {
-				Date date = new Date();
-				String code = UUID.randomUUID().toString().replace("-", "")+UUID.randomUUID().toString().replace("-", "");
-				EmailDTO emaildto = new EmailDTO();
-				emaildto.setTime(date.getTime());
-				emaildto.setCode(code);
-				emaildto.setEmail((String)result.get("MEMBER_EMAIL"));
-				emaildto.setMemberNum(((BigDecimal) result.get("MEMBER_NUM")).toString());
-				sendEmail(emaildto);
-				emailMap.put(code, emaildto);
-				
-				mav.setViewName("redirect:/member/emailcheck");
-				return mav;
-			}
+			/*
+			 * if(result.get("MEMBER_EMAIL_CHECK").equals("N")) { Date date = new Date();
+			 * String code = UUID.randomUUID().toString().replace("-",
+			 * "")+UUID.randomUUID().toString().replace("-", ""); EmailDTO emaildto = new
+			 * EmailDTO(); emaildto.setTime(date.getTime()); emaildto.setCode(code);
+			 * emaildto.setEmail((String)result.get("MEMBER_EMAIL"));
+			 * emaildto.setMemberNum(((BigDecimal) result.get("MEMBER_NUM")).toString());
+			 * sendEmail(emaildto); emailMap.put(code, emaildto);
+			 * 
+			 * mav.setViewName("redirect:/member/emailcheck"); return mav; }
+			 */
 
 			HttpSession session = request.getSession();
 			session.setAttribute("MEMBER_ID", result.get("MEMBER_ID"));
@@ -219,7 +208,7 @@ public class LoginController {
 	}
 	
 	//이메일
-	public void sendEmail(EmailDTO emaildto) {
+	/*public void sendEmail(EmailDTO emaildto) {
 	      final MimeMessagePreparator preparator = new MimeMessagePreparator() {
 	           @Override
 	           public void prepare(MimeMessage mimeMessage) throws Exception {
@@ -233,7 +222,6 @@ public class LoginController {
 	       
 	       mailSender.send(preparator);
 
-
+*/
 }
 	
-}

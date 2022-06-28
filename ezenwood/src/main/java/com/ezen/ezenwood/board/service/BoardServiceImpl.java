@@ -46,24 +46,21 @@ public class BoardServiceImpl implements BoardService {
 //		return checkNum;
 		
 		
-		boardDAO.insertOTO(insertMap);
+		int checkNum = boardDAO.insertOTO(insertMap);
 		
-		try {
-			insertMap.put("IMAGE_TABLENAMES_TABLENAME", "ONETOONE");
-			insertMap.put("IMAGE_PARENT", insertMap.get("ONETOONE_NUM"));
-			Map<String,Object> returnMap = imageSaver.saveImageFile(insertMap, request);
-			if(returnMap.get("IMAGE_ORG")==null) {
+		if(checkNum ==1) {
+			
+			insertMap.put("request",request);
+			List<Map<String,Object>> list = imageSaver.insertOTO(insertMap);
+			for(Map<String,Object> a : list) {
 				
-			}else {
-			imageDAO.insertImage(insertMap);
+				a.put("IMAGE_TABLENAMES_TABLENAME", "ONETOONE");
+				a.put("IMAGE_PARENT", insertMap.get("ONETOONE_NUM"));
+				imageDAO.insertImage(a);
 			}
-		} catch (Exception e) {
-			// image store fail
-			e.printStackTrace();
+		}
 		
 		
-		return 0;
-	}
 		return 1;
 	}
 	
@@ -91,10 +88,10 @@ public class BoardServiceImpl implements BoardService {
 		
 		Map<String, Object> resultMap = boardDAO.getOTODetail(insertMap);
 		resultMap.put("Answer", boardDAO.AnswerForOTODetil(resultMap));
-		String otoImage = imageDAO.selectImage(insertMap);
+		List<Map<String,Object>> list  = imageDAO.selectImages(insertMap);
 		
 		
-		resultMap.put("otoImage", otoImage);
+		resultMap.put("otoImageList", list);
 
 		return resultMap;
 	}
