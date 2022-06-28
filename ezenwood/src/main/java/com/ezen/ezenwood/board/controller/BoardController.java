@@ -164,7 +164,7 @@ public class BoardController {
 		}else {
 			PrintWriter out = response.getWriter();
 			out.println("<script>alert('작성실패 제목과 내용을 모두 적어주세요.'); location.href='" + request.getContextPath()
-					+ "/board/oto';</script>");
+					+ "/board/oto/1';</script>");
 			out.flush();
 		}
 		

@@ -108,12 +108,23 @@ function deleteConfirm(){
 															</div>
 														</td>
 													</tr>
+													
 													<tr class="attach displaynone">
 														<th scope="row">이미지파일</th>
-														<td><c:if test="${OTOMap.otoImage != null}">
+														<td>
+														
+                                               
+                                                   <c:forEach var="oto" items="${OTOMap.otoImageList}">
+                                                   <img src="/ezenwood/resource/image/${oto.IMAGE_STD}" width="300px"
+                                             height="300px">
+                                             </c:forEach>
+                                        
+														<%-- <c:if test="${OTOMap.otoImage != null}">
 																	<img src="/ezenwood/resource/image/${OTOMap.otoImage}" width="300px"
 															height="300px">
-																	</c:if></td>
+																	</c:if> --%>
+																	
+														</td>
 													</tr>
 												
 												</tbody>
