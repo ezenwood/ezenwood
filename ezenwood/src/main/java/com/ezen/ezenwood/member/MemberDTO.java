@@ -33,6 +33,7 @@ public class MemberDTO {
 	public String MEMBER_ADD2;
 	
 	public String MEMBER_ADD3;
+	public String MEMBER_ADD4;
 	public Timestamp MEMBER_JOINDATE;
 	public String MEMBER_EMAIL_CHECK;
 	public String MEMBER_DEL_GB;
@@ -96,6 +97,9 @@ public class MemberDTO {
 	}
 	public void setMEMBER_ADD3(String mEMBER_ADD3) {
 		MEMBER_ADD3 = mEMBER_ADD3;
+	}
+	public void setMEMBER_ADD4(String mEMBER_ADD4) {
+		MEMBER_ADD4 = mEMBER_ADD4;
 	}
 	public Timestamp getMEMBER_JOINDATE() {
 		return MEMBER_JOINDATE;

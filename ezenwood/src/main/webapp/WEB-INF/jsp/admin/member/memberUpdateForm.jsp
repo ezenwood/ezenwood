@@ -146,8 +146,8 @@
 								value="우편번호 찾기"><br> <input type="text"
 								id="sample4_roadAddress" name="MEMBER_ADD1" placeholder="도로명주소"
 								value="${memberUpdateMap.MEMBER_ADD1}"> <input
-								type="text" id="sample4_jibunAddress" placeholder="지번주소"
-								value="${memberUpdateMap.MEMBER_ADD1}"> <span id="guide"
+								type="text" id="sample4_jibunAddress" name="MEMBER_ADD4" placeholder="지번주소"
+								value="${memberUpdateMap.MEMBER_ADD4}"> <span id="guide"
 								style="color: #999; display: none"></span><br> <input
 								type="text" id="sample4_detailAddress" name="MEMBER_ADD2"
 								placeholder="상세주소" value="${memberUpdateMap.MEMBER_ADD2}">
