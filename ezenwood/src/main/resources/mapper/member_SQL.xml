@@ -40,7 +40,8 @@
 	MEMBER_ZIP, 
 	MEMBER_ADD1, 
 	MEMBER_ADD2, 
-	MEMBER_ADD3 
+	MEMBER_ADD3,
+	MEMBER_ADD4
 	from member where MEMBER_ID = #{MEMBER_ID}
 	
 	
@@ -60,7 +61,8 @@
 	MEMBER_ZIP, 
 	MEMBER_ADD1, 
 	MEMBER_ADD2, 
-	MEMBER_ADD3, 
+	MEMBER_ADD3,
+	MEMBER_ADD4, 
 	MEMBER_PHONE, 
 	MEMBER_PW, 
 	MEMBER_JOINDATE, 
@@ -72,7 +74,8 @@
 	#{MEMBER_ZIP},
  	#{MEMBER_ADD1}, 
 	#{MEMBER_ADD2}, 
-	#{MEMBER_ADD3}, 
+	#{MEMBER_ADD3},
+	#{MEMBER_ADD4}, 
 	#{MEMBER_PHONE}, 
 	#{MEMBER_PW}, sysdate, 'Y' , 'N')
  	
@@ -132,7 +135,8 @@ SELECT	MEMBER_PW
         	MEMBER_ZIP = #{MEMBER_ZIP},
         	MEMBER_ADD1 = #{MEMBER_ADD1},
         	MEMBER_ADD2 = #{MEMBER_ADD2},
-        	MEMBER_ADD3 = #{MEMBER_ADD3}
+        	MEMBER_ADD3 = #{MEMBER_ADD3},
+        	MEMBER_ADD4 = #{MEMBER_ADD4}
     	WHERE MEMBER_ID = #{MEMBER_ID}
     	]]>
 	</update>
@@ -165,6 +169,7 @@ SELECT	MEMBER_PW
                         MEMBER_ADD1,
                         MEMBER_ADD2,
          		MEMBER_ADD3,
+         		MEMBER_ADD4,
         		MEMBER_JOINDATE,
          		MEMBER_DEL_GB
                 FROM MEMBER
@@ -192,6 +197,7 @@ SELECT	MEMBER_PW
                         MEMBER_ADD1,
                         MEMBER_ADD2,
          		MEMBER_ADD3,
+         		MEMBER_ADD4,
         		MEMBER_JOINDATE,
          		MEMBER_DEL_GB
                 FROM MEMBER
@@ -214,6 +220,7 @@ SELECT	MEMBER_PW
                         MEMBER_ADD1,
                         MEMBER_ADD2,
          		MEMBER_ADD3,
+         		MEMBER_ADD4,
         		MEMBER_JOINDATE,
          		MEMBER_DEL_GB
                 FROM MEMBER
@@ -236,6 +243,7 @@ SELECT	MEMBER_PW
                         MEMBER_ADD1,
                         MEMBER_ADD2,
          		MEMBER_ADD3,
+         		MEMBER_ADD4,
         		MEMBER_JOINDATE,
          		MEMBER_DEL_GB
                 FROM MEMBER
@@ -262,6 +270,7 @@ SELECT	MEMBER_PW
                         MEMBER_ADD1,
                         MEMBER_ADD2,
          		MEMBER_ADD3,
+         		MEMBER_ADD4,
         		MEMBER_JOINDATE,
          		MEMBER_DEL_GB
                 FROM MEMBER
@@ -284,6 +293,7 @@ SELECT	MEMBER_PW
                         MEMBER_ADD1,
                         MEMBER_ADD2,
          		MEMBER_ADD3,
+         		MEMBER_ADD4,
         		MEMBER_JOINDATE,
          		MEMBER_DEL_GB
                 FROM MEMBER
@@ -315,7 +325,8 @@ SELECT	MEMBER_PW
         	MEMBER_ZIP = #{MEMBER_ZIP},
         	MEMBER_ADD1 = #{MEMBER_ADD1},
         	MEMBER_ADD2 = #{MEMBER_ADD2},
-        	MEMBER_ADD3 = #{MEMBER_ADD3}
+        	MEMBER_ADD3 = #{MEMBER_ADD3},
+        	MEMBER_ADD4 = #{MEMBER_ADD4}
     	WHERE MEMBER_ID = #{MEMBER_ID}
 ]]>
 	</update>

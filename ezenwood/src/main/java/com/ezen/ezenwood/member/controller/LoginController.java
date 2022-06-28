@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.common.CommandMap;
-import com.ezen.ezenwood.member.EmailDTO;
+/*import com.ezen.ezenwood.member.EmailDTO;*/
 import com.ezen.ezenwood.member.service.LoginService;
 
 @Controller
@@ -37,37 +37,29 @@ public class LoginController {
 
 	@Resource(name = "loginService")
 	private LoginService loginService;
-	
+
 	@Autowired
-	   private JavaMailSenderImpl mailSender;
-	
-	
-	private Map<String, EmailDTO> emailMap = new HashMap<String,EmailDTO>();
-	
-	
-	@RequestMapping(value="/emailcheck",method=RequestMethod.GET)
-	public String emailcheck(HttpServletRequest request) {
-		String code = request.getParameter("code");
-		EmailDTO  emaildto =    emailMap.get(code);
-		
-		if(emaildto==null) {
-			
-		}else {
-			Date date = new Date();
-			if(date.getTime()-emaildto.getTime()<600000) {
-				int checkNum =  loginService.emailcheck(emaildto.getMemberNum());
-				if(checkNum == 1) {//인증완료
-					
-				}
-				emailMap.remove(code);
-			}else {
-				emailMap.remove(code);
-			}
-		}
-		
-		return "redirect:/main";
-	}
-	
+	private JavaMailSenderImpl mailSender;
+
+	/*
+	 * private Map<String, EmailDTO> emailMap = new HashMap<String,EmailDTO>();
+	 * 
+	 * 
+	 * @RequestMapping(value="/emailcheck",method=RequestMethod.GET) public String
+	 * emailcheck(HttpServletRequest request) { String code =
+	 * request.getParameter("code"); EmailDTO emaildto = emailMap.get(code);
+	 * 
+	 * if(emaildto==null) {
+	 * 
+	 * }else { Date date = new Date(); if(date.getTime()-emaildto.getTime()<600000)
+	 * { int checkNum = loginService.emailcheck(emaildto.getMemberNum());
+	 * if(checkNum == 1) {//인증완료
+	 * 
+	 * } emailMap.remove(code); }else { emailMap.remove(code); } }
+	 * 
+	 * return "redirect:/main"; }
+	 * 
+	 */
 
 	// loginForm
 	@RequestMapping(value = "/member/signin")
@@ -87,8 +79,6 @@ public class LoginController {
 		ModelAndView mav = new ModelAndView("main");
 
 		Map<String, Object> result = loginService.login(commandMap.getMap());
-		
-		
 
 		if (result == null || result.isEmpty()) {
 
@@ -100,21 +90,18 @@ public class LoginController {
 			out.flush();
 
 		} else {
-			
-			if(result.get("MEMBER_EMAIL_CHECK").equals("N")) {
-				Date date = new Date();
-				String code = UUID.randomUUID().toString().replace("-", "")+UUID.randomUUID().toString().replace("-", "");
-				EmailDTO emaildto = new EmailDTO();
-				emaildto.setTime(date.getTime());
-				emaildto.setCode(code);
-				emaildto.setEmail((String)result.get("MEMBER_EMAIL"));
-				emaildto.setMemberNum(((BigDecimal) result.get("MEMBER_NUM")).toString());
-				sendEmail(emaildto);
-				emailMap.put(code, emaildto);
-				
-				mav.setViewName("redirect:/member/emailcheck");
-				return mav;
-			}
+
+			/*
+			 * if(result.get("MEMBER_EMAIL_CHECK").equals("N")) { Date date = new Date();
+			 * String code = UUID.randomUUID().toString().replace("-",
+			 * "")+UUID.randomUUID().toString().replace("-", ""); EmailDTO emaildto = new
+			 * EmailDTO(); emaildto.setTime(date.getTime()); emaildto.setCode(code);
+			 * emaildto.setEmail((String)result.get("MEMBER_EMAIL"));
+			 * emaildto.setMemberNum(((BigDecimal) result.get("MEMBER_NUM")).toString());
+			 * sendEmail(emaildto); emailMap.put(code, emaildto);
+			 * 
+			 * mav.setViewName("redirect:/member/emailcheck"); return mav; }
+			 */
 
 			HttpSession session = request.getSession();
 			session.setAttribute("MEMBER_ID", result.get("MEMBER_ID"));
@@ -217,23 +204,20 @@ public class LoginController {
 
 		return mav;
 	}
-	
-	//이메일
-	public void sendEmail(EmailDTO emaildto) {
-	      final MimeMessagePreparator preparator = new MimeMessagePreparator() {
-	           @Override
-	           public void prepare(MimeMessage mimeMessage) throws Exception {
-	               final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true, "UTF-8");
-	               helper.setFrom("k1m1nsu9805@gmail.com");
-	               helper.setTo(emaildto.getEmail());
-	               helper.setSubject("이젠우드 인증 이메일 입니다.");
-	               helper.setText("이메일 인증버튼을 누르면 이메일 인증이 됩니다.\r\n"+ "http://localhost:9001/ezenwood/emailcheck?code="+ emaildto.getCode());
-	           }
-	       };
-	       
-	       mailSender.send(preparator);
 
+	// 이메일
+	/*
+	 * public void sendEmail(EmailDTO emaildto) { final MimeMessagePreparator
+	 * preparator = new MimeMessagePreparator() {
+	 * 
+	 * @Override public void prepare(MimeMessage mimeMessage) throws Exception {
+	 * final MimeMessageHelper helper = new MimeMessageHelper(mimeMessage, true,
+	 * "UTF-8"); helper.setFrom("k1m1nsu9805@gmail.com");
+	 * helper.setTo(emaildto.getEmail()); helper.setSubject("이젠우드 인증 이메일 입니다.");
+	 * helper.setText("이메일 인증버튼을 누르면 이메일 인증이 됩니다.\r\n"+
+	 * "http://localhost:9001/ezenwood/emailcheck?code="+ emaildto.getCode()); } };
+	 * 
+	 * mailSender.send(preparator);
+	 */
 
-}
-	
 }
