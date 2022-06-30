@@ -27,7 +27,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.ezen.common.CommandMap;
-/*import com.ezen.ezenwood.member.EmailDTO;*/
+import com.ezen.ezenwood.member.EmailDTO;
 import com.ezen.ezenwood.member.service.LoginService;
 
 @Controller
@@ -64,7 +64,7 @@ public class LoginController {
 
 
 	// loginForm
-	@RequestMapping(value = "/member/signin")
+	@RequestMapping(value = "/member/signin", method = RequestMethod.GET)
 	public String loginForm(HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		String getnum = (String) session.getAttribute("MEMBER_NUM");
@@ -222,7 +222,7 @@ public class LoginController {
 	       };
 	       
 	       mailSender.send(preparator);
-
+	}
 
 }
 	
