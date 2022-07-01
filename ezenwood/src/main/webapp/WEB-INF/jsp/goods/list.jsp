@@ -2,6 +2,7 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="ui" uri="http://egovframework.gov/ctl/ui"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -69,7 +70,9 @@
 														</div>
 
 														<div class="item_money_box">
-															<strong class="item_price"> <span>${goodsMap.GOODS_PRICE }&nbsp;won</span>
+															<strong class="item_price"> <span>
+															<fmt:formatNumber value="${goodsMap.GOODS_PRICE }" pattern="#,###"/>
+															&nbsp;won</span>
 															</strong>
 														</div>
 

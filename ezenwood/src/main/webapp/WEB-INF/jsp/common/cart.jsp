@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>  
 <!DOCTYPE html>
 <html lang="ko">
 <head>
@@ -279,13 +280,16 @@ function doubleSubmitCheck(){
                     
                                     </div>
                                 </td>
-                                <td class="td_priceP"><strong>${cartMap.goodsMap.GOODS_PRICE * cartMap.BASKET_GOODS_AMOUNT }</strong></td>
+                                <td class="td_priceP" ><strong>
+                                 ${cartMap.goodsMap.GOODS_PRICE * cartMap.BASKET_GOODS_AMOUNT }</strong></td>
                                
-                                <td class="td_priceD"><strong>${cartMap.goodsMap.GOODS_DCOST}</strong></td>
+                                <td class="td_priceD" ><strong>
+                                 ${cartMap.goodsMap.GOODS_DCOST} </strong></td>
                           
-                                <td class="td_priceT"><strong>${cartMap.goodsMap.GOODS_PRICE * cartMap.BASKET_GOODS_AMOUNT + cartMap.goodsMap.GOODS_DCOST }</strong></td>
+                                <td class="td_priceT"><strong>
+                               ${cartMap.goodsMap.GOODS_PRICE * cartMap.BASKET_GOODS_AMOUNT + cartMap.goodsMap.GOODS_DCOST }</strong></td>
                             </tr>
-                            
+                          
                             </c:forEach>
 
                             </tbody>
