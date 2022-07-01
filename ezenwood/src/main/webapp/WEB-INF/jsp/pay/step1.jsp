@@ -1,7 +1,7 @@
-
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>    
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html>
 
@@ -98,13 +98,15 @@
                                                         </div>
                                                     </td>
                                                     <td>
-                                                        <strong class="order_sum_txt price">${payMap.GOODS_PRICE * payMap.GOODS_AMOUNT }</strong>
+                                                        <strong class="order_sum_txt price">
+                                                        <fmt:formatNumber value="${payMap.GOODS_PRICE * payMap.GOODS_AMOUNT }" pattern="#,###"/></strong>
                                                     </td>
                                                     <td class="td_delivery" rowspan="1">
-                                                       ${payMap.GOODS_DCOST }
+                                                        <fmt:formatNumber value="${payMap.GOODS_DCOST }" pattern="#,###"/>
                                                     </td>
                                                     <td>
-                                                        <strong class="order_sum_txt">${payMap.GOODS_PRICE * payMap.GOODS_AMOUNT + payMap.GOODS_DCOST }</strong>
+                                                        <strong class="order_sum_txt">
+                                                        <fmt:formatNumber value="${payMap.GOODS_PRICE * payMap.GOODS_AMOUNT + payMap.GOODS_DCOST }" pattern="#,###"/></strong>
                                                     </td>
                                                     <td class="order_option">
                                                         <strong>옵션</strong>

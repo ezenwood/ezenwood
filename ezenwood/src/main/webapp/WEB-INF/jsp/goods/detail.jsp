@@ -210,8 +210,10 @@ function count(type) {
 													class="title"><span
 														style="font-size: 12px; color: #000000; font-weight: bold;">판매가</span></span>
 													<span class="con"><span
-														style="font-size: 12px; color: #000000; font-weight: bold;"><strong
-															id="span_product_price_text">${GOODS_MAP.GOODS_PRICE }&nbsp;won</strong></span></span>
+														style="font-size: 12px; color: #000000; font-weight: bold;">
+														<strong id="span_product_price_text">
+															<fmt:formatNumber value="${GOODS_MAP.GOODS_PRICE }" pattern="#,###"/>
+															&nbsp;won</strong></span></span>
 												</li>
 
 												<li class=" quantity_css xans-record-"><span
@@ -284,7 +286,8 @@ function count(type) {
 																src="/ezenwood/resource/image/btn_basketDown.gif"
 																alt="수량감소" class="QuantityDown down"></a>
 													</span></td>
-													<td class="right"><span class="quantity_price">${GOODS_MAP.GOODS_PRICE }</span>
+													<td class="right"><span class="quantity_price">
+													<fmt:formatNumber value="${GOODS_MAP.GOODS_PRICE }" pattern="#,###"/></span>
 													</td>
 												</tr>
 											</tbody>
@@ -312,7 +315,8 @@ function count(type) {
 													<td class="right"><span id="option_box1_price">
 
 															<span class="ec-front-product-item-price"
-															code="P00000TJ000B" product-no="503">${GOODS_MAP.GOODS_PRICE }
+															code="P00000TJ000B" product-no="503">
+															${GOODS_MAP.GOODS_PRICE }
 																won</span>
 
 													</span></td>

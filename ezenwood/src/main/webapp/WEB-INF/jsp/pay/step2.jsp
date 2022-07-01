@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -266,15 +267,15 @@
             </colgroup>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">상품합계 금액</th>
-                <td>${payInfo.priceSum }원</td>
+                <td><fmt:formatNumber value="${payInfo.priceSum }" pattern="#,###"/>원</td>
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">배송비</th>
-                <td>${payInfo.priceDSum }원</td>
+                <td><fmt:formatNumber value="${payInfo.priceDSum }" pattern="#,###"/>원</td>
             </tr>
             <tr>
                 <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">최종합계 금액</th>
-                <td>${payInfo.priceSum + payInfo.priceDSum }원</td>
+                <td><fmt:formatNumber value="${payInfo.priceSum + payInfo.priceDSum }" pattern="#,###"/>원</td>
             </tr>
         </table>
         <div class="order_form_title">결제 수단</div>
@@ -285,28 +286,28 @@
         </colgroup>
         <tr>
             <th style="padding: 15px 10px 14px 30px; border-top: none 0; background: #f7f7f7; text-align: left; border-top: 1px solid #dbdbdb;">일반 결제</th>
-            <td>ㅇㅇ</td>
+            <td><input type="radio" checked="checked">무통장입금</td>
         </tr>
         
         </table>
         <div class="fin">
             <div class="price">
                 <p>총 <b>${payInfo.goodsQuantity }</b>개 상품 금액</p>
-                <p>${payInfo.priceSum }원</p>
+                <p><fmt:formatNumber value="${payInfo.priceSum }" pattern="#,###"/>원</p>
             </div>
             <div class="plus">
                 +
             </div>
             <div class="deprice">
                 <p>배송비</p>
-                <p>${payInfo.priceDSum }원</p>
+                <p><fmt:formatNumber value="${payInfo.priceDSum }" pattern="#,###"/>원</p>
             </div>
             <div class="equal">
                 =
             </div>
             <div class="totalprice">
                 <p>합계</p>
-                <p>${payInfo.priceSum + payInfo.priceDSum }원</p>
+                <p><fmt:formatNumber value="${payInfo.priceSum + payInfo.priceDSum }" pattern="#,###"/>원</p>
             </div>
         </div>
         <button class="paybutton" style=" vertical-align: middle; display: inline-block; width: 200px; height: 61px; line-height: 59px; color: #fff; font-size: 20px; border: 1px solid #323437; background: #323437; text-align: center">결제하기</button>
