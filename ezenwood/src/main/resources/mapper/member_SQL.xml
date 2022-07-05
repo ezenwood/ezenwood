@@ -77,7 +77,7 @@
 	#{MEMBER_ADD3},
 	#{MEMBER_ADD4}, 
 	#{MEMBER_PHONE}, 
-	#{MEMBER_PW}, sysdate, 'Y' , 'N')
+	#{MEMBER_PW}, sysdate, 'N' , 'N')
  	
 ]]>
 	</insert>
