@@ -59,8 +59,8 @@
 										
 										<div class="login_input">
 											<div>
-												<h3 style="text-align:center; font-weight: bold;">이메일인증 유효시간 경과안내</h3><br>
-												<h3>인증 유효시간 10분이 지나서 다시 인증해주시기 바랍니다.</h3>
+												<h3 style="text-align:center; font-weight: bold;">이메일인증 경과안내</h3><br>
+												<h3>인증 유효시간(10분)이 지났거나 유효하지 않은 주소입니다.</h3>
 											</div>
 											
 										</div>
